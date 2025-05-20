@@ -183,7 +183,7 @@
             
             <!-- Copyright -->
             <div class="text-center text-sm pt-6 mt-6 border-t border-primary-dark">
-                <p>@2025 - Rekayasa Perangkat Lunak - SMK Negeri 1 Pasuruan</p>
+                <p>@2025 - Rekayasa Perangkat Lunak - SMK Negeri 1 Pasuruan - Rodhi - Dawud</p>
             </div>
         </div>
     </footer>
