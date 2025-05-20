@@ -30,7 +30,7 @@
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-3">
                 <a href="" class="flex items-center">
-                    <img src="{{ asset('images/logo_skensa.png') }}" alt="SMK Negeri 1 Pasuruan Logo" class="h-12">
+                    <img src="{{ asset('images/logo_skensa.png') }}" alt="SMK Negeri 1 Pasuruan Logo" class="h-12 ml-8">
                 </a>
                 
                 <!-- Mobile menu button -->
