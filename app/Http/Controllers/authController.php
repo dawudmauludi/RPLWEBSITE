@@ -8,7 +8,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class authController extends Controller
@@ -64,7 +63,7 @@ class authController extends Controller
         $user = Auth::user();
 
         if ($user->hasRole('admin') || $user->hasRole('guru')) {
-            return redirect()->intended('home');
+            return redirect()->intended('dashboard');
         } elseif($user->hasRole('siswa')) {
             if ($user->status === 'pending') {
                 Auth::logout();
@@ -78,7 +77,9 @@ class authController extends Controller
                 }
             }
         }
-        return view('home');
+        if ($user->hasRole('admin') || $user->hasRole('guru') || $user->hasRole('siswa')) {
+            return redirect()->route('dashboard');
+        }
     }
 
     // Jika gagal login

@@ -50,7 +50,7 @@
                         >
                             <ul class="py-2">
                                 @if($user->hasRole('admin') || $user->hasRole('guru'))
-                                    <li><a href="/home" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
+                                    <li><a href="/dashboard" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
                                 @elseif($user->hasRole('siswa'))
                                     <li><a href="/profile" class="block px-4 py-2 hover:bg-gray-100">Profile</a></li>
                                 @endif
