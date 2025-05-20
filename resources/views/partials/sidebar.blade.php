@@ -58,7 +58,7 @@
         @endrole
     </nav>
 
-    <div class="flex flex-col flex-1 justify-end px-4 pb-6" style="min-height: 0;">
+    <div class="flex flex-col flex-1 justify-end px-4" style="min-height: 0;">
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" class="w-full py-2 bg-red-600 hover:bg-red-700 text-white rounded transition">
