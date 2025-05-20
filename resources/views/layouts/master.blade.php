@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title') - SMK Negeri 1 Pasuruan</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Feather Icons -->
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     
     <script>
@@ -28,7 +26,6 @@
     @yield('styles')
 </head>
 <body class="flex flex-col min-h-screen font-sans">
-    <!-- Navbar -->
     <nav class="bg-primary text-white">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-3">
@@ -114,7 +111,10 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Address -->
-                <div>
+                <div class="ml-8">
+                    <a href="" class="flex items-center">
+                        <img src="{{ asset('images/logo_skensa.png') }}" alt="SMK Negeri 1 Pasuruan Logo" class="h-[80px]">
+                    </a>
                     <div class="mb-4">
                         <p class="flex items-center">
                             <i data-feather="map-pin" class="w-4 h-4 mr-2"></i>
