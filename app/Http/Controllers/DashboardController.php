@@ -13,15 +13,15 @@ class DashboardController extends Controller
     public function index()
     {
          $user = Auth::user();
-    if($user->hasRole('admin')) {
-        return view('dashboard.admin');
-    } elseif ($user->hasRole('guru')) {
-        return view('dashboard.guru');
-    } elseif ($user->hasRole('siswa')) {
-        return view('dashboard.siswa');
-    } else {
-        abort(403, 'Unauthorized');
-    }
+        if($user->hasRole('admin')) {
+            return view('dashboard.admin.index');
+        } elseif ($user->hasRole('guru')) {
+            return view('dashboard.guru.index');
+        } elseif ($user->hasRole('siswa')) {
+            return view('dashboard.siswa.index');
+        } else {
+            abort(403, 'Unauthorized');
+        }
 
     }
 

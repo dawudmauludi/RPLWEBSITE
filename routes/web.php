@@ -27,8 +27,6 @@ Route::post('/logout',[authController::class,'logout'])->name('logout');
 
 
 
-
-
 Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard')->middleware('auth');
 
 
