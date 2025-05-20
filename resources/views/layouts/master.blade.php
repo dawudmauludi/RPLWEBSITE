@@ -6,7 +6,7 @@
     <title>@yield('title') - SMK Negeri 1 Pasuruan</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/png" href="{{ asset('images/logo_skensa.png') }}">
+    
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     
     <script>
@@ -46,7 +46,7 @@
                         <i data-feather="home" class="w-4 h-4 mr-2"></i>
                         Beranda
                     </a>
-                    <a href="" class="px-4 py-2 hover:bg-primary-dark flex items-center transition-colors duration-200">
+                    <a href="/detail-jurusan" class="px-4 py-2 hover:bg-primary-dark flex items-center transition-colors duration-200">
                         <i data-feather="info" class="w-4 h-4 mr-2"></i>
                         Tentang Jurusan
                     </a>
@@ -106,6 +106,35 @@
         @yield('content')
     </main>
 
+    <a href="https://wa.me/6288228513539" target="_blank"
+        class="fixed z-50 bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg p-4 flex items-center justify-center transition-colors duration-200 group"
+        aria-label="Chat via WhatsApp">
+         <span class="absolute bottom-16 right-0 mb-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-200 bg-gray-900 text-white text-xs rounded px-3 py-1 shadow-lg pointer-events-none">
+              Chat admin
+         </span>
+         <img src="{{ asset('images/icons/wa.png') }}" alt="WhatsApp" class="w-7 h-7 animate-bounce-slow group-hover:animate-bounce-fast" />
+    </a>
+    <style>
+         @keyframes bounce-slow {
+              0%, 100% { transform: translateY(0);}
+              50% { transform: translateY(-8px);}
+         }
+         @keyframes bounce-fast {
+              0%, 100% { transform: translateY(0);}
+              50% { transform: translateY(-16px);}
+         }
+         .animate-bounce-slow {
+              animation: bounce-slow 2s infinite;
+         }
+         .group:hover .animate-bounce-slow {
+              animation: none;
+         }
+         .group:hover .animate-bounce-fast {
+              animation: bounce-fast 0.6s infinite;
+         }
+    </style>
+
+
     <!-- Footer -->
     <footer class="bg-primary text-white py-8">
         <div class="container mx-auto px-4">
@@ -141,11 +170,11 @@
                 <!-- Links -->
                 <div>
                     <div class="flex flex-col space-y-2">
-                        <a href="" class="hover:text-accent flex items-center">
+                        <a href="/" class="hover:text-accent flex items-center">
                             <i data-feather="chevron-right" class="w-4 h-4 mr-1"></i>
                             Beranda
                         </a>
-                        <a href="" class="hover:text-accent flex items-center">
+                        <a href="/detail-jurusan" class="hover:text-accent flex items-center">
                             <i data-feather="chevron-right" class="w-4 h-4 mr-1"></i>
                             Tentang Jurusan
                         </a>
