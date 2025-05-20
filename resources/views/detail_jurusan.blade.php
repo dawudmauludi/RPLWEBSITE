@@ -252,51 +252,55 @@
             </h2>
             <div class="border-b-2 border-white mb-6 w-full"></div>
             
-            <p class="mb-6">Beberapa tools dan teknologi yang biasa diajarkan di jurusan RPL meliputi:</p>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-                <div class="bg-gray-800 p-4 rounded-lg text-center">
-                    <img src="{{ asset('images/icons/mysql.png') }}" alt="MySQL" class="h-12 mx-auto mb-2">
-                    <p class="font-semibold">Database: MySQL</p>
-                </div>
-                
-                <div class="bg-gray-800 p-4 rounded-lg text-center">
-                    <img src="{{ asset('images/icons/html-css-js.png') }}" alt="HTML, CSS, JS" class="h-12 mx-auto mb-2">
-                    <p class="font-semibold">HTML, CSS, JavaScript</p>
-                </div>
-                
-                <div class="bg-gray-800 p-4 rounded-lg text-center">
-                    <img src="{{ asset('images/icons/php.png') }}" alt="PHP" class="h-12 mx-auto mb-2">
-                    <p class="font-semibold">PHP</p>
-                </div>
-                
-                <div class="bg-gray-800 p-4 rounded-lg text-center">
-                    <img src="{{ asset('images/icons/python.png') }}" alt="Python" class="h-12 mx-auto mb-2">
-                    <p class="font-semibold">Python</p>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="bg-gray-800 p-4 rounded-lg text-center">
-                    <img src="{{ asset('images/icons/laravel.png') }}" alt="Laravel" class="h-12 mx-auto mb-2">
-                    <p class="font-semibold">Framework: Laravel</p>
-                </div>
-                
-                <div class="bg-gray-800 p-4 rounded-lg text-center">
-                    <img src="{{ asset('images/icons/flutter.png') }}" alt="Flutter" class="h-12 mx-auto mb-2">
-                    <p class="font-semibold">Framework: Flutter</p>
-                </div>
-                
-                <div class="bg-gray-800 p-4 rounded-lg text-center">
-                    <img src="{{ asset('images/icons/java.png') }}" alt="Java" class="h-12 mx-auto mb-2">
-                    <p class="font-semibold">Java</p>
-                </div>
-                
-                <div class="bg-gray-800 p-4 rounded-lg text-center">
-                    <img src="{{ asset('images/icons/figma.png') }}" alt="Figma" class="h-12 mx-auto mb-2">
-                    <p class="font-semibold">Desain UI/UX: Figma</p>
+            <p class="mb-4">Beberapa tools dan teknologi yang biasa diajarkan di jurusan RPL meliputi:</p>
+            <ul class="list-disc pl-6 space-y-2 ml-8">
+                <li>Database: MySQL</li>
+                <li>Bahasa Pemrograman: HTML, CSS, JavaScript, PHP, Java, Python</li>
+                <li>Framework: Laravel, Flutter</li>
+                <li>Desain UI/UX: Figma</li>
+                <li>Version Control: Git</li>
+            </ul>
+            <div class="overflow-x-hidden mb-8 mt-[50px]">
+                <div class="animate-marquee-img whitespace-nowrap" style="gap: 3rem;">
+                    @for ($i = 0; $i < 3; $i++)
+                        <img src="{{ asset('images/icons/mysql.png') }}" alt="MySQL" class="h-24 inline-block mx-8">
+                        <img src="{{ asset('images/icons/java.png') }}" alt="JAVA" class="h-24 inline-block mx-8">
+                        <img src="{{ asset('images/icons/php.png') }}" alt="PHP" class="h-24 inline-block mx-8">
+                        <img src="{{ asset('images/icons/laravel.png') }}" alt="Laravel" class="h-24 inline-block mx-8">
+                        <img src="{{ asset('images/icons/flutter.png') }}" alt="Flutter" class="h-24 inline-block mx-8">
+                        <img src="{{ asset('images/icons/js.jpg') }}" alt="JavaScript" class="h-24 inline-block mx-8">
+                        <img src="{{ asset('images/icons/html.png') }}" alt="HTML" class="h-24 inline-block mx-8">
+                        <img src="{{ asset('images/icons/css.png') }}" alt="CSS" class="h-24 inline-block mx-8">
+                        <img src="{{ asset('images/icons/python.png') }}" alt="Python" class="h-24 inline-block mx-8">
+                        <img src="{{ asset('images/icons/figma.png') }}" alt="FIGMA" class="h-24 inline-block mx-8">
+                        <img src="{{ asset('images/icons/git.png') }}" alt="Git" class="h-24 inline-block mx-8">
+                    @endfor
                 </div>
             </div>
+            <style>
+                @keyframes marquee-img {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-33.333%); }
+                }
+                .animate-marquee-img {
+                    display: flex;
+                    width: max-content;
+                    animation: marquee-img 30s linear infinite;
+                    align-items: center;
+                }
+            </style>
+            
+            <style>
+                @keyframes marquee-img {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+                .animate-marquee-img {
+                    display: flex;
+                    width: max-content;
+                    animation: marquee-img 30s linear infinite;
+                }
+            </style>
         </div>
     </section>
 
