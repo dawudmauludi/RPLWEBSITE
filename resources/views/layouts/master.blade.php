@@ -29,7 +29,7 @@
     <nav class="bg-primary text-white">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-3">
-                <a href="" class="flex items-center">
+                <a href="/" class="flex items-center">
                     <img src="{{ asset('images/logo_skensa.png') }}" alt="SMK Negeri 1 Pasuruan Logo" class="h-12 ml-8">
                 </a>
                 
@@ -42,7 +42,7 @@
                 
                 <!-- Desktop menu -->
                 <div class="hidden md:flex items-center space-x-1">
-                    <a href="" class="px-4 py-2 hover:bg-primary-dark flex items-center transition-colors duration-200">
+                    <a href="/" class="px-4 py-2 hover:bg-primary-dark flex items-center transition-colors duration-200">
                         <i data-feather="home" class="w-4 h-4 mr-2"></i>
                         Beranda
                     </a>

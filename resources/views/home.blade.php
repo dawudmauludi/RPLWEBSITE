@@ -74,7 +74,7 @@
                     Rekayasa Perangkat Lunak atau RPL adalah salah satu jurusan dalam bidang teknologi Informasi dan Komunikasi (TIK) yang berfokus pada pengembangan software. Jurusan ini mempelajari seluruh proses dalam pembuatan aplikasi, mulai dari perencanaan, analisis kebutuhan, perancangan sistem, penulisan kode (pemrograman), pengujian, hingga pemeliharaan software.
                 </p>
                 
-                <a href="#" class="inline-block bg-purple-700 hover:bg-purple-800 text-white py-2 px-8 rounded-md transition duration-300">
+                <a href="/detail-jurusan" class="inline-block bg-purple-700 hover:bg-purple-800 text-white py-2 px-8 rounded-md transition duration-300">
                     Selengkapnya
                 </a>
             </div>
@@ -152,7 +152,7 @@
                 </li>
             </ul>
             
-            <a href="#" class="mt-8 inline-block bg-purple-700 hover:bg-purple-800 text-white py-2 px-8 rounded-md transition duration-300">
+            <a href="/detail-jurusan" class="mt-8 inline-block bg-purple-700 hover:bg-purple-800 text-white py-2 px-8 rounded-md transition duration-300">
                 Selengkapnya
             </a>
         </div>
