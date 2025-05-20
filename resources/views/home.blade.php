@@ -15,8 +15,9 @@
             </div>
         </div>
 
-        <a href="#"
-           class="mt-6 bg-purple-700 hover:bg-purple-800 text-white py-3 px-10 rounded-md transition duration-300 shadow-lg">
+        <a href="/detail-jurusan"
+           class="mt-6 hover:bg-purple-800 text-white py-3 px-10 rounded-md transition duration-300 shadow-lg"
+           style="background-color: #400082;">
             Jelajahi
         </a>
     </div>
@@ -63,7 +64,7 @@
   </div>
 </div>
 
-<div class="bg-indigo-900 text-white py-16">
+<div class="text-white py-16" style="background-color: #090D33;">
     <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row items-center">
             <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8 ml-5">
@@ -74,14 +75,14 @@
                     Rekayasa Perangkat Lunak atau RPL adalah salah satu jurusan dalam bidang teknologi Informasi dan Komunikasi (TIK) yang berfokus pada pengembangan software. Jurusan ini mempelajari seluruh proses dalam pembuatan aplikasi, mulai dari perencanaan, analisis kebutuhan, perancangan sistem, penulisan kode (pemrograman), pengujian, hingga pemeliharaan software.
                 </p>
                 
-                <a href="/detail-jurusan" class="inline-block bg-purple-700 hover:bg-purple-800 text-white py-2 px-8 rounded-md transition duration-300">
+                <a href="/detail-jurusan" class="inline-block text-white py-2 px-8 rounded-md transition duration-300 hover:bg-purple-800" style="background-color: #400082;">
                     Selengkapnya
                 </a>
             </div>
             <div class="md:w-1/2">
-                    <div class="relative">
-                        <img src="{{ asset('images/coding1.jpg') }}" alt="Programming Illustration" class="rounded-lg shadow-lg w-[400px] mx-auto">
-                    </div>
+                <div class="relative">
+                    <img src="{{ asset('images/coding1.jpg') }}" alt="Programming Illustration" class="rounded-lg shadow-lg w-[400px] mx-auto">
+                </div>
             </div>
         </div>
     </div>
@@ -152,7 +153,7 @@
                 </li>
             </ul>
             
-            <a href="/detail-jurusan" class="mt-8 inline-block bg-purple-700 hover:bg-purple-800 text-white py-2 px-8 rounded-md transition duration-300">
+            <a href="/detail-jurusan" class="mt-8 inline-block text-white py-2 px-8 rounded-md transition duration-300 hover:bg-purple-800" style="background-color: #400082;">
                 Selengkapnya
             </a>
         </div>
