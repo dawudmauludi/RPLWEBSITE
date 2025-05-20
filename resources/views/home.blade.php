@@ -24,44 +24,43 @@
 
 
 
-<div class="container mx-auto py-16 px-4">
-    <div class="grid md:grid-cols-3 gap-10">
-        <!-- Mission -->
-        <div class="flex flex-col items-center text-center">
-            <div class="w-20 h-20 mb-6">
-                <i data-feather="target" class="w-full h-full text-indigo-700"></i>
-            </div>
-            <h2 class="text-2xl font-bold text-indigo-700 mb-4">MISI</h2>
-            <ul class="space-y-2 text-gray-700">
-                <li>Membekali siswa dengan keterampilan pemrograman dan TI.</li>
-                <li>Menumbuhkan sikap profesional dan inovatif.</li>
-                <li>Menjalin kerja sama dengan dunia industri.</li>
-                <li>Mendorong siswa menciptakan karya berbasis teknologi.</li>
-            </ul>
-        </div>
-
-        <!-- Vision -->
-        <div class="flex flex-col items-center text-center">
-            <div class="w-20 h-20 mb-6">
-                <i data-feather="eye" class="w-full h-full text-indigo-700"></i>
-            </div>
-            <h2 class="text-2xl font-bold text-indigo-700 mb-4">VISI</h2>
-            <p class="text-gray-700">
-                Menjadi jurusan yang unggul dalam bidang pengembangan perangkat lunak, berdaya saing global, dan berlandaskan etika profesional.
-            </p>
-        </div>
-
-        <!-- Purpose -->
-        <div class="flex flex-col items-center text-center">
-            <div class="w-20 h-20 mb-6">
-                <i data-feather="award" class="w-full h-full text-indigo-700"></i>
-            </div>
-            <h2 class="text-2xl font-bold text-indigo-700 mb-4">TUJUAN</h2>
-            <p class="text-gray-700">
-                "Menyiapkan peserta didik agar mampu bekerja mandiri dan/atau mengisi lowongan pekerjaan yang ada di dunia usaha sebagai tenaga kerja tingkat menengah dalam bidang rekayasa perangkat lunak."
-            </p>
-        </div>
+<div class="container mx-auto px-4 py-16 space-y-12">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-center">
+        <div class="flex flex-col items-center">
+      <div class="w-16 h-16 mb-4 text-indigo-700">
+        <i data-feather="eye" class="w-full h-full"></i>
+      </div>
+      <h2 class="text-2xl font-bold text-indigo-700 mb-4">VISI</h2>
+      <p class="text-gray-700">
+        Menjadi jurusan yang unggul dalam bidang pengembangan perangkat lunak, berdaya saing global, dan berlandaskan etika profesional.
+      </p>
     </div>
+
+    <div class="flex flex-col items-center">
+      <div class="w-16 h-16 mb-4 text-indigo-700">
+        <i data-feather="target" class="w-full h-full"></i>
+      </div>
+      <h2 class="text-2xl font-bold text-indigo-700 mb-4">MISI</h2>
+      <ul class="text-gray-700 space-y-2">
+        <li>Membekali siswa dengan keterampilan pemrograman dan TI.</li>
+        <li>Menumbuhkan sikap profesional dan inovatif.</li>
+        <li>Menjalin kerja sama dengan dunia industri.</li>
+        <li>Mendorong siswa menciptakan karya berbasis teknologi.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="flex justify-center text-center">
+    <div class="flex flex-col items-center max-w-xl">
+      <div class="w-16 h-16 mb-4 text-indigo-700">
+        <i data-feather="award" class="w-full h-full"></i>
+      </div>
+      <h2 class="text-2xl font-bold text-indigo-700 mb-4">TUJUAN</h2>
+      <p class="text-gray-700">
+        "Menyiapkan peserta didik agar mampu bekerja mandiri dan/atau mengisi lowongan pekerjaan yang ada di dunia usaha sebagai tenaga kerja tingkat menengah dalam bidang rekayasa perangkat lunak."
+      </p>
+    </div>
+  </div>
 </div>
 
 <div class="bg-indigo-900 text-white py-16">
