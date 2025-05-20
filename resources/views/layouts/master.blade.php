@@ -6,7 +6,7 @@
     <title>@yield('title') - SMK Negeri 1 Pasuruan</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
+    <link rel="icon" type="image/png" href="{{ asset('images/logo_skensa.png') }}">
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     
     <script>
