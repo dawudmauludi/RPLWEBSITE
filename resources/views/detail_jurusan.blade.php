@@ -2,7 +2,7 @@
 @section('title', 'Detail Jurusan RPL')
 @section('content')
     <!-- Pengantar Jurusan -->
-    <section class="bg-white py-8">
+    <section class="bg-white py-8 mt-16">
         <div class="container mx-auto px-4">
             <div class="flex flex-col gap-6 items-center">
                 <div class="w-full">
@@ -10,9 +10,9 @@
                     <h3 class="text-xl text-gray-700 mb-2">Rekayasa Perangkat Lunak</h3>
                     <div class="border-b-2 border-black mb-6 w-full"></div>
                 <div class="w-full mb-6 flex justify-center">
-                    <img 
-                        src="{{ asset('images/coding3.jpg') }}" 
-                        alt="Mahasiswa RPL" 
+                    <img
+                        src="{{ asset('images/coding3.jpg') }}"
+                        alt="Mahasiswa RPL"
                         class="rounded-lg shadow-md"
                         style="width: 400px; height: 250px; object-fit: cover;"
                     >
@@ -43,7 +43,7 @@
             </h2>
             <div class="border-b-2 border-black mb-6 w-full"></div>
             <p class="mb-6">Jurusan RPL tidak hanya mengajarkan tentang cara membuat software, tetapi juga memahami siklus hidup pengembangan perangkat lunak dari awal hingga akhir. Materi yang dipelajari antara lain:</p>
-            
+
             <div class="grid md:grid-cols-2 gap-6">
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <h3 class="text-xl font-semibold mb-4 flex items-center">
@@ -60,7 +60,7 @@
                         </li>
                     </ul>
                 </div>
-                
+
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <h3 class="text-xl font-semibold mb-4 flex items-center">
                         <i data-feather="search" class="mr-2 text-purple-600"></i> 2. Analisis Kebutuhan
@@ -76,7 +76,7 @@
                         </li>
                     </ul>
                 </div>
-                
+
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <h3 class="text-xl font-semibold mb-4 flex items-center">
                         <i data-feather="layout" class="mr-2 text-purple-600"></i> 3. Perancangan Sistem (Design)
@@ -92,7 +92,7 @@
                         </li>
                     </ul>
                 </div>
-                
+
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <h3 class="text-xl font-semibold mb-4 flex items-center">
                         <i data-feather="code" class="mr-2 text-purple-600"></i> 4. Pemrograman (Coding)
@@ -156,84 +156,84 @@
                         <span class="font-semibold">Dasar-Dasar Pemrograman</span>
                     </div>
                 </div>
-                
+
                 <div class="bg-purple-50 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
                         <i data-feather="layers" class="mr-2 text-purple-600"></i>
                         <span class="font-semibold">Pemrograman Berorientasi Objek (PBO)</span>
                     </div>
                 </div>
-                
+
                 <div class="bg-purple-50 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
                         <i data-feather="globe" class="mr-2 text-purple-600"></i>
                         <span class="font-semibold">Pemrograman Web dan Perangkat Bergerak (PWPB)</span>
                     </div>
                 </div>
-                
+
                 <div class="bg-purple-50 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
                         <i data-feather="database" class="mr-2 text-purple-600"></i>
                         <span class="font-semibold">Basis Data</span>
                     </div>
                 </div>
-                
+
                 <div class="bg-purple-50 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
                         <i data-feather="figma" class="mr-2 text-purple-600"></i>
                         <span class="font-semibold">Desain UI/UX</span>
                     </div>
                 </div>
-                
+
                 <div class="bg-purple-50 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
                         <i data-feather="server" class="mr-2 text-purple-600"></i>
                         <span class="font-semibold">Pemrograman Web Dinamis</span>
                     </div>
                 </div>
-                
+
                 <div class="bg-purple-50 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
                         <i data-feather="activity" class="mr-2 text-purple-600"></i>
                         <span class="font-semibold">Analisis dan Perancangan Sistem</span>
                     </div>
                 </div>
-                
+
                 <div class="bg-purple-50 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
                         <i data-feather="settings" class="mr-2 text-purple-600"></i>
                         <span class="font-semibold">Rekayasa Perangkat Lunak</span>
                     </div>
                 </div>
-                
+
                 <div class="bg-purple-50 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
                         <i data-feather="check-circle" class="mr-2 text-purple-600"></i>
                         <span class="font-semibold">Software Testing & Debugging</span>
                     </div>
                 </div>
-                
+
                 <div class="bg-purple-50 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
                         <i data-feather="briefcase" class="mr-2 text-purple-600"></i>
                         <span class="font-semibold">Manajemen Proyek Perangkat Lunak</span>
                     </div>
                 </div>
-                
+
                 <div class="bg-purple-50 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
                         <i data-feather="award" class="mr-2 text-purple-600"></i>
                         <span class="font-semibold">Produk Kreatif dan Kewirausahaan (PKK)</span>
                     </div>
                 </div>
-                
+
                 <div class="bg-purple-50 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
                         <i data-feather="monitor" class="mr-2 text-purple-600"></i>
                         <span class="font-semibold">Pemrograman Desktop</span>
                     </div>
                 </div>
-                
+
                 <div class="bg-purple-50 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
                         <i data-feather="shield" class="mr-2 text-purple-600"></i>
@@ -251,7 +251,7 @@
                 <i data-feather="tool" class="mr-2"></i> Teknologi dan Tools yang Dipelajari
             </h2>
             <div class="border-b-2 border-white mb-6 w-full"></div>
-            
+
             <p class="mb-4">Beberapa tools dan teknologi yang biasa diajarkan di jurusan RPL meliputi:</p>
             <ul class="list-disc pl-6 space-y-2 ml-8">
                 <li>Database: MySQL</li>
@@ -289,7 +289,7 @@
                     align-items: center;
                 }
             </style>
-            
+
             <style>
                 @keyframes marquee-img {
                     0% { transform: translateX(0); }
@@ -311,9 +311,9 @@
                 <i data-feather="briefcase" class="mr-2"></i> Prospek Karier Lulusan RPL
             </h2>
             <div class="border-b-2 border-black mb-6 w-full"></div>
-            
+
             <p class="mb-6">Lulusan jurusan RPL memiliki prospek kerja yang sangat luas di era digital saat ini. Beberapa pilihan karier meliputi:</p>
-            
+
             <div class="grid md:grid-cols-3 gap-4 mb-8">
                 <div class="border border-gray-200 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
@@ -321,56 +321,56 @@
                         <span class="font-semibold">Software Developer / Programmer</span>
                     </div>
                 </div>
-                
+
                 <div class="border border-gray-200 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
                         <i data-feather="globe" class="mr-2 text-purple-600"></i>
                         <span class="font-semibold">Web Developer</span>
                     </div>
                 </div>
-                
+
                 <div class="border border-gray-200 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
                         <i data-feather="smartphone" class="mr-2 text-purple-600"></i>
                         <span class="font-semibold">Mobile App Developer</span>
                     </div>
                 </div>
-                
+
                 <div class="border border-gray-200 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
                         <i data-feather="layout" class="mr-2 text-purple-600"></i>
                         <span class="font-semibold">UI/UX Designer</span>
                     </div>
                 </div>
-                
+
                 <div class="border border-gray-200 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
                         <i data-feather="database" class="mr-2 text-purple-600"></i>
                         <span class="font-semibold">Database Administrator</span>
                     </div>
                 </div>
-                
+
                 <div class="border border-gray-200 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
                         <i data-feather="activity" class="mr-2 text-purple-600"></i>
                         <span class="font-semibold">System Analyst</span>
                     </div>
                 </div>
-                
+
                 <div class="border border-gray-200 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
                         <i data-feather="settings" class="mr-2 text-purple-600"></i>
                         <span class="font-semibold">DevOps Engineer</span>
                     </div>
                 </div>
-                
+
                 <div class="border border-gray-200 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
                         <i data-feather="help-circle" class="mr-2 text-purple-600"></i>
                         <span class="font-semibold">IT Support</span>
                     </div>
                 </div>
-                
+
                 <div class="border border-gray-200 p-4 rounded-lg">
                     <div class="flex items-center mb-2">
                         <i data-feather="check-circle" class="mr-2 text-purple-600"></i>
@@ -378,7 +378,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="bg-purple-50 p-6 rounded-lg">
                 <h3 class="text-xl font-bold text-gray-800 mb-4">Kelebihan Jurusan RPL</h3>
                 <ul class="space-y-3">

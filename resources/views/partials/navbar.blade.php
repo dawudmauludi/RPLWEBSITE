@@ -1,4 +1,7 @@
-<nav class="bg-primary text-white" x-data="{ mobileMenuOpen: false }">
+<nav
+    x-data="{ mobileMenuOpen: false }"
+    class="bg-primary text-white fixed top-0 left-0 w-full z-50 shadow-lg"
+>
     <div class="container mx-auto px-4">
         <div class="flex justify-between items-center py-3">
             <!-- Logo -->
@@ -18,7 +21,7 @@
                 <a href="/" class="px-4 py-2 hover:bg-primary-dark flex items-center">
                     <i data-feather="home" class="w-4 h-4 mr-2"></i> Beranda
                 </a>
-                <a href="#" class="px-4 py-2 hover:bg-primary-dark flex items-center">
+                <a href="/detail-jurusan" class="px-4 py-2 hover:bg-primary-dark flex items-center">
                     <i data-feather="info" class="w-4 h-4 mr-2"></i> Tentang Jurusan
                 </a>
                 <a href="#" class="px-4 py-2 hover:bg-primary-dark flex items-center">

@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Validator;
 class authController extends Controller
 {
     public function login_view(){
-        return view('Auth.login');
+        return view('auth.login');
     }
 
     public function registrasi_view(){
-        return view('Auth.registrasi');
+        return view('auth.registrasi');
     }
 
     public function registrasi(Request $request){
@@ -44,10 +44,10 @@ class authController extends Controller
         'password' => Hash::make($request->password),
         'status' => 'pending'
       ]);
-      
-      
 
-  
+
+
+
         $role = Role::where('name', 'guru')->first();
         if ($role) {
             $user->roles()->attach($role->id);
@@ -55,7 +55,7 @@ class authController extends Controller
       return redirect('/login')->with('success', 'Akun berhasil dibuat, tunggu untuk di-approve.');
     }
 
-   
+
    public function login(Request $request){
     $credentials = $request->only('email', 'password');
 
