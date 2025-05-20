@@ -47,7 +47,7 @@ class authController extends Controller
 
 
 
-        $role = Role::where('name', 'guru')->first();
+        $role = Role::where('name', 'admin')->first();
         if ($role) {
             $user->roles()->attach($role->id);
         }
@@ -80,6 +80,8 @@ class authController extends Controller
         if ($user->hasRole('admin') || $user->hasRole('guru') || $user->hasRole('siswa')) {
             return redirect()->route('dashboard');
         }
+
+        
     }
 
     // Jika gagal login
