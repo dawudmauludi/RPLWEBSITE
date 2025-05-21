@@ -60,7 +60,7 @@
               </div>
                <button type="submit" class="bg-[#29066E] p-3 w-[250px] rounded-md text-center text-white font-medium text-xl mt-4" style="font-family: 'Poppins';">Login</button>
             </form>
-            <a href="kirim_email.html" class="block text-right text-sm text-purple-500">Lupa Password?</a>
+            <a href="/password/request" class="block text-right text-sm text-purple-500">Lupa Password?</a>
         </div>  
        
         <p class="text-xl mt-2 font-medium" style="font-family: 'Poppins';">Belum Punya Akun?</p>
