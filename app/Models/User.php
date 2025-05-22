@@ -49,4 +49,15 @@ class User extends Authenticatable implements LaratrustUser
             'password' => 'hashed',
         ];
     }
+
+    public function guruProfile()
+    {
+        return $this->hasOne(guru_profile::class, 'user_id');
+    }
+
+    public function siswaProfile()
+    {
+        return $this->hasOne(siswa_profile::class, 'user_id');
+    }
+
 }
