@@ -7,6 +7,7 @@
     <title>@yield('title') - SMK Negeri 1 Pasuruan</title>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,7 +48,7 @@
             feather.replace();
         });
     </script>
-
+    <script src="https://unpkg.com/feather-icons"></script>
     @yield('scripts')
 </body>
 </html>

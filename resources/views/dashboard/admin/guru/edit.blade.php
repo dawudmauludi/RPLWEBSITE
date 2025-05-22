@@ -3,7 +3,6 @@
 @section('title', 'Edit Guru')
 
 @section('content')
-    <h1>Edit Guru</h1>
     <form action="{{ route('admin.guru.update', $guru->id) }}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @include('dashboard.admin.guru.form', ['guru' => $guru])
