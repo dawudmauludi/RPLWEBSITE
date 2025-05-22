@@ -4,6 +4,7 @@ use App\Http\Controllers\authController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuruProfileController;
 use App\Http\Controllers\SiswaProfileController;
+use App\Http\Controllers\UserAproveController;
 use App\Models\guru_profile;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -41,5 +42,11 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('siswa', SiswaProfileController::class);
 });
 
+
+Route::middleware(['auth'])->prefix('guru')->name('guru.')->group(function () {
+    Route::get('/',[UserAproveController::class,'index'])->name('approved');
+    Route::post('/guru/user/{id}/approve', [UserAproveController::class, 'approve'])->name('user.approve');
+    Route::post('/guru/user/{id}/reject', [UserAproveController::class, 'reject'])->name('user.reject');
+});
 
 
