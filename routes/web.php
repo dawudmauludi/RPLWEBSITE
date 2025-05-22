@@ -1,8 +1,6 @@
 <?php
 
 use App\Http\Controllers\authController;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuruProfileController;
 use App\Http\Controllers\KelasController;
@@ -10,10 +8,6 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SiswaProfileController;
 use App\Http\Controllers\UserAproveController;
 use App\Models\guru_profile;
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,8 +24,6 @@ Route::get('/detail-jurusan', function () {
     return view('detail_jurusan');
 });
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 
 
 
@@ -72,16 +64,3 @@ Route::middleware(['auth'])->prefix('guru')->name('guru.')->group(function () {
 
 
 
-
-=======
-Route::get('/login',[authController::class,'login_view']);
-Route::post('/login_post',[authController::class,'login'])->name('login.post');
-Route::get('/registrasi',[authController::class,'registrasi_view'])->name('registrasi_form');
-Route::post('/registrasi_post',[authController::class,'registrasi'])->name('registrasi.post');
->>>>>>> Stashed changes
-=======
-Route::get('/login',[authController::class,'login_view']);
-Route::post('/login_post',[authController::class,'login'])->name('login.post');
-Route::get('/registrasi',[authController::class,'registrasi_view'])->name('registrasi_form');
-Route::post('/registrasi_post',[authController::class,'registrasi'])->name('registrasi.post');
->>>>>>> Stashed changes
