@@ -26,6 +26,7 @@ Route::get('/detail-jurusan', function () {
 
 
 
+
 // ================= Authentication ====================== //
 Route::get('/login',[authController::class,'login_view'])->name('login');
 Route::post('/login_post',[authController::class,'login'])->name('login.post');
@@ -59,6 +60,7 @@ Route::middleware(['auth'])->prefix('guru')->name('guru.')->group(function () {
     Route::post('/guru/user/{id}/approve', [UserAproveController::class, 'approve'])->name('user.approve');
     Route::post('/guru/user/{id}/reject', [UserAproveController::class, 'reject'])->name('user.reject');
 });
+
 
 
 
