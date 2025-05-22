@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\kelas;
 use App\Models\siswa_profile;
+use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class SiswaProfileController extends Controller
@@ -12,7 +15,18 @@ class SiswaProfileController extends Controller
      */
     public function index()
     {
-        //
+        $query = siswa_profile::with('user', 'kelas');
+
+        if ($search = request('search')) {
+            $query->where(function ($q) use ($search) {
+            $q->where('nama', 'like', '%' . $search . '%')
+              ->orWhere('nisn', 'like', '%' . $search . '%');
+            });
+        }
+
+        $siswa = $query->paginate(10)->withQueryString();
+
+        return view('dashboard.admin.siswa.index', compact('siswa'));
     }
 
     /**
@@ -20,7 +34,9 @@ class SiswaProfileController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::whereHasRole('siswa')->whereDoesntHave('siswaProfile')->where('status', 'approved')->get();
+        $kelas = kelas::all();
+        return view('dashboard.admin.siswa.create', compact('users', 'kelas'));
     }
 
     /**
@@ -28,38 +44,93 @@ class SiswaProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'user_id' => 'required|exists:users,id|unique:siswa_profiles,user_id',
+            'kelas_id' => 'required|exists:kelas,id',
+            'nama' => 'required',
+            'nisn' => 'required',
+            'jenkel' => 'required',
+            'telepon' => 'required',
+            'alamat' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required|date',
+            'agama' => 'required|in:Islam,Kristen,Katolik,Hindu,Budha,Konghucu',
+            'foto' => 'nullable|image|max:2048',
+        ]);
+
+        $data = $request->all();
+
+        if ($request->hasFile('foto')) {
+            $data['foto'] = $request->file('foto')->store('foto_siswa', 'public');
+        }
+
+        siswa_profile::create($data);
+
+        return redirect()->route('admin.siswa.index')->with('success', 'Siswa berhasil ditambahkan.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(siswa_profile $siswa_profile)
+    public function show(siswa_profile $siswa)
     {
-        //
+        return view('dashboard.admin.siswa.show', compact('siswa'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(siswa_profile $siswa_profile)
+    public function edit(siswa_profile $siswa)
     {
-        //
+        $users = User::whereHasRole('siswa')->where(function ($q) use ($siswa) {
+                $q->whereDoesntHave('siswaProfile')->orWhere('id', $siswa->user_id);
+            })->get();
+        $kelas = Kelas::all();
+        return view('dashboard.admin.siswa.edit', compact('siswa', 'users', 'kelas'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, siswa_profile $siswa_profile)
+    public function update(Request $request, siswa_profile $siswa)
     {
-        //
+        $request->validate([
+            'user_id' => 'required|exists:users,id|unique:siswa_profiles,user_id,' . $siswa->id,
+            'kelas_id' => 'required|exists:kelas,id',
+            'nama' => 'required',
+            'nisn' => 'required|unique:siswa_profiles,nisn,' . $siswa->id,
+            'jenkel' => 'required|in:Laki-laki,Perempuan',
+            'telepon' => 'required',
+            'alamat' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required|date',
+            'agama' => 'required|in:Islam,Kristen,Katolik,Hindu,Budha,Konghucu',
+            'foto' => 'nullable|image|max:2048',
+        ]);
+
+        $data = $request->all();
+
+        if ($request->hasFile('foto')) {
+            if ($siswa->foto && Storage::disk('public')->exists($siswa->foto)) {
+                Storage::disk('public')->delete($siswa->foto);
+            }
+            $data['foto'] = $request->file('foto')->store('foto_siswa', 'public');
+        }
+
+        $siswa->update($data);
+
+        return redirect()->route('admin.siswa.index')->with('success', 'Data siswa berhasil diupdate.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(siswa_profile $siswa_profile)
+    public function destroy(siswa_profile $siswa)
     {
-        //
+        if ($siswa->foto && Storage::disk('public')->exists($siswa->foto)) {
+            Storage::disk('public')->delete($siswa->foto);
+        }
+        $siswa->delete();
+        return redirect()->route('admin.siswa.index')->with('success', 'Data siswa dan foto berhasil dihapus.');
     }
 }

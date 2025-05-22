@@ -14,7 +14,17 @@ class GuruProfileController extends Controller
      */
     public function index()
     {
-        $gurus = guru_profile::with('user')->get();
+        $query = guru_profile::query();
+
+        if ($search = request('search')) {
+            $query->where(function ($q) use ($search) {
+            $q->where('nama', 'like', "%{$search}%")
+              ->orWhere('nip', 'like', "%{$search}%");
+            });
+        }
+
+        $gurus = $query->paginate(10)->withQueryString();
+
         return view('dashboard.admin.guru.index', compact('gurus'));
     }
 
@@ -41,7 +51,7 @@ class GuruProfileController extends Controller
             'alamat' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required|date',
-            'agama' => 'required',
+            'agama' => 'required|in:Islam,Kristen,Katolik,Hindu,Budha,Konghucu',
             'foto' => 'nullable|image|max:2048',
         ]);
 
