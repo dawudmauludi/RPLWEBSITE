@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\authController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GuruProfileController;
+use App\Http\Controllers\SiswaProfileController;
+use App\Models\guru_profile;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,6 +35,11 @@ Route::post('/password/reset', [authController::class,'resetPassword'])->name('r
 
 
 Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard')->middleware('auth');
+
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('guru', GuruProfileController::class);
+    Route::resource('siswa', SiswaProfileController::class);
+});
 
 
 
