@@ -45,7 +45,7 @@ class GuruProfileController extends Controller
         $request->validate([
             'user_id' => 'required|exists:users,id|unique:guru_profiles,user_id',
             'nama' => 'required',
-            'nip' => 'required',
+            'nip' => 'required|unique:guru_profiles,nip',
             'jenkel' => 'required',
             'telepon' => 'required',
             'alamat' => 'required',
