@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class UserAproveController extends Controller
 {
     public function index(){
-        $users = User::where('status', 'pending')->get();
+        $users = User::where('status', 'pending')->whereHasRole('siswa')->get();
         return view('dashboard.guru.Approve.index', compact('users'));
     }
 
