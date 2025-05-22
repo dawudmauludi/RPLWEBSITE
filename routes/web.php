@@ -3,6 +3,8 @@
 use App\Http\Controllers\authController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuruProfileController;
+use App\Http\Controllers\KelasController;
+use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SiswaProfileController;
 use App\Http\Controllers\UserAproveController;
 use App\Models\guru_profile;
@@ -41,6 +43,14 @@ Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard')
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('guru', GuruProfileController::class);
     Route::resource('siswa', SiswaProfileController::class);
+     Route::resource('kelas', KelasController::class)->parameters([
+        'kelas' => 'kelas' 
+    ]);
+});
+
+Route::middleware(['auth', 'role:siswa'])->group(function () {
+   Route::get('/siswa/profile',[SiswaController::class,'create'])->name('siswa.profile');
+   Route::post('/siswa/profile/store',[SiswaController::class,'store'])->name('siswa_profile.store');
 });
 
 

@@ -72,11 +72,11 @@ class authController extends Controller
                 Auth::logout();
                 return redirect()->back()->with('error', 'Akun Anda belum di-approve oleh admin.');
             } else {
-                $siswaData = siswa_profile::where('id_user', $user->id)->first();
+                $siswaData = siswa_profile::where('user_id', $user->id)->first();
                 if($siswaData){
                     return redirect()->intended('/');
                 } else {
-                    return redirect()->intended('siswa');
+                   return redirect()->route('siswa.profile');
                 }
             }
         }
