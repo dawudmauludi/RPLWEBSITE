@@ -12,7 +12,8 @@ class KelasController extends Controller
      */
     public function index()
     {
-        //
+        $kelass = Kelas::all();
+        return view('dashboard.admin.kelas.index', compact('kelass'));
     }
 
     /**
@@ -20,7 +21,7 @@ class KelasController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.admin.kelas.create');        
     }
 
     /**
@@ -28,7 +29,14 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required|string|max:255',
+        ]);
+
+        $kelas = Kelas::create([
+            'nama' => $request->nama,
+        ]);
+        return redirect()->route('admin.kelas.index')->with('success', 'Kelas berhasil ditambahkan');
     }
 
     /**
@@ -36,15 +44,15 @@ class KelasController extends Controller
      */
     public function show(kelas $kelas)
     {
-        //
+      
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(kelas $kelas)
+    public function edit( kelas $kelas)
     {
-        //
+       return view('dashboard.admin.kelas.update', compact('kelas'));
     }
 
     /**
@@ -52,7 +60,16 @@ class KelasController extends Controller
      */
     public function update(Request $request, kelas $kelas)
     {
-        //
+        $request->validate([
+            'nama' => 'required|string|max:255',
+        ]);
+
+
+        $data = $request->all();
+
+        $kelas->update($data);
+
+        return redirect()->route('admin.kelas.index')->with('success', 'Kelas berhasil diubah');
     }
 
     /**
@@ -60,6 +77,7 @@ class KelasController extends Controller
      */
     public function destroy(kelas $kelas)
     {
-        //
+        $kelas->delete();
+        return redirect()->route('admin.kelas.index')->with('success', 'Kelas berhasil dihapus');
     }
 }
