@@ -25,7 +25,7 @@
                 <a href="#" class="px-4 py-2 hover:bg-primary-dark flex items-center">
                     <i data-feather="award" class="w-4 h-4 mr-2"></i> Karya Siswa
                 </a>
-                <a href="{{ request()->is('/') || request()->is('home') ? '#berita' : '/#berita' }}" class="px-4 py-2 hover:bg-primary-dark flex items-center">
+                <a href="/berita" class="px-4 py-2 hover:bg-primary-dark flex items-center">
                     <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Berita & Artikel
                 </a>
                 <a href="#" class="px-4 py-2 hover:bg-primary-dark flex items-center">
@@ -79,7 +79,7 @@
                 <a href="#" class="px-4 py-2 hover:bg-primary-dark flex items-center">
                     <i data-feather="award" class="w-4 h-4 mr-2"></i> Karya Siswa
                 </a>
-                  <a href="{{ request()->is('/') || request()->is('home') ? '#berita' : '/#berita' }}" class="px-4 py-2 hover:bg-primary-dark flex items-center">
+                  <a href="/berita" class="px-4 py-2 hover:bg-primary-dark flex items-center">
                     <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Berita & Artikel
                 </a>
                 <a href="#" class="px-4 py-2 hover:bg-primary-dark flex items-center">
@@ -116,7 +116,7 @@
                                     <a href="#" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition">
                                         Kelas
                                     </a>
-                                    <a href="{{ route('berita.index') }}" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition">
+                                    <a href="/admin/berita" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition">
                                         Berita & Artikel
                                     </a>
                                 @endrole
