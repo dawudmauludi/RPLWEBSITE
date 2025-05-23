@@ -2,11 +2,22 @@
 <div class="hidden lg:block bg-purple-800 text-white h-screen fixed left-0 top-0 w-64 overflow-y-auto pt-16"> <!-- hidden for mobile, lg:block for desktop -->
     @auth
         @php
+            $userLogin =  null;
             $user = Auth::user();
+            $userLogin = $user->nama ?? $user->siswaProfile;
+            //dd($user);
         @endphp
     @endauth
     <div class="flex flex-col items-center space-y-2 py-6">
-        <img src="https://ui-avatars.com/api/?name={{ urlencode($user->nama) }}&background=ffffff&color=0d6efd&size=128&bold=true"
+        @php
+            $foto = null;
+            if (isset($user->siswaprofile) && $user->siswaprofile->foto) {
+                $foto = asset('storage/' . $user->siswaprofile->foto);
+            } elseif (isset($user->guruProfile) && $user->guruprofile->foto) {
+                $foto = asset('storage/' . $user->guruprofile->foto);
+            }
+        @endphp
+        <img src="{{ $foto ?? 'https://ui-avatars.com/api/?name=' . urlencode($user->nama) . '&background=ffffff&color=0d6efd&size=128&bold=true' }}"
              alt="Avatar"
              class="w-20 h-20 rounded-full border-4 border-white" />
         <div class="text-center">

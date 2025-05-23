@@ -14,7 +14,7 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        
+
     }
 
     /**
@@ -32,16 +32,14 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-     $user = auth()->user();
+        $user = auth()->user();
 
-    
 
-    // Cek apakah profil sudah pernah dibuat
+
     if (siswa_profile::where('user_id', $user->id)->exists()) {
         return redirect()->back()->withErrors(['error' => 'Profil siswa sudah pernah dibuat.']);
     }
 
-    // Validasi input
     $validated = $request->validate([
         'nama' => 'required|string|max:255',
         'nisn' => 'required|string|max:20|unique:siswa_profiles',
@@ -73,7 +71,7 @@ class SiswaController extends Controller
         'foto' => $path,
     ]);
 
-    return redirect()->route('/')->with('success', 'Profil siswa berhasil disimpan.');
+    return redirect(url('/'))->with('success', 'Profil siswa berhasil disimpan.');
     }
 
     /**

@@ -7,7 +7,6 @@ use App\Models\guru_profile;
 use App\Models\siswa_profile;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -28,10 +27,14 @@ class DashboardController extends Controller
             $approvePending = User::where('status', 'pending')->count();
 
             $pendaftaran = collect(range(1, 12))->map(function ($bulan) {
-                $siswa = User::whereHasRole('siswa')
+                $siswa = User::whereHas('roles', function ($query) {
+                        $query->where('name', 'siswa');
+                    })
                     ->whereMonth('created_at', $bulan)
                     ->count();
-                $guru = User::whereHasRole('guru')
+                $guru = User::whereHas('roles', function ($query) {
+                        $query->where('name', 'guru');
+                    })
                     ->whereMonth('created_at', $bulan)
                     ->count();
                 return [

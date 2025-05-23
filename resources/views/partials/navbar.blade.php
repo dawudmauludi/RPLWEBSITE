@@ -49,18 +49,16 @@
                             class="absolute right-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg z-50"
                         >
                             <ul class="py-2">
-                                @if($user->hasRole('admin') || $user->hasRole('guru'))
+                                @if($user->hasRole('admin') || $user->hasRole('guru') || $user->hasRole('siswa'))
                                     <li><a href="/dashboard" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
-                                @elseif($user->hasRole('siswa'))
-                                    <li><a href="/profile" class="block px-4 py-2 hover:bg-gray-100">Profile</a></li>
-                                @endif
-                                <li>
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <button type="submit" class="w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
-                                    </form>
-                                </li>
-                            </ul>
+                                    @endif
+                                    <li>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button type="submit" class="w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
+                                        </form>
+                                    </li>
+                                </ul>
                         </div>
                     </div>
                 @else
