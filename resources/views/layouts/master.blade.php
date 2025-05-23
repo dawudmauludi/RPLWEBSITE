@@ -25,6 +25,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
 
     <script>
         tailwind.config = {
@@ -49,10 +50,6 @@
      <main class="flex-grow bg-gray-100">
         @yield('content')
     </main>
-
-    
-   
-
 
 
     <a href="https://wa.me/6288228513539" target="_blank"
@@ -83,11 +80,9 @@
          }
     </style>
     @include('partials.footer')
-    <!-- Initialize Feather Icons -->
     <script>
         feather.replace();
 
-        // Mobile menu toggle
         document.getElementById('menu-toggle').addEventListener('click', function() {
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');

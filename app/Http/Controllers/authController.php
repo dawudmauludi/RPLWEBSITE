@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\VerificationCodeMail;
+use App\Models\guru_profile;
 use App\Models\Role;
 use App\Models\siswa_profile;
 use App\Models\User;
@@ -84,7 +85,7 @@ class authController extends Controller
             return redirect()->route('dashboard');
         }
 
-        
+
     }
 
     // Jika gagal login
@@ -151,7 +152,7 @@ class authController extends Controller
         if(!$record){
             return redirect()->back()->with('error', 'Kode verifikasi tidak valid atau sudah kadaluarsa.');
         }
- 
+
         $user = User::where('email', $request->email)->first();
         $user->password = Hash::make($request->password);
         $user->save();
