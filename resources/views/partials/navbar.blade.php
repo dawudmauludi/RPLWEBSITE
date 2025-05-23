@@ -95,8 +95,11 @@
                         $user = Auth::user();
                     @endphp
                     <div x-data="{ open: false }" class="relative">
-                        <button @click="open = !open" class="px-4 py-2 hover:bg-primary-dark flex items-center w-full justify-between">
-                            <span><i data-feather="layout" class="w-4 h-4 mr-2"></i> Dashboard</span>
+                        <button @click="open = !open" class="flex items-center w-full px-4 py-2 hover:bg-primary-dark justify-between space-x-2">
+                            <div class="flex items-center space-x-2">
+                                <i data-feather="layout" class="w-4 h-4"></i>
+                                <span>Dashboard</span>
+                            </div>
                             <svg :class="{'rotate-180': open}" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                             </svg>
@@ -150,7 +153,7 @@
                     </div>
                     <form method="POST" action="{{ route('logout') }}" class="mt-2">
                         @csrf
-                        <button type="submit" class="px-4 py-2 text-left hover:bg-primary-dark flex items-center w-full text-white">
+                        <button type="submit" class="px-4 py-2 text-left flex items-center w-full text-white bg-red-600 hover:bg-red-700 rounded">
                             <i data-feather="log-out" class="w-4 h-4 mr-2"></i> Logout
                         </button>
                     </form>
