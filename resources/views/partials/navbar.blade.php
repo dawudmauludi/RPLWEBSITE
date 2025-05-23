@@ -77,7 +77,7 @@
                 <a href="/" class="px-4 py-2 hover:bg-primary-dark flex items-center">
                     <i data-feather="home" class="w-4 h-4 mr-2"></i> Beranda
                 </a>
-                <a href="#" class="px-4 py-2 hover:bg-primary-dark flex items-center">
+                <a href="/detail-jurusan" class="px-4 py-2 hover:bg-primary-dark flex items-center">
                     <i data-feather="info" class="w-4 h-4 mr-2"></i> Tentang Jurusan
                 </a>
                 <a href="#" class="px-4 py-2 hover:bg-primary-dark flex items-center">
