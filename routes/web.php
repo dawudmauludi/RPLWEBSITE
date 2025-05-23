@@ -17,6 +17,7 @@ Route::get('/', [BeritaController::class, 'home'])->name('berita.home');
 Route::get('/home', [BeritaController::class, 'home'])->name('berita.home');
 
 
+
 Route::get('/detail-jurusan', function () {
     return view('detail_jurusan');
 });
@@ -38,8 +39,8 @@ Route::post('/password/reset', [authController::class,'resetPassword'])->name('r
 
 Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard')->middleware('auth');
 
-// biar berita bisa di liat tanpa login mbek
-Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
+Route::get('/berita', [BeritaController::class, 'all'])->name('berita.all');
+
 Route::get('/berita/{berita}', [BeritaController::class, 'show'])->name('berita.show');
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -49,12 +50,13 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
         'kelas' => 'kelas'
     ]);
     Route::resource('berita', BeritaController::class)->except(['index', 'show'])->parameters(['berita' => 'berita']);;
+    Route::get('berita', [BeritaController::class, 'index'])->name('berita.index');
 });
 
 
 
 
-Route::middleware(['auth'])->prefix('guru')->name('guru')->group(function () {
+Route::middleware(['auth'])->prefix('guru')->name('guru.')->group(function () {
     Route::get('/',[UserAproveController::class,'index'])->name('approved');
     Route::post('/guru/user/{id}/approve', [UserAproveController::class, 'approve'])->name('user.approve');
     Route::post('/guru/user/{id}/reject', [UserAproveController::class, 'reject'])->name('user.reject');

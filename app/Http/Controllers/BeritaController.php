@@ -28,6 +28,13 @@ class BeritaController extends Controller
         $categories = category_berita::all();
         return view('home', compact('beritas', 'categories', 'sort'));
     }
+    public function all(Request $request)
+    {
+        $sort = $request->query('sort', 'desc');
+        $beritas = Berita::orderBy('created_at', $sort)->paginate(6);
+        $categories = category_berita::all();
+        return view('berita.all', compact('beritas', 'categories', 'sort'));
+    }
 
     /**
      * Show the form for creating a new resource.
