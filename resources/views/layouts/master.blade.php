@@ -19,7 +19,7 @@
 <<<<<<< Updated upstream
 
 =======
-    
+
 >>>>>>> Stashed changes
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -43,7 +43,7 @@
 </head>
 <body class="flex flex-col min-h-screen font-sans">
 
-  
+
 
     @include('partials.navbar')
     <!-- Main Content -->
@@ -51,12 +51,6 @@
         @yield('content')
     </main>
 
-
-
-    
-    @include('partials.footer')
-    <!-- Footer -->
-  
 
 
     <a href="https://wa.me/6288228513539" target="_blank"
