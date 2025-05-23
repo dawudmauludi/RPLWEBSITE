@@ -51,7 +51,7 @@
     </main>
 
     
-    @include('partials.footer')
+   
 
 
 
