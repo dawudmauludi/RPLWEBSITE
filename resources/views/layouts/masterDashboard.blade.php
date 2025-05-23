@@ -7,8 +7,8 @@
     <title>@yield('title') - SMK Negeri 1 Pasuruan</title>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
 
+    <link rel="icon" type="image/png" href="{{ asset('images/logo_skensa.png') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,6 +32,7 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     @yield('styles')
 </head>
@@ -39,7 +40,7 @@
     @include('partials.navbar')
     @include('partials.sidebar')
 
-    <main class="ml-64 pt-20 p-6 min-h-screen">
+    <main class="lg:ml-64 pt-20 p-6 min-h-screen">
         @yield('content')
     </main>
 

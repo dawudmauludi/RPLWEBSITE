@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\berita;
+use App\Models\guru_profile;
+use App\Models\siswa_profile;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -12,9 +18,61 @@ class DashboardController extends Controller
      */
     public function index()
     {
-         $user = Auth::user();
-        if($user->hasRole('admin')) {
-            return view('dashboard.admin.index');
+        $user = Auth::user();
+
+        if ($user->hasRole('admin')) {
+            $totalGuru = guru_profile::count();
+            $totalSiswa = siswa_profile::count();
+            $totalBerita = Berita::count();
+            $totalUser = User::count();
+            $approvePending = User::where('status', 'pending')->count();
+
+            $pendaftaran = collect(range(1, 12))->map(function ($bulan) {
+                $siswa = User::whereHasRole('siswa')
+                    ->whereMonth('created_at', $bulan)
+                    ->count();
+                $guru = User::whereHasRole('guru')
+                    ->whereMonth('created_at', $bulan)
+                    ->count();
+                return [
+                    'bulan' => $bulan,
+                    'siswa' => $siswa,
+                    'guru' => $guru,
+                ];
+            });
+
+            $distribusiUser = [
+                'admin' => User::whereHasRole('admin')->count(),
+                'guru' => User::whereHasRole('guru')->count(),
+                'siswa' => User::whereHasRole('siswa')->count(),
+            ];
+
+            $statusApprove = [
+                'pending' => User::where('status', 'pending')->count(),
+                'disetujui' => User::where('status', 'approved')->count(),
+                'ditolak' => User::where('status', 'rejected')->count(),
+            ];
+
+            $aktivitasBerita = berita::select(
+                DB::raw("WEEK(created_at) as minggu"),
+                DB::raw("count(*) as jumlah")
+            )
+            ->groupBy(DB::raw("WEEK(created_at)"))
+            ->get();
+
+            return view('dashboard.admin.index', [
+                'summary' => [
+                    'guru' => $totalGuru,
+                    'siswa' => $totalSiswa,
+                    'berita' => $totalBerita,
+                    'user' => $totalUser,
+                    'approvePending' => $approvePending,
+                ],
+                'pendaftaranPerBulan' => $pendaftaran,
+                'distribusiUser' => $distribusiUser,
+                'statusApprove' => $statusApprove,
+                'aktivitasBerita' => $aktivitasBerita,
+            ]);
         } elseif ($user->hasRole('guru')) {
             return view('dashboard.guru.index');
         } elseif ($user->hasRole('siswa')) {
@@ -22,7 +80,6 @@ class DashboardController extends Controller
         } else {
             abort(403, 'Unauthorized');
         }
-
     }
 
     /**
