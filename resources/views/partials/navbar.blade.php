@@ -4,12 +4,10 @@
 >
     <div class="container mx-auto px-4">
         <div class="flex justify-between items-center py-3">
-            <!-- Logo -->
             <a href="/" class="flex items-center">
                 <img src="{{ asset('images/logo_skensa.png') }}" alt="Logo" class="h-12 ml-8">
             </a>
 
-            <!-- Hamburger Menu (Mobile) -->
             <div class="md:hidden">
                 <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-white focus:outline-none">
                     <i data-feather="menu" class="w-6 h-6"></i>
@@ -25,10 +23,10 @@
                     <i data-feather="info" class="w-4 h-4 mr-2"></i> Tentang Jurusan
                 </a>
                 <a href="#" class="px-4 py-2 hover:bg-primary-dark flex items-center">
-                    <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Berita & Artikel
-                </a>
-                <a href="#" class="px-4 py-2 hover:bg-primary-dark flex items-center">
                     <i data-feather="award" class="w-4 h-4 mr-2"></i> Karya Siswa
+                </a>
+                <a href="{{ request()->is('/') || request()->is('home') ? '#berita' : '/#berita' }}" class="px-4 py-2 hover:bg-primary-dark flex items-center">
+                    <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Berita & Artikel
                 </a>
                 <a href="#" class="px-4 py-2 hover:bg-primary-dark flex items-center">
                     <i data-feather="message-circle" class="w-4 h-4 mr-2"></i> Kontak
@@ -79,10 +77,10 @@
                     <i data-feather="info" class="w-4 h-4 mr-2"></i> Tentang Jurusan
                 </a>
                 <a href="#" class="px-4 py-2 hover:bg-primary-dark flex items-center">
-                    <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Berita & Artikel
-                </a>
-                <a href="#" class="px-4 py-2 hover:bg-primary-dark flex items-center">
                     <i data-feather="award" class="w-4 h-4 mr-2"></i> Karya Siswa
+                </a>
+                  <a href="{{ request()->is('/') || request()->is('home') ? '#berita' : '/#berita' }}" class="px-4 py-2 hover:bg-primary-dark flex items-center">
+                    <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Berita & Artikel
                 </a>
                 <a href="#" class="px-4 py-2 hover:bg-primary-dark flex items-center">
                     <i data-feather="message-circle" class="w-4 h-4 mr-2"></i> Kontak
@@ -118,7 +116,7 @@
                                     <a href="#" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition">
                                         Kelas
                                     </a>
-                                    <a href="#" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition">
+                                    <a href="{{ route('berita.index') }}" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition">
                                         Berita & Artikel
                                     </a>
                                 @endrole
@@ -130,7 +128,7 @@
                                     <a href="{{ route('guru.approved') }}" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition">
                                         Approve Siswa
                                     </a>
-                                    <a href="#" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition">
+                                    <a href="" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition">
                                         Ujian/Ulangan
                                     </a>
                                 @endrole
