@@ -50,7 +50,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     ]);
 
     Route::resource('user', UsersController::class);
-     Route::get('/',[UserAproveController::class,'index'])->name('approved');
+    Route::get('/approved',[UserAproveController::class,'index'])->name('approved');
     Route::post('/user/{id}/approve', [UserAproveController::class, 'approve'])->name('user.approve');
     Route::post('/user/{id}/reject', [UserAproveController::class, 'reject'])->name('user.reject');
 
