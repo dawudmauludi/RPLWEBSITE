@@ -3,10 +3,12 @@
 use App\Http\Controllers\authController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuruProfileController;
+use App\Http\Controllers\kategoriKaryaController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SiswaProfileController;
 use App\Http\Controllers\UserAproveController;
+use App\Http\Controllers\UsersController;
 use App\Models\guru_profile;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -23,9 +25,6 @@ Route::get('/home', function () {
 Route::get('/detail-jurusan', function () {
     return view('detail_jurusan');
 });
-
-
-
 
 // ================= Authentication ====================== //
 Route::get('/login',[authController::class,'login_view'])->name('login');
@@ -47,6 +46,10 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
      Route::resource('kelas', KelasController::class)->parameters([
         'kelas' => 'kelas' 
     ]);
+    Route::resource('user', UsersController::class);
+     Route::get('/',[UserAproveController::class,'index'])->name('approved');
+    Route::post('/user/{id}/approve', [UserAproveController::class, 'approve'])->name('user.approve');
+    Route::post('/user/{id}/reject', [UserAproveController::class, 'reject'])->name('user.reject');
 });
 
 Route::middleware(['auth', 'role:siswa'])->group(function () {
@@ -59,8 +62,5 @@ Route::middleware(['auth'])->prefix('guru')->name('guru.')->group(function () {
     Route::get('/',[UserAproveController::class,'index'])->name('approved');
     Route::post('/guru/user/{id}/approve', [UserAproveController::class, 'approve'])->name('user.approve');
     Route::post('/guru/user/{id}/reject', [UserAproveController::class, 'reject'])->name('user.reject');
+    Route::resource('kategoriKarya', kategoriKaryaController::class);
 });
-
-
-
-
