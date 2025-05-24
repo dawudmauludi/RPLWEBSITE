@@ -10,5 +10,8 @@
         @include('dashboard.admin.berita.form', ['berita' => $berita])
         <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Update</button>
     </form>
+    <div class="text-right mt-4">
+        <a href="{{ route('admin.berita.index') }}" class="bg-gray-200 px-4 py-2 rounded">Kembali</a>
+    </div>
 </div>
 @endsection

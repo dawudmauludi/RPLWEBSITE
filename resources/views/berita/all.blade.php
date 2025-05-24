@@ -1,44 +1,72 @@
 @extends('layouts.master')
-@section('title', 'Berita')
+@section('title', 'Semua Berita')
+
 @section('content')
-    <div class="container mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-6">Berita & Artikel</h1>
+<div class="container mx-auto p-4">
+    <form id="searchFilterForm" method="GET" class="flex flex-wrap gap-2 mb-4 pt-20">
+        <input type="text" name="search" placeholder="Cari berita"
+               value="{{ request('search') }}"
+               class="flex-1 px-4 py-2 rounded border border-gray-300 w-full md:w-auto">
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        @foreach ($beritas as $berita)
-            <div class="bg-white shadow-md rounded-2xl overflow-hidden transition hover:shadow-xl">
-                <a href="{{ route('berita.show', $berita->id) }}">
-                    <img src="{{ asset('storage/' . (json_decode($berita->gambar_berita)[0] ?? 'images/logo_skensa.png')) }}"
-                         alt="{{ $berita->title }}"
-                         class="w-full h-48 object-cover">
-                </a>
-                <div class="p-4">
-                    <a href="{{ route('berita.show', $berita->id) }}">
-                        <h2 class="text-xl font-bold text-gray-800 hover:text-blue-600 transition">{{ $berita->judul }}</h2>
-                    </a>
-                    <p class="text-sm text-gray-500 italic">{{ $berita->slug }}</p>
+        <select name="category_berita_id" class="px-4 py-2 rounded border border-gray-300 w-full md:w-auto">
+            <option value="">Semua Kategori</option>
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}"
+                    {{ request('category_berita_id') == $category->id ? 'selected' : '' }}>
+                    {{ $category->nama }}
+                </option>
+            @endforeach
+        </select>
+    </form>
 
-                    <div class="mt-2 text-gray-600 text-sm">
-                        {{ Str::limit(strip_tags($berita->exerpt), 120) }}
-                    </div>
-
-                    <div class="flex justify-between items-center mt-4">
-                        <a href=""
-                           class="text-sm text-blue-500 hover:underline">
-                            {{ $berita->category->name }}
-                        </a>
-                        <span class="text-sm text-gray-400">
-                            {{ $berita->created_at->translatedFormat('d M Y') }}
-                        </span>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
-
-    <div class="mt-6">
-        {{ $beritas->links() }}
+    <div class="berita-lainnya">
+        @include('berita._list', ['beritas' => $beritas])
     </div>
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('searchFilterForm');
+        const beritaContainer = document.querySelector('.berita-lainnya');
+
+        form.querySelectorAll('input[name="search"], select[name="category_berita_id"]').forEach(el => {
+            el.addEventListener('input', handleFormChange);
+            el.addEventListener('change', handleFormChange);
+        });
+
+        function handleFormChange() {
+            const formData = new FormData(form);
+            const query = new URLSearchParams(formData).toString();
+
+            fetch(`{{ route('berita.all') }}?${query}`, {
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            })
+            .then(res => res.text())
+            .then(html => {
+                beritaContainer.innerHTML = html;
+                bindPaginationLinks();
+            });
+        }
+
+        function bindPaginationLinks() {
+            document.querySelectorAll('.pagination a').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const url = this.href;
+
+                    fetch(url, {
+                        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                    })
+                    .then(res => res.text())
+                    .then(html => {
+                        beritaContainer.innerHTML = html;
+                        bindPaginationLinks();
+                    });
+                });
+            });
+        }
+
+        bindPaginationLinks();
+    });
+</script>
 @endsection

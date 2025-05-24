@@ -37,7 +37,6 @@
                     <td class="py-2 px-4 border">{{ $berita->judul }}</td>
                     <td class="py-2 px-4 border">{{ $berita->slug }}</td>
                     <td class="py-2 px-4 border">
-                         <a href="{{ route('berita.show', $berita) }}" class="text-blue-500">Lihat</a>
                         <a href="{{ route('admin.berita.edit', $berita) }}" class="text-yellow-500 ml-2">Edit</a>
                         <form action="{{ route('admin.berita.destroy', $berita) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin menghapus berita ini?')">
                             @csrf

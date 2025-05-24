@@ -28,13 +28,33 @@ class BeritaController extends Controller
         $categories = category_berita::all();
         return view('home', compact('beritas', 'categories', 'sort'));
     }
-    public function all(Request $request)
-    {
-        $sort = $request->query('sort', 'desc');
-        $beritas = Berita::orderBy('created_at', $sort)->paginate(6);
-        $categories = category_berita::all();
-        return view('berita.all', compact('beritas', 'categories', 'sort'));
+   // app/Http/Controllers/BeritaController.php
+
+public function all(Request $request)
+{
+    $query = Berita::query();
+    $categories = Category_berita::all();
+
+    if ($request->filled('search')) {
+        $query->where(function ($q) use ($request) {
+            $q->where('judul', 'like', '%' . $request->search . '%')
+              ->orWhere('isi', 'like', '%' . $request->search . '%');
+        });
     }
+
+    if ($request->filled('category_berita_id')) {
+        $query->where('category_berita_id', $request->category_berita_id);
+    }
+
+    $beritas = $query->latest()->paginate(9)->withQueryString();
+
+    if ($request->ajax()) {
+        return view('berita._list', compact('beritas'))->render();
+    }
+
+    return view('berita.all', compact('beritas', 'categories'));
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -80,7 +100,7 @@ class BeritaController extends Controller
             $berita->save();
         }
 
-        return redirect()->route('berita.index')->with('success', 'Berita created successfully.');
+        return redirect()->route('admin.berita.index')->with('success', 'Berita created successfully.');
     }
 
 
@@ -89,8 +109,9 @@ class BeritaController extends Controller
      */
     public function show(berita $berita)
     {
-
-         return view('dashboard.admin.berita.show', compact('berita'));
+         $beritas = Berita::paginate(10);
+        $categories = category_berita::all();
+         return view('dashboard.admin.berita.show', compact('berita', 'beritas', 'categories'));
     }
 
     /**
@@ -146,7 +167,7 @@ class BeritaController extends Controller
             $data['gambar_berita'] = json_encode($gambarPaths);
         }
         $berita->update($data);
-        return redirect()->route('berita.index')->with('success', 'Berita updated successfully.');
+        return redirect()->route('admin.berita.index')->with('success', 'Berita updated successfully.');
     }
 
     /**
@@ -165,7 +186,7 @@ class BeritaController extends Controller
             }
         }
         $berita->delete();
-        return redirect()->route('berita.index')->with('success', 'Berita dan semua gambar terkait berhasil dihapus.');
+        return redirect()->route('admin.berita.index')->with('success', 'Berita dan semua gambar terkait berhasil dihapus.');
     }
 
 }
