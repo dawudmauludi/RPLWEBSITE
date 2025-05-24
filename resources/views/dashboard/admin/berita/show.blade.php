@@ -11,7 +11,7 @@
     @if($gambarArray && count($gambarArray) > 0)
         <div class="w-full h-[400px] mb-4 berita-gambar relative">
             @foreach($gambarArray as $index => $gambar)
-                <img src="{{ asset('storage/' . $gambar) }}" alt="{{ $berita->judul }}" class="rounded-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] object-cover {{ $index > 0 ? 'hidden' : '' }}">
+                <img src="{{ asset('storage/' . $gambar) }}" alt="{{ $berita->judul }}" class="rounded-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] object-cover {{ $index > 0 ? 'hidden' : '' }}">
             @endforeach
         </div>
         <script>
