@@ -77,7 +77,7 @@ class authController extends Controller
                 if($siswaData){
                     return redirect()->intended('/');
                 } else {
-                   return redirect()->route('siswa.profile');
+                return redirect('/siswa/profile');
                 }
             }
         }

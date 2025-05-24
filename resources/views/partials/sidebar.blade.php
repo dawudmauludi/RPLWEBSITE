@@ -41,9 +41,10 @@
                 Siswa
             </a>
 
-            <a href="{{ route('admin.kelas.index') }}" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition {{ request()->is('') ? 'bg-white text-purple-800 font-semibold' : '' }}">
+            <a href="{{ route('admin.kelas.index') }}" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition {{ request()->is('admin/kelas*') ? 'bg-white text-purple-800 font-semibold' : '' }}">
                 Kelas
             </a>
+
              <a href="{{ route('admin.user.index') }}" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition {{ request()->is('admin/user*') ? 'bg-white text-purple-800 font-semibold' : '' }}">
                 User
             </a>
@@ -51,6 +52,9 @@
                 Approve User
             </a>
             <a href="#" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition">
+
+            <a href="/admin/berita" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition {{ request()->is('admin/berita*') ? 'bg-white text-purple-800 font-semibold' : '' }}">
+
                 Berita & Artikel
             </a>
         @endrole
