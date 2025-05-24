@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('judul');
             $table->text('exerpt');
             $table->text('isi');
-            $table->string('gambar_berita')->nullable();
+            $table->text('gambar_berita')->nullable();
             $table->timestamps();
         });
     }
