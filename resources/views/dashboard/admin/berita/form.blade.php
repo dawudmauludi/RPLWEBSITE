@@ -10,8 +10,8 @@
     @endif
     <input type="text" name="judul" placeholder="Judul" value="{{ old('judul', $berita->judul ?? '') }}" class="border p-2 rounded">
     <input type="text" name="slug" placeholder="Slug" value="{{ old('slug', $berita->slug ?? '') }}" class="border p-2 rounded" readonly>
-    <textarea name="exerpt" placeholder="Exerpt" class="border p-2 rounded">{{ old('exerpt', $berita->exerpt ?? '') }}</textarea>
     <textarea name="isi" placeholder="Isi" class="border p-2 rounded">{{ old('isi', $berita->isi ?? '') }}</textarea>
+    <textarea name="exerpt" placeholder="Exerpt" class="border p-2 rounded" readonly>{{ old('exerpt', $berita->exerpt ?? '') }}</textarea>
     <select name="category_berita_id" class="border p-2 rounded">
         <option value="">Pilih Kategori</option>
         @foreach ($categories as $category)

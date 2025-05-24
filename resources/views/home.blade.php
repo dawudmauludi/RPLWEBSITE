@@ -177,7 +177,7 @@
                     $featuredImage = json_decode($featured->gambar_berita)[0] ?? null;
                 @endphp
                 <a href="{{ route('berita.show', $featured->id) }}" class="block">
-                    <div class="relative h-[400px] md:h-[460px]">
+                    <div class="relative h-[400px] md:h-[600px]">
                         @if($featuredImage)
                             <img src="{{ asset('storage/' . $featuredImage) }}" alt="Gambar" class="w-full h-full object-cover rounded-lg shadow">
                         @endif
@@ -192,7 +192,11 @@
                     </div>
                 </a>
             @endif
+             <a href="{{ url('/berita') }}" class="mt-4 inline-block text-white py-2 px-8 rounded-md transition duration-300 hover:bg-purple-800" style="background-color: #400082;">
+                                Lihat Berita Lainnya
+                            </a>
         </div>
+
 
         <div class="flex flex-col">
             <div class="flex gap-2 mb-4">
