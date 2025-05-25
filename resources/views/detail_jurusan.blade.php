@@ -2,7 +2,7 @@
 @section('title', 'Detail Jurusan RPL')
 @section('content')
     <!-- Pengantar Jurusan -->
-    <section class="bg-white py-8 pt-20">
+    <section class="bg-white py-8 ">
         <div class="container mx-auto px-4">
             <div class="flex flex-col gap-6 items-center">
                 <div class="w-full">

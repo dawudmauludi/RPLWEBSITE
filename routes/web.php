@@ -11,8 +11,11 @@ use App\Http\Controllers\kategoriKaryaController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SiswaProfileController;
+
 use App\Http\Controllers\UlanganController;
+
 use App\Http\Controllers\siswaUploadKaryaController;
+
 use App\Http\Controllers\UserAproveController;
 use App\Http\Controllers\UsersController;
 use App\Models\guru_profile;
@@ -21,7 +24,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', [BeritaController::class, 'home'])->name('berita.home');
-Route::get('/home', [BeritaController::class, 'home'])->name('berita.home');
+//Route::get('/home', [BeritaController::class, 'home'])->name('berita.home');
 
 
 
@@ -81,6 +84,7 @@ Route::middleware(['auth', 'role:guru'])->prefix('guru')->name('guru.')->group(f
 Route::middleware(['auth'])->prefix('siswa')->name('siswa.')->group(function () {
     Route::get('/siswa/profile', [SiswaController::class, 'create'])->name('siswa.profile');
     Route::post('/siswa/profile/store', [SiswaController::class, 'store'])->name('siswa_profile.store');
+    Route::resource('karya', siswaUploadKaryaController::class);
     Route::get('my-ulangans', [UlanganController::class, 'myUlangans'])->name('ulangans.my-ulangans');
     Route::get('ulangans/{ulangan}/access', [UlanganController::class, 'access'])->name('ulangans.access');
 });
@@ -98,6 +102,5 @@ Route::get('ulangans/{ulangan}', [UlanganController::class, 'show'])->name('ulan
 
 
 
-    Route::resource('karya', siswaUploadKaryaController::class);
-});
+
 
