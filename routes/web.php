@@ -1,13 +1,17 @@
 <?php
 
+use App\Http\Controllers\addPoinController;
 use App\Http\Controllers\authController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuruProfileController;
+use App\Http\Controllers\KaryaSiswaController;
+use App\Http\Controllers\kategoriBeritaController;
 use App\Http\Controllers\kategoriKaryaController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SiswaProfileController;
+use App\Http\Controllers\siswaUploadKaryaController;
 use App\Http\Controllers\UserAproveController;
 use App\Http\Controllers\UsersController;
 use App\Models\guru_profile;
@@ -56,7 +60,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 
     Route::resource('berita', BeritaController::class)->except(['index', 'show'])->parameters(['berita' => 'berita']);;
     Route::get('berita', [BeritaController::class, 'index'])->name('berita.index');
-
+    Route::resource('kategoriBerita', kategoriBeritaController::class);
 });
 
 
@@ -67,10 +71,14 @@ Route::middleware(['auth'])->prefix('guru')->name('guru.')->group(function () {
     Route::post('/guru/user/{id}/approve', [UserAproveController::class, 'approve'])->name('user.approve');
     Route::post('/guru/user/{id}/reject', [UserAproveController::class, 'reject'])->name('user.reject');
     Route::resource('kategoriKarya', kategoriKaryaController::class);
+    Route::resource('karya', KaryaSiswaController::class);
+    Route::post('/users/{user}/add-point', [addPoinController::class, 'addPoin'])->name('users.addPoint');
+    Route::get('/users',[addPoinController::class,'index'])->name('users.index');
 });
 
 
-Route::middleware(['auth', 'role:siswa'])->group(function () {
+Route::middleware(['auth'])->prefix('siswa')->name('siswa.')->group(function () {
     Route::get('/siswa/profile', [SiswaController::class, 'create'])->name('siswa.profile');
     Route::post('/siswa/profile/store', [SiswaController::class, 'store'])->name('siswa_profile.store');
+    Route::resource('karya', siswaUploadKaryaController::class);
 });
