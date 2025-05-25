@@ -118,7 +118,7 @@
                 </div>
                 <h3 class="text-lg font-medium text-gray-800 mb-1">Tidak Ada Ulangan</h3>
                 <p class="text-gray-600 mb-4">Belum ada ulangan yang tersedia untuk kelas Anda.</p>
-                <button class="text-blue-600 hover:text-blue-800 text-sm font-medium inline-flex items-center">
+                <button class="text-blue-600 hover:text-blue-800 text-sm font-medium inline-flex items-center" onclick="location.reload()">
                     <i data-feather="refresh-cw" class="mr-1 w-4 h-4"></i>
                     Refresh
                 </button>
