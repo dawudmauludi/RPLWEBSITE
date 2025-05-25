@@ -24,7 +24,6 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', [BeritaController::class, 'home'])->name('berita.home');
-Route::get('/home', [BeritaController::class, 'home'])->name('berita.home');
 
 
 
@@ -72,8 +71,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 
 Route::middleware(['auth', 'role:guru'])->prefix('guru')->name('guru.')->group(function () {
     Route::get('/approved',[UserAproveController::class,'index'])->name('approved');
-    Route::post('/guru/approved/user/{id}/approve', [UserAproveController::class, 'approve'])->name('user.approve');
-    Route::post('/guru/approved/user/{id}/reject', [UserAproveController::class, 'reject'])->name('user.reject');
+    Route::post('/approved/user/{id}/approve', [UserAproveController::class, 'approve'])->name('user.approve');
+    Route::post('/approved/user/{id}/reject', [UserAproveController::class, 'reject'])->name('user.reject');
     Route::resource('kategoriKarya', kategoriKaryaController::class);
     Route::resource('karya', KaryaSiswaController::class);
     Route::post('/users/{user}/add-point', [addPoinController::class, 'addPoin'])->name('users.addPoint');
@@ -81,12 +80,11 @@ Route::middleware(['auth', 'role:guru'])->prefix('guru')->name('guru.')->group(f
 });
 
 
-Route::middleware(['auth'])->prefix('siswa')->name('siswa.')->group(function () {
-    Route::get('/siswa/profile', [SiswaController::class, 'create'])->name('siswa.profile');
-    Route::post('/siswa/profile/store', [SiswaController::class, 'store'])->name('siswa_profile.store');
+Route::middleware(['auth', 'role:siswa'])->prefix('siswa')->name('siswa.')->group(function () {
+    Route::get('/profile', [SiswaController::class, 'create'])->name('profile');
+    Route::post('/profile/store', [SiswaController::class, 'store'])->name('siswa_profile.store');
     Route::resource('karya', siswaUploadKaryaController::class);
-    Route::get('my-ulangans', [UlanganController::class, 'myUlangans'])->name('ulangans.my-ulangans');
-    Route::get('ulangans/{ulangan}/access', [UlanganController::class, 'access'])->name('ulangans.access');
+
 });
 
 Route::middleware(['auth','role:guru|admin'])->group(function () {
@@ -94,6 +92,12 @@ Route::middleware(['auth','role:guru|admin'])->group(function () {
         Route::patch('ulangans/{ulangan}/toggle-active', [UlanganController::class, 'toggleActive'])
             ->name('ulangans.toggle-active');
 });
+
+Route::middleware(['auth','role:siswa'])->group(function () {
+        Route::get('my-ulangans', [UlanganController::class, 'myUlangans'])->name('ulangans.my-ulangans');
+        Route::get('ulangans/{ulangan}/access', [UlanganController::class, 'access'])->name('ulangans.access');
+});
+
 
 
 Route::get('ulangans/{ulangan}', [UlanganController::class, 'show'])->name('ulangans.show');

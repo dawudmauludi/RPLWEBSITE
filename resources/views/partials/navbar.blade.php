@@ -64,7 +64,7 @@
                     </div>
                 @else
                     <a href="/login" class="px-4 py-2 hover:bg-primary-dark flex items-center">
-                        <i data-feather="user" class="w-4 h-4 mr-2"></i> Login & Registere
+                        <i data-feather="user" class="w-4 h-4 mr-2"></i> Login & Register
                     </a>
                 @endauth
             </div>

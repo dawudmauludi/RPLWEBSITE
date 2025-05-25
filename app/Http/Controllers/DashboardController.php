@@ -45,9 +45,9 @@ class DashboardController extends Controller
             });
 
             $distribusiUser = [
-                'admin' => User::whereRoleIs('admin')->count(),
-                'guru' => User::whereRoleIs('guru')->count(),
-                'siswa' => User::whereRoleIs('siswa')->count(),
+                'admin' => User::whereHasRole('admin')->count(),
+                'guru' => User::whereHasRole('guru')->count(),
+                'siswa' => User::whereHasRole('siswa')->count(),
             ];
 
             $statusApprove = [
