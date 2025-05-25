@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', [BeritaController::class, 'home'])->name('berita.home');
-Route::get('/home', [BeritaController::class, 'home'])->name('berita.home');
+Route::get('/home', [BeritaController::class, 'home'])->name('beritas.home');
 
 
 
