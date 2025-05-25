@@ -106,8 +106,9 @@
             <!-- Main Information -->
             <div class="lg:col-span-2">
                 <div class="bg-white rounded-2xl shadow-xl border border-purple-100 overflow-hidden">
-                    <div class=" bg-primary px-8 py-6">
-                        <h1 class="text-2xl font-bold text-white">Detail Ulangan</h1>
+                    <div class="flex items-center bg-primary px-8 py-6">
+                        <i data-feather="info" class="w-5 h-5 mr-2 text-white"></i>
+                        <h1 class="text-2xl font-bold text-white">Info Ulangan</h1>
                     </div>
 
                     <div class="p-8">

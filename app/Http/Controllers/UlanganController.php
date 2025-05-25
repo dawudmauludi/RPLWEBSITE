@@ -13,20 +13,26 @@ class UlanganController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         if (!Auth::user()->hasRole('guru|admin')) {
             return redirect()->back()->with('error', 'Anda tidak memiliki akses untuk melihat ulangan.');
         }
 
+        $kelas = kelas::all();
+
         $ulangans = Ulangan::with(['creator', 'kelas'])
             ->when(Auth::user()->hasRole('guru'), function ($query) {
                 return $query->where('created_by', Auth::user()->id);
             })
+            ->where('judul', 'LIKE', "%{$request->query('search')}%")
+            ->when($request->query('kelas_id'), function ($query, $kelasId) {
+                return $query->where('kelas_id', $kelasId);
+            })
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        return view('dashboard.guru.ulangans.index', compact('ulangans'));
+        return view('dashboard.guru.ulangans.index', compact('ulangans', 'kelas'));
     }
 
     /**

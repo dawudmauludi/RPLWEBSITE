@@ -88,7 +88,7 @@
             <a href="{{ route('siswa.karya.index') }}" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition">
                 Karya
             </a>
-            <a href="{{ route('ulangans.my-ulangans') }}" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition {{ request()->is('my-ulangans') || request()->is('ulangans') ? 'bg-white text-purple-800 font-semibold' : '' }}">
+            <a href="{{ route('ulangans.my-ulangans') }}" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition {{ request()->is('my-ulangans') || request()->is('ulangans*') ? 'bg-white text-purple-800 font-semibold' : '' }}">
                 Tugas/Ulangan
             </a>
             <a href="#" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition">
