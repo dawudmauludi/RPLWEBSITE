@@ -35,6 +35,8 @@
                 @auth
                     @php
                         $user = Auth::user();
+                         $isSiswa = $user->hasRole('siswa');
+                        $hasProfile = \App\Models\siswa_profile::where('user_id', $user->id)->exists();
                     @endphp
                     <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open" class="w-10 h-10 rounded-full overflow-hidden focus:outline-none">
@@ -49,7 +51,10 @@
                             <ul class="py-2">
                                 @if($user->hasRole('admin'))
                                     <li><a href="/dashboard" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
-                                @elseif ($user->hasRole('guru') || $user->hasRole('siswa'))
+                                @elseif ($user->hasRole('guru'))
+                                    <li><a href="/dashboard" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
+                                    <li><a href="/profile" class="block px-4 py-2 hover:bg-gray-100">Profile</a></li>
+                                @elseif ($isSiswa && $hasProfile)
                                     <li><a href="/dashboard" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
                                     <li><a href="/profile" class="block px-4 py-2 hover:bg-gray-100">Profile</a></li>
                                 @endif

@@ -80,7 +80,9 @@ Route::middleware(['auth', 'role:guru'])->prefix('guru')->name('guru.')->group(f
 });
 
 
-Route::middleware(['auth', 'role:siswa'])->prefix('siswa')->name('siswa.')->group(function () {
+
+Route::middleware(['auth'])->prefix('siswa')->name('siswa.')->group(function () {
+
     Route::get('/profile', [SiswaController::class, 'create'])->name('profile');
     Route::post('/profile/store', [SiswaController::class, 'store'])->name('siswa_profile.store');
     Route::resource('karya', siswaUploadKaryaController::class);
