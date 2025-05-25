@@ -21,7 +21,7 @@
                 </h2>
             </div>
 
-            <form action="{{ route('siswa_profile.store') }}" method="POST" enctype="multipart/form-data" class="p-8">
+            <form action="{{ route('siswa.siswa_profile.store') }}" method="POST" enctype="multipart/form-data" class="p-8">
                 @csrf
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
