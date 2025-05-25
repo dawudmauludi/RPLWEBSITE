@@ -3,7 +3,9 @@
 
 @section('content')
 <div class="container mx-auto p-4">
-    <form id="searchFilterForm" method="GET" class="flex flex-wrap gap-2 mb-4 pt-20">
+    <h1 class="text-3xl font-bold text-center mb-8 pt-20">Berita & Artikel</h1>
+
+    <form id="searchFilterForm" method="GET" class="flex flex-wrap gap-2 mb-4">
         <input type="text" name="search" placeholder="Cari berita"
                value="{{ request('search') }}"
                class="flex-1 px-4 py-2 rounded border border-gray-300 w-full md:w-auto">

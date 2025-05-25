@@ -50,7 +50,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     ]);
 
     Route::resource('user', UsersController::class);
-     Route::get('/',[UserAproveController::class,'index'])->name('approved');
+    Route::get('/approved',[UserAproveController::class,'index'])->name('approved');
     Route::post('/user/{id}/approve', [UserAproveController::class, 'approve'])->name('user.approve');
     Route::post('/user/{id}/reject', [UserAproveController::class, 'reject'])->name('user.reject');
 
@@ -68,6 +68,7 @@ Route::middleware(['auth'])->prefix('guru')->name('guru.')->group(function () {
     Route::post('/guru/user/{id}/reject', [UserAproveController::class, 'reject'])->name('user.reject');
     Route::resource('kategoriKarya', kategoriKaryaController::class);
 });
+
 
 Route::middleware(['auth', 'role:siswa'])->group(function () {
     Route::get('/siswa/profile', [SiswaController::class, 'create'])->name('siswa.profile');

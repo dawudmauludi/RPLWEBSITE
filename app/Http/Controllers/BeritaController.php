@@ -14,9 +14,15 @@ class BeritaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $beritas = berita::all();
+        $query = berita::query();
+
+        if ($request->filled('search')) {
+            $query->where('judul', 'LIKE', '%' . $request->search . '%');
+        }
+
+        $beritas = $query->paginate(4);
         $categories = category_berita::all();
         return view('dashboard.admin.berita.index', compact('beritas', 'categories'));
     }
