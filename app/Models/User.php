@@ -61,4 +61,9 @@ class User extends Authenticatable implements LaratrustUser
         return $this->hasOne(siswa_profile::class, 'user_id');
     }
 
+    public function kelas()
+    {
+        return $this->hasOneThrough(kelas::class, siswa_profile::class, 'user_id', 'id', 'id', 'kelas_id');
+    }
+
 }
