@@ -7,28 +7,28 @@ use App\Models\dokumentasi_karya;
 use App\Models\fiturKarya;
 use App\Models\karya_siswa;
 use App\Models\tools;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class KaryaSiswaController extends Controller
+class siswaUploadKaryaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-         $query = karya_siswa::query();
+          $query = karya_siswa::where('user_id', auth()->id()); 
 
-        if ($search = request('search')) {
-            $query->where(function ($q) use ($search) {
-            $q->where('judul', 'like', "%{$search}%")
-              ->orWhere('judul', 'like', "%{$search}%");
-            });
-        }
+            if ($search = request('search')) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('judul', 'like', "%{$search}%");
+                });
+            }
 
-        $karyas = $query->paginate(10)->withQueryString();
+            $karyas = $query->paginate(10)->withQueryString();
 
-        return view('dashboard.guru.karya.index', compact('karyas'));
+        return view('dashboard.siswa.karya.index', compact('karyas'));
     }
 
     /**
@@ -36,8 +36,14 @@ class KaryaSiswaController extends Controller
      */
     public function create()
     {
-         $categories = category_karya::all();
-        return view('dashboard.guru.karya.create', compact('categories'));
+         $user = auth()->user();
+
+        if ($user->hasRole('siswa') && $user->status === 'approved' && $user->poin < 1) {
+             return redirect()->route('siswa.karya.index')->with('error', 'Kamu tidak memiliki cukup poin untuk membuat karya.');
+        }
+
+          $categories = category_karya::all();
+        return view('dashboard.siswa.karya.create', compact('categories'));
     }
 
     /**
@@ -45,7 +51,14 @@ class KaryaSiswaController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
+
+           $user = auth()->user();
+
+        if ($user->hasRole('siswa') && $user->status === 'approved' && $user->poin < 1) {
+            return redirect()->route('siswa.karya.index')->with('error', 'Kamu tidak memiliki cukup poin untuk membuat karya.');
+        }
+
+                   $request->validate([
         'category_karya_id' => 'required|exists:category_karyas,id',    
         'judul' => 'required|string',
         'deskripsi' => 'required|string',
@@ -102,14 +115,17 @@ class KaryaSiswaController extends Controller
     }
 }
 
+if ($user->hasRole('siswa')) {
+        $user->decrement('poin', 1);
+    }
 
-     return redirect()->route('guru.karya.index')->with('success', 'Karya created successfully.');
+     return redirect()->route('siswa.karya.index')->with('success', 'Karya created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(karya_siswa $karya_siswa)
+    public function show(karya_siswa $karya)
     {
         //
     }
@@ -120,13 +136,14 @@ class KaryaSiswaController extends Controller
     public function edit(karya_siswa $karya)
     {
           $categories = category_karya::all();
-            return view('dashboard.guru.karya.edit', compact('karya', 'categories'));
+            return view('dashboard.siswa.karya.edit', compact('karya', 'categories'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, karya_siswa $karya)
+      public function update(Request $request, karya_siswa $karya)
     {
           $request->validate([
         'category_karya_id' => 'required|exists:category_karyas,id',    
@@ -200,23 +217,8 @@ class KaryaSiswaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(karya_siswa $karya)
+    public function destroy(string $id)
     {
-        if($karya->gambar_karya){
-            Storage::disk('public')->delete($karya->gambar_karya);
-        }
-
-        foreach($karya->dokumentasi as $dokumentasi){
-            if($dokumentasi->gambar){
-                Storage::disk('public')->delete($dokumentasi->gambar);
-            }
-        }
-
-        $karya->tools()->delete();
-
-        $karya->fiturKarya()->delete();
-
-        $karya->delete();
-        return redirect()->route('guru.karya.index')->with('success', 'Karya deleted successfully.');
+        
     }
 }
