@@ -1,6 +1,6 @@
 <nav
     x-data="{ mobileMenuOpen: false }"
-    class="bg-primary text-white fixed top-0 left-0 w-full z-50 shadow-lg"
+    class="bg-[#5a1b9b] text-white fixed top-0 left-0 w-full z-50 shadow-lg"
 >
     <div class="container mx-auto px-4">
         <div class="flex justify-between items-center py-3">
@@ -16,19 +16,19 @@
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-4">
-                <a href="/" class="px-4 py-2 hover:bg-primary-dark flex items-center">
+                <a href="/" class="px-4 py-2 hover:bg-primary-dark text-decoration-none text-white flex items-center">
                     <i data-feather="home" class="w-4 h-4 mr-2"></i> Beranda
                 </a>
-                <a href="/detail-jurusan" class="px-4 py-2 hover:bg-primary-dark flex items-center">
+                <a href="/detail-jurusan" class="px-4 py-2 hover:bg-primary-dark text-decoration-none text-white flex items-center">
                     <i data-feather="info" class="w-4 h-4 mr-2"></i> Tentang Jurusan
                 </a>
-                <a href="#" class="px-4 py-2 hover:bg-primary-dark flex items-center">
+                <a href="#" class="px-4 py-2 hover:bg-primary-dark text-decoration-none text-white flex items-center">
                     <i data-feather="award" class="w-4 h-4 mr-2"></i> Karya Siswa
                 </a>
-                <a href="/berita" class="px-4 py-2 hover:bg-primary-dark flex items-center">
+                <a href="/berita" class="px-4 py-2 hover:bg-primary-dark text-decoration-none text-white flex items-center">
                     <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Berita & Artikel
                 </a>
-                <a href="#" class="px-4 py-2 hover:bg-primary-dark flex items-center">
+                <a href="#" class="px-4 py-2 hover:bg-primary-dark flex text-decoration-none text-white items-center">
                     <i data-feather="message-circle" class="w-4 h-4 mr-2"></i> Kontak
                 </a>
 

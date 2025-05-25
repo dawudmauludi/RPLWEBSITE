@@ -10,6 +10,7 @@
 
     <link rel="icon" type="image/png" href="{{ asset('images/logo_skensa.png') }}">
 
+    <link rel="stylesheet" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -43,6 +44,8 @@
     <main class="lg:ml-64 pt-20 p-6 min-h-screen">
         @yield('content')
     </main>
+
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {

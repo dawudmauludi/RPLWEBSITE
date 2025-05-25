@@ -1,3 +1,4 @@
+
 <div class="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-50 p-6">
     <div class="max-w-4xl mx-auto">
         <div class="bg-white rounded-xl shadow-lg border border-purple-100 p-6 mb-6">
@@ -13,7 +14,6 @@
                 </div>
             </div>
         </div>
-
         <div class="grid gap-6">
             <!-- Error Alert -->
             @if ($errors->any())
@@ -133,10 +133,14 @@
                             </svg>
                             Isi Berita
                         </label>
-                        <textarea name="isi"
-                                  placeholder="Tulis isi berita lengkap di sini..."
-                                  rows="8"
-                                  class="w-full px-4 py-3 border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white resize-vertical">{{ old('isi', $berita->isi ?? '') }}</textarea>
+                        <div class="trix-container w-full border  rounded-lg focus-within:ring-2 focus-within:ring-purple-500 focus-within:border-transparent transition-all duration-200 bg-gray-50 focus-within:bg-white @error('isi') border-red-500 @enderror">
+                        <input id="isi" type="hidden" name="isi" value="{{ old('isi', $berita->isi ?? '') }}">
+                        <trix-editor input="isi"
+                                    placeholder="Tulis isi berita lengkap di sini..."
+                                    class="w-full max-w-full min-w-0 px-4 py-3 resize-none overflow-auto border-0 focus:outline-none focus:ring-0"
+                                    style="max-height: 400px; min-height: 200px;">
+                        </trix-editor>
+                    </div>
                     </div>
 
                     <!-- Excerpt -->
@@ -254,6 +258,7 @@
         </div>
     </div>
 
+
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -327,32 +332,41 @@
 
         // Auto-generate slug and excerpt
         document.addEventListener('DOMContentLoaded', function () {
-            const judulInput = document.querySelector('input[name="judul"]');
-            const slugInput = document.querySelector('input[name="slug"]');
-            const isiTextarea = document.querySelector('textarea[name="isi"]');
-            const exerptTextarea = document.querySelector('textarea[name="exerpt"]');
+    const judulInput = document.querySelector('input[name="judul"]');
+    const slugInput = document.querySelector('input[name="slug"]');
+    const isiInput = document.querySelector('input[name="isi"]');
+    const exerptTextarea = document.querySelector('textarea[name="exerpt"]');
 
-            function slugify(text) {
-                return text.toString().toLowerCase()
-                    .replace(/\s+/g, '-')           // Ganti spasi dengan -
-                    .replace(/[^\w\-]+/g, '')       // Hapus semua karakter selain huruf, angka, dan -
-                    .replace(/\-\-+/g, '-')         // Ganti beberapa - menjadi satu -
-                    .replace(/^-+/, '')             // Hapus - di awal teks
-                    .replace(/-+$/, '');            // Hapus - di akhir teks
-            }
+    function slugify(text) {
+        return text.toString().toLowerCase()
+            .replace(/\s+/g, '-')           // Ganti spasi dengan -
+            .replace(/[^\w\-]+/g, '')       // Hapus semua karakter selain huruf, angka, dan -
+            .replace(/\-\-+/g, '-')         // Ganti beberapa - menjadi satu -
+            .replace(/^-+/, '')             // Hapus - di awal teks
+            .replace(/-+$/, '');            // Hapus - di akhir teks
+    }
 
-            judulInput.addEventListener('input', function () {
-                slugInput.value = slugify(judulInput.value);
-            });
-
-            isiTextarea.addEventListener('input', function () {
-                let plainText = isiTextarea.value.replace(/(<([^>]+)>)/gi, "");
-                if (plainText.length > 100) {
-                    exerptTextarea.value = plainText.substring(0, 100) + '...';
-                } else {
-                    exerptTextarea.value = plainText;
-                }
-            });
+    // Slug generator
+    if (judulInput && slugInput) {
+        judulInput.addEventListener('input', function () {
+            slugInput.value = slugify(judulInput.value);
         });
+    }
+
+    // Excerpt generator dari Trix editor
+    document.addEventListener('trix-change', function () {
+        if (!isiInput || !exerptTextarea) return;
+
+        const htmlContent = isiInput.value;
+        const plainText = htmlContent.replace(/(<([^>]+)>)/gi, "").trim();
+
+        exerptTextarea.value = plainText.length > 100
+            ? plainText.substring(0, 100) + '...'
+            : plainText;
+    });
+});
     </script>
+
+    <script src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+
 </div>

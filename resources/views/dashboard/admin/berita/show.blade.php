@@ -39,7 +39,8 @@
         {{ $berita->judul }}
     </h2>
     <hr class="my-4 border-black w-full">
-    <div class="text-gray-800 leading-relaxed">{!! nl2br(e($berita->isi)) !!}</div>
+    {{-- <div class="text-gray-800 leading-relaxed">{!! nl2br(e($berita->isi)) !!}</div> --}}
+    <div class="text-gray-800 leading-relaxed">{!! $berita->isi !!}</div>
 </div>
 
 <div class="flex justify-end mb-4">

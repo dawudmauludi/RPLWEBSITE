@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
             $table->foreignId('kelas_id')->constrained('kelas')->onDelete('cascade');
             $table->string('judul');
-            $table->string('link');
-            $table->string('deskripsi');
+            $table->text('link');
+            $table->longText('deskripsi');
             $table->dateTime('mulai');
             $table->dateTime('selesai');
             $table->boolean('is_active')->default(true);
