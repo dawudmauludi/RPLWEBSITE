@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\berita;
+use App\Models\category_karya;
 use App\Models\guru_profile;
+use App\Models\karya_siswa;
 use App\Models\siswa_profile;
+use App\Models\ulangan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -56,12 +60,26 @@ class DashboardController extends Controller
                 'ditolak' => User::where('status', 'rejected')->count(),
             ];
 
-            $aktivitasBerita = berita::select(
-                DB::raw("WEEK(created_at) as minggu"),
-                DB::raw("count(*) as jumlah")
-            )
-            ->groupBy(DB::raw("WEEK(created_at)"))
-            ->get();
+;
+
+        $aktivitasBerita = collect();
+
+    for ($i = 0; $i < 21; $i++) {
+        $startOfWeek = Carbon::now('Asia/Jakarta')->subWeeks($i)->startOfWeek();
+        $endOfWeek = Carbon::now('Asia/Jakarta')->subWeeks($i)->endOfWeek();
+
+        $jumlah = berita::whereBetween('created_at', [$startOfWeek, $endOfWeek])->count();
+
+        if ($jumlah > 0) {
+            $aktivitasBerita->push([
+                'minggu' => $startOfWeek->format('d M'),
+                'jumlah' => $jumlah
+            ]);
+        }
+    }
+
+    $aktivitasBerita = $aktivitasBerita->reverse();
+
 
             return view('dashboard.admin.index', [
                 'summary' => [
@@ -77,9 +95,85 @@ class DashboardController extends Controller
                 'aktivitasBerita' => $aktivitasBerita,
             ]);
         } elseif ($user->hasRole('guru')) {
-            return view('dashboard.guru.index');
+            $jumlahKaryaTerbaik = karya_siswa::count();
+
+            $jumlahSiswa = User::whereHasRole('siswa')->count();
+
+            $tanggalHariIni = Carbon::now('asia/jakarta');
+            $ujianAktif = ulangan::whereDate('mulai', '>=', $tanggalHariIni)
+                ->orderBy('mulai')
+                ->get();
+
+           $topSiswa = User::whereHas('roles', function ($query) {
+                $query->where('name', 'siswa');
+            })
+            ->withCount('karyaSiswa')
+            ->orderByDesc('karya_siswa_count')
+            ->take(3)
+            ->get();
+
+            $karyaPerBulan = [];
+            for ($i = 1; $i <= 12; $i++) {
+                $karyaPerBulan[] = [
+                    'bulan' => Carbon::create()->month($i)->format('M'),
+                    'jumlah' => karya_siswa::whereMonth('created_at', $i)->count(),
+                ];
+            }
+
+
+           $aktivitasKarya = collect();
+
+            for ($i = 0; $i < 21; $i++) {
+                $startOfWeek = Carbon::now('Asia/Jakarta')->subWeeks($i)->startOfWeek();
+                $endOfWeek = Carbon::now('Asia/Jakarta')->subWeeks($i)->endOfWeek();
+
+                $jumlah = karya_siswa::whereBetween('created_at', [$startOfWeek, $endOfWeek])->count();
+
+                if ($jumlah > 0) {
+                    $aktivitasKarya->push([
+                        'minggu' => $startOfWeek->format('d M'),
+                        'jumlah' => $jumlah
+                    ]);
+                }
+            }
+
+            $aktivitasKarya = $aktivitasKarya->reverse();
+
+
+
+
+            return view('dashboard.guru.index', [
+                'jumlahKaryaTerbaik' => $jumlahKaryaTerbaik,
+                'jumlahSiswa' => $jumlahSiswa,
+                'ujianAktif' => $ujianAktif,
+                'topSiswa' => $topSiswa,
+                'karyaPerBulan' => $karyaPerBulan,
+                'aktivitasKarya' => $aktivitasKarya,
+            ]);
         } elseif ($user->hasRole('siswa')) {
-            return view('dashboard.siswa.index');
+            $karyaSaya = $user->karyaSiswa()->latest()->take(3)->get();
+
+            $kelasSiswa = $user->kelas;
+
+            $ulanganKelas = Ulangan::where('kelas_id', $kelasSiswa->id)
+                ->where('is_active', 1)
+                ->get();
+
+            $beritaHariIni = Berita::whereDate('created_at', Carbon::today('Asia/Jakarta'))->get();
+
+            $karyaPerBulan = collect(range(1, 12))->map(function ($bulan) use ($user) {
+                return [
+                    'bulan' => Carbon::create()->month($bulan)->format('M'),
+                    'jumlah' => $user->karyaSiswa()->whereMonth('created_at', $bulan)->count(),
+                ];
+            });
+
+            return view('dashboard.siswa.index', [
+                'karyaSaya' => $karyaSaya,
+                'ulanganKelas' => $ulanganKelas,
+                'beritaHariIni' => $beritaHariIni,
+                'karyaPerBulan' => $karyaPerBulan,
+            ]);
         } else {
             abort(403, 'Unauthorized');
         }

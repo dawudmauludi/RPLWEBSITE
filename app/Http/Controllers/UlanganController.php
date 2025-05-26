@@ -202,7 +202,11 @@ class UlanganController extends Controller
             return redirect()->back()->with('error', 'Anda tidak memiliki akses untuk mengubah status ulangan ini.');
         }
 
-        $ulangan->is_active = !$ulangan->is_active;
+        if ($ulangan->is_active) {
+            $ulangan->is_active = false;
+        } else {
+            $ulangan->is_active = true;
+        }
         $ulangan->save();
 
         $status = $ulangan->is_active ? 'diaktifkan' : 'dinonaktifkan';

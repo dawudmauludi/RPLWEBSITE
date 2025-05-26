@@ -4,7 +4,6 @@
 <!-- Feather Icons -->
 
 <section class="relative w-full min-h-screen text-white overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900" style="font-family: 'DM Sans', sans-serif;">
-    <!-- Background decorative elements -->
     <div class="absolute inset-0 overflow-hidden">
         <div class="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
         <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
@@ -34,8 +33,8 @@
                     <div class="relative group">
                         <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
                         <div class="relative">
-                            <img src="{{ asset('storage/' . $karya->gambar_karya) }}" 
-                                 alt="Project Image" 
+                            <img src="{{ asset('storage/' . $karya->gambar_karya) }}"
+                                 alt="Project Image"
                                  class="w-full rounded-2xl shadow-2xl border border-purple-500/20 hover:scale-[1.02] transition-transform duration-500" />
                             <div class="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/20 to-transparent"></div>
                         </div>
@@ -45,12 +44,12 @@
                     <div class="bg-slate-900/40 backdrop-blur-xl rounded-2xl border border-purple-500/20 overflow-hidden">
                         <!-- Tab Headers -->
                         <div class="flex border-b border-purple-700/30 bg-slate-800/40">
-                            <button id="tabOverview" 
+                            <button id="tabOverview"
                                     class="flex items-center gap-2 px-6 py-4 text-sm font-semibold text-white border-b-2 border-purple-500 bg-purple-500/10 transition-all duration-300">
                                 <i data-feather="file-text" class="w-4 h-4"></i>
                                 Overview
                             </button>
-                            <button id="tabFeature" 
+                            <button id="tabFeature"
                                     class="flex items-center gap-2 px-6 py-4 text-sm font-semibold text-gray-400 hover:text-white hover:bg-slate-700/30 transition-all duration-300">
                                 <i data-feather="list" class="w-4 h-4"></i>
                                 Features
@@ -72,7 +71,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div id="contentFeature" class="hidden text-gray-300 leading-relaxed">
                                 <div class="flex items-start gap-4">
                                     <div class="p-2 bg-green-500/20 rounded-lg mt-1">
@@ -104,14 +103,14 @@
                             </div>
                             <h3 class="text-2xl font-bold text-white">Project Documentation</h3>
                         </div>
-                        
+
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             @foreach($karya->dokumentasi as $index => $dok)
                                 <div class="group relative overflow-hidden rounded-xl bg-slate-800/30 border border-slate-700/50 hover:border-purple-500/50 transition-all duration-300">
                                     <div class="aspect-video overflow-hidden">
-                                        <img onclick="openModal('{{ asset('storage/' . $dok->gambar) }}')" 
-                                             src="{{ asset('storage/' . $dok->gambar) }}" 
-                                             class="w-full h-full object-cover cursor-pointer group-hover:scale-110 transition-transform duration-700" 
+                                        <img onclick="openModal('{{ asset('storage/' . $dok->gambar) }}')"
+                                             src="{{ asset('storage/' . $dok->gambar) }}"
+                                             class="w-full h-full object-cover cursor-pointer group-hover:scale-110 transition-transform duration-700"
                                              alt="Documentation {{ $index + 1 }}">
                                     </div>
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
@@ -138,7 +137,7 @@
                                 </div>
                                 <h3 class="text-2xl font-bold text-white">Project Details</h3>
                             </div>
-                            
+
                             <div class="space-y-8">
                                 <!-- Category -->
                                 <div class="group">
@@ -181,7 +180,7 @@
                                         </div>
                                         <p class="text-sm font-semibold text-purple-400 uppercase tracking-wider">Project Link</p>
                                     </div>
-                                    <a href="{{ $karya->link }}" 
+                                    <a href="{{ $karya->link }}"
                                        target="_blank"
                                        class="ml-9 inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold py-2.5 px-5 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
                                         <i data-feather="globe" class="w-4 h-4"></i>
@@ -246,7 +245,7 @@
                         </div>
 
                         <!-- Additional Action Card -->
-                        
+
                     </div>
                 </div>
             </div>
@@ -255,7 +254,7 @@
         <!-- Enhanced Image Modal -->
         <div id="imageModal" class="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center z-50 hidden">
             <div class="relative max-w-7xl max-h-[90vh] mx-4">
-                <button onclick="closeModal()" 
+                <button onclick="closeModal()"
                         class="absolute -top-12 right-0 flex items-center gap-2 text-white/80 hover:text-white bg-black/50 hover:bg-black/70 rounded-lg px-4 py-2 transition-all duration-300">
                     <i data-feather="x" class="w-4 h-4"></i>
                     <span class="text-sm">Close</span>
@@ -276,11 +275,11 @@
         // Show active content
         activeContent.classList.remove('hidden');
         inactiveContent.classList.add('hidden');
-        
+
         // Update active tab styling
         activeTab.classList.add('text-white', 'border-b-2', 'border-purple-500', 'bg-purple-500/10');
         activeTab.classList.remove('text-gray-400');
-        
+
         // Update inactive tab styling
         inactiveTab.classList.remove('text-white', 'border-b-2', 'border-purple-500', 'bg-purple-500/10');
         inactiveTab.classList.add('text-gray-400');
