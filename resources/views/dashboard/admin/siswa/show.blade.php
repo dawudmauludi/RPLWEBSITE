@@ -103,7 +103,7 @@
                                     <div>
                                         <p class="text-sm font-medium text-gray-500 mb-1">Jenis Kelamin</p>
                                         <div class="flex items-center gap-2">
-                                            @if($siswa->jenkel == 'Laki-laki')
+                                            @if($siswa->jenkel)
                                                 <i data-feather="user" class="w-4 h-4 text-blue-500"></i>
                                                 <span class="text-blue-700 font-semibold">Laki-laki</span>
                                             @else
