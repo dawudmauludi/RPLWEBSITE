@@ -6,6 +6,7 @@ use App\Models\category_karya;
 use App\Models\dokumentasi_karya;
 use App\Models\fiturKarya;
 use App\Models\karya_siswa;
+use App\Models\kelas;
 use App\Models\tools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -31,6 +32,29 @@ class KaryaSiswaController extends Controller
         return view('dashboard.guru.karya.index', compact('karyas'));
     }
 
+    public function all()
+    {
+        $query = karya_siswa::query()->with(['category', 'dokumentasi', 'tools', 'fiturKarya', 'user.siswaProfile.kelas']);
+
+        if ($search = request('search')) {
+            $query->where(function ($q) use ($search) {
+                $q->where('judul', 'like', "%{$search}%");
+            });
+        }
+
+        if ($kelas = request('kelas')) {
+            $query->whereHas('user.siswaProfile.kelas', function ($q) use ($kelas) {
+                $q->where('id', $kelas);
+            });
+        }
+        $kelas = kelas::all();
+        $karyas = $query->latest()->paginate(9)->withQueryString();
+
+        return view('karya.all', compact('karyas', 'kelas'));
+    }
+
+
+
     /**
      * Show the form for creating a new resource.
      */
@@ -46,7 +70,7 @@ class KaryaSiswaController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-        'category_karya_id' => 'required|exists:category_karyas,id',    
+        'category_karya_id' => 'required|exists:category_karyas,id',
         'judul' => 'required|string',
         'deskripsi' => 'required|string',
         'link' => 'required',
@@ -109,9 +133,10 @@ class KaryaSiswaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(karya_siswa $karya_siswa)
+    public function show(karya_siswa $karya)
     {
-        //
+        $karya = karya_siswa::with(['category', 'dokumentasi', 'tools', 'fiturKarya'])->findOrFail($karya->id);
+        return view('dashboard.guru.karya.show', compact('karya'));
     }
 
     /**
@@ -129,7 +154,7 @@ class KaryaSiswaController extends Controller
     public function update(Request $request, karya_siswa $karya)
     {
           $request->validate([
-        'category_karya_id' => 'required|exists:category_karyas,id',    
+        'category_karya_id' => 'required|exists:category_karyas,id',
         'judul' => 'required|string',
         'deskripsi' => 'required|string',
         'link' => 'required',
@@ -141,10 +166,10 @@ class KaryaSiswaController extends Controller
     ]);
 
     // Simpan gambar karya utama
-    
+
     if($request->hasFile('gambar_karya')){
         Storage::disk('public')->delete($karya->gambar_karya);
-        
+
         $gambarKaryaPath = $request->file('gambar_karya')->store('karya', 'public');
         $karya->gambar_karya = $gambarKaryaPath;
     }
