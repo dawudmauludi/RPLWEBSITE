@@ -106,9 +106,3 @@ Route::middleware(['auth','role:siswa'])->group(function () {
 
 Route::get('ulangans/{ulangan}', [UlanganController::class, 'show'])->name('ulangans.show');
 
-
-
-
-
-
-

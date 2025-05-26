@@ -136,7 +136,7 @@ class KaryaSiswaController extends Controller
     public function show(karya_siswa $karya)
     {
         $karya = karya_siswa::with(['category', 'dokumentasi', 'tools', 'fiturKarya'])->findOrFail($karya->id);
-        return view('dashboard.guru.karya.show', compact('karya'));
+        return view('karya.detail', compact('karya'));
     }
 
     /**
