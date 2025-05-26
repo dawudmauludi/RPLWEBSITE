@@ -307,7 +307,7 @@
     new Chart(document.getElementById('aktivitasBeritaChart'), {
         type: 'line',
         data: {
-            labels: beritaData.map(d => `Minggu ${d.minggu}`),
+            labels: beritaData.map(d => `${d.minggu}`),
             datasets: [{
                 label: 'Jumlah Berita',
                 data: beritaData.map(d => d.jumlah),
