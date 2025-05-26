@@ -2,6 +2,29 @@
 @section('title','Registrasi')
 @section('content')
    <main class="bg-[#FAFAFA] mx-auto min-h-screen flex flex-col justify-center items-center">
+@if($errors->any())
+    <div class="mb-6 p-4 rounded-lg bg-red-50 border-l-4 border-red-500">
+        <div class="flex items-center">
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="ml-3">
+                <h3 class="text-sm font-medium text-red-800">
+                    Terdapat {{ $errors->count() }} kesalahan yang harus diperbaiki
+                </h3>
+                <div class="mt-2 text-sm text-red-700">
+                    <ul class="list-disc pl-5 space-y-1">
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
     <div class="flex flex-col items-center w-fit mx-auto">
       <h1 style="font-family: 'Poppins';" class="font-bold text-5xl text-[#5B0888]">Website Rpl</h1>
       <h1 style="font-family: 'Poppins';" class="font-medium text-4xl">Registrasi</h1>

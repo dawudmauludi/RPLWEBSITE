@@ -28,7 +28,7 @@
                 <a href="/berita" class="px-4 py-2 rounded-md hover:bg-primary-dark text-decoration-none text-white flex items-center {{ request()->is('berita') ? 'bg-primary-dark text-white' : '' }}">
                     <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Berita & Artikel
                 </a>
-                <a href="#" class="px-4 py-2 rounded-md hover:bg-primary-dark flex text-decoration-none text-white items-center">
+                <a href="/kontak" class="px-4 py-2 rounded-md hover:bg-primary-dark flex text-decoration-none text-white items-center">
                     <i data-feather="message-circle" class="w-4 h-4 mr-2"></i> Kontak
                 </a>
 
@@ -37,6 +37,7 @@
                         $user = Auth::user();
                          $isSiswa = $user->hasRole('siswa');
                         $hasProfile = \App\Models\siswa_profile::where('user_id', $user->id)->exists();
+                        $studentProfile = $user->siswaProfile;
                     @endphp
                     <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open" class="w-10 h-10 rounded-full overflow-hidden focus:outline-none">
@@ -56,7 +57,13 @@
                                     <li><a href="/profile" class="block px-4 py-2 hover:bg-gray-100">Profile</a></li>
                                 @elseif ($isSiswa && $hasProfile)
                                     <li><a href="/dashboard" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
-                                    <li><a href="/profile" class="block px-4 py-2 hover:bg-gray-100">Profile</a></li>
+                                    @if ($studentProfile)
+                                    <li>
+                                        <a href="{{ route('siswa.profileSiswa.show', $studentProfile->id) }}" class="block px-4 py-2 hover:bg-gray-100">
+                                            Profile
+                                        </a>
+                                    </li>
+                                @endif
                                 @endif
                                     <li>
                                         <form method="POST" action="{{ route('logout') }}">
