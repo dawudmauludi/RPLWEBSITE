@@ -160,6 +160,46 @@
     </div>
 </div>
 
+<section class="bg-[#0a0a3c] py-12 text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-10">KARYA SISWA</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4 mb-6">
+            @foreach ($karyas as $karya)
+                <div class="bg-white rounded-xl overflow-hidden shadow-md relative border border-purple-100">
+                    <div class="absolute top-0 left-0 bg-purple-100 text-purple-700 text-xs font-semibold px-2 py-1 rounded-br-lg">
+                        {{ $karya->user->kelas->nama ?? 'Kelas Tidak Diketahui' }}
+                    </div>
+                    <div class="absolute top-0 right-0 bg-purple-200 text-purple-800 text-xs font-semibold px-2 py-1 rounded-bl-lg">
+                        {{ $karya->user->nama ?? 'Siswa' }}
+                    </div>
+
+                    <img src="{{ asset('storage/' . $karya->gambar_karya) }}" alt="{{ $karya->judul }}"
+                        class="w-full h-40 object-cover">
+
+                    <div class="p-4 text-gray-800">
+                        <h3 class="font-semibold text-lg mb-2 text-black-800">{{ $karya->judul }}</h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            {{ Str::limit($karya->deskripsi, 50, '...') }}
+                        </p>
+                        <a href="{{ route('karya.show', $karya->id) }}"
+                        class="block text-center bg-primary hover:bg-primary-dark text-white py-2 rounded-lg font-medium transition">
+                            Lihat Detail
+                        </a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+        {{-- Full Project Button --}}
+        <div class="text-center mt-10">
+            <a href="{{ route('karya.all') }}" class="inline-block bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-lg font-semibold transition">
+                Full Project
+            </a>
+        </div>
+    </div>
+</section>
+
+
 <div class="container mx-auto px-8 md:px-16 py-8" id="berita">
     <div class="mb-6">
         <div class="flex items-center justify-between">

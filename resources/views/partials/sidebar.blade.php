@@ -66,7 +66,7 @@
         @endrole
 
         @role('guru')
-            <a href="{{ route('guru.karya.index') }}" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition">
+            <a href="{{ route('guru.karya.index') }}" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition {{ request()->is('guru/karya*') ? 'bg-white text-purple-800 font-semibold' : '' }}">
                 Karya Terbaik
             </a>
             <a href="{{ route('guru.kategoriKarya.index') }}" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition  {{ request()->is('guru/kategoriKarya*') ? 'bg-white text-purple-800 font-semibold' : '' }}">
@@ -79,13 +79,13 @@
                 Ujian/Ulangan
             </a>
 
-            <a href="{{ route('guru.users.index') }}" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition  {{ request()->is('guru/kategoriKarya*') ? 'bg-white text-purple-800 font-semibold' : '' }}">
+            <a href="{{ route('guru.users.index') }}" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition  {{ request()->is('guru/users*') ? 'bg-white text-purple-800 font-semibold' : '' }}">
                 Tambah Poin Siswa
             </a>
         @endrole
 
         @role('siswa')
-            <a href="{{ route('siswa.karya.index') }}" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition">
+            <a href="{{ route('siswa.karya.index') }}" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition {{ request()->is('siswa/karya*') ? 'bg-white text-purple-800 font-semibold' : '' }}">
                 Karya
             </a>
             <a href="{{ route('ulangans.my-ulangans') }}" class="hover:bg-white hover:text-purple-800 py-2 px-3 rounded transition {{ request()->is('my-ulangans') || request()->is('ulangans*') ? 'bg-white text-purple-800 font-semibold' : '' }}">

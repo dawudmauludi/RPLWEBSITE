@@ -5,6 +5,7 @@ use App\Http\Controllers\authController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuruProfileController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KaryaSiswaController;
 use App\Http\Controllers\kategoriBeritaController;
 use App\Http\Controllers\kategoriKaryaController;
@@ -23,7 +24,12 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 
-Route::get('/', [BeritaController::class, 'home'])->name('berita.home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/berita', [BeritaController::class, 'all'])->name('berita.all');
+Route::get('/karya', [KaryaSiswaController::class, 'all'])->name('karya.all');
+Route::get('/karya/{karya}', [KaryaSiswaController::class, 'show'])->name('karya.show');
+Route::get('/berita/{berita}', [BeritaController::class, 'show'])->name('berita.show');
+
 
 
 
@@ -45,9 +51,6 @@ Route::post('/password/reset', [authController::class,'resetPassword'])->name('r
 
 Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard')->middleware('auth');
 
-Route::get('/berita', [BeritaController::class, 'all'])->name('berita.all');
-
-Route::get('/berita/{berita}', [BeritaController::class, 'show'])->name('berita.show');
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('guru', GuruProfileController::class);
@@ -60,7 +63,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/approved',[UserAproveController::class,'index'])->name('approved');
     Route::post('/user/{id}/approve', [UserAproveController::class, 'approve'])->name('user.approve');
     Route::post('/user/{id}/reject', [UserAproveController::class, 'reject'])->name('user.reject');
-
     Route::resource('berita', BeritaController::class)->except(['index', 'show'])->parameters(['berita' => 'berita']);;
     Route::get('berita', [BeritaController::class, 'index'])->name('berita.index');
     Route::resource('kategoriBerita', kategoriBeritaController::class);
@@ -74,7 +76,7 @@ Route::middleware(['auth', 'role:guru'])->prefix('guru')->name('guru.')->group(f
     Route::post('/approved/user/{id}/approve', [UserAproveController::class, 'approve'])->name('user.approve');
     Route::post('/approved/user/{id}/reject', [UserAproveController::class, 'reject'])->name('user.reject');
     Route::resource('kategoriKarya', kategoriKaryaController::class);
-    Route::resource('karya', KaryaSiswaController::class);
+    Route::resource('karya', KaryaSiswaController::class)->except(['show'])->parameters(['karya' => 'karya']);
     Route::post('/users/{user}/add-point', [addPoinController::class, 'addPoin'])->name('users.addPoint');
     Route::get('/users',[addPoinController::class,'index'])->name('users.index');
 });
