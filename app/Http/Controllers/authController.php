@@ -41,6 +41,12 @@ class authController extends Controller
             'password.confirmed' => 'Konfirmasi password tidak cocok.'
         ]);
 
+          if ($validator->fails()) {
+        return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
+    }
+
       $user = User::create([
         'nama' => $request->nama,
         'email' => $request->email,

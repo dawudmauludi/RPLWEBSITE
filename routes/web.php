@@ -10,6 +10,7 @@ use App\Http\Controllers\KaryaSiswaController;
 use App\Http\Controllers\kategoriBeritaController;
 use App\Http\Controllers\kategoriKaryaController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\profileSiswaController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SiswaProfileController;
 use App\Http\Controllers\UlanganController;
@@ -33,6 +34,12 @@ Route::get('/berita/{berita}', [BeritaController::class, 'show'])->name('berita.
 Route::get('/detail-jurusan', function () {
     return view('detail_jurusan');
 });
+
+Route::get('/kontak', function (){
+    return view('kontak');
+});
+
+
 
 // ================= Authentication ====================== //
 Route::get('/login',[authController::class,'login_view'])->name('login');
@@ -85,6 +92,7 @@ Route::middleware(['auth'])->prefix('siswa')->name('siswa.')->group(function () 
     Route::get('/profile', [SiswaController::class, 'create'])->name('profile');
     Route::post('/profile/store', [SiswaController::class, 'store'])->name('siswa_profile.store');
     Route::resource('karya', siswaUploadKaryaController::class);
+    Route::resource('/profileSiswa',profileSiswaController::class);
 
 });
 
