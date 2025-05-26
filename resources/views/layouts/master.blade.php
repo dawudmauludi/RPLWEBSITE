@@ -70,7 +70,6 @@
               animation: bounce-fast 0.6s infinite;
          }
     </style>
-    @include('partials.footer')
     <!-- Initialize Feather Icons -->
     <script>
         feather.replace();

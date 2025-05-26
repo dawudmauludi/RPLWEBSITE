@@ -15,15 +15,23 @@ class karya_siswa extends Model
     return $this->hasMany(dokumentasi_karya::class);
 }
 
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
+
 public function category()
     {
         return $this->belongsTo(category_karya::class, 'category_karya_id');
     }
 
     public function tools()
-{
-    return $this->hasMany(tools::class);
-}
+    {
+        return $this->hasMany(tools::class);
+    }
 
     public function fiturKarya(){
         return $this->hasMany(fiturKarya::class);

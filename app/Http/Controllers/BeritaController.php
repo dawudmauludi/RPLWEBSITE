@@ -27,13 +27,6 @@ class BeritaController extends Controller
         return view('dashboard.admin.berita.index', compact('beritas', 'categories'));
     }
 
-    public function home(Request $request)
-    {
-        $sort = $request->query('sort', 'desc');
-        $beritas = Berita::orderBy('created_at', $sort)->paginate(6);
-        $categories = category_berita::all();
-        return view('home', compact('beritas', 'categories', 'sort'));
-    }
    // app/Http/Controllers/BeritaController.php
 
 public function all(Request $request)
