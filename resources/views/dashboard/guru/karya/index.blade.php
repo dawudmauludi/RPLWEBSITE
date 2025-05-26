@@ -57,13 +57,6 @@
                         <p class="text-gray-600 text-sm">Kelola dan publikasikan Karya terbaru</p>
                     </div>
                 </div>
-                <a href="{{ route('guru.karya.create') }}"
-                   class="inline-flex items-center bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                    </svg>
-                    Tambah Karya
-                </a>
             </div>
             <form method="GET" action="{{ route('guru.karya.index') }}" class="flex flex-col sm:flex-row gap-4 mt-4">
                 <div class="relative flex-1">
