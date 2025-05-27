@@ -24,8 +24,8 @@
                 <!-- Photo -->
                 <div class="flex-shrink-0">
                     <div class="w-32 h-32 lg:w-40 lg:h-40 rounded-full bg-white/20 backdrop-blur-sm border-4 border-white/30 flex items-center justify-center overflow-hidden shadow-2xl">
-                        @if(isset($student->foto) && $student->foto)
-                            <img src="{{ asset('storage/' . $student->foto) }}" alt="Foto {{ $student->nama ?? 'Siswa' }}" class="w-full h-full object-cover">
+                        @if(isset($gurus->foto) && $gurus->foto)
+                            <img src="{{ asset('storage/' . $gurus->foto) }}" alt="Foto {{ $gurus->nama ?? 'Siswa' }}" class="w-full h-full object-cover">
                         @else
                             <i data-feather="user" class="w-16 h-16 lg:w-20 lg:h-20 text-white/80"></i>
                         @endif
@@ -34,14 +34,10 @@
 
                 <!-- Info -->
                 <div class="text-center lg:text-left text-white flex-1">
-                    <h1 class="text-3xl lg:text-4xl font-bold mb-2">{{ $student->nama ?? 'Ahmad Rizki Pratama' }}</h1>
-                    <div class="flex items-center justify-center lg:justify-start space-x-2 mb-4">
-                        <i data-feather="book-open" class="w-5 h-5 text-purple-200"></i>
-                        <span class="text-lg text-purple-200">Kelas {{ $student->kelas->nama ?? 'XII IPA 1' }}</span>
-                    </div>
+                    <h1 class="text-3xl lg:text-4xl font-bold mb-2">{{ $gurus->nama ?? 'Ahmad Rizki Pratama' }}</h1>
                     <div class="flex items-center justify-center lg:justify-start space-x-2">
                         <i data-feather="hash" class="w-4 h-4 text-purple-300"></i>
-                        <span class="text-purple-300">NISN: {{ $student->nisn ?? '1234567890' }}</span>
+                        <span class="text-purple-300">NIP: {{ $gurus->nip ?? '1234567890' }}</span>
                     </div>
                 </div>
             </div>
@@ -73,7 +69,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Jenis Kelamin</p>
-                                    <p class="text-gray-800 font-medium">{{ $student->jenkel ?? 'Laki-laki' }}</p>
+                                    <p class="text-gray-800 font-medium">{{ $gurus->jenkel ?? 'Laki-laki' }}</p>
                                 </div>
                             </div>
 
@@ -84,7 +80,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Telepon</p>
-                                    <p class="text-gray-800 font-medium">{{ $student->telepon ?? '+62 812-3456-7890' }}</p>
+                                    <p class="text-gray-800 font-medium">{{ $gurus->telepon ?? '+62 812-3456-7890' }}</p>
                                 </div>
                             </div>
 
@@ -95,7 +91,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Agama</p>
-                                    <p class="text-gray-800 font-medium">{{ $student->agama ?? 'Islam' }}</p>
+                                    <p class="text-gray-800 font-medium">{{ $gurus->agama ?? 'Islam' }}</p>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +112,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Alamat</p>
-                                    <p class="text-gray-800 font-medium leading-relaxed">{{ $student->alamat ?? 'Jl. Merdeka No. 123, Kota Bandung, Jawa Barat 40123' }}</p>
+                                    <p class="text-gray-800 font-medium leading-relaxed">{{ $gurus->alamat ?? 'Jl. Merdeka No. 123, Kota Bandung, Jawa Barat 40123' }}</p>
                                 </div>
                             </div>
 
@@ -127,7 +123,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Tempat Lahir</p>
-                                    <p class="text-gray-800 font-medium">{{ $student->tempat_lahir ?? 'Bandung' }}</p>
+                                    <p class="text-gray-800 font-medium">{{ $gurus->tempat_lahir ?? 'Bandung' }}</p>
                                 </div>
                             </div>
 
@@ -139,7 +135,7 @@
                                 <div class="flex-1">
                                     <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Tanggal Lahir</p>
                                     <p class="text-gray-800 font-medium">
-                                        {{ isset($student->tanggal_lahir) ? \Carbon\Carbon::parse($student->tanggal_lahir)->format('d F Y') : '15 Januari 2005' }}
+                                        {{ isset($gurus->tanggal_lahir) ? \Carbon\Carbon::parse($gurus->tanggal_lahir)->format('d F Y') : '15 Januari 2005' }}
                                     </p>
                                 </div>
                             </div>
@@ -184,7 +180,7 @@
             </div>
 
             <!-- Modal Body -->
-          <form action="{{ route('siswa.profileSiswa.update', $student->id) }}" 
+          <form action="{{ route('guru.profileGuru.update', $gurus->id) }}" 
             id="editProfileForm" 
             class="p-6" 
             method="POST" 
@@ -193,14 +189,14 @@
                 @method('PUT')
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <input type="hidden" name="user_id" value="{{ $student->user_id }}">
+                    <input type="hidden" name="user_id" value="{{ $gurus->user_id }}">
                     <!-- Nama -->
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-700 mb-2">
                             <i data-feather="user" class="w-4 h-4 inline mr-1"></i>
                             Nama Lengkap
                         </label>
-                        <input type="text" name="nama" id="edit_nama" value="{{ $student->nama ?? 'Ahmad Rizki Pratama' }}" 
+                        <input type="text" name="nama" id="edit_nama" value="{{ $gurus->nama ?? 'Ahmad Rizki Pratama' }}" 
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>
                     </div>
 
@@ -208,26 +204,10 @@
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">
                             <i data-feather="hash" class="w-4 h-4 inline mr-1"></i>
-                            NISN
+                            NIP
                         </label>
-                        <input type="text" name="nisn" id="edit_nisn" value="{{ $student->nisn ?? '1234567890' }}" 
+                        <input type="text" name="nip" id="edit_nisn" value="{{ $gurus->nip ?? '1234567890' }}" 
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>
-                    </div>
-
-                    <!-- Kelas -->
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            <i data-feather="book-open" class="w-4 h-4 inline mr-1"></i>
-                            Kelas
-                        </label>
-                        <select name="kelas_id" id="edit_kelas_id" 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>
-                            @foreach($kelas as $k)
-                                      <option value="{{ $k->id }}" {{ old('kelas_id', $student->kelas_id ?? '') == $k->id ? 'selected' : '' }}>
-                                    {{ $k->nama }}
-                                </option>
-                                    @endforeach
-                        </select>
                     </div>
 
                     <!-- Jenis Kelamin -->
@@ -238,8 +218,8 @@
                         </label>
                         <select name="jenkel" id="edit_jenkel" 
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>
-                            <option value="Laki-laki" {{ ($student->jenkel ?? 'Laki-laki') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                            <option value="Perempuan" {{ ($student->jenkel ?? '') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                            <option value="Laki-laki" {{ ($gurus->jenkel ?? 'Laki-laki') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                            <option value="Perempuan" {{ ($gurus->jenkel ?? '') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                         </select>
                     </div>
 
@@ -249,7 +229,7 @@
                             <i data-feather="phone" class="w-4 h-4 inline mr-1"></i>
                             Telepon
                         </label>
-                        <input type="tel" name="telepon" id="edit_telepon" value="{{ $student->telepon ?? '+62 812-3456-7890' }}" 
+                        <input type="tel" name="telepon" id="edit_telepon" value="{{ $gurus->telepon ?? '+62 812-3456-7890' }}" 
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>
                     </div>
 
@@ -260,7 +240,7 @@
                             Alamat
                         </label>
                         <textarea name="alamat" id="edit_alamat" rows="3" 
-                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>{{ $student->alamat ?? 'Jl. Merdeka No. 123, Kota Bandung, Jawa Barat 40123' }}</textarea>
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>{{ $gurus->alamat ?? 'Jl. Merdeka No. 123, Kota Bandung, Jawa Barat 40123' }}</textarea>
                     </div>
 
                     <!-- Tempat Lahir -->
@@ -269,7 +249,7 @@
                             <i data-feather="map" class="w-4 h-4 inline mr-1"></i>
                             Tempat Lahir
                         </label>
-                        <input type="text" name="tempat_lahir" id="edit_tempat_lahir" value="{{ $student->tempat_lahir ?? 'Bandung' }}" 
+                        <input type="text" name="tempat_lahir" id="edit_tempat_lahir" value="{{ $gurus->tempat_lahir ?? 'Bandung' }}" 
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>
                     </div>
 
@@ -280,7 +260,7 @@
                             Tanggal Lahir
                         </label>
                         <input type="date" name="tanggal_lahir" id="edit_tanggal_lahir" 
-                               value="{{ isset($student->tanggal_lahir) ? \Carbon\Carbon::parse($student->tanggal_lahir)->format('Y-m-d') : '2005-01-15' }}" 
+                               value="{{ isset($gurus->tanggal_lahir) ? \Carbon\Carbon::parse($gurus->tanggal_lahir)->format('Y-m-d') : '2005-01-15' }}" 
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>
                     </div>
 
@@ -294,7 +274,7 @@
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>
                             <option value="">-- Pilih Agama --</option>
                              @foreach(['Islam','Kristen','Katolik','Hindu','Budha','Konghucu'] as $agama)
-                                        <option value="{{ $agama }}" {{ old('agama', $student->agama ?? '') == $agama ? 'selected' : '' }}>
+                                        <option value="{{ $agama }}" {{ old('agama', $gurus->agama ?? '') == $agama ? 'selected' : '' }}>
                                             {{ $agama }}
                                         </option>
                                     @endforeach
@@ -461,7 +441,7 @@
     function editProfile() {
         // Redirect ke halaman edit atau buka modal
         // Atau jika menggunakan modal:
-         window.location.href = "{{ route('siswa.profileSiswa.edit', $student->id) }}";
+         window.location.href = "{{ route('guru.profileGuru.edit', $gurus->id) }}";
         // openEditModal();
     }
 

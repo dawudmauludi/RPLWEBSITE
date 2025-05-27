@@ -57,7 +57,7 @@ class authController extends Controller
 
 
 
-        $role = Role::where('name', 'siswa')->first();
+        $role = Role::where('name', 'guru')->first();
         if ($role) {
             $user->roles()->attach($role->id);
         }

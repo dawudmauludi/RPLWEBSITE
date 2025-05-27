@@ -10,6 +10,7 @@ use App\Http\Controllers\KaryaSiswaController;
 use App\Http\Controllers\kategoriBeritaController;
 use App\Http\Controllers\kategoriKaryaController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\profileGuruController;
 use App\Http\Controllers\profileSiswaController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SiswaProfileController;
@@ -83,6 +84,7 @@ Route::middleware(['auth', 'role:guru'])->prefix('guru')->name('guru.')->group(f
     Route::resource('karya', KaryaSiswaController::class)->except(['show'])->parameters(['karya' => 'karya']);
     Route::post('/users/{user}/add-point', [addPoinController::class, 'addPoin'])->name('users.addPoint');
     Route::get('/users',[addPoinController::class,'index'])->name('users.index');
+    Route::resource('/profileGuru', profileGuruController::class);
 });
 
 
