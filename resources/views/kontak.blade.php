@@ -2,7 +2,7 @@
 @section('title','Kontak')
 @section('content')
 
-<section class="relative w-full min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50 overflow-hidden" style="font-family: 'DM Sans', sans-serif;">
+<section class="relative w-full min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50 overflow-hidden mt-10" style="font-family: 'DM Sans', sans-serif;">
     <!-- Background decorative elements -->
     <div class="absolute inset-0 overflow-hidden">
         <div class="absolute -top-40 -right-40 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>

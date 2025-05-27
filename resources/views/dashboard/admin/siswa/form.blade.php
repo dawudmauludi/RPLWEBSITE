@@ -95,6 +95,19 @@
                                 <i data-feather="hash" class="absolute left-3 top-3.5 w-4 h-4 text-gray-400"></i>
                             </div>
                         </div>
+                        <div>
+                            <label for="no_absen" class="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                                <i data-feather="hash" class="w-4 h-4 text-purple-600"></i>
+                                Nomer Absen <span class="text-red-500">*</span>
+                            </label>
+                            <div class="relative">
+                                <input type="text" name="no_absen" id="no_absen" required
+                                       value="{{ old('no_absen', $siswa->no_absen ?? '') }}"
+                                       class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
+                                       placeholder="Masukkan NISN">
+                                <i data-feather="hash" class="absolute left-3 top-3.5 w-4 h-4 text-gray-400"></i>
+                            </div>
+                        </div>
 
                         <div>
                             <label class="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">

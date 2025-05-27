@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nisn')->unique();
             $table->enum('jenkel', ['laki-laki', 'perempuan']);
             $table->string('telepon');
+            $table->integer('no_absen');
             $table->text('alamat');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');

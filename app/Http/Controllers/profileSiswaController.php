@@ -71,6 +71,7 @@ class profileSiswaController extends Controller
             'nisn' => 'required|unique:siswa_profiles,nisn,' . $student->id,
             'jenkel' => 'required|in:Laki-laki,Perempuan',
             'telepon' => 'required',
+            'no_absen' => 'required|integer',
             'alamat' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required|date',
