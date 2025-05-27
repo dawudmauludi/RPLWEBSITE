@@ -123,7 +123,7 @@
         @if($ujianAktif->isEmpty())
             <div class="text-center py-12">
                 <div class="bg-gray-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                    <i data-feather="calendar-x" class="w-10 h-10 text-gray-400"></i>
+                    <i data-feather="calendar" class="w-10 h-10 text-gray-400"></i>
                 </div>
                 <p class="text-gray-500 text-lg">Tidak ada ujian mendatang</p>
             </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\addPoinController;
+use App\Http\Controllers\adminApproveController;
 use App\Http\Controllers\authController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DashboardController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\KaryaSiswaController;
 use App\Http\Controllers\kategoriBeritaController;
 use App\Http\Controllers\kategoriKaryaController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\NilaiUlanganController;
 use App\Http\Controllers\profileGuruController;
 use App\Http\Controllers\profileSiswaController;
 use App\Http\Controllers\SiswaController;
@@ -65,9 +67,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     ]);
 
     Route::resource('user', UsersController::class);
-    Route::get('/approved',[UserAproveController::class,'index'])->name('approved');
-    Route::post('/user/{id}/approve', [UserAproveController::class, 'approve'])->name('user.approve');
-    Route::post('/user/{id}/reject', [UserAproveController::class, 'reject'])->name('user.reject');
+    Route::get('/approved',[adminApproveController::class,'index'])->name('approved');
+    Route::post('/user/{id}/approve', [adminApproveController::class, 'approve'])->name('user.approve');
+    Route::post('/user/{id}/reject', [adminApproveController::class, 'reject'])->name('user.reject');
     Route::resource('berita', BeritaController::class)->except(['index', 'show'])->parameters(['berita' => 'berita']);;
     Route::get('berita', [BeritaController::class, 'index'])->name('berita.index');
     Route::resource('kategoriBerita', kategoriBeritaController::class);
@@ -100,14 +102,22 @@ Route::middleware(['auth'])->prefix('siswa')->name('siswa.')->group(function () 
 
 Route::middleware(['auth','role:guru|admin'])->group(function () {
         Route::resource('ulangans', UlanganController::class);
-        Route::patch('ulangans/{ulangan}/toggle-active', [UlanganController::class, 'toggleActive'])
-            ->name('ulangans.toggle-active');
+        Route::patch('ulangans/{ulangan}/toggle-active', [UlanganController::class, 'toggleActive'])->name('ulangans.toggle-active');
+        Route::post('/ulangan/{ulangan}/nilai', [NilaiUlanganController::class, 'store'])->name('nilai.store');
+        Route::put('/nilai/{id}', [NilaiUlanganController::class, 'update'])->name('nilai.update');
+        Route::get('/ulangans/{ulanganId}/nilai/edit', [NilaiUlanganController::class, 'edit'])->name('nilai.edit');
+        Route::get('/nilai/ulangan/{ulanganId}', [NilaiUlanganController::class, 'show'])->name('nilai.show');
+        Route::post('/nilai/update-massal', [NilaiUlanganController::class, 'bulkUpdate'])->name('nilai.bulkUpdate');
+
 });
 
 Route::middleware(['auth','role:siswa'])->group(function () {
-        Route::get('my-ulangans', [UlanganController::class, 'myUlangans'])->name('ulangans.my-ulangans');
-        Route::get('ulangans/{ulangan}/access', [UlanganController::class, 'access'])->name('ulangans.access');
+    Route::get('my-ulangans', [UlanganController::class, 'myUlangans'])->name('ulangans.my-ulangans');
+    Route::get('ulangans/{ulangan}/access', [UlanganController::class, 'access'])->name('ulangans.access');
+    Route::get('/nilai', [NilaiUlanganController::class, 'index'])->name('nilai.index');
+    Route::get('/nilai/{ulanganId}', [NilaiUlanganController::class, 'showNilai'])->name('nilai.showNilai');
 });
+
 
 
 
