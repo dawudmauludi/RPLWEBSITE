@@ -7,7 +7,7 @@
 
     <div class="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50 py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
+
             <!-- Header Section -->
             <div class="bg-white rounded-2xl shadow-lg border border-purple-100 p-8 mb-8">
                 <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
@@ -26,7 +26,7 @@
                             <p class="text-2xl font-bold text-purple-600">{{ $nilaiList->count() }}</p>
                         </div>
                         <a href="{{ route('ulangans.show', $ulangan->id ?? '') }}"
-                           class="inline-flex items-center px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 
+                           class="inline-flex items-center px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700
                                   rounded-xl font-medium transition-all duration-200 shadow-md hover:shadow-lg">
                             <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
                             Kembali
@@ -71,7 +71,7 @@
                     </p>
                     <div class="flex justify-center space-x-4">
                         <a href="{{ route('ulangans.show', $ulangan->id ?? '') }}"
-                           class="inline-flex items-center px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white 
+                           class="inline-flex items-center px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white
                                   rounded-xl font-medium transition-all duration-200 shadow-lg hover:shadow-xl">
                             <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
                             Kembali ke Ulangan
@@ -265,15 +265,15 @@
 
                 <!-- Action Buttons -->
                 <div class="mt-8 flex justify-center space-x-4">
-                    <button onclick="window.print()" 
-                            class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white 
+                    <button onclick="window.print()"
+                            class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white
                                    rounded-xl font-medium transition-all duration-200 shadow-lg hover:shadow-xl">
                         <i data-feather="printer" class="w-4 h-4 mr-2"></i>
                         Cetak Nilai
                     </button>
-                    <button onclick="exportToExcel()" 
-                            class="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white 
-                                   rounded-xl font-medium transition-all duration-200 shadow-lg hover:shadow-xl">
+                    <button onclick="window.location='{{ route('nilai.export', $ulangan->id) }}'"
+                            class="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white
+                                rounded-xl font-medium transition-all duration-200 shadow-lg hover:shadow-xl">
                         <i data-feather="download" class="w-4 h-4 mr-2"></i>
                         Export Excel
                     </button>
@@ -285,7 +285,7 @@
     <!-- Initialize Feather Icons -->
     <script>
         feather.replace();
-        
+
         // Export to Excel function (placeholder)
         function exportToExcel() {
             alert('Fitur export Excel akan segera hadir!');

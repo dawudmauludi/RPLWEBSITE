@@ -11,6 +11,7 @@ use App\Http\Controllers\KaryaSiswaController;
 use App\Http\Controllers\kategoriBeritaController;
 use App\Http\Controllers\kategoriKaryaController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\NilaiExportController;
 use App\Http\Controllers\NilaiUlanganController;
 use App\Http\Controllers\profileGuruController;
 use App\Http\Controllers\profileSiswaController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\siswaUploadKaryaController;
 use App\Http\Controllers\UserAproveController;
 use App\Http\Controllers\UsersController;
 use App\Models\guru_profile;
+use App\Models\nilai_ulangan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -118,6 +120,8 @@ Route::middleware(['auth','role:siswa'])->group(function () {
     Route::get('/nilai/{ulanganId}', [NilaiUlanganController::class, 'showNilai'])->name('nilai.showNilai');
 });
 
+
+Route::get('/nilai/export-excel/{ulanganId}', [NilaiExportController::class, 'export'])->name('nilai.export');
 
 
 

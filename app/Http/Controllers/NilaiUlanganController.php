@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\NilaiExport;
+use App\Models\kelas;
 use App\Models\nilai_ulangan;
 use App\Models\siswa_profile;
 use App\Models\ulangan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Excel;
 
 class NilaiUlanganController extends Controller
 {
@@ -130,7 +133,7 @@ class NilaiUlanganController extends Controller
         if (!Auth::user()->hasRole('guru')) {
             abort(403);
         }
-        
+
         $nilai = nilai_ulangan::findOrFail($id);
 
 
@@ -161,4 +164,7 @@ class NilaiUlanganController extends Controller
     {
         //
     }
+
+   
+
 }
