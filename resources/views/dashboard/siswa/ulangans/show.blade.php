@@ -53,21 +53,29 @@
 
         <!-- Alert Messages -->
         @if(session('success'))
-        <div class="mb-6 bg-green-50 border-l-4 border-green-400 p-4 rounded-r-lg shadow-sm">
-            <div class="flex items-center">
-                <i data-feather="check-circle" class="w-5 h-5 text-green-400 mr-3"></i>
-                <span class="text-green-700">{{ session('success') }}</span>
-            </div>
-        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: '{{ session('success') }}',
+                    confirmButtonColor: '#7c3aed'
+                });
+            });
+        </script>
         @endif
 
         @if(session('error'))
-        <div class="mb-6 bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg shadow-sm">
-            <div class="flex items-center">
-                <i data-feather="alert-circle" class="w-5 h-5 text-red-400 mr-3"></i>
-                <span class="text-red-700">{{ session('error') }}</span>
-            </div>
-        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: '{{ session('error') }}',
+                    confirmButtonColor: '#f56565'
+                });
+            });
+        </script>
         @endif
 
         <!-- Status Badges -->
@@ -279,28 +287,42 @@
                         @endif
 
                         <!-- Admin/Teacher Tools -->
-                        @if(!auth()->user()->hasRole('siswa'))
-                        <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
-                            <h4 class="font-semibold text-indigo-800 mb-3 flex items-center">
+                       @if(!auth()->user()->hasRole('siswa'))
+                        <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-6 shadow-md space-y-4">
+                            <h4 class="text-lg font-semibold text-indigo-800 flex items-center mb-2">
                                 <i data-feather="settings" class="w-5 h-5 mr-2"></i>
                                 Aksi Cepat
                             </h4>
-                            <div class="space-y-3">
-                                <a href="{{ $ulangan->link }}" target="_blank"
-                                   class="w-full inline-flex items-center justify-center px-4 py-2 bg-indigo-100 hover:bg-indigo-200 text-indigo-700 rounded-lg transition-all duration-200 text-sm">
-                                    <i data-feather="list" class="w-4 h-4 mr-2"></i>
-                                    Menilai Ulangan
-                                </a>
-                                @if(\Carbon\Carbon::now() < $ulangan->mulai)
-                                <button onclick="copyToClipboard('{{ route('ulangans.show', $ulangan) }}')"
-                                        class="w-full inline-flex items-center justify-center px-4 py-2 bg-purple-100 hover:bg-purple-200 text-purple-700 rounded-lg transition-all duration-200 text-sm">
-                                    <i data-feather="copy" class="w-4 h-4 mr-2"></i>
-                                    Copy Link Detail
-                                </button>
+
+                            <div class="flex flex-col space-y-3">
+                                @if(Auth::user()->hasRole('guru'))
+                                    <form action="{{ route('nilai.store', $ulangan->id) }}" method="POST" class="w-full">
+                                        @csrf
+                                        <button type="submit"
+                                            class="w-full inline-flex justify-center items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition">
+                                            <i data-feather="plus-circle" class="w-4 h-4"></i>
+                                            Buat Nilai
+                                        </button>
+                                    </form>
+
+                                    <a href="{{ route('nilai.show', $ulangan->id) }}"
+                                    class="w-full inline-flex justify-center items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-lg transition">
+                                        <i data-feather="eye" class="w-4 h-4"></i>
+                                        Lihat Nilai
+                                    </a>
+                                @endif
+
+                                @if(\Carbon\Carbon::now('Asia/Jakarta') < $ulangan->mulai)
+                                    <button onclick="copyToClipboard('{{ route('ulangans.show', $ulangan) }}')"
+                                        class="w-full inline-flex items-center justify-center gap-2 px-4 py-2 bg-purple-100 hover:bg-purple-200 text-purple-700 font-medium rounded-lg transition">
+                                        <i data-feather="copy" class="w-4 h-4"></i>
+                                        Salin Link Detail
+                                    </button>
                                 @endif
                             </div>
                         </div>
-                        @endif
+                    @endif
+
                     </div>
                 </div>
             </div>

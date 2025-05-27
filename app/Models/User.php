@@ -71,5 +71,10 @@ class User extends Authenticatable implements LaratrustUser
         return $this->hasMany(karya_siswa::class, 'user_id');
     }
 
+    public function nilaiUlangans()
+    {
+        return $this->hasMany(nilai_ulangan::class);
+    }
+
 
 }

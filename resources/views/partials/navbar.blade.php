@@ -16,8 +16,8 @@
 
             <!-- Mobile Menu Button -->
             <div class="md:hidden">
-                <button 
-                    @click="mobileMenuOpen = !mobileMenuOpen" 
+                <button
+                    @click="mobileMenuOpen = !mobileMenuOpen"
                     class="relative w-10 h-10 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300 flex items-center justify-center group"
                 >
                     <div class="space-y-1.5 transform transition-all duration-300" :class="mobileMenuOpen ? 'rotate-45' : ''">
@@ -62,6 +62,7 @@
                     <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-green-400/20 to-emerald-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
                 </a>
 
+
                 <a href="/kontak" class="group relative px-4 py-2.5 rounded-xl hover:bg-white/10 backdrop-blur-sm text-white transition-all duration-300 flex items-center">
                     <div class="w-5 h-5 mr-2 transition-all duration-300 group-hover:scale-110">
                         <i data-feather="message-circle" class="w-full h-full"></i>
@@ -77,13 +78,14 @@
                         $hasProfile = \App\Models\siswa_profile::where('user_id', $user->id)->exists();
                         $studentProfile = $user->siswaProfile;
                         $guruProfile = $user->guruProfile;
+
                     @endphp
                     <div class="relative ml-4" x-data="{ open: false }">
                         <button @click="open = !open" class="group relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-white/30 hover:ring-white/60 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-300/50">
                             <img src="https://ui-avatars.com/api/?name={{ urlencode($user->nama) }}&background=6366f1&color=ffffff&size=128&bold=true" alt="Avatar" class="w-full h-full object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-purple-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </button>
-                        
+
                         <div
                             x-show="open"
                             x-transition:enter="transition ease-out duration-200"
@@ -100,7 +102,7 @@
                                     <p class="text-sm font-semibold text-gray-900">{{ $user->nama }}</p>
                                     <p class="text-xs text-gray-500">{{ $user->email }}</p>
                                 </div>
-                                
+
                                 @if($user->hasRole('admin'))
                                     <a href="/dashboard" class="flex items-center px-4 py-3 hover:bg-purple-50 transition-colors duration-200 group">
                                         <i data-feather="layout" class="w-4 h-4 mr-3 text-purple-600 group-hover:scale-110 transition-transform duration-200"></i>
@@ -111,12 +113,13 @@
                                         <i data-feather="layout" class="w-4 h-4 mr-3 text-purple-600 group-hover:scale-110 transition-transform duration-200"></i>
                                         <span class="text-sm font-medium">Dashboard</span>
                                     </a>
-                                <a href="{{ $guruProfile ? route('guru.profileGuru.show', $guruProfile->id) : route('guru.profileGuru.create') }}" 
+                                <a href="{{ $guruProfile ? route('guru.profileGuru.show', $guruProfile->id) : route('guru.profileGuru.create') }}"
                                 class="flex items-center px-4 py-3 hover:bg-purple-50 transition-colors duration-200 group">
                                     <i data-feather="user" class="w-4 h-4 mr-3 text-purple-600 group-hover:scale-110 transition-transform duration-200"></i>
                                     <span class="text-sm font-medium">Profile</span>
                                 </a>
                                 @elseif ($isSiswa && $hasProfile)
+
                                     <a href="/dashboard" class="flex items-center px-4 py-3 hover:bg-purple-50 transition-colors duration-200 group">
                                         <i data-feather="layout" class="w-4 h-4 mr-3 text-purple-600 group-hover:scale-110 transition-transform duration-200"></i>
                                         <span class="text-sm font-medium">Dashboard</span>
@@ -127,8 +130,9 @@
                                             <span class="text-sm font-medium">Profile</span>
                                         </a>
                                     @endif
+
                                 @endif
-                                
+
                                 <div class="border-t border-gray-200/50 mt-2">
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
@@ -153,8 +157,8 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div 
-            x-show="mobileMenuOpen" 
+        <div
+            x-show="mobileMenuOpen"
             x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="opacity-0 transform -translate-y-4"
             x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -171,28 +175,28 @@
                         </div>
                         <span class="font-medium">Beranda</span>
                     </a>
-                    
+
                     <a href="/detail-jurusan" class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 transition-all duration-300 {{ request()->is('detail-jurusan') ? 'bg-white/20' : '' }}">
                         <div class="w-5 h-5 mr-3 transition-all duration-300 group-hover:scale-110">
                             <i data-feather="info" class="w-full h-full"></i>
                         </div>
                         <span class="font-medium">Tentang Jurusan</span>
                     </a>
-                    
+
                     <a href="{{ route('karya.all') }}" class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 transition-all duration-300 {{ request()->is('karya') ? 'bg-white/20' : '' }}">
                         <div class="w-5 h-5 mr-3 transition-all duration-300 group-hover:scale-110">
                             <i data-feather="award" class="w-full h-full"></i>
                         </div>
                         <span class="font-medium">Karya Siswa</span>
                     </a>
-                    
+
                     <a href="/berita" class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 transition-all duration-300 {{ request()->is('berita') ? 'bg-white/20' : '' }}">
                         <div class="w-5 h-5 mr-3 transition-all duration-300 group-hover:scale-110">
                             <i data-feather="file-text" class="w-full h-full"></i>
                         </div>
                         <span class="font-medium">Berita & Artikel</span>
                     </a>
-                    
+
                     <a href="/kontak" class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 transition-all duration-300">
                         <div class="w-5 h-5 mr-3 transition-all duration-300 group-hover:scale-110">
                             <i data-feather="message-circle" class="w-full h-full"></i>
@@ -216,9 +220,9 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                 </svg>
                             </button>
-                            
-                            <div 
-                                x-show="open" 
+
+                            <div
+                                x-show="open"
                                 x-transition:enter="transition ease-out duration-200"
                                 x-transition:enter-start="opacity-0 transform scale-95"
                                 x-transition:enter-end="opacity-100 transform scale-100"
@@ -285,7 +289,7 @@
                                 </nav>
                             </div>
                         </div>
-                        
+
                         <form method="POST" action="{{ route('logout') }}" class="mt-3">
                             @csrf
                             <button type="submit" class="group flex items-center w-full px-4 py-3 text-white bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg">

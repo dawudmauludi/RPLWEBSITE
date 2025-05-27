@@ -10,7 +10,7 @@
             <div class="absolute inset-0 opacity-10">
                 <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,<svg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"none\" fill-rule=\"evenodd\"><g fill=\"%23ffffff\" opacity=\"0.4\"><circle cx=\"30\" cy=\"30\" r=\"2\"/></g></svg>');"></div>
             </div>
-            
+
             <!-- Edit Button -->
             <div class="absolute top-6 right-6">
                 <button onclick="openEditModal()" class="bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105 flex items-center space-x-2 group">
@@ -64,7 +64,7 @@
                             <i data-feather="user" class="w-5 h-5 text-purple-600 mr-2"></i>
                             Data Pribadi
                         </h3>
-                        
+
                         <div class="space-y-5">
                             <!-- Gender -->
                             <div class="flex items-center space-x-4">
@@ -107,7 +107,7 @@
                             <i data-feather="map-pin" class="w-5 h-5 text-indigo-600 mr-2"></i>
                             Lokasi & Kelahiran
                         </h3>
-                        
+
                         <div class="space-y-5">
                             <!-- Address -->
                             <div class="flex items-start space-x-4">
@@ -154,7 +154,7 @@
                             <i data-feather="edit" class="w-5 h-5"></i>
                             <span>Edit Profil</span>
                         </button>
-                        
+
                         <button onclick="printProfile()" class="bg-white hover:bg-gray-50 text-gray-700 border-2 border-gray-300 hover:border-purple-300 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2">
                             <i data-feather="printer" class="w-5 h-5"></i>
                             <span>Cetak Profil</span>
@@ -184,14 +184,14 @@
             </div>
 
             <!-- Modal Body -->
-          <form action="{{ route('siswa.profileSiswa.update', $student->id) }}" 
-            id="editProfileForm" 
-            class="p-6" 
-            method="POST" 
+          <form action="{{ route('siswa.profileSiswa.update', $student->id) }}"
+            id="editProfileForm"
+            class="p-6"
+            method="POST"
             enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <input type="hidden" name="user_id" value="{{ $student->user_id }}">
                     <!-- Nama -->
@@ -200,7 +200,7 @@
                             <i data-feather="user" class="w-4 h-4 inline mr-1"></i>
                             Nama Lengkap
                         </label>
-                        <input type="text" name="nama" id="edit_nama" value="{{ $student->nama ?? 'Ahmad Rizki Pratama' }}" 
+                        <input type="text" name="nama" id="edit_nama" value="{{ $student->nama ?? 'Ahmad Rizki Pratama' }}"
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>
                     </div>
 
@@ -210,7 +210,7 @@
                             <i data-feather="hash" class="w-4 h-4 inline mr-1"></i>
                             NISN
                         </label>
-                        <input type="text" name="nisn" id="edit_nisn" value="{{ $student->nisn ?? '1234567890' }}" 
+                        <input type="text" name="nisn" id="edit_nisn" value="{{ $student->nisn ?? '1234567890' }}"
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>
                     </div>
 
@@ -220,7 +220,7 @@
                             <i data-feather="book-open" class="w-4 h-4 inline mr-1"></i>
                             Kelas
                         </label>
-                        <select name="kelas_id" id="edit_kelas_id" 
+                        <select name="kelas_id" id="edit_kelas_id"
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>
                             @foreach($kelas as $k)
                                       <option value="{{ $k->id }}" {{ old('kelas_id', $student->kelas_id ?? '') == $k->id ? 'selected' : '' }}>
@@ -236,7 +236,7 @@
                             <i data-feather="users" class="w-4 h-4 inline mr-1"></i>
                             Jenis Kelamin
                         </label>
-                        <select name="jenkel" id="edit_jenkel" 
+                        <select name="jenkel" id="edit_jenkel"
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>
                             <option value="Laki-laki" {{ ($student->jenkel ?? 'Laki-laki') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
                             <option value="Perempuan" {{ ($student->jenkel ?? '') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
@@ -249,7 +249,7 @@
                             <i data-feather="phone" class="w-4 h-4 inline mr-1"></i>
                             Telepon
                         </label>
-                        <input type="tel" name="telepon" id="edit_telepon" value="{{ $student->telepon ?? '+62 812-3456-7890' }}" 
+                        <input type="tel" name="telepon" id="edit_telepon" value="{{ $student->telepon ?? '+62 812-3456-7890' }}"
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>
                     </div>
 
@@ -259,7 +259,7 @@
                             <i data-feather="home" class="w-4 h-4 inline mr-1"></i>
                             Alamat
                         </label>
-                        <textarea name="alamat" id="edit_alamat" rows="3" 
+                        <textarea name="alamat" id="edit_alamat" rows="3"
                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>{{ $student->alamat ?? 'Jl. Merdeka No. 123, Kota Bandung, Jawa Barat 40123' }}</textarea>
                     </div>
 
@@ -269,7 +269,7 @@
                             <i data-feather="map" class="w-4 h-4 inline mr-1"></i>
                             Tempat Lahir
                         </label>
-                        <input type="text" name="tempat_lahir" id="edit_tempat_lahir" value="{{ $student->tempat_lahir ?? 'Bandung' }}" 
+                        <input type="text" name="tempat_lahir" id="edit_tempat_lahir" value="{{ $student->tempat_lahir ?? 'Bandung' }}"
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>
                     </div>
 
@@ -279,8 +279,8 @@
                             <i data-feather="calendar" class="w-4 h-4 inline mr-1"></i>
                             Tanggal Lahir
                         </label>
-                        <input type="date" name="tanggal_lahir" id="edit_tanggal_lahir" 
-                               value="{{ isset($student->tanggal_lahir) ? \Carbon\Carbon::parse($student->tanggal_lahir)->format('Y-m-d') : '2005-01-15' }}" 
+                        <input type="date" name="tanggal_lahir" id="edit_tanggal_lahir"
+                               value="{{ isset($student->tanggal_lahir) ? \Carbon\Carbon::parse($student->tanggal_lahir)->format('Y-m-d') : '2005-01-15' }}"
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>
                     </div>
 
@@ -290,7 +290,7 @@
                             <i data-feather="heart" class="w-4 h-4 inline mr-1"></i>
                             Agama
                         </label>
-                        <select name="agama" id="edit_agama" 
+                        <select name="agama" id="edit_agama"
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>
                             <option value="">-- Pilih Agama --</option>
                              @foreach(['Islam','Kristen','Katolik','Hindu','Budha','Konghucu'] as $agama)
@@ -307,7 +307,7 @@
                             <i data-feather="camera" class="w-4 h-4 inline mr-1"></i>
                             Foto Profil
                         </label>
-                        <input type="file" name="foto" id="edit_foto" accept="image/*" 
+                        <input type="file" name="foto" id="edit_foto" accept="image/*"
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200"
                                onchange="previewImage(this)">
                         <div id="imagePreview" class="mt-2"></div>
@@ -316,12 +316,12 @@
 
                 <!-- Modal Footer -->
                 <div class="flex flex-col sm:flex-row gap-3 mt-8 pt-6 border-t border-gray-200">
-                    <button type="button" onclick="closeEditModal()" 
+                    <button type="button" onclick="closeEditModal()"
                             class="w-full sm:w-auto px-6 py-3 bg-gray-500 hover:bg-gray-600 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2">
                         <i data-feather="x" class="w-4 h-4"></i>
                         <span>Batal</span>
                     </button>
-                    <button type="submit" 
+                    <button type="submit"
                             class="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center space-x-2">
                         <i data-feather="save" class="w-4 h-4"></i>
                         <span>Simpan Perubahan</span>
@@ -338,7 +338,7 @@
     // Initialize Feather Icons
     document.addEventListener('DOMContentLoaded', function() {
         feather.replace();
-        
+
         // Add entrance animation
         const cards = document.querySelectorAll('.bg-gradient-to-br');
         cards.forEach((card, index) => {
@@ -355,19 +355,19 @@
     function openEditModal() {
         const modal = document.getElementById('editModal');
         const modalContent = document.getElementById('modalContent');
-        
+
         // Show modal
         modal.classList.remove('hidden');
-        
+
         // Add animation
         setTimeout(() => {
             modalContent.classList.remove('scale-95', 'opacity-0');
             modalContent.classList.add('scale-100', 'opacity-100');
         }, 10);
-        
+
         // Prevent body scroll
         document.body.style.overflow = 'hidden';
-        
+
         // Re-initialize feather icons in modal
         feather.replace();
     }
@@ -375,11 +375,11 @@
     function closeEditModal() {
         const modal = document.getElementById('editModal');
         const modalContent = document.getElementById('modalContent');
-        
+
         // Add closing animation
         modalContent.classList.remove('scale-100', 'opacity-100');
         modalContent.classList.add('scale-95', 'opacity-0');
-        
+
         // Hide modal after animation
         setTimeout(() => {
             modal.classList.add('hidden');
@@ -390,7 +390,7 @@
     function previewImage(input) {
         const preview = document.getElementById('imagePreview');
         preview.innerHTML = '';
-        
+
         if (input.files && input.files[0]) {
             const reader = new FileReader();
             reader.onload = function(e) {
@@ -409,26 +409,26 @@
         // Create notification element
         const notification = document.createElement('div');
         notification.className = `fixed top-4 right-4 z-[60] p-4 rounded-lg shadow-lg transform transition-all duration-300 translate-x-full ${
-            type === 'success' ? 'bg-green-500 text-white' : 
-            type === 'error' ? 'bg-red-500 text-white' : 
+            type === 'success' ? 'bg-green-500 text-white' :
+            type === 'error' ? 'bg-red-500 text-white' :
             'bg-blue-500 text-white'
         }`;
-        
+
         notification.innerHTML = `
             <div class="flex items-center space-x-2">
                 <i data-feather="${type === 'success' ? 'check-circle' : type === 'error' ? 'x-circle' : 'info'}" class="w-5 h-5"></i>
                 <span>${message}</span>
             </div>
         `;
-        
+
         document.body.appendChild(notification);
         feather.replace();
-        
+
         // Show notification
         setTimeout(() => {
             notification.classList.remove('translate-x-full');
         }, 100);
-        
+
         // Hide notification after 3 seconds
         setTimeout(() => {
             notification.classList.add('translate-x-full');
@@ -442,7 +442,7 @@
     document.addEventListener('click', function(event) {
         const modal = document.getElementById('editModal');
         const modalContent = document.getElementById('modalContent');
-        
+
         if (event.target === modal) {
             closeEditModal();
         }
@@ -475,7 +475,7 @@
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'scale(1.02)';
         });
-        
+
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'scale(1)';
         });
@@ -491,22 +491,22 @@
             visibility: visible;
         }
     }
-    
+
     /* Custom scrollbar */
     ::-webkit-scrollbar {
         width: 6px;
     }
-    
+
     ::-webkit-scrollbar-track {
         background: #f1f1f1;
         border-radius: 10px;
     }
-    
+
     ::-webkit-scrollbar-thumb {
         background: linear-gradient(45deg, #8b5cf6, #6366f1);
         border-radius: 10px;
     }
-    
+
     ::-webkit-scrollbar-thumb:hover {
         background: linear-gradient(45deg, #7c3aed, #4f46e5);
     }

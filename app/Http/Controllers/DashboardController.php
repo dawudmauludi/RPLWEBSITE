@@ -99,10 +99,10 @@ class DashboardController extends Controller
 
             $jumlahSiswa = User::whereHasRole('siswa')->count();
 
-            $tanggalHariIni = Carbon::now('asia/jakarta');
-            $ujianAktif = ulangan::whereDate('mulai', '>=', $tanggalHariIni)
-                ->orderBy('mulai')
-                ->get();
+            $tanggalHariIni = Carbon::now();
+            $ujianAktif = ulangan::where('mulai', '>', $tanggalHariIni)
+            ->orderBy('mulai')
+            ->get();
 
            $topSiswa = User::whereHas('roles', function ($query) {
                 $query->where('name', 'siswa');

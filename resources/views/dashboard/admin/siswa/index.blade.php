@@ -131,7 +131,7 @@
                                         <a href="{{ route('admin.siswa.show', $s->id) }}"
                                            class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md"
                                            title="Lihat Detail">
-                                            <i data-feather="eye" class="w-4 h-4"></i>
+                                          p
                                         </a>
                                         <a href="{{ route('admin.siswa.edit', $s->id) }}"
                                            class="bg-amber-500 hover:bg-amber-600 text-white p-2 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md"

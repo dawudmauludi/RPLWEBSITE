@@ -93,4 +93,9 @@ class ulangan extends Model
             }
         });
     }
+
+    public function nilaiUlangans()
+    {
+        return $this->hasMany(nilai_ulangan::class);
+    }
 }
