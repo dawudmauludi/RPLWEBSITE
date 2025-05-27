@@ -61,7 +61,7 @@
                 @if(count($gambarArray) > 1)
                     <div class="flex justify-center mt-6 gap-2">
                         @foreach($gambarArray as $index => $gambar)
-                            <button onclick="goToImage({{ $index }})" 
+                            <button onclick="goToImage({{ $index }})"
                                     class="w-3 h-3 rounded-full transition-all duration-300 {{ $index === 0 ? 'bg-blue-500 w-8' : 'bg-gray-300 hover:bg-gray-400' }}" 
                                     data-dot="{{ $index }}"></button>
                         @endforeach
