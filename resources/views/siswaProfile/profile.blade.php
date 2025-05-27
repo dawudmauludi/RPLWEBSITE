@@ -213,6 +213,15 @@
                         <input type="text" name="nisn" id="edit_nisn" value="{{ $student->nisn ?? '1234567890' }}"
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>
                     </div>
+                    <!-- ABSEN -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                            <i data-feather="hash" class="w-4 h-4 inline mr-1"></i>
+                            Nomer Absen
+                        </label>
+                        <input type="text" name="no_absen" id="edit_nisn" value="{{ $student->nisn ?? '1234567890' }}"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>
+                    </div>
 
                     <!-- Kelas -->
                     <div>

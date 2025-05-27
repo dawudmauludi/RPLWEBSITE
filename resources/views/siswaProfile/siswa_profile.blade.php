@@ -46,6 +46,16 @@
                     </div>
 
                     <div>
+                        <label for="no_absen" class="flex items-center text-sm font-semibold text-gray-700 mb-2">
+                            <i data-feather="hash" class="w-4 h-4 mr-2 text-purple-600"></i>
+                            Nomer Absen
+                        </label>
+                        <input type="number" name="no_absen" id="no_absen"
+                               class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-200 outline-none"
+                               placeholder="Nomor Induk Siswa Nasional" required>
+                    </div>
+
+                    <div>
                         <label for="jenkel" class="flex items-center text-sm font-semibold text-gray-700 mb-2">
                             <i data-feather="users" class="w-4 h-4 mr-2 text-purple-600"></i>
                             Jenis Kelamin

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\nilai_ulangan;
+use App\Models\siswa_profile;
 use App\Models\ulangan;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -32,15 +33,21 @@ class NilaiUlanganController extends Controller
             abort(403);
         }
 
-        $ulangan = Ulangan::with(['nilaiUlangans.user'])->findOrFail($ulanganId);
+        $ulangan = Ulangan::with(['nilaiUlangans.user.siswaProfile'])->findOrFail($ulanganId);
 
         if ($ulangan->kelas_id !== Auth::user()->siswaprofile->kelas_id) {
             abort(403);
         }
+           $nilaiList = $ulangan->nilaiUlangans()
+                    ->with(['user.siswaprofile' => function($query) {
+                        $query->orderBy('no_absen', 'asc');
+                    }])
+                    ->get()
+                    ->sortBy(function($nilai) {
+                        return $nilai->user->siswaprofile->no_absen;
+                    });
 
-        $nilaiList = $ulangan->nilaiUlangans()->with('user')->get();
-
-        return view('dashboard.siswa.nilai.show', compact('ulangan', 'nilaiList'));
+        return view('dashboard.siswa.nilai.show', compact('ulangan', 'nilaiList',));
     }
 
 
@@ -87,9 +94,16 @@ class NilaiUlanganController extends Controller
         if (!Auth::user()->hasRole('guru')) {
             abort(403);
         }
-        $ulangan = Ulangan::with('nilaiUlangans.user')->findOrFail($ulanganId);
+        $ulangan = Ulangan::with(['nilaiUlangans.user.siswaProfile'])->findOrFail($ulanganId);
 
-        $nilaiList = $ulangan->nilaiUlangans;
+         $nilaiList = $ulangan->nilaiUlangans()
+                    ->with(['user.siswaprofile' => function($query) {
+                        $query->orderBy('no_absen', 'asc');
+                    }])
+                    ->get()
+                    ->sortBy(function($nilai) {
+                        return $nilai->user->siswaprofile->no_absen;
+                    });
 
         return view('dashboard.guru.nilai.show', compact('ulangan', 'nilaiList'));
     }
