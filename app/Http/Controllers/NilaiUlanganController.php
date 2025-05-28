@@ -77,6 +77,7 @@ class NilaiUlanganController extends Controller
         ->whereHas('siswaprofile', fn($q) => $q->where('kelas_id', $ulangan->kelas_id))
         ->get();
 
+        nilai_ulangan::where('ulangan_id', $ulangan->id)->delete();
 
         foreach ($siswaList as $siswa) {
             nilai_ulangan::firstOrCreate([
@@ -165,6 +166,6 @@ class NilaiUlanganController extends Controller
         //
     }
 
-   
+
 
 }
