@@ -45,6 +45,7 @@ class profileGuruController extends Controller
         'jenkel' => 'required|in:laki-laki,perempuan',
         'telepon' => 'required|string|max:20',
         'alamat' => 'required|string',
+        'mapel' => 'required|string',
         'tempat_lahir' => 'required|string',
         'tanggal_lahir' => 'required|date',
         'agama' => 'required|in:Islam,Kristen,Katolik,Hindu,Budha,Konghucu',
@@ -62,6 +63,7 @@ class profileGuruController extends Controller
         'jenkel' => $validated['jenkel'],
         'telepon' => $validated['telepon'],
         'alamat' => $validated['alamat'],
+        'mapel' => $validated['mapel'],
         'tempat_lahir' => $validated['tempat_lahir'],
         'tanggal_lahir' => $validated['tanggal_lahir'],
         'agama' => $validated['agama'],
@@ -78,7 +80,7 @@ class profileGuruController extends Controller
     {
         $user = Auth::user();
         $gurus = guru_profile::where('user_id', $user->id)->first();
-       
+
         if(!$gurus){
             return redirect()->route('guru.profileGuru.create')->with('user_id', $user->id);
         }
@@ -103,7 +105,7 @@ class profileGuruController extends Controller
     public function update(Request $request, string $id)
     {
         $gurus = guru_profile::findOrFail($id);
-        
+
          $request->validate([
             'user_id' => 'required|exists:users,id|unique:guru_profiles,user_id,' . $gurus->id,
             'nama' => 'required',
@@ -111,6 +113,7 @@ class profileGuruController extends Controller
             'jenkel' => 'required|in:Laki-laki,Perempuan',
             'telepon' => 'required',
             'alamat' => 'required',
+            'mapel' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required|date',
             'agama' => 'required|in:Islam,Kristen,Katolik,Hindu,Budha,Konghucu',

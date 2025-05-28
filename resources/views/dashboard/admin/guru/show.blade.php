@@ -165,6 +165,18 @@
 
                                 <div class="flex items-start space-x-3">
                                     <div class="bg-purple-100 p-2 rounded-lg flex-shrink-0">
+                                        <i data-feather="eye" class="w-5 h-5 text-purple-600"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-gray-500">Mata Pelajaran</p>
+                                        <p class="text-lg font-semibold text-gray-900 break-words">
+                                            {{ $guru->mapel ?: '-' }}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-3">
+                                    <div class="bg-purple-100 p-2 rounded-lg flex-shrink-0">
                                         <i data-feather="heart" class="w-5 h-5 text-purple-600"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">

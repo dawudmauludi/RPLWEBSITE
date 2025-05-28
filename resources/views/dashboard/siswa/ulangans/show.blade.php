@@ -163,10 +163,7 @@
                                     <p class="text-lg font-semibold text-gray-900">{{ $ulangan->selesai->format('d/m/Y H:i') }}</p>
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- Duration -->
-                        <div class="flex items-center space-x-3 p-4 bg-amber-50 rounded-lg mb-6">
+                             <div class="flex items-center space-x-3 p-4 bg-amber-50 rounded-lg mb-6">
                             <div class="flex-shrink-0">
                                 <i data-feather="clock" class="w-5 h-5 text-amber-600"></i>
                             </div>
@@ -175,6 +172,17 @@
                                 <p class="text-lg font-semibold text-gray-900">{{ $ulangan->mulai->diffForHumans($ulangan->selesai, true) }}</p>
                             </div>
                         </div>
+                            <div class="flex items-center space-x-3 p-4 bg-amber-50 rounded-lg mb-6">
+                                <div class="flex-shrink-0">
+                                    <i data-feather="book-open" class="w-5 h-5 text-amber-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-gray-500">Mata Pelajaran</p>
+                                    <p class="text-lg font-semibold text-gray-900">{{ $ulangan->creator->guruProfile->mapel ?? 'Mapel Tidak Tersedia' }}</p>
+                                </div>
+                            </div>
+                        </div>
+
                         @if(!auth()->user()->hasRole('siswa'))
                         <!-- Link Section -->
                         <div class="border-t border-gray-200 pt-6">

@@ -244,6 +244,28 @@
 
             <div>
                 <label class="flex items-center text-sm font-semibold text-gray-700 mb-2">
+                    <i data-feather="eye" class="w-4 h-4 mr-2 text-purple-600"></i>
+                    Mata Pelajaran
+                    <span class="text-red-500 ml-1">*</span>
+                </label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i data-feather="eye" class="w-5 h-5 text-gray-400"></i>
+                    </div>
+                    <input type="text"
+                           name="mapel"
+                           value="{{ old('mapel', $guru->mapel ?? '') }}"
+                           placeholder="Contoh: Basis Data"
+                           required
+                           class="block w-full pl-10 pr-3 py-3 border  rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200 @error('tempat_lahir') border-red-500 @enderror">
+                </div>
+                @error('mapel')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div>
+                <label class="flex items-center text-sm font-semibold text-gray-700 mb-2">
                     <i data-feather="heart" class="w-4 h-4 mr-2 text-purple-600"></i>
                     Agama
                     <span class="text-red-500 ml-1">*</span>

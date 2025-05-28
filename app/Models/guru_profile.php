@@ -8,7 +8,7 @@ class guru_profile extends Model
 {
     protected $fillable = [
     'user_id', 'nama', 'nip', 'jenkel', 'telepon', 'alamat',
-    'tempat_lahir', 'tanggal_lahir', 'agama', 'foto'
+    'tempat_lahir', 'tanggal_lahir', 'agama', 'foto', 'mapel'
     ];
 
     public function user()
