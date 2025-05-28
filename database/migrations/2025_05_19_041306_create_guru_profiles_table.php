@@ -23,6 +23,7 @@ return new class extends Migration
             $table->date('tanggal_lahir');
             $table->enum('agama', ['Islam', 'Kristen', 'Katolik', 'Hindu', 'Budha', 'Konghucu']);
             $table->text('foto');
+            $table->string('mapel');
             $table->timestamps();
         });
     }

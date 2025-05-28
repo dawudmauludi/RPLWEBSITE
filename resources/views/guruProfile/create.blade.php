@@ -89,6 +89,27 @@
                         <input type="date" name="tanggal_lahir" id="tanggal_lahir"
                                class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-200 outline-none" required>
                     </div>
+                    <div>
+                        <label class="flex items-center text-sm font-semibold text-gray-700 mb-2">
+                            <i data-feather="eye" class="w-4 h-4 mr-2 text-purple-600"></i>
+                            Mata Pelajaran
+                            <span class="text-red-500 ml-1">*</span>
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i data-feather="eye" class="w-5 h-5 text-gray-400"></i>
+                            </div>
+                            <input type="text"
+                                name="mapel"
+                                value="{{ old('mapel', $guru->mapel ?? '') }}"
+                                placeholder="Contoh: Basis Data"
+                                required
+                                class="block w-full pl-10 pr-3 py-3 border  rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200 @error('tempat_lahir') border-red-500 @enderror">
+                        </div>
+                        @error('mapel')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
 
                     <div>
                         <label for="agama" class="flex items-center text-sm font-semibold text-gray-700 mb-2">
@@ -109,6 +130,7 @@
                             <i data-feather="chevron-down" class="w-5 h-5 absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"></i>
                         </div>
                     </div>
+
 
                     <div class="lg:col-span-2">
                         <label for="alamat" class="flex items-center text-sm font-semibold text-gray-700 mb-2">
