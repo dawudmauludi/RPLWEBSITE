@@ -151,13 +151,19 @@ class DashboardController extends Controller
                 'aktivitasKarya' => $aktivitasKarya,
             ]);
         } elseif ($user->hasRole('siswa')) {
+
             $karyaSaya = $user->karyaSiswa()->latest()->take(3)->get();
 
             $kelasSiswa = $user->kelas;
 
+            if(!$kelasSiswa){
+                return redirect()->route('siswa.profile')->with('error', 'Anda belum memiliki kelas. Silakan lengkapi profil Anda terlebih dahulu.');
+            }
+
             $ulanganKelas = Ulangan::where('kelas_id', $kelasSiswa->id)
                 ->where('is_active', 1)
                 ->get();
+
 
             $beritaHariIni = Berita::whereDate('created_at', Carbon::today('Asia/Jakarta'))->get();
 
