@@ -301,7 +301,15 @@
                                         <button type="submit"
                                             class="w-full inline-flex justify-center items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition">
                                             <i data-feather="plus-circle" class="w-4 h-4"></i>
-                                            Buat Nilai
+                                            Buat Nilai Baru
+                                        </button>
+                                    </form>
+                                    <form action="{{ route('nilai.edit', $ulangan->id) }}" method="GET" class="w-full">
+                                        @csrf
+                                        <button type="submit"
+                                            class="w-full inline-flex justify-center items-center gap-2 bg-yellow-600 hover:bg-yellow-700 text-white font-medium py-2 px-4 rounded-lg transition">
+                                            <i data-feather="edit-3" class="w-4 h-4"></i>
+                                            Edit Nilai
                                         </button>
                                     </form>
 
