@@ -110,6 +110,7 @@ Route::middleware(['auth','role:guru|admin'])->group(function () {
         Route::get('/ulangans/{ulanganId}/nilai/edit', [NilaiUlanganController::class, 'edit'])->name('nilai.edit');
         Route::get('/nilai/ulangan/{ulanganId}', [NilaiUlanganController::class, 'show'])->name('nilai.show');
         Route::post('/nilai/update-massal', [NilaiUlanganController::class, 'bulkUpdate'])->name('nilai.bulkUpdate');
+        Route::get('/nilai/export-excel/{ulanganId}', [NilaiExportController::class, 'export'])->name('nilai.export');
 
 });
 
@@ -121,7 +122,7 @@ Route::middleware(['auth','role:siswa'])->group(function () {
 });
 
 
-Route::get('/nilai/export-excel/{ulanganId}', [NilaiExportController::class, 'export'])->name('nilai.export');
+
 
 
 
