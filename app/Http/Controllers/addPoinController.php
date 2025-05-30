@@ -21,4 +21,16 @@ class addPoinController extends Controller
 
     return back()->with('success', 'Poin berhasil ditambahkan ke siswa.');
     }
+
+    public function decrement(Request $request, User $user){
+        
+        
+        if($user->poin <= 0){
+            return back()->with('error', 'point siswa sudah kosong');
+        }
+        
+        $user->decrement('poin', 1);
+
+        return back()->with('success', 'Poin siswa berhasil di kurangi.');
+    }
 }

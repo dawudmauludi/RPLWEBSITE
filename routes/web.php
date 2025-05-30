@@ -11,6 +11,7 @@ use App\Http\Controllers\KaryaSiswaController;
 use App\Http\Controllers\kategoriBeritaController;
 use App\Http\Controllers\kategoriKaryaController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\KontakController;
 use App\Http\Controllers\NilaiExportController;
 use App\Http\Controllers\NilaiUlanganController;
 use App\Http\Controllers\profileGuruController;
@@ -45,6 +46,7 @@ Route::get('/kontak', function (){
 });
 
 
+Route::post('/contact', [KontakController::class, 'send'])->name('contact.send');
 
 // ================= Authentication ====================== //
 Route::get('/login',[authController::class,'login_view'])->name('login');
@@ -87,6 +89,7 @@ Route::middleware(['auth', 'role:guru'])->prefix('guru')->name('guru.')->group(f
     Route::resource('kategoriKarya', kategoriKaryaController::class);
     Route::resource('karya', KaryaSiswaController::class)->except(['show'])->parameters(['karya' => 'karya']);
     Route::post('/users/{user}/add-point', [addPoinController::class, 'addPoin'])->name('users.addPoint');
+    Route::delete('/users/{user}/delete-point', [addPoinController::class, 'decrement'])->name('users.deletePoint');
     Route::get('/users',[addPoinController::class,'index'])->name('users.index');
     Route::resource('/profileGuru', profileGuruController::class);
 });

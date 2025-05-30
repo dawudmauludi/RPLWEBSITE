@@ -116,19 +116,19 @@
                     
                     <!-- Quick Links -->
                     <div class="space-y-2 mb-4">
-                        <a href="" class="flex items-center text-purple-100 hover:text-white hover:translate-x-2 transition-all duration-200 group">
+                        <a href="/" class="flex items-center text-purple-100 hover:text-white hover:translate-x-2 transition-all duration-200 group">
                             <i data-feather="home" class="w-3 h-3 mr-2 text-amber-300 group-hover:text-amber-200"></i>
                             <span class="text-xs">Beranda</span>
                         </a>
-                        <a href="" class="flex items-center text-purple-100 hover:text-white hover:translate-x-2 transition-all duration-200 group">
+                        <a href="/detail-jurusan" class="flex items-center text-purple-100 hover:text-white hover:translate-x-2 transition-all duration-200 group">
                             <i data-feather="users" class="w-3 h-3 mr-2 text-amber-300 group-hover:text-amber-200"></i>
                             <span class="text-xs">Tentang Jurusan</span>
                         </a>
-                        <a href="" class="flex items-center text-purple-100 hover:text-white hover:translate-x-2 transition-all duration-200 group">
+                        <a href="/berita" class="flex items-center text-purple-100 hover:text-white hover:translate-x-2 transition-all duration-200 group">
                             <i data-feather="file-text" class="w-3 h-3 mr-2 text-amber-300 group-hover:text-amber-200"></i>
                             <span class="text-xs">Berita & Artikel</span>
                         </a>
-                        <a href="" class="flex items-center text-purple-100 hover:text-white hover:translate-x-2 transition-all duration-200 group">
+                        <a href="/karya" class="flex items-center text-purple-100 hover:text-white hover:translate-x-2 transition-all duration-200 group">
                             <i data-feather="award" class="w-3 h-3 mr-2 text-amber-300 group-hover:text-amber-200"></i>
                             <span class="text-xs">Karya Siswa</span>
                         </a>
