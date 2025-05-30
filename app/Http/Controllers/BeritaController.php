@@ -60,6 +60,10 @@ public function all(Request $request)
      */
     public function create()
     {
+
+         if (!Auth::user()->hasRole('admin')) {
+            abort(403);
+        }
         $categories = category_berita::all();
         return view('dashboard.admin.berita.create', compact('categories'));
     }
@@ -89,15 +93,18 @@ public function all(Request $request)
 
         $berita = berita::create($data);
 
-        if ($request->hasFile('gambar_berita')) {
-            $gambarPaths = [];
-            foreach ($request->file('gambar_berita') as $gambar) {
-                $path = $gambar->store('gambar_berita', 'public');
-                $gambarPaths[] = $path;
-            }
-            $berita->gambar_berita = json_encode($gambarPaths);
-            $berita->save();
-        }
+       if ($request->hasFile('gambar_berita')) {
+    $files = collect($request->file('gambar_berita'));
+    $gambarPaths = [];
+
+    $files->each(function ($gambar) use (&$gambarPaths) {
+        $path = $gambar->store('gambar_berita', 'public');
+        $gambarPaths[] = $path;
+    });
+
+    $berita->gambar_berita = json_encode($gambarPaths);
+    $berita->save();
+}
 
         return redirect()->route('admin.berita.index')->with('success', 'Berita created successfully.');
     }
@@ -106,11 +113,16 @@ public function all(Request $request)
     /**
      * Display the specified resource.
      */
-    public function show(berita $berita)
+    public function show($slug)
     {
-         $beritas = Berita::paginate(10);
+          
+         $berita = Berita::where('slug', $slug)->firstOrFail();
+          $beritas = Berita::where('id', '!=', $berita->id)
+                    ->latest() // Urutkan dari terbaru
+                    ->take(6)  // Ambil 6 berita
+                    ->get();
         $categories = category_berita::all();
-         return view('dashboard.admin.berita.show', compact('berita', 'beritas', 'categories'));
+         return view('dashboard.admin.berita.show', compact('berita','beritas','categories'));
     }
 
     /**
@@ -118,6 +130,10 @@ public function all(Request $request)
      */
     public function edit(berita $berita)
     {
+         if (!Auth::user()->hasRole('admin')) {
+            abort(403);
+        }
+
             $categories = category_berita::all();
             return view('dashboard.admin.berita.edit', compact('berita', 'categories'));
     }

@@ -26,7 +26,7 @@
     <main class="bg-[#FAFAFA]  mx-auto min-h-screen flex flex-col justify-center items-center">
     <div class="flex flex-col items-center w-fit mx-auto">
       <h1 style="font-family: 'Poppins';" class="font-bold text-5xl text-[#5B0888]">Website Rpl</h1>
-      <h1 style="font-family: 'Poppins';" class="font-medium text-4xl">Login</h1>
+      <h1 style="font-family: 'Poppins';" class="font-medium text-4xl">Lupa Password</h1>
         <div class="mt-5">
             <form action="/password/send-code" method="POST" class="flex flex-col gap-y-5">
             @csrf

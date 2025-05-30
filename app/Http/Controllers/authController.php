@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Str;
 
 class authController extends Controller
 {
@@ -65,43 +68,93 @@ class authController extends Controller
     }
 
 
-   public function login(Request $request){
-    $credentials = $request->only('email', 'password');
+  public function login(Request $request)
+    {
+        // Validasi input
+        $this->validateLogin($request);
 
-    if(Auth::attempt($credentials)){
+        // Implementasi rate limiting
+        $maxAttempts = 5;
+        $decayMinutes = 1;
+
+        if (RateLimiter::tooManyAttempts($this->throttleKey($request), $maxAttempts)) {
+            $seconds = RateLimiter::availableIn($this->throttleKey($request));
+            
+             return back()
+        ->withInput()
+        ->withErrors(['email' => "Terlalu banyak percobaan. Silakan coba lagi dalam {$seconds} detik."])
+        ->with('rate_limit', $seconds);
+        }
+
+        // Coba melakukan autentikasi
+        $credentials = $request->only('email', 'password');
+        $remember = $request->filled('remember');
+
+        if (!Auth::attempt($credentials, $remember)) {
+            RateLimiter::hit($this->throttleKey($request), $decayMinutes * 60);
+            
+            throw ValidationException::withMessages([
+                'email' => __('auth.failed'),
+            ]);
+        }
+
+        // Reset rate limiter setelah login berhasil
+        RateLimiter::clear($this->throttleKey($request));
+
         $request->session()->regenerate();
         $user = Auth::user();
 
+        // Redirect berdasarkan role
+        return $this->authenticated($request, $user);
+    }
+
+    /**
+     * Validasi request login
+     */
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+        ]);
+    }
+
+    /**
+     * Handle redirect setelah autentikasi berhasil
+     */
+    protected function authenticated(Request $request, $user)
+    {
         if ($user->hasRole('admin') || $user->hasRole('guru')) {
             return redirect()->intended('dashboard');
-        } elseif($user->hasRole('siswa')) {
+        }
+
+        if ($user->hasRole('siswa')) {
             if ($user->status === 'pending') {
                 Auth::logout();
-                return redirect()->back()->with('error', 'Akun Anda belum di-approve oleh admin.');
-            } else {
-                $siswaData = siswa_profile::where('user_id', $user->id)->first();
-
-                if($siswaData){
-                    return redirect()->intended('dashboard');
-                } else {
-                    return redirect('/siswa/profile');
-
-                if(!$siswaData && !$request->is('siswa/profile')){
-                return redirect('/siswa/profile');
-                    } else {
-                    return redirect()->intended('dashboard');
-                }
+                return redirect()->route('login')->with('error', 'Akun Anda belum di-approve oleh admin.');
             }
+
+            $siswaData = siswa_profile::where('user_id', $user->id)->first();
+
+            if (!$siswaData && !$request->is('siswa/profile')) {
+                return redirect('/siswa/profile')->with('info', 'Silakan lengkapi profil Anda terlebih dahulu.');
+            }
+
+            return redirect()->intended('dashboard');
         }
 
-        }
-
-
+        // Fallback untuk role tidak diketahui
+        return redirect('/');
     }
 
-    // Jika gagal login
-    return redirect()->back()->with('error', 'Email atau password salah.');
+    /**
+     * Generate throttle key untuk rate limiting
+     */
+    protected function throttleKey(Request $request)
+    {
+        return Str::transliterate(Str::lower($request->input('email')).'|'.$request->ip());
     }
+
 
     public function logout(Request $request){
           Auth::logout();

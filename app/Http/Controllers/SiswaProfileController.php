@@ -7,6 +7,7 @@ use App\Models\siswa_profile;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SiswaProfileController extends Controller
 {
@@ -34,6 +35,10 @@ class SiswaProfileController extends Controller
      */
     public function create()
     {
+         if (!Auth::user()->hasRole('siswa')) {
+            abort(403);
+        }
+
         $users = User::whereHasRole('siswa')->whereDoesntHave('siswaProfile')->where('status', 'approved')->get();
         $kelas = kelas::all();
         return view('dashboard.admin.siswa.create', compact('users', 'kelas'));
@@ -44,6 +49,10 @@ class SiswaProfileController extends Controller
      */
     public function store(Request $request)
     {
+         if (!Auth::user()->hasRole('siswa')) {
+            abort(403);
+        }
+
         $request->validate([
             'user_id' => 'required|exists:users,id|unique:siswa_profiles,user_id',
             'kelas_id' => 'required|exists:kelas,id',
@@ -75,6 +84,7 @@ class SiswaProfileController extends Controller
      */
     public function show(siswa_profile $siswa)
     {
+       
         return view('dashboard.admin.siswa.show', compact('siswa'));
     }
 
@@ -83,6 +93,11 @@ class SiswaProfileController extends Controller
      */
     public function edit(siswa_profile $siswa)
     {
+
+         if (!Auth::user()->hasRole('siswa')) {
+            abort(403);
+        }
+        
         $users = User::whereHasRole('siswa')->where(function ($q) use ($siswa) {
                 $q->whereDoesntHave('siswaProfile')->orWhere('id', $siswa->user_id);
             })->get();
@@ -95,6 +110,10 @@ class SiswaProfileController extends Controller
      */
     public function update(Request $request, siswa_profile $siswa)
     {
+         if (!Auth::user()->hasRole('siswa')) {
+            abort(403);
+        }
+
         $request->validate([
             'user_id' => 'required|exists:users,id|unique:siswa_profiles,user_id,' . $siswa->id,
             'kelas_id' => 'required|exists:kelas,id',
@@ -129,6 +148,10 @@ class SiswaProfileController extends Controller
      */
     public function destroy(siswa_profile $siswa)
     {
+         if (!Auth::user()->hasRole('siswa')) {
+            abort(403);
+        }
+
         if ($siswa->foto && Storage::disk('public')->exists($siswa->foto)) {
             Storage::disk('public')->delete($siswa->foto);
         }

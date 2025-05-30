@@ -25,7 +25,7 @@ class NilaiUlanganController extends Controller
 
         $kelasId = Auth::user()->siswaprofile->kelas_id;
 
-        $ulanganList = Ulangan::where('kelas_id', $kelasId)->get();
+        $ulanganList = Ulangan::where('kelas_id', $kelasId)->paginate(10);
 
         return view('dashboard.siswa.nilai.index', compact('ulanganList'));
     }
