@@ -2,6 +2,27 @@
 @section('title','Kontak')
 @section('content')
 
+
+@if (session('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: '{{ session('error') }}',
+        });
+    </script>
+@endif
+
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Sukses',
+            text: '{{ session('success') }}',
+        });
+    </script>
+@endif
+
 <section class="relative w-full min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50 overflow-hidden mt-10" style="font-family: 'DM Sans', sans-serif;">
     <!-- Background decorative elements -->
     <div class="absolute inset-0 overflow-hidden">
@@ -53,7 +74,8 @@
                             </div>
                         </div>
 
-                        <form class="space-y-6">
+                        <form method="POST" action="{{ route('contact.send') }}" class="space-y-6">
+                            @csrf
                             <div class="grid md:grid-cols-2 gap-6">
                                 <div class="group">
                                     <label class="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
@@ -61,6 +83,7 @@
                                         Full Name
                                     </label>
                                     <input type="text" 
+                                            name="full_name"
                                            placeholder="Enter your full name" 
                                            class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-500 hover:border-purple-300">
                                 </div>
@@ -70,7 +93,8 @@
                                         <i data-feather="mail" class="w-4 h-4 text-purple-600"></i>
                                         Email Address
                                     </label>
-                                    <input type="email" 
+                                    <input type="email"
+                                           name="email" 
                                            placeholder="your.email@example.com" 
                                            class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-500 hover:border-purple-300">
                                 </div>
@@ -82,7 +106,8 @@
                                         <i data-feather="phone" class="w-4 h-4 text-purple-600"></i>
                                         Phone Number
                                     </label>
-                                    <input type="tel" 
+                                    <input type="tel"
+                                           name="phone_number"  
                                            placeholder="+62 812-3456-7890" 
                                            class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-500 hover:border-purple-300">
                                 </div>
@@ -93,6 +118,7 @@
                                         Subject
                                     </label>
                                     <input type="text" 
+                                           name="subject"
                                            placeholder="What's this about?" 
                                            class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-500 hover:border-purple-300">
                                 </div>
@@ -105,6 +131,7 @@
                                 </label>
                                 <textarea placeholder="Tell me about your project or how I can help you..." 
                                           rows="6" 
+                                          name="message"
                                           class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-500 hover:border-purple-300 resize-none"></textarea>
                             </div>
 

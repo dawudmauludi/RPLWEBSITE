@@ -3,6 +3,16 @@
 @section('title', 'Dashboard Tambah Point')
 
 @section('content')
+
+@if (session('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: '{{ session('error') }}',
+        });
+    </script>
+@endif
 <div class="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-100 p-6">
     <div class="max-w-7xl mx-auto">
 
@@ -91,7 +101,7 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-600 font-mono">{{ $user->poin }}</div>
                         </td>                    
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <td class="px-6 py-4 whitespace-nowrap flex gap-x-2 text-sm font-medium">
                             <form action="{{ route('guru.users.addPoint', $user->id) }}" method="POST" class="flex items-center space-x-2">
                                 @csrf
                                 <input type="number" name="poin" min="1" value="1" class="w-16 px-2 py-1 border rounded text-sm">
@@ -101,6 +111,37 @@
                                     <i data-feather="plus" class="w-4 h-4 mr-1"></i> Tambah
                                 </button>
                             </form>
+                              <form action="{{ route('guru.users.deletePoint', $user->id) }}" method="POST" class="inline" onsubmit="return confirmDelete(event)">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-200 transform hover:scale-105">
+                                               <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+                                            </svg>
+                                                Kurangi Point
+                                            </button>
+                                        </form>
+
+                                        <script>
+                                            function confirmDelete(event) {
+                                                event.preventDefault();
+                                                Swal.fire({
+                                                    title: 'Konfirmasi',
+                                                    text: 'Yakin ingin mengurangi point siswa ini?',
+                                                    icon: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: '#3085d6',
+                                                    cancelButtonColor: '#d33',
+                                                    confirmButtonText: 'Ya, hapus!'
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        event.target.submit();
+                                                    }
+                                                });
+                                                return false;
+                                            }
+                                        </script>
                         </td>
                     </tr>
                     @endforeach

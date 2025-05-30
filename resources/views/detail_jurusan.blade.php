@@ -2,7 +2,7 @@
 @section('title', 'Detail Jurusan RPL')
 @section('content')
     <!-- Hero Section -->
-    <section class="bg-gradient-to-br from-purple-50 to-indigo-100 py-16 pt-24">
+    <section class="bg-gradient-to-br from-purple-50  to-indigo-100 py-16 pt-24">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto text-center">
                 <div class="inline-flex items-center bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm mb-6">
