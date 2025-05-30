@@ -1,12 +1,12 @@
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     @forelse ($beritas as $berita)
         <div class="bg-white shadow-md rounded-2xl overflow-hidden transition hover:shadow-xl">
-            <a href="{{ route('berita.show', $berita->id) }}">
+            <a href="{{ route('berita.show', $berita->slug) }}">
                 <img src="{{ asset('storage/' . (json_decode($berita->gambar_berita)[0] ?? 'images/logo_skensa.png')) }}"
                      alt="{{ $berita->judul }}" class="w-full h-48 object-cover">
             </a>
             <div class="p-4">
-                <a href="{{ route('berita.show', $berita->id) }}">
+                <a href="{{ route('berita.show', $berita->slug) }}">
                     <h2 class="text-xl font-bold text-gray-800 hover:text-blue-600 transition">
                         {{ $berita->judul }}
                     </h2>

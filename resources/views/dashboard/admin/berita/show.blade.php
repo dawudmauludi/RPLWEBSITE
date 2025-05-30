@@ -160,7 +160,7 @@
                     <article class="group bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
                         <!-- Image -->
                         <div class="relative overflow-hidden">
-                            <a href="{{ route('berita.show', $relatedBerita->id) }}">
+                            <a href="{{ route('berita.show', $relatedBerita->slug) }}">
                                 <img src="{{ asset('storage/' . (json_decode($relatedBerita->gambar_berita)[0] ?? 'images/logo_skensa.png')) }}"
                                      alt="{{ $relatedBerita->judul }}"
                                      class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700">
@@ -183,7 +183,7 @@
                             </div>
 
                             <!-- Title -->
-                            <a href="{{ route('berita.show', $relatedBerita->id) }}">
+                            <a href="{{ route('berita.show', $relatedBerita->slug) }}">
                                 <h3 class="text-lg font-bold text-gray-900 hover:text-blue-600 transition-colors leading-tight mb-3 line-clamp-2">
                                     {{ $relatedBerita->judul }}
                                 </h3>

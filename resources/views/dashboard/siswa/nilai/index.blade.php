@@ -83,10 +83,6 @@
                         </div>
                         <h3 class="text-lg font-medium text-gray-900 mb-2">Belum Ada Ulangan</h3>
                         <p class="text-gray-600 mb-6">Ulangan belum tersedia untuk kelas Anda saat ini.</p>
-                        <button class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition duration-200 flex items-center space-x-2 mx-auto">
-                            <i data-feather="plus" class="w-4 h-4"></i>
-                            <span>Buat Ulangan Baru</span>
-                        </button>
                     </div>
                 @else
                     <!-- Ulangan List -->
@@ -112,7 +108,7 @@
                                             </div>
                                             <div class="flex items-center space-x-1">
                                                 <i data-feather="clock" class="w-4 h-4"></i>
-                                                <span>60 menit</span>
+                                                <span>{{ $ulangan->selesai }}</span>
                                             </div>
                                             <div class="flex items-center space-x-1">
                                                 <i data-feather="users" class="w-4 h-4"></i>
@@ -160,17 +156,7 @@
 
                     <!-- Pagination (if needed) -->
                     <div class="mt-8 flex justify-center">
-                        <nav class="flex items-center space-x-2">
-                            <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-3 py-2 rounded-lg transition duration-200">
-                                <i data-feather="chevron-left" class="w-4 h-4"></i>
-                            </button>
-                            <button class="bg-purple-600 text-white px-4 py-2 rounded-lg">1</button>
-                            <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-4 py-2 rounded-lg transition duration-200">2</button>
-                            <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-4 py-2 rounded-lg transition duration-200">3</button>
-                            <button class="bg-gray-100 hover:bg-gray-200 text-gray-600 px-3 py-2 rounded-lg transition duration-200">
-                                <i data-feather="chevron-right" class="w-4 h-4"></i>
-                            </button>
-                        </nav>
+                      {{ $ulanganList->links()}}
                     </div>
                 @endif
             </div>

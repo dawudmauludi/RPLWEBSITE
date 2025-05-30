@@ -9,6 +9,7 @@ use App\Models\karya_siswa;
 use App\Models\kelas;
 use App\Models\tools;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class KaryaSiswaController extends Controller
@@ -34,11 +35,19 @@ class KaryaSiswaController extends Controller
 
     public function all()
     {
+        $validated = request()->validate([
+            'search' => 'nullable|string|max:255',
+            'kelas' => 'nullable|integer|exists:kelas,id'
+        ]);
+
+            $search = $validated['search'] ?? null;
+            $kelas = $validated['kelas'] ?? null;
+
         $query = karya_siswa::query()->with(['category', 'dokumentasi', 'tools', 'fiturKarya', 'user.siswaProfile.kelas']);
 
         if ($search = request('search')) {
             $query->where(function ($q) use ($search) {
-                $q->where('judul', 'like', "%{$search}%");
+               $q->where('judul', 'like', "%".substr($search, 0, 100)."%");
             });
         }
 
@@ -60,8 +69,7 @@ class KaryaSiswaController extends Controller
      */
     public function create()
     {
-         $categories = category_karya::all();
-        return view('dashboard.guru.karya.create', compact('categories'));
+        
     }
 
     /**
@@ -96,13 +104,16 @@ class KaryaSiswaController extends Controller
 
     // Simpan dokumentasi (jika ada)
     if ($request->hasFile('gambar_dokumentasi')) {
-        foreach ($request->file('gambar_dokumentasi') as $gambar) {
-            $path = $gambar->store('dokumentasi','public');
-            dokumentasi_karya::create([
-                'karya_siswa_id' => $karya->id,
-                'gambar' => $path,
-            ]);
-        }
+    $files = collect($request->file('gambar_dokumentasi'));
+
+    $files->each(function ($gambar) use ($karya) {
+        $path = $gambar->store('dokumentasi', 'public');
+
+        dokumentasi_karya::create([
+            'karya_siswa_id' => $karya->id,
+            'gambar' => $path,
+        ]);
+    });
     }
 
    $tools = json_decode($request->tools, true);
@@ -135,6 +146,7 @@ class KaryaSiswaController extends Controller
      */
     public function show(karya_siswa $karya)
     {
+       
         $karya = karya_siswa::with(['category', 'dokumentasi', 'tools', 'fiturKarya'])->findOrFail($karya->id);
         return view('karya.detail', compact('karya'));
     }
@@ -144,6 +156,9 @@ class KaryaSiswaController extends Controller
      */
     public function edit(karya_siswa $karya)
     {
+         if (!Auth::user()->hasRole('guru')) {
+            abort(403);
+        }
           $categories = category_karya::all();
             return view('dashboard.guru.karya.edit', compact('karya', 'categories'));
     }
@@ -153,6 +168,9 @@ class KaryaSiswaController extends Controller
      */
     public function update(Request $request, karya_siswa $karya)
     {
+         if (!Auth::user()->hasRole('guru')) {
+            abort(403);
+        }
           $request->validate([
         'category_karya_id' => 'required|exists:category_karyas,id',
         'judul' => 'required|string',
@@ -227,6 +245,10 @@ class KaryaSiswaController extends Controller
      */
     public function destroy(karya_siswa $karya)
     {
+         if (!Auth::user()->hasRole('guru')) {
+            abort(403);
+        }
+
         if($karya->gambar_karya){
             Storage::disk('public')->delete($karya->gambar_karya);
         }

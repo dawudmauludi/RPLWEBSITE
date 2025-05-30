@@ -116,11 +116,7 @@
                                    class="bg-white/20 text-white placeholder-white/70 px-4 py-2 pl-10 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 text-sm">
                             <i data-feather="search" class="w-4 h-4 text-white/70 absolute left-3 top-1/2 transform -translate-y-1/2"></i>
                         </div>
-                        <!-- Export Button -->
-                        <button class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition duration-200 flex items-center space-x-2 text-sm">
-                            <i data-feather="download" class="w-4 h-4"></i>
-                            <span>Export</span>
-                        </button>
+                       
                     </div>
                 </div>
             </div>
@@ -271,7 +267,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div class="text-center">
                                 <div class="bg-green-100 p-3 rounded-lg w-fit mx-auto mb-2">
-                                    <i data-feather="users-check" class="w-6 h-6 text-green-600"></i>
+                                    <i data-feather="users" class="w-6 h-6 text-green-600"></i>
                                 </div>
                                 <p class="text-lg font-bold text-gray-900">
                                     {{ $nilaiList->where('nilai', '>=', 75)->count() }}
@@ -280,7 +276,7 @@
                             </div>
                             <div class="text-center">
                                 <div class="bg-red-100 p-3 rounded-lg w-fit mx-auto mb-2">
-                                    <i data-feather="users-x" class="w-6 h-6 text-red-600"></i>
+                                    <i data-feather="user" class="w-6 h-6 text-red-600"></i>
                                 </div>
                                 <p class="text-lg font-bold text-gray-900">
                                     {{ $nilaiList->where('nilai', '<', 75)->count() }}

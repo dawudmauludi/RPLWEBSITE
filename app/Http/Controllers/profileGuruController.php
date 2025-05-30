@@ -78,6 +78,10 @@ class profileGuruController extends Controller
      */
     public function show(string $id)
     {
+           if (Auth::user()->guruProfile->id != $id) {
+        abort(403, 'Unauthorized action.');
+        }
+        
         $user = Auth::user();
         $gurus = guru_profile::where('user_id', $user->id)->first();
 
@@ -92,6 +96,9 @@ class profileGuruController extends Controller
      */
     public function edit(string $id)
     {
+        if (Auth::user()->guruProfile->id != $id) {
+        abort(403, 'Unauthorized action.');
+        }
         $gurus = guru_profile::findOrFail($id);
          $users = User::whereHasRole('guru')->where(function ($q) use ($gurus) {
                 $q->whereDoesntHave('guruProfile')->orWhere('id', $gurus->user_id);

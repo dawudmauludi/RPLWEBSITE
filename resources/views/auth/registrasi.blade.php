@@ -1,200 +1,262 @@
 @extends('layouts.app')
 @section('title','Registrasi')
 @section('content')
-   <main class="bg-[#FAFAFA] mx-auto min-h-screen flex flex-col justify-center items-center">
-@if($errors->any())
-    <div class="mb-6 p-4 rounded-lg bg-red-50 border-l-4 border-red-500">
-        <div class="flex items-center">
-            <div class="flex-shrink-0">
-                <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-                </svg>
+<main class="bg-gradient-to-br from-purple-50 to-indigo-50 min-h-screen flex flex-col justify-center items-center p-4">
+    <div class="w-full max-w-md">
+        <!-- Error Messages -->
+        @if($errors->any())
+        <div class="mb-6 p-4 rounded-lg bg-red-50 border-l-4 border-red-500">
+            <div class="flex items-center">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-sm font-medium text-red-800">
+                        Terdapat {{ $errors->count() }} kesalahan yang harus diperbaiki
+                    </h3>
+                    <div class="mt-2 text-sm text-red-700">
+                        <ul class="list-disc pl-5 space-y-1">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="ml-3">
-                <h3 class="text-sm font-medium text-red-800">
-                    Terdapat {{ $errors->count() }} kesalahan yang harus diperbaiki
-                </h3>
-                <div class="mt-2 text-sm text-red-700">
-                    <ul class="list-disc pl-5 space-y-1">
-                        @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+        </div>
+        @endif
+
+        <!-- Registration Card -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-purple-600 to-indigo-700 p-6 text-center">
+                <h1 class="text-3xl font-bold text-white font-[Poppins]">Website RPL</h1>
+                <p class="text-purple-100 mt-1">Buat akun baru Anda</p>
+            </div>
+            
+            <!-- Form -->
+            <div class="p-8">
+                <form action="{{ route('registrasi.post') }}" method="POST" class="space-y-5">
+                    @csrf
+                    
+                    <!-- Username Input -->
+                    <div>
+                        <label for="nama" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                        <input 
+                            type="text" 
+                            name="nama" 
+                            id="nama"
+                            class="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200"
+                            placeholder="Masukkan username"
+                            value="{{ old('nama') }}"
+                            required
+                        >
+                    </div>
+                    
+                    <!-- Email Input -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <input 
+                            type="email" 
+                            name="email" 
+                            id="email"
+                            class="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200"
+                            placeholder="email@contoh.com"
+                            value="{{ old('email') }}"
+                            required
+                        >
+                    </div>
+                    
+                    <!-- Password Input -->
+                    <div>
+                        <label for="passwordInput" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <div class="relative">
+                            <input
+                                type="password"
+                                name="password"
+                                id="passwordInput"
+                                placeholder="Buat password"
+                                class="block w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200"
+                                oninput="checkPasswordRules()"
+                                required
+                            />
+                            <button
+                                type="button"
+                                onclick="togglePassword()"
+                                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
+                            >
+                                <svg id="eyeOpen" class="h-5 w-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                                <svg id="eyeClosed" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.88l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <!-- Password Requirements -->
+                        <div class="mt-2 text-sm space-y-1">
+                            <div class="flex items-center">
+                                <svg id="check-length" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span class="text-gray-600">Minimal 8 karakter</span>
+                            </div>
+                            <div class="flex items-center">
+                                <svg id="check-uppercase" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span class="text-gray-600">Minimal 1 huruf besar</span>
+                            </div>
+                            <div class="flex items-center">
+                                <svg id="check-number" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span class="text-gray-600">Minimal 1 angka</span>
+                            </div>
+                            <div class="flex items-center">
+                                <svg id="check-special" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span class="text-gray-600">Minimal 1 karakter khusus</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Confirm Password Input -->
+                    <div>
+                        <label for="passwordInput2" class="block text-sm font-medium text-gray-700 mb-1">Konfirmasi Password</label>
+                        <div class="relative">
+                            <input
+                                type="password"
+                                name="password_confirmation"
+                                id="passwordInput2"
+                                placeholder="Ulangi password"
+                                class="block w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200"
+                                required
+                            />
+                            <button
+                                type="button"
+                                onclick="togglePassword1()"
+                                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
+                            >
+                                <svg id="eyeOpen2" class="h-5 w-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                                <svg id="eyeClosed2" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.88l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                </svg>
+                            </button>
+                        </div>
+                        <p id="errorText" class="mt-1 text-sm text-red-600 hidden">Password harus memenuhi semua syarat!</p>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <button 
+                        type="submit" 
+                        class="w-full py-3 px-4 rounded-lg shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-200"
+                    >
+                        Daftar Sekarang
+                    </button>
+                </form>
+                
+                <!-- Login Link -->
+                <div class="mt-6 text-center">
+                    <p class="text-sm text-gray-600">
+                        Sudah punya akun?
+                        <a href="/login" class="font-medium text-purple-600 hover:text-purple-500 ml-1">
+                            Login sekarang
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
-@endif
-    <div class="flex flex-col items-center w-fit mx-auto">
-      <h1 style="font-family: 'Poppins';" class="font-bold text-5xl text-[#5B0888]">Website Rpl</h1>
-      <h1 style="font-family: 'Poppins';" class="font-medium text-4xl">Registrasi</h1>
-        <div class="mt-5">
-            <form action="{{ route('registrasi.post') }}" method="POST" class="flex flex-col gap-y-5">
-            @csrf
-            <input type="text" name="nama" class="bg-[#E8E7E7] p-3 w-[250px] rounded-md focus:outline-none" placeholder="Username">
-            <input type="email" name="email" class="bg-[#E8E7E7] p-3 w-[250px] rounded-md focus:outline-none" placeholder="Email">
+</main>
 
-          <div class="relative w-[250px] mx-auto">
-            <input
-              type="password"
-              name="password"
-              id="passwordInput"
-              placeholder="Password"
-              class="bg-[#E8E7E7] p-3 pr-10 w-full rounded-md focus:outline-none"
-              oninput="checkPasswordRules()"
-            />
-
-            <!-- Icon mata -->
-            <button
-              type="button"
-              onclick="togglePassword()"
-              class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 focus:outline-none"
-            >
-              <!-- Eye Open -->
-              <svg id="eyeOpen" class="size-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-              </svg>
-
-              <!-- Eye Closed -->
-              <svg id="eyeClosed" class="size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
-              </svg>
-            </button>
-          </div>
-
-          <!-- Checklist syarat password -->
-          <div class="text-sm space-y-2 w-[250px] mx-auto">
-            <div class="flex gap-x-2 items-center">
-                <img id="check-length" src="svg/Group 2.svg" class="w-5" />
-                <p class="text-gray-500">Password min 8</p>
-              </div>
-              <div class="flex gap-x-2 items-center">
-                <img id="check-uppercase" src="svg/Group 2.svg" class="w-5" />
-                <p class="text-gray-500">Min satu Huruf Besar</p>
-              </div>
-              <div class="flex gap-x-2 items-center">
-                <img id="check-number" src="svg/Group 2.svg" class="w-5" />
-                <p class="text-gray-500">Min satu angka</p>
-              </div>
-              <div class="flex gap-x-2 items-center">
-                <img id="check-special" src="svg/Group 2.svg" class="w-5" />
-                <p class="text-gray-500">Min satu karakter khusus</p>
-              </div>
-          </div>
-
-          <div class="relative w-[250px] mx-auto">
-            <input
-              type="password"
-              name="password_confirmation"
-              id="passwordInput2"
-              placeholder="Konfirmasi Password"
-              class="bg-[#E8E7E7] p-3 pr-10 w-full rounded-md focus:outline-none"
-            />
-
-            <!-- Icon mata -->
-            <button
-              type="button"
-              onclick="togglePassword1()"
-              class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 focus:outline-none"
-            >
-            <svg id="eyeOpen2" class="size-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-              </svg>
-            <svg id="eyeClosed2" class="size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
-              </svg>
-            </button>
-          </div>
-          <p id="errorText" class="text-red-500 text-center hidden mt-2">Password harus memenuhi semua syarat!</p>
-
-            <button type="submit" class="bg-[#5B0888] p-3 w-[250px] rounded-md text-white font-medium text-xl">Lanjut</button>
-            </form>
-        </div>
-        <p class="text-xl mt-2 font-medium" style="font-family: 'Poppins';">Sudah Punya Akun?</p>
-        <a href="/login" class="text-purple-500 mt-2 font-medium" style="font-family: 'Poppins';">Login Sekarang!</a>
-    </div>
-  </main>
-
-  <script>
-
+<script>
+    // Toggle Password Visibility
     function togglePassword() {
-      const input = document.getElementById("passwordInput");
-      const eyeOpen = document.getElementById("eyeOpen");
-      const eyeClosed = document.getElementById("eyeClosed");
+        const input = document.getElementById("passwordInput");
+        const eyeOpen = document.getElementById("eyeOpen");
+        const eyeClosed = document.getElementById("eyeClosed");
 
-      if (input.type === "password") {
-        input.type = "text";
-        eyeOpen.classList.remove("hidden");
-        eyeClosed.classList.add("hidden");
-      } else {
-        input.type = "password";
-        eyeOpen.classList.add("hidden");
-        eyeClosed.classList.remove("hidden");
-      }
+        if (input.type === "password") {
+            input.type = "text";
+            eyeOpen.classList.remove("hidden");
+            eyeClosed.classList.add("hidden");
+        } else {
+            input.type = "password";
+            eyeOpen.classList.add("hidden");
+            eyeClosed.classList.remove("hidden");
+        }
     }
+
     function togglePassword1() {
-      const input = document.getElementById("passwordInput2");
-      const eyeOpen = document.getElementById("eyeOpen2");
-      const eyeClosed = document.getElementById("eyeClosed2");
+        const input = document.getElementById("passwordInput2");
+        const eyeOpen = document.getElementById("eyeOpen2");
+        const eyeClosed = document.getElementById("eyeClosed2");
 
-      if (input.type === "password") {
-        input.type = "text";
-        eyeOpen.classList.remove("hidden");
-        eyeClosed.classList.add("hidden");
-      } else {
-        input.type = "password";
-        eyeOpen.classList.add("hidden");
-        eyeClosed.classList.remove("hidden");
-      }
+        if (input.type === "password") {
+            input.type = "text";
+            eyeOpen.classList.remove("hidden");
+            eyeClosed.classList.add("hidden");
+        } else {
+            input.type = "password";
+            eyeOpen.classList.add("hidden");
+            eyeClosed.classList.remove("hidden");
+        }
     }
 
+    // Password Validation
     function checkPasswordRules() {
-      const password = document.getElementById("passwordInput").value;
+        const password = document.getElementById("passwordInput").value;
+        const isLength = password.length >= 8;
+        const hasUppercase = /[A-Z]/.test(password);
+        const hasNumber = /\d/.test(password);
+        const hasSpecial = /[^A-Za-z0-9]/.test(password);
 
-      const isLength = password.length >= 8;
-      const hasUppercase = /[A-Z]/.test(password);
-      const hasNumber = /\d/.test(password);
-      const hasSpecial = /[^A-Za-z0-9]/.test(password);
-
-      updateCheck("check-length", isLength);
-      updateCheck("check-uppercase", hasUppercase);
-      updateCheck("check-number", hasNumber);
-      updateCheck("check-special", hasSpecial);
+        updateCheck("check-length", isLength);
+        updateCheck("check-uppercase", hasUppercase);
+        updateCheck("check-number", hasNumber);
+        updateCheck("check-special", hasSpecial);
     }
 
     function updateCheck(id, condition) {
-      const img = document.getElementById(id);
-      img.src = condition ? "svg/check-green.svg" : "svg/Group 2.svg";
+        const icon = document.getElementById(id);
+        if (condition) {
+            icon.classList.remove("text-gray-400");
+            icon.classList.add("text-green-500");
+        } else {
+            icon.classList.remove("text-green-500");
+            icon.classList.add("text-gray-400");
+        }
     }
-    function validateForm(event) {
-    event.preventDefault();
 
-    const password = document.getElementById("passwordInput").value;
-    const confirmPassword = document.getElementById("passwordInput2").value;
-    const errorText = document.getElementById("errorText");
+    // Form Validation
+    document.querySelector("form").addEventListener("submit", function(event) {
+        const password = document.getElementById("passwordInput").value;
+        const confirmPassword = document.getElementById("passwordInput2").value;
+        const errorText = document.getElementById("errorText");
 
-    const isLength = password.length >= 8;
-    const hasUppercase = /[A-Z]/.test(password);
-    const hasNumber = /\d/.test(password);
-    const hasSpecial = /[^A-Za-z0-9]/.test(password);
+        const isLength = password.length >= 8;
+        const hasUppercase = /[A-Z]/.test(password);
+        const hasNumber = /\d/.test(password);
+        const hasSpecial = /[^A-Za-z0-9]/.test(password);
 
-    const isValid = isLength && hasUppercase && hasNumber && hasSpecial && (password === confirmPassword);
+        const isValid = isLength && hasUppercase && hasNumber && hasSpecial && (password === confirmPassword);
 
-    if (isValid) {
-      errorText.classList.add("hidden");
-      // Kirim form (bisa gunakan AJAX, atau submit langsung)
-      document.getElementById("passwordForm").submit();
-    } else {
-      errorText.textContent = password !== confirmPassword
-        ? "Password dan konfirmasi tidak cocok!"
-        : "Password harus memenuhi semua syarat!";
-      errorText.classList.remove("hidden");
-    }
-  }
-
-  document.getElementById("submitBtn").addEventListener("click", validateForm);
-    </script>
-
+        if (!isValid) {
+            event.preventDefault();
+            errorText.textContent = password !== confirmPassword 
+                ? "Password dan konfirmasi tidak cocok!" 
+                : "Password harus memenuhi semua syarat!";
+            errorText.classList.remove("hidden");
+        }
+    });
+</script>
 @endsection

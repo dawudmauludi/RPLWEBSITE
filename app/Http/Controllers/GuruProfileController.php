@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\guru_profile;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class GuruProfileController extends Controller
@@ -33,6 +34,9 @@ class GuruProfileController extends Controller
      */
     public function create()
     {
+         if (!Auth::user()->hasRole('guru')) {
+            abort(403);
+        }
         $users = User::whereHasRole('guru')->whereDoesntHave('guruProfile')->where('status', 'approved')->get();
         return view('dashboard.admin.guru.create', compact('users'));
     }
@@ -42,6 +46,9 @@ class GuruProfileController extends Controller
      */
     public function store(Request $request)
     {
+         if (!Auth::user()->hasRole('guru')) {
+            abort(403);
+        }
         $request->validate([
             'user_id' => 'required|exists:users,id|unique:guru_profiles,user_id',
             'nama' => 'required',
@@ -72,6 +79,9 @@ class GuruProfileController extends Controller
      */
     public function show(guru_profile $guru)
     {
+         if (!Auth::user()->hasRole('guru')) {
+            abort(403);
+        }
         return view('dashboard.admin.guru.show', compact('guru'));
     }
 

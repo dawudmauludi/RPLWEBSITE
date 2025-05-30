@@ -9,6 +9,7 @@ use App\Models\karya_siswa;
 use App\Models\tools;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class siswaUploadKaryaController extends Controller
@@ -37,6 +38,9 @@ class siswaUploadKaryaController extends Controller
     public function create()
     {
          $user = auth()->user();
+          if (!Auth::user()->hasRole('siswa')) {
+            abort(403);
+        }
 
         if ($user->hasRole('siswa') && $user->status === 'approved' && $user->poin < 1) {
              return redirect()->route('siswa.karya.index')->with('error', 'Kamu tidak memiliki cukup poin untuk membuat karya.');
@@ -53,6 +57,10 @@ class siswaUploadKaryaController extends Controller
     {
 
            $user = auth()->user();
+
+            if (!$user->hasRole('siswa')) {
+            abort(403);
+        }
 
         if ($user->hasRole('siswa') && $user->status === 'approved' && $user->poin < 1) {
             return redirect()->route('siswa.karya.index')->with('error', 'Kamu tidak memiliki cukup poin untuk membuat karya.');
@@ -85,14 +93,18 @@ class siswaUploadKaryaController extends Controller
 
     // Simpan dokumentasi (jika ada)
     if ($request->hasFile('gambar_dokumentasi')) {
-        foreach ($request->file('gambar_dokumentasi') as $gambar) {
-            $path = $gambar->store('dokumentasi','public');
-            dokumentasi_karya::create([
-                'karya_siswa_id' => $karya->id,
-                'gambar' => $path,
-            ]);
-        }
+    $files = collect($request->file('gambar_dokumentasi'));
+
+    $files->each(function ($gambar) use ($karya) {
+        $path = $gambar->store('dokumentasi', 'public');
+
+        dokumentasi_karya::create([
+            'karya_siswa_id' => $karya->id,
+            'gambar' => $path,
+        ]);
+    });
     }
+
 
    $tools = json_decode($request->tools, true);
     if (!empty($tools)) {
@@ -135,6 +147,9 @@ if ($user->hasRole('siswa')) {
      */
     public function edit(karya_siswa $karya)
     {
+         if (!Auth::user()->hasRole('siswa')) {
+            abort(403);
+        }
           $categories = category_karya::all();
             return view('dashboard.siswa.karya.edit', compact('karya', 'categories'));
     }

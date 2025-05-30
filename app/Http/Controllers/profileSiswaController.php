@@ -6,6 +6,7 @@ use App\Models\kelas;
 use App\Models\siswa_profile;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class profileSiswaController extends Controller
@@ -39,6 +40,10 @@ class profileSiswaController extends Controller
      */
     public function show(string $id)
     {
+
+         if (Auth::user()->siswaProfile->id != $id) {
+        abort(403, 'Unauthorized action.');
+        }
         $student = siswa_profile::findOrFail($id);
         $kelas = kelas::all();
         return view('siswaProfile.profile', compact('student','kelas'));
@@ -49,7 +54,11 @@ class profileSiswaController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {   $student = siswa_profile::findOrFail($id);
+    {
+        if (Auth::user()->siswaProfile->id != $id) {
+        abort(403, 'Unauthorized action.');
+        }
+        $student = siswa_profile::findOrFail($id);
          $users = User::whereHasRole('siswa')->where(function ($q) use ($student) {
                 $q->whereDoesntHave('siswaProfile')->orWhere('id', $student->user_id);
             })->get();

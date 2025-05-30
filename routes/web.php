@@ -31,7 +31,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/berita', [BeritaController::class, 'all'])->name('berita.all');
 Route::get('/karya', [KaryaSiswaController::class, 'all'])->name('karya.all');
 Route::get('/karya/{karya}', [KaryaSiswaController::class, 'show'])->name('karya.show');
-Route::get('/berita/{berita}', [BeritaController::class, 'show'])->name('berita.show');
+Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.show');
 
 
 
