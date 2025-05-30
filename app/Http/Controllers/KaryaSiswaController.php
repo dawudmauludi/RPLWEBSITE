@@ -69,7 +69,7 @@ class KaryaSiswaController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -146,7 +146,7 @@ class KaryaSiswaController extends Controller
      */
     public function show(karya_siswa $karya)
     {
-       
+
         $karya = karya_siswa::with(['category', 'dokumentasi', 'tools', 'fiturKarya'])->findOrFail($karya->id);
         return view('karya.detail', compact('karya'));
     }
@@ -238,6 +238,7 @@ class KaryaSiswaController extends Controller
         }
     }
 }
+        return redirect()->route('guru.karya.index')->with('success', 'Karya berhasil di update');
     }
 
     /**

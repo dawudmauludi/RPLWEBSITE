@@ -78,12 +78,12 @@
             mobileMenu.classList.toggle('hidden');
         });
     </script>
-
+    <script src="https://unpkg.com/feather-icons"></script>
     <script>
     document.addEventListener("DOMContentLoaded", () => {
         feather.replace();
     });
-</script>
+    </script>
 
     @yield('scripts')
 </body>
