@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="{{ asset('images/logo_skensa.png') }}">
     <title>@yield('title') - SMK Negeri 1 Pasuruan</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -70,6 +71,7 @@
               animation: bounce-fast 0.6s infinite;
          }
     </style>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <!-- Initialize Feather Icons -->
     <script>
         feather.replace();
