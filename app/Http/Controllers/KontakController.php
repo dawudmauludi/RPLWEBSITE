@@ -25,9 +25,8 @@ class KontakController extends Controller
     $response = $recaptcha->verify($request->input('g-recaptcha-response'), $request->ip());
     
     if (!$response->isSuccess()) {
-        return back()->withErrors(['captcha' => 'Verifikasi reCAPTCHA gagal!']);
+        return back()->with('error','Verifikasi reCAPTCHA gagal!');
     }
-    
 
         Mail::to('dawudmauludixrpl@gmail.com')->send(new ContactFormMail($validate));
          return back()->with('success', 'Pesan Anda telah terkirim! Kami akan segera menghubungi Anda.');

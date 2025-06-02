@@ -22,6 +22,36 @@
     </script>
 @endif
 
+<style>
+ @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(139, 92, 246, 0);
+            }
+        }
+        
+        .animate-pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+    </style>
+
 <main class="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-50 flex items-center justify-center p-4">
     <div class="w-full max-w-md">
         <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
@@ -54,6 +84,7 @@
                           required
                           @if(session('rate_limit')) disabled @endif
                           value="{{ old('email') }}"
+                          autocomplete="off"
                       >
                   </div>
                   @error('email')
@@ -78,6 +109,7 @@
                           placeholder="••••••••"
                           required
                           @if(session('rate_limit')) disabled @endif
+                          autocomplete="off"
                       >
                     <button 
                   type="button" 
@@ -147,7 +179,37 @@
                     </p>
                 </div>
             </div>
+
         </div>
+        <div class="mb-6 mt-6">
+    <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 animate-slide-in hover:shadow-xl transition-shadow duration-300">
+        <div class="flex items-start">
+            <div class="flex-shrink-0">
+                <div class="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg p-3">
+                    <i data-feather="lock" class="w-6 h-6 text-white"></i>
+                </div>
+            </div>
+            <div class="ml-4 flex-1">
+                <div class="flex items-center mb-2">
+                    <h3 class="text-lg font-bold text-gray-800">Akses Terbatas</h3>
+                    <span class="ml-2 bg-purple-100 text-purple-800 text-xs font-medium px-2 py-1 rounded-full">
+                        RPL Only
+                    </span>
+                </div>
+                <p class="text-gray-600 leading-relaxed">
+                    Login hanya dilakukan oleh siswa SMKN 1 Pasuruan jurusan Rekayasa Perangkat Lunak
+                </p>
+                <div class="flex items-center mt-3 text-sm text-gray-500">
+                    <i data-feather="map-pin" class="w-4 h-4 mr-1"></i>
+                    <span>SMKN 1 Pasuruan</span>
+                    <span class="mx-2">•</span>
+                    <i data-feather="code-2" class="w-4 h-4 mr-1"></i>
+                    <span>RPL</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     </div>
 </main>
 
