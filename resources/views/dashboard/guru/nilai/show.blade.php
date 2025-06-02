@@ -197,10 +197,10 @@
                                         <td class="px-8 py-6">
                                             <div class="flex items-center">
                                                 <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
-                                                    {{ substr($nilai->user->nama, 0, 1) }}
+                                                    {{ substr($nilai->user->name, 0, 1) }}
                                                 </div>
                                                 <div>
-                                                    <div class="text-lg font-semibold text-gray-900">{{ $nilai->user->nama }}</div>
+                                                    <div class="text-lg font-semibold text-gray-900">{{ $nilai->user->name }}</div>
                                                     <div class="text-sm text-gray-500 flex items-center mt-1">
                                                         <i data-feather="user" class="w-3 h-3 mr-1"></i>
                                                         Siswa

@@ -23,14 +23,15 @@ class UserSeeder extends Seeder
 
         // Tambah user dan attach role
         $users = [
-            ['nama' => 'Admin', 'email' => 'admin@gmail.com', 'password' => 'adminRpl_1', 'role' => 'admin'],
-            ['nama' => 'Irnanto', 'email' => 'guru@gmail.com','password' => 'guruRpl_1', 'role' => 'guru'],
-            ['nama' => 'Saefullah', 'email' => 'siswa@gmail.com','password' => 'siswaRpl_1', 'role' => 'siswa'],
+            ['name' => 'AdminWebsite', 'email' => 'admin@gmail.com', 'password' => 'adminRpl_1', 'role' => 'admin'],
+            ['name' => 'Irnanto', 'email' => 'guru@gmail.com','password' => 'guruRpl_1', 'role' => 'guru'],
+            ['name' => 'Rodhi', 'email' => 'siswa@gmail.com','password' => 'siswaRpl_1', 'role' => 'siswa'],
+            ['name' => 'Firmansyah', 'email' => 'siswa1@gmail.com','password' => 'siswaRpl_1', 'role' => 'siswa'],
         ];
 
         foreach ($users as $data) {
             $user = User::create([
-                'nama' => $data['nama'],
+                'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'status' => 'approved',

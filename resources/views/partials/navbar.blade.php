@@ -10,7 +10,7 @@
                     <img src="{{ asset('images/logo_skensa.png') }}" alt="Logo" class="h-10 w-auto">
                 </div>
                 <span class="text-xl font-bold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent hidden lg:block">
-                    SKENSA
+                    SMKN 1 PASURUAN
                 </span>
             </a>
 
@@ -82,7 +82,7 @@
                     @endphp
                     <div class="relative ml-4" x-data="{ open: false }">
                         <button @click="open = !open" class="group relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-white/30 hover:ring-white/60 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-300/50">
-                            <img src="https://ui-avatars.com/api/?name={{ urlencode($user->nama) }}&background=6366f1&color=ffffff&size=128&bold=true" alt="Avatar" class="w-full h-full object-cover">
+                            <img src="https://ui-avatars.com/api/?name={{ urlencode($user->name) }}&background=6366f1&color=ffffff&size=128&bold=true" alt="Avatar" class="w-full h-full object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-purple-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </button>
 
@@ -99,7 +99,7 @@
                         >
                             <div class="py-2">
                                 <div class="px-4 py-3 border-b border-gray-200/50">
-                                    <p class="text-sm font-semibold text-gray-900">{{ $user->nama }}</p>
+                                    <p class="text-sm font-semibold text-gray-900">{{ $user->name }}</p>
                                     <p class="text-xs text-gray-500">{{ $user->email }}</p>
                                 </div>
 

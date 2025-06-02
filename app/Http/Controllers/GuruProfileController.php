@@ -34,7 +34,7 @@ class GuruProfileController extends Controller
      */
     public function create()
     {
-         if (!Auth::user()->hasRole('guru')) {
+        if (!Auth::user()->hasRole('guru') && !Auth::user()->hasRole('admin')) {
             abort(403);
         }
         $users = User::whereHasRole('guru')->whereDoesntHave('guruProfile')->where('status', 'approved')->get();
@@ -46,7 +46,7 @@ class GuruProfileController extends Controller
      */
     public function store(Request $request)
     {
-         if (!Auth::user()->hasRole('guru')) {
+         if (!Auth::user()->hasRole('guru') && !Auth::user()->hasRole('admin')) {
             abort(403);
         }
         $request->validate([

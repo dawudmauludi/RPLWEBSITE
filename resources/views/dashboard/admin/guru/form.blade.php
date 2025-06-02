@@ -60,7 +60,7 @@
                             <i data-feather="lock" class="w-5 h-5 text-gray-400"></i>
                         </div>
                         <input type="text"
-                               value="{{ $guru->user->nama }} ({{ $guru->user->email }})"
+                               value="{{ $guru->user->name }} ({{ $guru->user->email }})"
                                disabled
                                class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-500 cursor-not-allowed">
                     </div>
@@ -76,7 +76,7 @@
                             <option value="">-- Pilih User Account --</option>
                             @foreach($users ?? [] as $user)
                                 <option value="{{ $user->id }}" {{ old('user_id', $guru->user_id ?? '') == $user->id ? 'selected' : '' }}>
-                                    {{ $user->nama }} ({{ $user->email }})
+                                    {{ $user->name }} ({{ $user->email }})
                                 </option>
                             @endforeach
                         </select>

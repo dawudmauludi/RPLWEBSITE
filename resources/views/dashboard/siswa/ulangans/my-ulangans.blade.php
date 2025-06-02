@@ -74,7 +74,7 @@
                         <div class="flex items-center text-sm">
                             <i data-feather="user" class="text-gray-500 mr-2 w-4 h-4"></i>
                             <span class="text-gray-700">
-                                {{ $ulangan->creator->nama ?? 'Admin'  }}
+                                {{ $ulangan->creator->name ?? 'Admin'  }}
                             </span>
                         </div>
 

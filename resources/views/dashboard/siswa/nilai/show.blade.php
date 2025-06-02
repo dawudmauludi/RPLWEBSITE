@@ -7,12 +7,12 @@
 
 <div class="min-h-screen bg-gradient-to-br from-gray-50 to-purple-50 py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <!-- Header Section -->
         <div class="mb-8">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-4">
-                    <a href="{{ route('nilai.index') }}" 
+                    <a href="{{ route('nilai.index') }}"
                        class="bg-white hover:bg-gray-50 text-gray-600 hover:text-purple-600 p-3 rounded-xl shadow-sm border border-gray-200 transition duration-200">
                         <i data-feather="arrow-left" class="w-5 h-5"></i>
                     </a>
@@ -26,7 +26,7 @@
                         <p class="text-gray-600">Hasil Ulangan</p>
                     </div>
                 </div>
-                
+
                 <!-- Date Info -->
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 px-4 py-3">
                     <div class="flex items-center space-x-2 text-gray-600">
@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                 <div class="flex items-center">
                     <div class="bg-green-100 p-3 rounded-lg">
@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                 <div class="flex items-center">
                     <div class="bg-yellow-100 p-3 rounded-lg">
@@ -86,7 +86,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                 <div class="flex items-center">
                     <div class="bg-purple-100 p-3 rounded-lg">
@@ -112,11 +112,11 @@
                     <div class="flex items-center space-x-4">
                         <!-- Search -->
                         <div class="relative">
-                            <input type="text" placeholder="Cari nama siswa..." 
+                            <input type="text" placeholder="Cari nama siswa..."
                                    class="bg-white/20 text-white placeholder-white/70 px-4 py-2 pl-10 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-white/50 text-sm">
                             <i data-feather="search" class="w-4 h-4 text-white/70 absolute left-3 top-1/2 transform -translate-y-1/2"></i>
                         </div>
-                       
+
                     </div>
                 </div>
             </div>
@@ -138,7 +138,7 @@
                                 <i data-feather="refresh-cw" class="w-4 h-4"></i>
                                 <span>Refresh</span>
                             </button>
-                            <a href="{{ route('nilai.index') }}" 
+                            <a href="{{ route('nilai.index') }}"
                                class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-medium transition duration-200 flex items-center space-x-2">
                                 <i data-feather="arrow-left" class="w-4 h-4"></i>
                                 <span>Kembali</span>
@@ -189,7 +189,7 @@
                                     <td class="py-4 px-6">
                                         <div class="flex items-center">
                                             <div class="bg-purple-100 group-hover:bg-purple-200 text-purple-700 rounded-full w-8 h-8 flex items-center justify-center text-sm font-semibold transition duration-200">
-                                                {{ $nilai->user->siswaprofile->no_absen }}  
+                                                {{ $nilai->user->siswaprofile->no_absen }}
                                             </div>
                                         </div>
                                     </td>
@@ -199,7 +199,7 @@
                                                 <i data-feather="user" class="w-5 h-5 text-gray-600 group-hover:text-purple-600"></i>
                                             </div>
                                             <div>
-                                                <p class="font-semibold text-gray-900">{{ $nilai->user->nama }}</p>
+                                                <p class="font-semibold text-gray-900">{{ $nilai->user->name }}</p>
                                                 <p class="text-sm text-gray-500">Siswa</p>
                                             </div>
                                         </div>
@@ -238,7 +238,7 @@
                                                 {{ number_format($nilai->nilai, 0) }}
                                             </span>
                                             <div class="w-full bg-gray-200 rounded-full h-1.5 max-w-[60px]">
-                                                <div class="h-1.5 rounded-full transition-all duration-500 {{ $score >= 85 ? 'bg-green-500' : ($score >= 75 ? 'bg-blue-500' : ($score >= 65 ? 'bg-yellow-500' : 'bg-red-500')) }}" 
+                                                <div class="h-1.5 rounded-full transition-all duration-500 {{ $score >= 85 ? 'bg-green-500' : ($score >= 75 ? 'bg-blue-500' : ($score >= 65 ? 'bg-yellow-500' : 'bg-red-500')) }}"
                                                      style="width: {{ min($score, 100) }}%"></div>
                                             </div>
                                         </div>
@@ -303,12 +303,12 @@
 <!-- Initialize Feather Icons -->
 <script>
     feather.replace();
-    
+
     // Simple search functionality
     document.querySelector('input[placeholder="Cari nama siswa..."]')?.addEventListener('input', function(e) {
         const searchTerm = e.target.value.toLowerCase();
         const rows = document.querySelectorAll('tbody tr');
-        
+
         rows.forEach(row => {
             const name = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
             if (name.includes(searchTerm)) {
