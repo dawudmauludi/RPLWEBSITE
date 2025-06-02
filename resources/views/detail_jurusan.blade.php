@@ -6,16 +6,16 @@
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto text-center">
                 <div class="inline-flex items-center bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm mb-6">
-                    <i data-feather="code" class="w-5 h-5 text-purple-600 mr-2"></i>
-                    <span class="text-purple-700 font-medium">Jurusan Teknologi</span>
+                    <i data-aos="fade-right" data-aos-duration="1600" data-feather="code" class="w-5 h-5 text-purple-600 mr-2"></i>
+                    <span data-aos="fade-right" data-aos-duration="1600" class="text-purple-700 font-medium">Jurusan Teknologi</span>
                 </div>
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                <h1 data-aos="fade-up" data-aos-duration="1600" class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                     Rekayasa Perangkat Lunak
                 </h1>
-                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                <p data-aos="fade-up" data-aos-duration="1600" class="text-xl text-gray-600 mb-8 leading-relaxed">
                     Membangun masa depan digital dengan keterampilan pengembangan perangkat lunak yang komprehensif
                 </p>
-                <div class="relative mx-auto max-w-2xl">
+                <div data-aos="zoom-in" data-aos-duration="1600" class="relative mx-auto max-w-2xl">
                     <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-indigo-400 rounded-2xl blur-2xl opacity-20"></div>
                     <img
                         src="{{ asset('images/coding3.jpg') }}"
@@ -33,13 +33,13 @@
             <div class="max-w-4xl mx-auto">
                 <div class="flex items-center mb-8">
                     <div class="bg-purple-100 p-3 rounded-full mr-4">
-                        <i data-feather="info" class="w-6 h-6 text-purple-600"></i>
+                        <i data-aos="fade-right" data-aos-duration="1600" data-feather="info" class="w-6 h-6 text-purple-600"></i>
                     </div>
-                    <h2 class="text-3xl font-bold text-gray-900">Tentang Jurusan RPL</h2>
+                    <h2 data-aos="fade-right" data-aos-duration="1600" class="text-3xl font-bold text-gray-900">Tentang Jurusan RPL</h2>
                 </div>
                 
                 <div class="prose prose-lg max-w-none">
-                    <div class="bg-gradient-to-r from-purple-50 to-indigo-50 p-8 rounded-2xl border border-purple-100 mb-8">
+                    <div data-aos="fade-up" data-aos-duration="1600" class="bg-gradient-to-r from-purple-50 to-indigo-50 p-8 rounded-2xl border border-purple-100 mb-8">
                         <p class="text-gray-700 leading-relaxed mb-6">
                             Rekayasa Perangkat Lunak (RPL) adalah salah satu jurusan dalam rumpun Teknologi Informasi dan Komunikasi (TIK) yang fokus pada pengembangan, perancangan, analisis, implementasi, pengujian, dan pemeliharaan perangkat lunak. Jurusan ini tidak hanya membekali peserta didik dengan keterampilan teknis seperti pemrograman dan database, tetapi juga memperkenalkan mereka pada prinsip-prinsip rekayasa, manajemen proyek, serta metodologi pengembangan perangkat lunak modern seperti Agile, Scrum, dan DevOps.
                         </p>
@@ -67,17 +67,17 @@
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-12">
                     <div class="inline-flex items-center bg-white p-3 rounded-full shadow-sm mb-6">
-                        <i data-feather="target" class="w-6 h-6 text-purple-600 mr-2"></i>
-                        <span class="text-purple-700 font-semibold">Fokus Pembelajaran</span>
+                        <i data-aos="fade-down" data-aos-duration="1600" data-feather="target" class="w-6 h-6 text-purple-600 mr-2"></i>
+                        <span data-aos="fade-down" data-aos-duration="1600" class="text-purple-700 font-semibold">Fokus Pembelajaran</span>
                     </div>
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Siklus Pengembangan Software</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    <h2 data-aos="fade-right" data-aos-duration="1600" class="text-3xl font-bold text-gray-900 mb-4">Siklus Pengembangan Software</h2>
+                    <p data-aos="fade-up" data-aos-duration="1600" class="text-xl text-gray-600 max-w-3xl mx-auto">
                         Jurusan RPL mengajarkan siklus hidup pengembangan perangkat lunak secara komprehensif dari perencanaan hingga pemeliharaan
                     </p>
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-200">
+                    <div data-aos="fade-right" data-aos-duration="1600" class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-200">
                         <div class="bg-gradient-to-br from-purple-500 to-indigo-500 p-4 rounded-xl mb-6 w-fit">
                             <i data-feather="clipboard" class="w-8 h-8 text-white"></i>
                         </div>
@@ -94,7 +94,7 @@
                         </ul>
                     </div>
 
-                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-200">
+                    <div data-aos="fade-right" data-aos-duration="1600" class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-200">
                         <div class="bg-gradient-to-br from-blue-500 to-cyan-500 p-4 rounded-xl mb-6 w-fit">
                             <i data-feather="search" class="w-8 h-8 text-white"></i>
                         </div>
@@ -111,7 +111,7 @@
                         </ul>
                     </div>
 
-                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-200">
+                    <div data-aos="fade-right" data-aos-duration="1600" class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-200">
                         <div class="bg-gradient-to-br from-green-500 to-emerald-500 p-4 rounded-xl mb-6 w-fit">
                             <i data-feather="layout" class="w-8 h-8 text-white"></i>
                         </div>
@@ -128,7 +128,7 @@
                         </ul>
                     </div>
 
-                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-200">
+                    <div data-aos="fade-right" data-aos-duration="1600" class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-200">
                         <div class="bg-gradient-to-br from-orange-500 to-red-500 p-4 rounded-xl mb-6 w-fit">
                             <i data-feather="code" class="w-8 h-8 text-white"></i>
                         </div>
@@ -145,7 +145,7 @@
                         </ul>
                     </div>
 
-                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-200">
+                    <div data-aos="fade-right" data-aos-duration="1600" class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-200">
                         <div class="bg-gradient-to-br from-pink-500 to-rose-500 p-4 rounded-xl mb-6 w-fit">
                             <i data-feather="activity" class="w-8 h-8 text-white"></i>
                         </div>
@@ -162,7 +162,7 @@
                         </ul>
                     </div>
 
-                    <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-200">
+                    <div data-aos="fade-right" data-aos-duration="1600" class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-200">
                         <div class="bg-gradient-to-br from-indigo-500 to-purple-500 p-4 rounded-xl mb-6 w-fit">
                             <i data-feather="server" class="w-8 h-8 text-white"></i>
                         </div>
@@ -189,15 +189,15 @@
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-12">
                     <div class="inline-flex items-center bg-purple-50 p-3 rounded-full mb-6">
-                        <i data-feather="book-open" class="w-6 h-6 text-purple-600 mr-2"></i>
-                        <span class="text-purple-700 font-semibold">Kurikulum</span>
+                        <i data-aos="fade-right" data-aos-duration="1600" data-feather="book-open" class="w-6 h-6 text-purple-600 mr-2"></i>
+                        <span data-aos="fade-left" data-aos-duration="1600" class="text-purple-700 font-semibold">Kurikulum</span>
                     </div>
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Mata Pelajaran Produktif</h2>
-                    <p class="text-xl text-gray-600">Mata pelajaran inti yang akan memperkuat kemampuan teknis dan profesional Anda</p>
+                    <h2 data-aos="fade-up" data-aos-duration="1600" class="text-3xl font-bold text-gray-900 mb-4">Mata Pelajaran Produktif</h2>
+                    <p data-aos="fade-up" data-aos-duration="1600" class="text-xl text-gray-600">Mata pelajaran inti yang akan memperkuat kemampuan teknis dan profesional Anda</p>
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    <div class="group bg-gradient-to-br from-purple-50 to-indigo-50 p-6 rounded-xl border border-purple-100 hover:border-purple-200 hover:shadow-lg transition-all duration-300">
+                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-purple-50 to-indigo-50 p-6 rounded-xl border border-purple-100 hover:border-purple-200 hover:shadow-lg transition-all duration-300">
                         <div class="flex items-center">
                             <div class="bg-purple-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
                                 <i data-feather="code" class="w-5 h-5 text-white"></i>
@@ -206,7 +206,7 @@
                         </div>
                     </div>
 
-                    <div class="group bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-100 hover:border-blue-200 hover:shadow-lg transition-all duration-300">
+                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-100 hover:border-blue-200 hover:shadow-lg transition-all duration-300">
                         <div class="flex items-center">
                             <div class="bg-blue-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
                                 <i data-feather="layers" class="w-5 h-5 text-white"></i>
@@ -215,7 +215,7 @@
                         </div>
                     </div>
 
-                    <div class="group bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl border border-green-100 hover:border-green-200 hover:shadow-lg transition-all duration-300">
+                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl border border-green-100 hover:border-green-200 hover:shadow-lg transition-all duration-300">
                         <div class="flex items-center">
                             <div class="bg-green-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
                                 <i data-feather="globe" class="w-5 h-5 text-white"></i>
@@ -224,7 +224,7 @@
                         </div>
                     </div>
 
-                    <div class="group bg-gradient-to-br from-orange-50 to-red-50 p-6 rounded-xl border border-orange-100 hover:border-orange-200 hover:shadow-lg transition-all duration-300">
+                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-orange-50 to-red-50 p-6 rounded-xl border border-orange-100 hover:border-orange-200 hover:shadow-lg transition-all duration-300">
                         <div class="flex items-center">
                             <div class="bg-orange-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
                                 <i data-feather="database" class="w-5 h-5 text-white"></i>
@@ -233,7 +233,7 @@
                         </div>
                     </div>
 
-                    <div class="group bg-gradient-to-br from-pink-50 to-rose-50 p-6 rounded-xl border border-pink-100 hover:border-pink-200 hover:shadow-lg transition-all duration-300">
+                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-pink-50 to-rose-50 p-6 rounded-xl border border-pink-100 hover:border-pink-200 hover:shadow-lg transition-all duration-300">
                         <div class="flex items-center">
                             <div class="bg-pink-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
                                 <i data-feather="figma" class="w-5 h-5 text-white"></i>
@@ -242,7 +242,7 @@
                         </div>
                     </div>
 
-                    <div class="group bg-gradient-to-br from-indigo-50 to-purple-50 p-6 rounded-xl border border-indigo-100 hover:border-indigo-200 hover:shadow-lg transition-all duration-300">
+                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-indigo-50 to-purple-50 p-6 rounded-xl border border-indigo-100 hover:border-indigo-200 hover:shadow-lg transition-all duration-300">
                         <div class="flex items-center">
                             <div class="bg-indigo-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
                                 <i data-feather="server" class="w-5 h-5 text-white"></i>
@@ -251,7 +251,7 @@
                         </div>
                     </div>
 
-                    <div class="group bg-gradient-to-br from-teal-50 to-cyan-50 p-6 rounded-xl border border-teal-100 hover:border-teal-200 hover:shadow-lg transition-all duration-300">
+                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-teal-50 to-cyan-50 p-6 rounded-xl border border-teal-100 hover:border-teal-200 hover:shadow-lg transition-all duration-300">
                         <div class="flex items-center">
                             <div class="bg-teal-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
                                 <i data-feather="activity" class="w-5 h-5 text-white"></i>
@@ -260,7 +260,7 @@
                         </div>
                     </div>
 
-                    <div class="group bg-gradient-to-br from-violet-50 to-purple-50 p-6 rounded-xl border border-violet-100 hover:border-violet-200 hover:shadow-lg transition-all duration-300">
+                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-violet-50 to-purple-50 p-6 rounded-xl border border-violet-100 hover:border-violet-200 hover:shadow-lg transition-all duration-300">
                         <div class="flex items-center">
                             <div class="bg-violet-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
                                 <i data-feather="settings" class="w-5 h-5 text-white"></i>
@@ -269,7 +269,7 @@
                         </div>
                     </div>
 
-                    <div class="group bg-gradient-to-br from-emerald-50 to-green-50 p-6 rounded-xl border border-emerald-100 hover:border-emerald-200 hover:shadow-lg transition-all duration-300">
+                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-emerald-50 to-green-50 p-6 rounded-xl border border-emerald-100 hover:border-emerald-200 hover:shadow-lg transition-all duration-300">
                         <div class="flex items-center">
                             <div class="bg-emerald-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
                                 <i data-feather="check-circle" class="w-5 h-5 text-white"></i>
@@ -278,7 +278,7 @@
                         </div>
                     </div>
 
-                    <div class="group bg-gradient-to-br from-amber-50 to-yellow-50 p-6 rounded-xl border border-amber-100 hover:border-amber-200 hover:shadow-lg transition-all duration-300">
+                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-amber-50 to-yellow-50 p-6 rounded-xl border border-amber-100 hover:border-amber-200 hover:shadow-lg transition-all duration-300">
                         <div class="flex items-center">
                             <div class="bg-amber-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
                                 <i data-feather="briefcase" class="w-5 h-5 text-white"></i>
@@ -287,7 +287,7 @@
                         </div>
                     </div>
 
-                    <div class="group bg-gradient-to-br from-rose-50 to-pink-50 p-6 rounded-xl border border-rose-100 hover:border-rose-200 hover:shadow-lg transition-all duration-300">
+                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-rose-50 to-pink-50 p-6 rounded-xl border border-rose-100 hover:border-rose-200 hover:shadow-lg transition-all duration-300">
                         <div class="flex items-center">
                             <div class="bg-rose-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
                                 <i data-feather="award" class="w-5 h-5 text-white"></i>
@@ -296,7 +296,7 @@
                         </div>
                     </div>
 
-                    <div class="group bg-gradient-to-br from-slate-50 to-gray-50 p-6 rounded-xl border border-slate-100 hover:border-slate-200 hover:shadow-lg transition-all duration-300">
+                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-slate-50 to-gray-50 p-6 rounded-xl border border-slate-100 hover:border-slate-200 hover:shadow-lg transition-all duration-300">
                         <div class="flex items-center">
                             <div class="bg-slate-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
                                 <i data-feather="monitor" class="w-5 h-5 text-white"></i>
@@ -305,7 +305,7 @@
                         </div>
                     </div>
 
-                    <div class="group bg-gradient-to-br from-red-50 to-orange-50 p-6 rounded-xl border border-red-100 hover:border-red-200 hover:shadow-lg transition-all duration-300">
+                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-red-50 to-orange-50 p-6 rounded-xl border border-red-100 hover:border-red-200 hover:shadow-lg transition-all duration-300">
                         <div class="flex items-center">
                             <div class="bg-red-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
                                 <i data-feather="shield" class="w-5 h-5 text-white"></i>
@@ -331,87 +331,87 @@
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-12">
                     <div class="inline-flex items-center bg-white/10 backdrop-blur-sm p-3 rounded-full mb-6">
-                        <i data-feather="cpu" class="w-6 h-6 text-purple-300 mr-2"></i>
-                        <span class="text-purple-200 font-semibold">Teknologi Modern</span>
+                        <i data-aos="zoom-in" data-aos-duration="1600" data-feather="cpu" class="w-6 h-6 text-purple-300 mr-2"></i>
+                        <span data-aos="zoom-in" data-aos-duration="1600" class="text-purple-200 font-semibold">Teknologi Modern</span>
                     </div>
-                    <h2 class="text-3xl font-bold mb-4">Teknologi dan Tools yang Dipelajari</h2>
-                    <p class="text-xl text-purple-100 max-w-3xl mx-auto">
+                    <h2 data-aos="fade-up" data-aos-duration="1600" class="text-3xl font-bold mb-4">Teknologi dan Tools yang Dipelajari</h2>
+                    <p data-aos="fade-up" data-aos-duration="1600" class="text-xl text-purple-100 max-w-3xl mx-auto">
                         Menguasai teknologi terdepan yang digunakan industri software development saat ini
                     </p>
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
-                    <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="database" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
                             <p class="font-semibold">MySQL</p>
                         </div>
                     </div>
                     
-                    <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="coffee" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
                             <p class="font-semibold">Java</p>
                         </div>
                     </div>
                     
-                    <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="code" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
                             <p class="font-semibold">PHP</p>
                         </div>
                     </div>
                     
-                    <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="zap" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
                             <p class="font-semibold">Laravel</p>
                         </div>
                     </div>
                     
-                    <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="smartphone" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
                             <p class="font-semibold">Flutter</p>
                         </div>
                     </div>
                     
-                    <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="triangle" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
                             <p class="font-semibold">JavaScript</p>
                         </div>
                     </div>
                     
-                    <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="file-text" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
                             <p class="font-semibold">HTML</p>
                         </div>
                     </div>
                     
-                    <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="layout" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
                             <p class="font-semibold">CSS</p>
                         </div>
                     </div>
                     
-                    <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="terminal" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
                             <p class="font-semibold">Python</p>
                         </div>
                     </div>
                     
-                    <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="figma" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
                             <p class="font-semibold">Figma</p>
                         </div>
                     </div>
                     
-                    <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="git-branch" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
                             <p class="font-semibold">Git</p>
@@ -447,17 +447,17 @@
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-12">
                     <div class="inline-flex items-center bg-purple-50 p-3 rounded-full mb-6">
-                        <i data-feather="trending-up" class="w-6 h-6 text-purple-600 mr-2"></i>
-                        <span class="text-purple-700 font-semibold">Prospek Karier</span>
+                        <i data-aos="zoom-out" data-aos-duration="1600" data-feather="trending-up" class="w-6 h-6 text-purple-600 mr-2"></i>
+                        <span data-aos="zoom-out" data-aos-duration="1600" class="text-purple-700 font-semibold">Prospek Karier</span>
                     </div>
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Peluang Karier Lulusan RPL</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    <h2 data-aos="fade-up" data-aos-duration="1600" class="text-3xl font-bold text-gray-900 mb-4">Peluang Karier Lulusan RPL</h2>
+                    <p data-aos="fade-up" data-aos-duration="1600" class="text-xl text-gray-600 max-w-3xl mx-auto">
                         Lulusan jurusan RPL memiliki prospek kerja yang sangat luas di era digital dengan berbagai pilihan karier yang menjanjikan
                     </p>
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                    <div class="group bg-gradient-to-br from-purple-50 to-indigo-50 p-8 rounded-2xl border border-purple-100 hover:border-purple-200 hover:shadow-xl transition-all duration-300">
+                    <div data-aos="fade-right" data-aos-duration="1600" class="group bg-gradient-to-br from-purple-50 to-indigo-50 p-8 rounded-2xl border border-purple-100 hover:border-purple-200 hover:shadow-xl transition-all duration-300">
                         <div class="bg-gradient-to-br from-purple-500 to-indigo-500 p-4 rounded-xl mb-6 w-fit group-hover:scale-110 transition-transform duration-300">
                             <i data-feather="code" class="w-8 h-8 text-white"></i>
                         </div>
@@ -465,7 +465,7 @@
                         <p class="text-gray-600">Mengembangkan aplikasi dan sistem perangkat lunak untuk berbagai platform dan kebutuhan bisnis</p>
                     </div>
 
-                    <div class="group bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border border-blue-100 hover:border-blue-200 hover:shadow-xl transition-all duration-300">
+                    <div data-aos="fade-right" data-aos-duration="1600" class="group bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl border border-blue-100 hover:border-blue-200 hover:shadow-xl transition-all duration-300">
                         <div class="bg-gradient-to-br from-blue-500 to-cyan-500 p-4 rounded-xl mb-6 w-fit group-hover:scale-110 transition-transform duration-300">
                             <i data-feather="globe" class="w-8 h-8 text-white"></i>
                         </div>
@@ -473,7 +473,7 @@
                         <p class="text-gray-600">Membangun dan memelihara website serta aplikasi web dengan teknologi terdepan</p>
                     </div>
 
-                    <div class="group bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-2xl border border-green-100 hover:border-green-200 hover:shadow-xl transition-all duration-300">
+                    <div data-aos="fade-right" data-aos-duration="1600" class="group bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-2xl border border-green-100 hover:border-green-200 hover:shadow-xl transition-all duration-300">
                         <div class="bg-gradient-to-br from-green-500 to-emerald-500 p-4 rounded-xl mb-6 w-fit group-hover:scale-110 transition-transform duration-300">
                             <i data-feather="smartphone" class="w-8 h-8 text-white"></i>
                         </div>
@@ -481,7 +481,7 @@
                         <p class="text-gray-600">Mengembangkan aplikasi mobile untuk platform Android dan iOS menggunakan teknologi modern</p>
                     </div>
 
-                    <div class="group bg-gradient-to-br from-orange-50 to-red-50 p-8 rounded-2xl border border-orange-100 hover:border-orange-200 hover:shadow-xl transition-all duration-300">
+                    <div data-aos="fade-right" data-aos-duration="1600" class="group bg-gradient-to-br from-orange-50 to-red-50 p-8 rounded-2xl border border-orange-100 hover:border-orange-200 hover:shadow-xl transition-all duration-300">
                         <div class="bg-gradient-to-br from-orange-500 to-red-500 p-4 rounded-xl mb-6 w-fit group-hover:scale-110 transition-transform duration-300">
                             <i data-feather="layout" class="w-8 h-8 text-white"></i>
                         </div>
@@ -489,7 +489,7 @@
                         <p class="text-gray-600">Merancang antarmuka dan pengalaman pengguna yang intuitif dan menarik</p>
                     </div>
 
-                    <div class="group bg-gradient-to-br from-pink-50 to-rose-50 p-8 rounded-2xl border border-pink-100 hover:border-pink-200 hover:shadow-xl transition-all duration-300">
+                    <div data-aos="fade-right" data-aos-duration="1600" class="group bg-gradient-to-br from-pink-50 to-rose-50 p-8 rounded-2xl border border-pink-100 hover:border-pink-200 hover:shadow-xl transition-all duration-300">
                         <div class="bg-gradient-to-br from-pink-500 to-rose-500 p-4 rounded-xl mb-6 w-fit group-hover:scale-110 transition-transform duration-300">
                             <i data-feather="database" class="w-8 h-8 text-white"></i>
                         </div>
@@ -497,7 +497,7 @@
                         <p class="text-gray-600">Mengelola dan mengoptimalkan sistem basis data untuk performa maksimal</p>
                     </div>
 
-                    <div class="group bg-gradient-to-br from-indigo-50 to-purple-50 p-8 rounded-2xl border border-indigo-100 hover:border-indigo-200 hover:shadow-xl transition-all duration-300">
+                    <div data-aos="fade-right" data-aos-duration="1600" class="group bg-gradient-to-br from-indigo-50 to-purple-50 p-8 rounded-2xl border border-indigo-100 hover:border-indigo-200 hover:shadow-xl transition-all duration-300">
                         <div class="bg-gradient-to-br from-indigo-500 to-purple-500 p-4 rounded-xl mb-6 w-fit group-hover:scale-110 transition-transform duration-300">
                             <i data-feather="activity" class="w-8 h-8 text-white"></i>
                         </div>
@@ -505,7 +505,7 @@
                         <p class="text-gray-600">Menganalisis kebutuhan sistem dan merancang solusi teknologi yang efektif</p>
                     </div>
 
-                    <div class="group bg-gradient-to-br from-teal-50 to-cyan-50 p-8 rounded-2xl border border-teal-100 hover:border-teal-200 hover:shadow-xl transition-all duration-300">
+                    <div data-aos="fade-right" data-aos-duration="1600" class="group bg-gradient-to-br from-teal-50 to-cyan-50 p-8 rounded-2xl border border-teal-100 hover:border-teal-200 hover:shadow-xl transition-all duration-300">
                         <div class="bg-gradient-to-br from-teal-500 to-cyan-500 p-4 rounded-xl mb-6 w-fit group-hover:scale-110 transition-transform duration-300">
                             <i data-feather="settings" class="w-8 h-8 text-white"></i>
                         </div>
@@ -513,7 +513,7 @@
                         <p class="text-gray-600">Mengelola infrastruktur teknologi dan otomatisasi proses pengembangan</p>
                     </div>
 
-                    <div class="group bg-gradient-to-br from-violet-50 to-purple-50 p-8 rounded-2xl border border-violet-100 hover:border-violet-200 hover:shadow-xl transition-all duration-300">
+                    <div data-aos="fade-right" data-aos-duration="1600" class="group bg-gradient-to-br from-violet-50 to-purple-50 p-8 rounded-2xl border border-violet-100 hover:border-violet-200 hover:shadow-xl transition-all duration-300">
                         <div class="bg-gradient-to-br from-violet-500 to-purple-500 p-4 rounded-xl mb-6 w-fit group-hover:scale-110 transition-transform duration-300">
                             <i data-feather="help-circle" class="w-8 h-8 text-white"></i>
                         </div>
@@ -521,7 +521,7 @@
                         <p class="text-gray-600">Memberikan dukungan teknis dan solusi untuk masalah teknologi informasi</p>
                     </div>
 
-                    <div class="group bg-gradient-to-br from-emerald-50 to-green-50 p-8 rounded-2xl border border-emerald-100 hover:border-emerald-200 hover:shadow-xl transition-all duration-300">
+                    <div data-aos="fade-right" data-aos-duration="1600" class="group bg-gradient-to-br from-emerald-50 to-green-50 p-8 rounded-2xl border border-emerald-100 hover:border-emerald-200 hover:shadow-xl transition-all duration-300">
                         <div class="bg-gradient-to-br from-emerald-500 to-green-500 p-4 rounded-xl mb-6 w-fit group-hover:scale-110 transition-transform duration-300">
                             <i data-feather="check-circle" class="w-8 h-8 text-white"></i>
                         </div>
@@ -531,7 +531,7 @@
                 </div>
 
                 <!-- Kelebihan Jurusan RPL -->
-                <div class="bg-gradient-to-br from-purple-50 to-indigo-50 p-8 md:p-12 rounded-3xl border border-purple-100">
+                <div data-aos="fade-up" data-aos-duration="1600" class="bg-gradient-to-br from-purple-50 to-indigo-50 p-8 md:p-12 rounded-3xl border border-purple-100">
                     <div class="flex items-center mb-8">
                         <div class="bg-gradient-to-br from-purple-500 to-indigo-500 p-4 rounded-2xl mr-6">
                             <i data-feather="star" class="w-8 h-8 text-white"></i>

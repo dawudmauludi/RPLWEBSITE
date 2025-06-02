@@ -114,18 +114,28 @@
                     </div>
                     
                     <!-- Share Buttons -->
-                    <div class="flex items-center gap-2">
-                        <span class="text-sm text-gray-600 mr-3">Share:</span>
-                        <button class="p-2 bg-blue-100 hover:bg-blue-200 text-blue-600 rounded-lg transition-colors">
-                            <i data-feather="facebook" class="w-4 h-4"></i>
-                        </button>
-                        <button class="p-2 bg-sky-100 hover:bg-sky-200 text-sky-600 rounded-lg transition-colors">
-                            <i data-feather="twitter" class="w-4 h-4"></i>
-                        </button>
-                        <button class="p-2 bg-green-100 hover:bg-green-200 text-green-600 rounded-lg transition-colors">
-                            <i data-feather="share" class="w-4 h-4"></i>
-                        </button>
-                    </div>
+                   <div class="flex items-center gap-2">
+    <span class="text-sm text-gray-600 mr-3">Share:</span>
+
+    <!-- Facebook Share -->
+    <a href="#" id="share-facebook" target="_blank"
+        class="p-2 bg-blue-100 hover:bg-blue-200 text-blue-600 rounded-lg transition-colors">
+        <i data-feather="facebook" class="w-4 h-4"></i>
+    </a>
+
+    <!-- Twitter Share -->
+    <a href="#" id="share-twitter" target="_blank"
+        class="p-2 bg-sky-100 hover:bg-sky-200 text-sky-600 rounded-lg transition-colors">
+        <i data-feather="twitter" class="w-4 h-4"></i>
+    </a>
+
+    <!-- Web Share API (untuk share native di mobile) -->
+    <button id="share-native"
+        class="p-2 bg-green-100 hover:bg-green-200 text-green-600 rounded-lg transition-colors">
+        <i data-feather="share" class="w-4 h-4"></i>
+    </button>
+    </div>
+
                 </div>
             </div>
 
@@ -254,6 +264,33 @@
 <script>
     // Initialize Feather Icons
     feather.replace();
+
+      const pageUrl = encodeURIComponent(window.location.href);
+    const pageTitle = encodeURIComponent(document.title);
+
+    // Facebook
+    document.getElementById('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+
+    // Twitter
+    document.getElementById('share-twitter').href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
+
+    // Web Share API (untuk HP atau browser modern)
+    document.getElementById('share-native').addEventListener('click', async () => {
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: document.title,
+                    text: "Cek halaman ini!",
+                    url: window.location.href
+                });
+            } catch (err) {
+                console.error('Gagal share:', err);
+            }
+        } else {
+            alert('Fitur share tidak didukung di browser ini.');
+        }
+    });
+
 
     // Image carousel functionality
     let currentImage = 0;

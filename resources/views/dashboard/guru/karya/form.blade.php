@@ -56,8 +56,8 @@
                         </label>
                         <input type="text"
                                name="judul"
-                               placeholder="Masukkan judul berita yang menarik..."
-                               value="{{ old('judul', $berita->judul ?? '') }}"
+                               placeholder="Masukkan judul karya yang menarik..."
+                               value="{{ old('judul', $karya->judul ?? '') }}"
                                class="w-full px-4 py-3 border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white">
                     </div>
                     <div class="space-y-2">
@@ -69,7 +69,7 @@
                         </label>
                         <input type="text"
                                name="link"
-                               placeholder="Masukkan judul berita yang menarik..."
+                               placeholder="Masukkan judul karya yang menarik..."
                                value="{{ old('link', $karya->link ?? '') }}"
                                class="w-full px-4 py-3 border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white">
                     </div>
@@ -127,7 +127,7 @@
                         <textarea name="deskripsi"
                                   placeholder="Tulis Deskripsi Karya lengkap di sini..."
                                   rows="8"
-                                  class="w-full px-4 py-3 border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white resize-vertical">{{ old('isi', $berita->isi ?? '') }}</textarea>
+                                  class="w-full px-4 py-3 border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white resize-vertical">{{ old('isi', $karya->deskripsi ?? '') }}</textarea>
                     </div>
 
                 </div>

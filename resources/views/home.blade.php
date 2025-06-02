@@ -3,74 +3,87 @@
 @section('content')
 
 <!-- Hero Section -->
-<div class="relative w-full min-h-screen bg-black overflow-hidden">
-    <img src="{{ asset('images/brawijaya.jpg') }}" alt="Background SMKN 1 Pasuruan"
-         class="absolute inset-0 w-full h-full object-cover opacity-30">
-    {{-- <div class="absolute inset-0 bg-gradient-to-r from-purple-900/80 via-purple-800/70 to-indigo-900/60"></div> --}}
+ <div class="relative w-full min-h-screen bg-black overflow-hidden">
+        <!-- Background Image -->
+        <img src="{{ asset('images/brawijaya.jpg') }}" 
+             alt="Background SMKN 1 Pasuruan"
+             class="absolute inset-0 w-full h-full object-cover opacity-30">
 
-    <div class="absolute inset-0 overflow-hidden">
-        <div class="absolute -top-4 -left-4 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div class="absolute top-1/2 -right-8 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div class="absolute bottom-0 left-1/3 w-80 h-80 bg-violet-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
-    </div>
-
-    <div class="relative z-10 flex flex-col items-start justify-center text-white px-8 py-16 min-h-screen max-w-6xl mx-auto">
-        <div class="flex items-center mb-8 animate-fade-in-up">
-            <div class="relative">
-                <img src="{{ asset('images/logo_skensa.png') }}" alt="Logo SMKN 1 Pasuruan"
-                     class="h-[160px] mr-8 drop-shadow-2xl transform hover:scale-105 transition-transform duration-300">
-                <div class="absolute -inset-2 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full opacity-20 blur-xl"></div>
-            </div>
-            <div class="text-left">
-                <div class="flex items-center mb-2">
-                    <i data-feather="code" class="w-6 h-6 mr-3 text-purple-300"></i>
-                    <h2 class="text-xl font-bold tracking-widest text-purple-200 uppercase">Jurusan</h2>
-                </div>
-                <h1 class="text-5xl md:text-6xl font-bold leading-tight bg-gradient-to-r from-white via-purple-100 to-indigo-200 bg-clip-text text-transparent mb-2">
-                    Rekayasa Perangkat Lunak
-                </h1>
-                <div class="flex items-center">
-                    <i data-feather="map-pin" class="w-5 h-5 mr-2 text-purple-300"></i>
-                    <p class="text-xl text-purple-100">SMK Negeri 1 Pasuruan</p>
-                </div>
-            </div>
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute -top-4 -left-4 w-48 h-48 sm:w-72 sm:h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute top-1/2 -right-8 w-64 h-64 sm:w-96 sm:h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            <div class="absolute bottom-0 left-1/3 w-56 h-56 sm:w-80 sm:h-80 bg-violet-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
         </div>
 
-        <div class="flex gap-4 animate-fade-in-up delay-300">
-            <a href="/detail-jurusan"
-               class="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl">
-                <div class="flex items-center">
-                    <i data-feather="globe" class="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300"></i>
-                    Jelajahi Jurusan
+        <!-- Main Content -->
+        <div class="relative z-10 flex flex-col items-start justify-center text-white px-4 sm:px-6 lg:px-8 py-8 sm:py-16 min-h-screen max-w-7xl mx-auto">
+            
+            <!-- Header Section -->
+            <div class="hero-layout flex items-center mb-6 sm:mb-8 animate-fade-in-up w-full">
+                
+                <!-- Logo Container -->
+                <div class="hero-logo-container relative flex-shrink-0">
+                    <img src="{{ asset('images/logo_skensa.png') }}" 
+                         alt="Logo SMKN 1 Pasuruan"
+                         class="hero-logo h-20 sm:h-32 lg:h-40 mr-0 sm:mr-6 lg:mr-8 drop-shadow-2xl transform hover:scale-105 transition-transform duration-300 mx-auto sm:mx-0">
+                    <div class="absolute -inset-2 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full opacity-20 blur-xl"></div>
                 </div>
-                <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 rounded-lg transition-opacity duration-300"></div>
-            </a>
+                
+                <!-- Text Content -->
+                <div class="hero-text hero-content text-left sm:ml-4 lg:ml-10 flex-1">
+                    <div class="flex items-center justify-center sm:justify-start mb-2">
+                        <i data-feather="code" class="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 mr-2 sm:mr-3 text-purple-300"></i>
+                        <h2 class="text-sm sm:text-lg lg:text-xl font-bold tracking-widest text-purple-200 uppercase">Jurusan</h2>
+                    </div>
+                    
+                    <h1 class="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-gradient-to-r from-white via-purple-100 to-indigo-200 bg-clip-text text-transparent mb-2">
+                        Rekayasa Perangkat Lunak
+                    </h1>
+                    
+                    <div class="flex items-center justify-center sm:justify-start">
+                        <i data-feather="map-pin" class="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-purple-300"></i>
+                        <p class="text-base sm:text-lg lg:text-xl text-purple-100">SMK Negeri 1 Pasuruan</p>
+                    </div>
+                </div>
+            </div>
 
-            <a href="#visi-misi"
-               class="group px-8 py-4 border-2 border-purple-400 hover:bg-purple-600 text-purple-100 hover:text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105">
-                <div class="flex items-center">
-                    <i data-feather="arrow-down" class="w-5 h-5 mr-2 group-hover:translate-y-1 transition-transform duration-300"></i>
-                    Pelajari Lebih Lanjut
-                </div>
-            </a>
+            <!-- Action Buttons -->
+            <div class="hero-buttons flex flex-col sm:flex-row gap-3 sm:gap-4 animate-fade-in-up delay-300 w-full sm:w-auto">
+                <a href="/detail-jurusan"
+                   class="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl">
+                    <div class="flex items-center justify-center">
+                        <i data-feather="globe" class="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:rotate-12 transition-transform duration-300"></i>
+                        <span class="text-sm sm:text-base">Jelajahi Jurusan</span>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 rounded-lg transition-opacity duration-300"></div>
+                </a>
+
+                <a href="#visi-misi"
+                   class="group px-6 sm:px-8 py-3 sm:py-4 border-2 border-purple-400 hover:bg-purple-600 text-purple-100 hover:text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105">
+                    <div class="flex items-center justify-center">
+                        <i data-feather="arrow-down" class="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:translate-y-1 transition-transform duration-300"></i>
+                        <span class="text-sm sm:text-base">Pelajari Lebih Lanjut</span>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
-</div>
 
 <!-- Vision, Mission, Goals Section -->
 <div id="visi-misi" class="bg-gradient-to-br from-gray-50 to-purple-50 py-20">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16">
             <div class="flex items-center justify-center mb-4">
-                <i data-feather="target" class="w-8 h-8 text-purple-600 mr-3"></i>
-                <h2 class="text-4xl font-bold text-gray-800">Visi, Misi & Tujuan</h2>
+                <i data-aos="fade-right" data-aos-duration="1600" data-feather="target" class="w-8 h-8 text-purple-600 mr-3"></i>
+                <h2 class="text-4xl font-bold text-gray-800" data-aos="fade-down" data-aos-duration="1600">Visi, Misi & Tujuan</h2>
             </div>
-            <div class="w-24 h-1 bg-gradient-to-r from-purple-600 to-indigo-600 mx-auto rounded-full"></div>
+            <div data-aos="fade-left" data-aos-duration="1600" class="w-24 h-1 bg-gradient-to-r from-purple-600 to-indigo-600 mx-auto rounded-full"></div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <!-- Vision -->
-            <div class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-purple-500">
+            <div class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-purple-500" data-aos="fade-up" data-aos-duration="1600">
                 <div class="flex flex-col items-center text-center">
                     <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                         <i data-feather="eye" class="w-10 h-10 text-white"></i>
@@ -83,7 +96,7 @@
             </div>
 
             <!-- Mission -->
-            <div class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-indigo-500">
+            <div data-aos="fade-up" data-aos-duration="1600" class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-indigo-500">
                 <div class="flex flex-col items-center text-center">
                     <div class="w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                         <i data-feather="compass" class="w-10 h-10 text-white"></i>
@@ -111,7 +124,7 @@
             </div>
 
             <!-- Goals -->
-            <div class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-violet-500">
+            <div data-aos="fade-up" data-aos-duration="1600" class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-violet-500">
                 <div class="flex flex-col items-center text-center">
                     <div class="w-20 h-20 bg-gradient-to-br from-violet-500 to-purple-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                         <i data-feather="award" class="w-10 h-10 text-white"></i>
@@ -136,11 +149,11 @@
             <div class="lg:w-1/2 space-y-6">
                 <div class="flex items-center mb-4">
                     <i data-feather="cpu" class="w-8 h-8 text-purple-300 mr-3"></i>
-                    <h2 class="text-4xl font-bold">Jurusan</h2>
+                    <h2 data-aos="fade-up" data-aos-duration="1600" class="text-4xl font-bold">Jurusan</h2>
                 </div>
-                <h3 class="text-2xl text-purple-200 mb-6">Rekayasa Perangkat Lunak</h3>
+                <h3 data-aos="fade-down" data-aos-duration="1600" class="text-2xl text-purple-200 mb-6">Rekayasa Perangkat Lunak</h3>
 
-                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+                <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
                     <p class="text-purple-100 leading-relaxed mb-6">
                         Rekayasa Perangkat Lunak atau RPL adalah salah satu jurusan dalam bidang teknologi Informasi dan Komunikasi (TIK) yang berfokus pada pengembangan software. Jurusan ini mempelajari seluruh proses dalam pembuatan aplikasi, mulai dari perencanaan, analisis kebutuhan, perancangan sistem, penulisan kode (pemrograman), pengujian, hingga pemeliharaan software.
                     </p>
@@ -169,7 +182,7 @@
             </div>
 
             <div class="lg:w-1/2">
-                <div class="relative group">
+                <div data-aos="zoom-in" data-aos-duration="1600" class="relative group">
                     <div class="absolute -inset-4 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl opacity-30 blur-xl group-hover:opacity-50 transition-opacity duration-300"></div>
                     <img src="{{ asset('images/coding1.jpg') }}" alt="Programming Illustration"
                          class="relative rounded-2xl shadow-2xl w-full max-w-md mx-auto transform group-hover:scale-105 transition-transform duration-300">
@@ -184,7 +197,7 @@
     <div class="container mx-auto px-4">
         <div class="flex flex-col lg:flex-row items-center gap-12">
             <div class="lg:w-1/2">
-                <div class="relative group">
+                <div data-aos="zoom-out" data-aos-duration="1600" class="relative group">
                     <div class="absolute -inset-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-300"></div>
                     <img src="{{ asset('images/coding2.jpg') }}" alt="Coding"
                          class="relative rounded-2xl shadow-xl w-full max-w-sm mx-auto transform group-hover:scale-105 transition-transform duration-300">
@@ -194,9 +207,9 @@
             <div class="lg:w-1/2">
                 <div class="flex items-center mb-6">
                     <i data-feather="book-open" class="w-8 h-8 text-purple-600 mr-3"></i>
-                    <h2 class="text-4xl font-bold text-gray-800">Mata Pelajaran Produktif</h2>
+                    <h2 data-aos="fade-up" data-aos-duration="1600" class="text-4xl font-bold text-gray-800">Mata Pelajaran Produktif</h2>
                 </div>
-                <h3 class="text-2xl text-purple-600 mb-8">Rekayasa Perangkat Lunak</h3>
+                <h3 data-aos="fade-up" data-aos-duration="1600" class="text-2xl text-purple-600 mb-8">Rekayasa Perangkat Lunak</h3>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                     @php
@@ -218,7 +231,7 @@
                     @endphp
 
                     @foreach($subjects as $subject)
-                    <div class="group flex items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-purple-100 hover:border-purple-300">
+                    <div data-aos="fade-right" data-aos-duration="1600" class="group flex items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-purple-100 hover:border-purple-300">
                         <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
                             <i data-feather="{{ $subject['icon'] }}" class="w-5 h-5 text-white"></i>
                         </div>
@@ -243,15 +256,15 @@
         <div class="text-center mb-16">
             <div class="flex items-center justify-center mb-4">
                 <i data-feather="folder" class="w-8 h-8 text-purple-300 mr-3"></i>
-                <h2 class="text-4xl font-bold">Karya Siswa</h2>
+                <h2 data-aos="fade-left" data-aos-duration="1600" class="text-4xl font-bold">Karya Siswa</h2>
             </div>
             <div class="w-24 h-1 bg-gradient-to-r from-purple-400 to-indigo-400 mx-auto rounded-full"></div>
-            <p class="text-purple-200 mt-4 max-w-2xl mx-auto">Showcase proyek-proyek terbaik dari siswa Rekayasa Perangkat Lunak</p>
+            <p data-aos="fade-right" data-aos-duration="1600" class="text-purple-200 mt-4 max-w-2xl mx-auto">Showcase proyek-proyek terbaik dari siswa Rekayasa Perangkat Lunak</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             @foreach ($karyas as $karya)
-                <div class="group bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-purple-200">
+                <div data-aos="zoom-in" data-aos-duration="1600" class="group bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-purple-200">
                     <!-- Header -->
                     <div class="relative">
                         <div class="absolute top-4 left-4 z-10">
@@ -309,7 +322,7 @@
         <div class="flex items-center justify-between mb-8">
             <div class="flex items-center">
                 <i data-feather="newspaper" class="w-8 h-8 text-purple-600 mr-3"></i>
-                <h2 class="text-4xl font-bold text-gray-800">Berita Terbaru</h2>
+                <h2 data-aos="fade-right" data-aos-duration="1600" class="text-4xl font-bold text-gray-800">Berita Terbaru</h2>
             </div>
             <div class="w-24 h-1 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full"></div>
         </div>

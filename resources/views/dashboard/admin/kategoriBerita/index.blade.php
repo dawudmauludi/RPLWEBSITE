@@ -34,7 +34,7 @@
                     <a href="{{ route('admin.kategoriBerita.create') }}"
                         class="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                         <i data-feather="plus" class="w-5 h-5"></i>
-                        <span>Tambah Kategori Karya</span>
+                        <span>Tambah Kategori Berita</span>
                     </a>
                 </div>
             </div>
