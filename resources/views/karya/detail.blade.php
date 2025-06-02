@@ -198,13 +198,27 @@
                                         </div>
                                         <p class="text-sm font-semibold text-orange-400 uppercase tracking-wider">Developer</p>
                                     </div>
-                                    <div class="ml-9 flex items-center gap-3">
-                                        <div class="w-8 h-8 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
-                                            <i data-feather="code" class="w-4 h-4 text-white"></i>
+
+                                    <div class="ml-9 flex flex-col gap-2">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
+                                                <i data-feather="code" class="w-4 h-4 text-white"></i>
+                                            </div>
+                                            <h4 class="text-lg font-semibold text-white">{{ $karya->user->name ?? 'Unknown Developer' }}</h4>
                                         </div>
-                                        <h4 class="text-lg font-semibold text-white">{{ $karya->user->nama ?? 'Unknown Developer' }}</h4>
+
+                                        @if ($karya->user)
+                                            <a href="{{ url('/chatify/' . $karya->user->id) }}"
+                                            onclick="event.preventDefault();
+                                                        localStorage.setItem('chatifyPresetMessage', 'Halo, saya tertarik dengan karya: {{ $karya->judul }}');
+                                                        window.location.href = this.href;"
+                                            class="inline-block w-fit px-3 py-1.5 text-sm font-medium text-white bg-orange-500 rounded-lg hover:bg-orange-600 transition">
+                                                Chat Developer
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
+
 
                                 <div class="border-t border-purple-700/50"></div>
 

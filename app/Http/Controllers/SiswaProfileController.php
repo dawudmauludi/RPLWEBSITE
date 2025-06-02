@@ -35,7 +35,7 @@ class SiswaProfileController extends Controller
      */
     public function create()
     {
-         if (!Auth::user()->hasRole('siswa')) {
+        if (!Auth::user()->hasRole('siswa') && !Auth::user()->hasRole('admin')) {
             abort(403);
         }
 
@@ -49,7 +49,7 @@ class SiswaProfileController extends Controller
      */
     public function store(Request $request)
     {
-         if (!Auth::user()->hasRole('siswa')) {
+        if (!Auth::user()->hasRole('siswa') && !Auth::user()->hasRole('admin')) {
             abort(403);
         }
 
@@ -84,7 +84,7 @@ class SiswaProfileController extends Controller
      */
     public function show(siswa_profile $siswa)
     {
-       
+
         return view('dashboard.admin.siswa.show', compact('siswa'));
     }
 
@@ -94,10 +94,10 @@ class SiswaProfileController extends Controller
     public function edit(siswa_profile $siswa)
     {
 
-         if (!Auth::user()->hasRole('siswa')) {
+        if (!Auth::user()->hasRole('siswa') && !Auth::user()->hasRole('admin')) {
             abort(403);
         }
-        
+
         $users = User::whereHasRole('siswa')->where(function ($q) use ($siswa) {
                 $q->whereDoesntHave('siswaProfile')->orWhere('id', $siswa->user_id);
             })->get();
@@ -110,7 +110,7 @@ class SiswaProfileController extends Controller
      */
     public function update(Request $request, siswa_profile $siswa)
     {
-         if (!Auth::user()->hasRole('siswa')) {
+        if (!Auth::user()->hasRole('siswa') && !Auth::user()->hasRole('admin')) {
             abort(403);
         }
 
@@ -148,7 +148,7 @@ class SiswaProfileController extends Controller
      */
     public function destroy(siswa_profile $siswa)
     {
-         if (!Auth::user()->hasRole('siswa')) {
+        if (!Auth::user()->hasRole('guru') && !Auth::user()->hasRole('admin')) {
             abort(403);
         }
 

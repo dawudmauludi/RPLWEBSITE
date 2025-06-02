@@ -21,7 +21,7 @@ class User extends Authenticatable implements LaratrustUser
      * @var list<string>
      */
     protected $fillable = [
-        'nama',
+        'name',
         'email',
         'password',
         'status',
@@ -75,6 +75,7 @@ class User extends Authenticatable implements LaratrustUser
     {
         return $this->hasMany(nilai_ulangan::class);
     }
+
 
 
 }

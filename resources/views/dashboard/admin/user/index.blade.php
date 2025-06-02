@@ -88,7 +88,7 @@
                             @foreach($users as $user)
                             <tr class="hover:bg-purple-50 transition-colors duration-150">
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-600 font-mono">{{ $user->nama }}</div>
+                                    <div class="text-sm text-gray-600 font-mono">{{ $user->name }}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm font-semibold text-gray-900">{{ $user->email }}</div>
@@ -99,7 +99,7 @@
                                             <span class="inline-block bg-purple-100 text-purple-700 text-xs px-2 py-1 rounded-full">{{ $role->display_name }}</span>
                                         @endforeach
                                     </td>
-                               
+
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                     <div class="flex items-center space-x-2">
                                         <a href="{{ route('admin.user.edit', $user->id) }}"

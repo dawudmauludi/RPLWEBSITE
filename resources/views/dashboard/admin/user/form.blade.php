@@ -59,13 +59,13 @@
                         <i data-feather="type" class="w-5 h-5 text-gray-400"></i>
                     </div>
                     <input type="text"
-                           name="nama"
-                           value="{{ old('nama', $user->nama ?? '') }}"
+                           name="name"
+                           value="{{ old('name', $user->name ?? '') }}"
                            required
                            placeholder="Masukkan nama lengkap"
                            class="block w-full pl-10 pr-3 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200 @error('nama') border-red-500 @enderror">
                 </div>
-                @error('nama')
+                @error('name')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>
@@ -108,7 +108,7 @@
                         value="{{ old('password', $user->password ?? '') }}"
                         placeholder="Password"
                         required
-                       
+
                         class="block w-full pl-10 pr-3 py-3 border  rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200 @error('password') border-red-500 @enderror">
                 </div>
                 @error('password')
@@ -130,7 +130,7 @@
                         value="{{ old('password', $user->password ?? '') }}"
                         placeholder="Password"
                         required
-                       
+
                         class="block w-full pl-10 pr-3 py-3 border  rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200 @error('password') border-red-500 @enderror">
                 </div>
                 @error('password')

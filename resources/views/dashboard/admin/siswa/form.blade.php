@@ -104,7 +104,7 @@
                                 <input type="text" name="no_absen" id="no_absen" required
                                        value="{{ old('no_absen', $siswa->no_absen ?? '') }}"
                                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
-                                       placeholder="Masukkan NISN">
+                                       placeholder="Masukkan Nomer Absen">
                                 <i data-feather="hash" class="absolute left-3 top-3.5 w-4 h-4 text-gray-400"></i>
                             </div>
                         </div>

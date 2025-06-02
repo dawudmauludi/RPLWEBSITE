@@ -21,7 +21,7 @@
                     <i data-feather="filter" class="w-5 h-5 text-purple-600 mr-2"></i>
                     <h3 class="text-lg font-semibold text-gray-800">Filter & Pencarian</h3>
                 </div>
-                
+
                 <form action="{{ route('karya.all') }}" method="GET" class="grid lg:grid-cols-3 gap-6">
                     <!-- Search Input -->
                     <div class="space-y-2">
@@ -31,8 +31,8 @@
                         </label>
                         <div class="relative">
                             <input type="text" name="search" value="{{ request('search') }}"
-                                   class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 pl-12 bg-gray-50 
-                                          focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 
+                                   class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 pl-12 bg-gray-50
+                                          focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500
                                           transition-all duration-200"
                                    placeholder="Masukkan judul karya...">
                             <i data-feather="search" class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 transform -translate-y-1/2"></i>
@@ -47,8 +47,8 @@
                         </label>
                         <div class="relative">
                             <select name="kelas"
-                                    class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 pl-12 bg-gray-50 
-                                           focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 
+                                    class="w-full border-2 border-gray-200 rounded-xl px-4 py-3 pl-12 bg-gray-50
+                                           focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500
                                            transition-all duration-200 appearance-none">
                                 <option value="">Semua Kelas</option>
                                 @foreach ($kelas as $kelasOption)
@@ -66,16 +66,16 @@
                     <!-- Action Buttons -->
                     <div class="flex gap-3 items-end">
                         <button type="submit"
-                                class="flex-1 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 
-                                       text-white rounded-xl px-6 py-3 font-semibold transition-all duration-200 
+                                class="flex-1 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800
+                                       text-white rounded-xl px-6 py-3 font-semibold transition-all duration-200
                                        shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center">
                             <i data-feather="search" class="w-4 h-4 mr-2"></i>
                             Cari
                         </button>
                         @if(request()->has('search') || request()->has('kelas'))
                             <a href="{{ route('karya.all') }}"
-                               class="flex-1 bg-gray-500 hover:bg-gray-600 text-white rounded-xl px-6 py-3 font-semibold 
-                                      transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 
+                               class="flex-1 bg-gray-500 hover:bg-gray-600 text-white rounded-xl px-6 py-3 font-semibold
+                                      transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5
                                       flex items-center justify-center">
                                 <i data-feather="refresh-cw" class="w-4 h-4 mr-2"></i>
                                 Reset
@@ -91,7 +91,7 @@
                     <div class="flex items-center text-purple-700">
                         <i data-feather="info" class="w-5 h-5 mr-2"></i>
                         <span class="font-medium">
-                            Menampilkan hasil untuk: 
+                            Menampilkan hasil untuk:
                             @if(request('search'))
                                 <span class="font-semibold">"{{ request('search') }}"</span>
                             @endif
@@ -109,30 +109,30 @@
             @endif
 
             <!-- Cards Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
                 @forelse ($karyas as $karya)
-                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-purple-100 
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-purple-100
                                 hover:shadow-2xl hover:border-purple-300 transition-all duration-300 transform hover:-translate-y-2 group">
-                        
+
                         <!-- Image Container -->
                         <div class="relative overflow-hidden">
                             <img src="{{ asset('storage/' . $karya->gambar_karya) }}" alt="{{ $karya->judul }}"
                                  class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110">
-                            
+
                             <!-- Overlay with Class Info -->
                             <div class="absolute top-3 left-3">
-                                <div class="bg-white/90 backdrop-blur-sm text-purple-700 text-xs font-semibold 
+                                <div class="bg-white/90 backdrop-blur-sm text-purple-700 text-xs font-semibold
                                            px-3 py-1.5 rounded-full border border-purple-200 flex items-center">
                                     <i data-feather="book-open" class="w-3 h-3 mr-1"></i>
                                     {{ $karya->user->kelas->nama ?? 'Kelas Tidak Diketahui' }}
                                 </div>
                             </div>
-                            
+
                             <!-- Student Name -->
                             <div class="absolute top-3 right-3">
                                 <div class="bg-purple-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full flex items-center">
                                     <i data-feather="user" class="w-3 h-3 mr-1"></i>
-                                    {{ $karya->user->nama ?? 'Siswa' }}
+                                    {{ $karya->user->name ?? 'Siswa' }}
                                 </div>
                             </div>
 
@@ -145,14 +145,14 @@
                             <div class="flex items-start justify-between mb-3">
                                 <h3 class="font-bold text-lg text-gray-800 line-clamp-2 flex-1">{{ $karya->judul }}</h3>
                             </div>
-                            
+
                             <p class="text-gray-600 text-sm mb-6 line-clamp-3">
                                 {{ Str::limit($karya->deskripsi, 80, '...') }}
                             </p>
-                            
+
                             <a href="{{ route('karya.show', $karya->id) }}"
-                               class="block w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 
-                                      text-white py-3 rounded-xl font-semibold transition-all duration-200 
+                               class="block w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800
+                                      text-white py-3 rounded-xl font-semibold transition-all duration-200
                                       shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-center flex items-center justify-center">
                                 <i data-feather="eye" class="w-4 h-4 mr-2"></i>
                                 Lihat Detail
@@ -167,7 +167,7 @@
                             </div>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Tidak Ada Karya Ditemukan</h3>
                             <p class="text-gray-600 mb-4">Coba ubah kata kunci pencarian atau filter yang Anda gunakan</p>
-                            <a href="{{ route('karya.all') }}" 
+                            <a href="{{ route('karya.all') }}"
                                class="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium">
                                 <i data-feather="refresh-cw" class="w-4 h-4 mr-2"></i>
                                 Lihat Semua Karya
