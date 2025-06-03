@@ -262,6 +262,30 @@
                                 <img id="previewImage" class="w-20 h-20 rounded-full object-cover border-2 border-purple-300">
                             </div>
                         </div>
+
+
+                         <div class="">
+                     <label class="flex items-center text-sm font-semibold text-gray-700 mb-2">
+                     <i data-feather="map-pin" class="w-4 h-4 mr-2 text-purple-600"></i>
+                    Lokasi (Klik pada peta untuk memilih koordinat)
+                    </label>
+                    <div id="map-container" class="relative">
+        <!-- Pastikan ID map konsisten -->
+        <div id="student-map" style="height: 300px; z-index: 0;" class="rounded-lg border border-gray-300"></div>
+        <div class="grid grid-cols-2 gap-4 mt-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Latitude</label>
+                <input type="text" id="latitude" name="latitude" value="{{ $siswa->latitude ?? '' }}" 
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg" readonly required>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Longitude</label>
+                <input type="text" id="longitude" name="longitude" value="{{ $siswa->longitude ?? '' }}" 
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg" readonly required>
+            </div>
+        </div>
+    </div>
+        </div>
                     </div>
                 </div>
 
@@ -337,7 +361,79 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    initEditMap()
 });
+
+  function initEditMap() {
+    // Gunakan koordinat siswa jika ada (edit mode), atau gunakan default (create mode)
+    var defaultLat = {{ $siswa->latitude ?? '-7.250445' }};
+    var defaultLng = {{ $siswa->longitude ?? '112.768845' }};
+    var zoomLevel = {{ isset($siswa->latitude) ? '20' : '15' }};
+    
+    var map = L.map('student-map').setView([defaultLat, defaultLng], zoomLevel);
+    var marker = null;
+
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles © Esri'
+    }).addTo(map);
+
+    // Jika ada data koordinat (edit mode), tambahkan marker
+    @if(isset($siswa) && $siswa->latitude && $siswa->longitude)
+        marker = L.marker([defaultLat, defaultLng], {
+            draggable: true
+        }).addTo(map)
+        .bindPopup("<b>Lokasi Saat Ini</b>")
+        .openPopup();
+    @endif
+
+    // Event klik pada peta (untuk create dan edit)
+    map.on('click', function(e) {
+        updateMarkerPosition(e.latlng);
+    });
+
+    // Fungsi untuk update posisi marker dan form
+    function updateMarkerPosition(latlng) {
+        if (!marker) {
+            marker = L.marker(latlng, {
+                draggable: true
+            }).addTo(map);
+            marker.on('dragend', function(e) {
+                updateMarkerPosition(marker.getLatLng());
+            });
+        } else {
+            marker.setLatLng(latlng);
+        }
+
+        // Update form fields
+        document.getElementById('latitude').value = latlng.lat.toFixed(6);
+        document.getElementById('longitude').value = latlng.lng.toFixed(6);
+
+        // Update popup
+        marker.bindPopup("Lokasi Dipilih:<br>Lat: " + latlng.lat.toFixed(6) + "<br>Lng: " + latlng.lng.toFixed(6))
+              .openPopup();
+    }
+
+    // Tambahkan geocoder control
+    L.Control.geocoder({
+        defaultMarkGeocode: false,
+        position: 'topright'
+    })
+    .on('markgeocode', function(e) {
+        var latlng = e.geocode.center;
+        map.setView(latlng, 16);
+        updateMarkerPosition(latlng);
+    })
+    .addTo(map);
+
+    // Jika create mode, set marker pada posisi default
+    @if(!isset($siswa) )
+        if (!marker) {
+            var defaultLatLng = L.latLng(defaultLat, defaultLng);
+            updateMarkerPosition(defaultLatLng);
+        }
+    @endif
+}
 
 function validateField(field) {
     const value = field.value.trim();

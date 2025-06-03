@@ -150,6 +150,17 @@
                     </div>
 
                     <div class="lg:col-span-2">
+            <label class="flex items-center text-sm font-semibold text-gray-700 mb-2">
+                <i data-feather="map-pin" class="w-4 h-4 mr-2 text-purple-600"></i>
+                Lokasi (Klik pada peta untuk memilih koordinat)
+            </label>
+            <div id="map-container" class="relative">
+                <div id="map" style="height: 400px; z-index: 0;"></div>
+                <input type="text" id="latitude" name="latitude" readonly class="mt-2 border px-4 py-2 rounded w-full" required>
+                <input type="text" id="longitude" name="longitude" readonly class="mt-2 border px-4 py-2 rounded w-full" required>
+            </div>
+        </div>
+                    <div class="lg:col-span-2">
                         <label for="foto" class="flex items-center text-sm font-semibold text-gray-700 mb-2">
                             <i data-feather="camera" class="w-4 h-4 mr-2 text-purple-600"></i>
                             Foto Siswa
@@ -319,5 +330,55 @@
             fotoInput.dispatchEvent(new Event('change'));
         }
     }
+
+      document.addEventListener("DOMContentLoaded", function () {
+    var map = L.map('map').setView([-7.250445, 112.768845], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    var marker;
+
+    // Tambahkan fitur search lokasi
+    L.Control.geocoder({
+        defaultMarkGeocode: false
+    })
+    .on('markgeocode', function(e) {
+        var latlng = e.geocode.center;
+        map.setView(latlng, 16);
+
+        if (marker) {
+            marker.setLatLng(latlng);
+        } else {
+            marker = L.marker(latlng).addTo(map);
+        }
+
+        document.getElementById('latitude').value = latlng.lat.toFixed(6);
+        document.getElementById('longitude').value = latlng.lng.toFixed(6);
+
+        marker.bindPopup("Latitude: " + latlng.lat.toFixed(6) + "<br>Longitude: " + latlng.lng.toFixed(6)).openPopup();
+    })
+    .addTo(map);
+
+    // Event klik manual di peta
+    map.on('click', function(e) {
+        var lat = e.latlng.lat.toFixed(6);
+        var lng = e.latlng.lng.toFixed(6);
+
+
+        if (marker) {
+            marker.setLatLng(e.latlng);
+        } else {
+            marker = L.marker(e.latlng).addTo(map);
+        }
+
+        document.getElementById('latitude').value = lat;
+        document.getElementById('longitude').value = lng;
+
+        marker.bindPopup("Latitude: " + lat + "<br>Longitude: " + lng).openPopup();
+    });
+});
+
 </script>
 @endsection

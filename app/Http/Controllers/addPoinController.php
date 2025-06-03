@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 class addPoinController extends Controller
 {
 
-    public function index(){
+    public function indexAddPoint(){
         $users = User::where('status', 'approved')->whereHasRole('siswa')->get();
-        return view('dashboard.guru.addPoin.index', compact('users'));
+        return view('dashboard.admin.addPoin.index', compact('users'));
     }
     public function addPoin(Request $request, User $user){
          $request->validate([

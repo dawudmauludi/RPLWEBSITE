@@ -105,7 +105,7 @@
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            @foreach($karya->dokumentasi as $index => $dok)
+                        @foreach($karya->dokumentasi as $index => $dok)
                                 <div class="group relative overflow-hidden rounded-xl bg-slate-800/30 border border-slate-700/50 hover:border-purple-500/50 transition-all duration-300">
                                     <div class="aspect-video overflow-hidden">
                                         <img onclick="openModal('{{ asset('storage/' . $dok->gambar) }}')"

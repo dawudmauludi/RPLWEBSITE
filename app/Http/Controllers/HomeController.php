@@ -14,7 +14,7 @@ class HomeController extends Controller
         $sort = $request->query('sort', 'desc');
         $beritas = berita::orderBy('created_at', $sort)->paginate(6);
         $categories = category_berita::all();
-        $karyas = karya_siswa::with(['category', 'dokumentasi', 'tools', 'fiturKarya'])->latest()->paginate(6);
+        $karyas = karya_siswa::with(['category', 'dokumentasi', 'tools', 'fiturKarya'])->where('is_publised', true)->latest()->paginate(6);
         return view('home', compact('beritas', 'categories', 'sort', 'karyas'));
     }
 }

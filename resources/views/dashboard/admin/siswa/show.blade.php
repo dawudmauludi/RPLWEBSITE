@@ -193,6 +193,17 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="mt-4">
+                       <div class="bg-white rounded-xl p-6 border border-gray-200">
+                           <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                               <i data-feather="map" class="w-5 h-5 text-purple-600 mr-2"></i>
+                               Lokasi Siswa
+                           </h3>
+                           <div class="relative z-0">
+                               <div id="map" style="height: 400px; width: 100%; border-radius: 0.5rem; overflow: hidden;"></div>
+                           </div>
+                       </div>
+                   </div>
                     </div>
                 </div>
             </div>
@@ -306,7 +317,28 @@ document.addEventListener('DOMContentLoaded', function() {
         card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(card);
     });
-});
+
+      initMainMap();
+
+
+    });
+    function initMainMap() {
+      var defaultLat = {{ $siswa->latitude ?? '-7.250445' }};
+      var defaultLng = {{ $siswa->longitude ?? '112.768845' }};
+      
+      var map = L.map('map').setView([defaultLat, defaultLng], 18);
+
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+          attribution: 'Tiles © Esri'
+      }).addTo(map);
+
+      @if($siswa->latitude && $siswa->longitude)
+          L.marker([{{ $siswa->latitude }}, {{ $siswa->longitude }}])
+              .addTo(map)
+              .bindPopup("<b>{{ $siswa->nama }}</b><br>{{ $siswa->alamat }}")
+              .openPopup();
+      @endif
+  }
 
 @if($siswa->foto)
 document.querySelector('img[alt="Foto {{ $siswa->nama }}"]').addEventListener('click', function() {

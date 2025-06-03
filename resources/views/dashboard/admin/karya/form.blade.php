@@ -299,7 +299,7 @@
                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded shadow-md transition-all">
                     Simpan
                 </button>
-                <a href="{{ route('guru.karya.index') }}" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-6 rounded shadow-sm transition-all">
+                <a href="{{ route('admin.karya.index') }}" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-6 rounded shadow-sm transition-all">
                     Kembali
                 </a>
             </div>

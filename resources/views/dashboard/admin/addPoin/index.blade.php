@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="flex flex-col sm:flex-row sm:items-center gap-3 w-full md:w-auto">
-                    <form method="GET" action="{{ route('guru.users.index') }}" id="searchForm" autocomplete="off" class="w-full sm:w-auto">
+                    <form method="GET" action="{{ route('admin.users.indexAddPoint') }}" id="searchForm" autocomplete="off" class="w-full sm:w-auto">
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <i data-feather="search" class="w-5 h-5 text-gray-400"></i>
@@ -102,7 +102,7 @@
                             <div class="text-sm text-gray-600 font-mono">{{ $user->poin }}</div>
                         </td>                    
                         <td class="px-6 py-4 whitespace-nowrap flex gap-x-2 text-sm font-medium">
-                            <form action="{{ route('guru.users.addPoint', $user->id) }}" method="POST" class="flex items-center space-x-2">
+                            <form action="{{ route('admin.users.addPoint', $user->id) }}" method="POST" class="flex items-center space-x-2">
                                 @csrf
                                 <input type="number" name="poin" min="1" value="1" class="w-16 px-2 py-1 border rounded text-sm">
                                 <button type="submit"
@@ -111,7 +111,7 @@
                                     <i data-feather="plus" class="w-4 h-4 mr-1"></i> Tambah
                                 </button>
                             </form>
-                              <form action="{{ route('guru.users.deletePoint', $user->id) }}" method="POST" class="inline" onsubmit="return confirmDelete(event)">
+                              <form action="{{ route('admin.users.deletePoint', $user->id) }}" method="POST" class="inline" onsubmit="return confirmDelete(event)">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"
@@ -191,7 +191,7 @@ document.getElementById('searchInput').addEventListener('input', function() {
             </div>
         `;
 
-        fetch(`{{ route('guru.kategoriKarya.index') }}?search=${encodeURIComponent(searchValue)}`, {
+        fetch(`{{ route('admin.kategoriKarya.index') }}?search=${encodeURIComponent(searchValue)}`, {
             headers: {
                 'X-Requested-With': 'XMLHttpRequest'
             }

@@ -49,103 +49,119 @@
 
         <!-- Content Cards -->
         <div class="bg-white rounded-b-2xl lg:rounded-2xl lg:mt-6 shadow-xl">
-            <div class="p-8">
-                <!-- Section Title -->
-                <div class="flex items-center space-x-3 mb-8">
-                    <div class="w-1 h-8 bg-gradient-to-b from-purple-600 to-indigo-600 rounded-full"></div>
-                    <h2 class="text-2xl font-bold text-gray-800">Informasi Pribadi</h2>
-                </div>
+    <div class="p-8">
+        <!-- Section Title -->
+        <div class="flex items-center space-x-3 mb-8">
+            <div class="w-1 h-8 bg-gradient-to-b from-purple-600 to-indigo-600 rounded-full"></div>
+            <h2 class="text-2xl font-bold text-gray-800">Informasi Pribadi</h2>
+        </div>
 
-                <!-- Info Grid -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <!-- Personal Info Card -->
-                    <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl p-6 border border-purple-100 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-6 flex items-center">
-                            <i data-feather="user" class="w-5 h-5 text-purple-600 mr-2"></i>
-                            Data Pribadi
-                        </h3>
+        <!-- Info Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Personal Info Card -->
+            <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl p-6 border border-purple-100 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
+                <h3 class="text-lg font-semibold text-gray-800 mb-6 flex items-center">
+                    <i data-feather="user" class="w-5 h-5 text-purple-600 mr-2"></i>
+                    Data Pribadi
+                </h3>
 
-                        <div class="space-y-5">
-                            <!-- Gender -->
-                            <div class="flex items-center space-x-4">
-                                <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
-                                    <i data-feather="users" class="w-5 h-5 text-white"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Jenis Kelamin</p>
-                                    <p class="text-gray-800 font-medium">{{ $student->jenkel ?? 'Laki-laki' }}</p>
-                                </div>
-                            </div>
-
-                            <!-- Phone -->
-                            <div class="flex items-center space-x-4">
-                                <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
-                                    <i data-feather="phone" class="w-5 h-5 text-white"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Telepon</p>
-                                    <p class="text-gray-800 font-medium">{{ $student->telepon ?? '+62 812-3456-7890' }}</p>
-                                </div>
-                            </div>
-
-                            <!-- Religion -->
-                            <div class="flex items-center space-x-4">
-                                <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
-                                    <i data-feather="heart" class="w-5 h-5 text-white"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Agama</p>
-                                    <p class="text-gray-800 font-medium">{{ $student->agama ?? 'Islam' }}</p>
-                                </div>
-                            </div>
+                <div class="space-y-5">
+                    <!-- Gender -->
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+                            <i data-feather="users" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Jenis Kelamin</p>
+                            <p class="text-gray-800 font-medium">{{ $student->jenkel ?? 'Laki-laki' }}</p>
                         </div>
                     </div>
 
-                    <!-- Location Info Card -->
-                    <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-100 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-6 flex items-center">
-                            <i data-feather="map-pin" class="w-5 h-5 text-indigo-600 mr-2"></i>
-                            Lokasi & Kelahiran
-                        </h3>
+                    <!-- Phone -->
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+                            <i data-feather="phone" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Telepon</p>
+                            <p class="text-gray-800 font-medium">{{ $student->telepon ?? '+62 812-3456-7890' }}</p>
+                        </div>
+                    </div>
 
-                        <div class="space-y-5">
-                            <!-- Address -->
-                            <div class="flex items-start space-x-4">
-                                <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center shadow-lg flex-shrink-0 mt-1">
-                                    <i data-feather="home" class="w-5 h-5 text-white"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Alamat</p>
-                                    <p class="text-gray-800 font-medium leading-relaxed">{{ $student->alamat ?? 'Jl. Merdeka No. 123, Kota Bandung, Jawa Barat 40123' }}</p>
-                                </div>
-                            </div>
-
-                            <!-- Birth Place -->
-                            <div class="flex items-center space-x-4">
-                                <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center shadow-lg">
-                                    <i data-feather="map" class="w-5 h-5 text-white"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Tempat Lahir</p>
-                                    <p class="text-gray-800 font-medium">{{ $student->tempat_lahir ?? 'Bandung' }}</p>
-                                </div>
-                            </div>
-
-                            <!-- Birth Date -->
-                            <div class="flex items-center space-x-4">
-                                <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center shadow-lg">
-                                    <i data-feather="calendar" class="w-5 h-5 text-white"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Tanggal Lahir</p>
-                                    <p class="text-gray-800 font-medium">
-                                        {{ isset($student->tanggal_lahir) ? \Carbon\Carbon::parse($student->tanggal_lahir)->format('d F Y') : '15 Januari 2005' }}
-                                    </p>
-                                </div>
-                            </div>
+                    <!-- Religion -->
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+                            <i data-feather="heart" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Agama</p>
+                            <p class="text-gray-800 font-medium">{{ $student->agama ?? 'Islam' }}</p>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Location Info Card -->
+            <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-100 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
+                <h3 class="text-lg font-semibold text-gray-800 mb-6 flex items-center">
+                    <i data-feather="map-pin" class="w-5 h-5 text-indigo-600 mr-2"></i>
+                    Lokasi & Kelahiran
+                </h3>
+
+                <div class="space-y-5">
+                    <!-- Address -->
+                    <div class="flex items-start space-x-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center shadow-lg flex-shrink-0 mt-1">
+                            <i data-feather="home" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Alamat</p>
+                            <p class="text-gray-800 font-medium leading-relaxed">{{ $student->alamat ?? 'Jl. Merdeka No. 123, Kota Bandung, Jawa Barat 40123' }}</p>
+                        </div>
+                    </div>
+
+                    <!-- Birth Place -->
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center shadow-lg">
+                            <i data-feather="map" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Tempat Lahir</p>
+                            <p class="text-gray-800 font-medium">{{ $student->tempat_lahir ?? 'Bandung' }}</p>
+                        </div>
+                    </div>
+
+                    <!-- Birth Date -->
+                    <div class="flex items-center space-x-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center shadow-lg">
+                            <i data-feather="calendar" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Tanggal Lahir</p>
+                            <p class="text-gray-800 font-medium">
+                                {{ isset($student->tanggal_lahir) ? \Carbon\Carbon::parse($student->tanggal_lahir)->format('d F Y') : '15 Januari 2005' }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Map Section - Now in full width below the cards -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-xl p-6 border border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                        <i data-feather="map" class="w-5 h-5 text-purple-600 mr-2"></i>
+                        Lokasi Siswa
+                    </h3>
+                    <div class="relative z-0">
+                        <div id="map" style="height: 400px; width: 100%; border-radius: 0.5rem; overflow: hidden;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
                 <!-- Action Buttons -->
                 <div class="mt-8 pt-6 border-t border-gray-200">
@@ -272,6 +288,7 @@
                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200" required>{{ $student->alamat ?? 'Jl. Merdeka No. 123, Kota Bandung, Jawa Barat 40123' }}</textarea>
                     </div>
 
+
                     <!-- Tempat Lahir -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">
@@ -310,6 +327,20 @@
                         </select>
                     </div>
 
+                    @if(!empty($student->foto))
+                                <div class="mb-4 p-4 bg-purple-50 rounded-lg border border-purple-200">
+                                    <div class="flex items-center gap-4">
+                                        <img src="{{ asset('storage/' . $student->foto) }}"
+                                             alt="Foto saat ini"
+                                             class="w-16 h-16 rounded-full object-cover border-2 border-purple-300">
+                                        <div>
+                                            <p class="text-sm font-medium text-purple-900">Foto saat ini</p>
+                                            <p class="text-xs text-purple-600">Upload foto baru untuk mengubah</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
                     <!-- Foto -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">
@@ -345,10 +376,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
 <script>
     // Initialize Feather Icons
-    document.addEventListener('DOMContentLoaded', function() {
+     document.addEventListener('DOMContentLoaded', function() {
         feather.replace();
 
-        // Add entrance animation
+        // Animasi masuk untuk kartu
         const cards = document.querySelectorAll('.bg-gradient-to-br');
         cards.forEach((card, index) => {
             card.style.opacity = '0';
@@ -359,7 +390,59 @@
                 card.style.transform = 'translateY(0)';
             }, index * 150);
         });
+
+        // Inisialisasi peta utama (tampilan profil)
+        initMainMap();
+        
+        // Inisialisasi peta edit (modal)
     });
+
+    // Fungsi untuk inisialisasi peta utama
+    function initMainMap() {
+        var defaultLat = {{ $student->latitude ?? '-7.250445' }};
+        var defaultLng = {{ $student->longitude ?? '112.768845' }};
+        
+        var map = L.map('map').setView([defaultLat, defaultLng], 18);
+
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles © Esri'
+        }).addTo(map);
+
+        @if($student->latitude && $student->longitude)
+            L.marker([{{ $student->latitude }}, {{ $student->longitude }}])
+                .addTo(map)
+                .bindPopup("<b>{{ $student->nama }}</b><br>{{ $student->alamat }}")
+                .openPopup();
+        @endif
+    }
+
+    // Fungsi untuk inisialisasi peta edit
+   
+
+    // Fungsi untuk modal
+    function openEditModal() {
+        const modal = document.getElementById('editModal');
+        const modalContent = document.getElementById('modalContent');
+
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+            modalContent.classList.remove('scale-95', 'opacity-0');
+            modalContent.classList.add('scale-100', 'opacity-100');
+            
+            // Inisialisasi ulang peta saat modal dibuka
+            if (typeof editMap === 'undefined' || !editMap) {
+                initEditMap();
+            } else {
+                // Refresh peta jika sudah ada
+                setTimeout(function() {
+                    editMap.invalidateSize();
+                }, 300);
+            }
+        }, 10);
+
+        document.body.style.overflow = 'hidden';
+        feather.replace();
+    }
 
     function openEditModal() {
         const modal = document.getElementById('editModal');
@@ -413,6 +496,26 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+
+
+    document.getElementById('foto').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    const preview = document.getElementById('photoPreview');
+    const previewImage = document.getElementById('imagePreview');
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            previewImage.src = e.target.result;
+            preview.classList.remove('hidden');
+        };
+        reader.readAsDataURL(file);
+    } else {
+        preview.classList.add('hidden');
+    }
+});
+
+
 
     function showNotification(message, type = 'info') {
         // Create notification element

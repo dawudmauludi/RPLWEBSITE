@@ -258,13 +258,9 @@
                                     @endrole
 
                                     @role('guru')
-                                        <a href="#" class="group flex items-center hover:bg-purple-50 py-2 px-3 rounded-lg transition-all duration-200">
+                                        <a href="{{ route('guru.karya.siswa.index') }}" class="group flex items-center hover:bg-purple-50 py-2 px-3 rounded-lg transition-all duration-200">
                                             <i data-feather="star" class="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-200"></i>
                                             Karya Terbaik
-                                        </a>
-                                        <a href="{{ route('guru.approved') }}" class="group flex items-center hover:bg-purple-50 py-2 px-3 rounded-lg transition-all duration-200">
-                                            <i data-feather="check-circle" class="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-200"></i>
-                                            Approve Siswa
                                         </a>
                                         <a href="" class="group flex items-center hover:bg-purple-50 py-2 px-3 rounded-lg transition-all duration-200">
                                             <i data-feather="clipboard" class="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-200"></i>

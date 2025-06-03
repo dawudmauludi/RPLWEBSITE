@@ -22,7 +22,7 @@ class kategoriKaryaController extends Controller
 
         $kategoris = $query->paginate(20)->withQueryString();
 
-        return view('dashboard.guru.kategoriKarya.index', compact('kategoris'));
+        return view('dashboard.admin.kategoriKarya.index', compact('kategoris'));
     }
 
     /**
@@ -30,7 +30,7 @@ class kategoriKaryaController extends Controller
      */
     public function create()
     {
-         return view('dashboard.guru.kategoriKarya.create');
+         return view('dashboard.admin.kategoriKarya.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class kategoriKaryaController extends Controller
         'nama' => $request->nama,
     ]);
     $kategori->save();
-    return redirect()->route('guru.kategoriKarya.index')->with('success', 'kategori berhasil ditambahkan.');
+    return redirect()->route('admin.kategoriKarya.index')->with('success', 'kategori berhasil ditambahkan.');
     }
 
     /**
@@ -63,7 +63,7 @@ class kategoriKaryaController extends Controller
     public function edit(string $id)
     {
          $kategori = category_karya::findOrFail($id);
-        return view('dashboard.guru.kategoriKarya.edit', compact('kategori'));
+        return view('dashboard.admin.kategoriKarya.edit', compact('kategori'));
     }
 
     /**
@@ -80,7 +80,7 @@ class kategoriKaryaController extends Controller
 
     $kategori->update($data);
     
-    return redirect()->route('guru.kategoriKarya.index')->with('success', 'kategori berhasil diubah.');
+    return redirect()->route('admin.kategoriKarya.index')->with('success', 'kategori berhasil diubah.');
     }
 
     /**
@@ -90,6 +90,6 @@ class kategoriKaryaController extends Controller
     {
           $kategori = category_karya::findOrFail($id);
         $kategori->delete();
-        return redirect()->route('guru.kategoriKarya.index')->with('success', 'kategori berhasil dihapus.');
+        return redirect()->route('admin.kategoriKarya.index')->with('success', 'kategori berhasil dihapus.');
     }
 }

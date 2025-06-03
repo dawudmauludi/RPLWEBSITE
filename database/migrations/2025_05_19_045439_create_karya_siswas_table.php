@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->string('link');
             $table->text('gambar_karya');
+            $table->boolean('is_publised')->default(false);
             $table->timestamps();
         });
     }
