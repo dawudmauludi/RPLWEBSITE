@@ -106,22 +106,7 @@
                 <span>Kategori Karya</span>
             </a>
 
-            <a href="{{ route('admin.approved') }}"
-               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('admin/approved*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
-                <i data-feather="user-plus" class="w-5 h-5 {{ request()->is('admin/approved*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
-                <span>Approve Siswa</span>
-                
-            <a href="{{ route('admin.karya.index') }}" 
-               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('admin/karya*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
-                <i data-feather="award" class="w-5 h-5 {{ request()->is('admin/karya*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
-                <span>Karya Siswa</span>
-            </a>
-            
-            <a href="{{ route('admin.kategoriKarya.index') }}" 
-               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('admin/kategoriKarya*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
-                <i data-feather="folder" class="w-5 h-5 {{ request()->is('admin/kategoriKarya*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
-                <span>Kategori Karya</span>
-            </a>
+          
 
                         <a href="{{ route('admin.users.indexAddPoint') }}" 
                class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->routeIs('admin.users.indexAddPoint') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
