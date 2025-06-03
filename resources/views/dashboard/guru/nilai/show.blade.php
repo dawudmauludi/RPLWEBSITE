@@ -197,10 +197,10 @@
                                         <td class="px-8 py-6">
                                             <div class="flex items-center">
                                                 <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
-                                                    {{ substr($nilai->user->name, 0, 1) }}
+                                                    {{ substr($nilai->user->siswaProfile->nama, 0, 1) }}
                                                 </div>
                                                 <div>
-                                                    <div class="text-lg font-semibold text-gray-900">{{ $nilai->user->name }}</div>
+                                                    <div class="text-lg font-semibold text-gray-900">{{ $nilai->user->siswaProfile->nama }}</div>
                                                     <div class="text-sm text-gray-500 flex items-center mt-1">
                                                         <i data-feather="user" class="w-3 h-3 mr-1"></i>
                                                         Siswa
@@ -264,13 +264,33 @@
                 </div>
 
                 <!-- Action Buttons -->
-                <div class="mt-8 flex justify-center space-x-4">
-                    <button onclick="window.print()"
+                <div class="mt-8 flex justify-center space-x-4 items-center">
+                    {{-- <button onclick="window.print()"
                             class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white
-                                   rounded-xl font-medium transition-all duration-200 shadow-lg hover:shadow-xl">
+                                rounded-xl font-medium transition-all duration-200 shadow-lg hover:shadow-xl">
                         <i data-feather="printer" class="w-4 h-4 mr-2"></i>
                         Cetak Nilai
-                    </button>
+                    </button> --}}
+
+                    <!-- Form Import Nilai dengan styling -->
+                    <form action="{{ route('nilai.import', $ulangan->id) }}" method="POST" enctype="multipart/form-data" class="flex items-center space-x-2">
+                        @csrf
+                        <label for="file-upload"
+                            class="cursor-pointer inline-flex items-center px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-200">
+                            <i data-feather="upload" class="w-4 h-4 mr-2"></i>
+                            Pilih File
+                        </label>
+                        <input id="file-upload" type="file" name="file" class="hidden" required onchange="document.getElementById('file-name').textContent = this.files[0]?.name || ''" />
+
+
+                        <span id="file-name" class="text-gray-700 text-sm truncate max-w-xs"></span>
+                        <button type="submit"
+                                class="inline-flex items-center px-5 py-2 bg-yellow-600 hover:bg-yellow-700 text-white
+                                    rounded-xl font-medium transition-all duration-200 shadow-lg hover:shadow-xl">
+                            Import Nilai
+                        </button>
+                    </form>
+
                     <button onclick="window.location='{{ route('nilai.export', $ulangan->id) }}'"
                             class="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white
                                 rounded-xl font-medium transition-all duration-200 shadow-lg hover:shadow-xl">
@@ -278,6 +298,7 @@
                         Export Excel
                     </button>
                 </div>
+
             @endif
         </div>
     </div>

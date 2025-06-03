@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\NilaiExport;
+use App\Imports\NilaiUlanganImport;
 use App\Models\kelas;
 use App\Models\nilai_ulangan;
 use App\Models\siswa_profile;
@@ -10,7 +11,7 @@ use App\Models\ulangan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Maatwebsite\Excel\Excel;
+use Maatwebsite\Excel\Facades\Excel;
 
 class NilaiUlanganController extends Controller
 {
@@ -166,6 +167,16 @@ class NilaiUlanganController extends Controller
         //
     }
 
+    public function importNilai(Request $request, $ulangan_id)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls,csv'
+        ]);
+
+        Excel::import(new NilaiUlanganImport($ulangan_id), $request->file('file'));
+
+        return back()->with('success', 'Data nilai berhasil diimport.');
+    }
 
 
 }

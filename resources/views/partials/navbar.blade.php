@@ -6,12 +6,17 @@
         <div class="flex justify-between items-center py-4">
             <!-- Logo Section -->
             <a href="/" class="flex items-center group transition-transform duration-300 hover:scale-105">
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-2 mr-3 group-hover:bg-white/20 transition-all duration-300">
+                <div class="backdrop-blur-sm rounded-xl p-2 mr-3 group-hover:bg-white/20 transition-all duration-300">
                     <img src="{{ asset('images/logo_skensa.png') }}" alt="Logo" class="h-10 w-auto">
                 </div>
-                <span class="text-xl font-bold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent hidden lg:block">
-                    SMKN 1 PASURUAN
-                </span>
+                <div class="hidden lg:block">
+                    <span class="text-xl font-bold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
+                        SMK NEGERI 1 PASURUAN
+                    </span>
+                    <span class="block text-sm font-medium text-white/80">
+                        Rekayasa Perangkat Lunak
+                    </span>
+                </div>
             </a>
 
             <!-- Mobile Menu Button -->

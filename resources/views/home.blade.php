@@ -5,7 +5,7 @@
 <!-- Hero Section -->
  <div class="relative w-full min-h-screen bg-black overflow-hidden">
         <!-- Background Image -->
-        <img src="{{ asset('images/brawijaya.jpg') }}" 
+        <img src="{{ asset('images/brawijaya.jpg') }}"
              alt="Background SMKN 1 Pasuruan"
              class="absolute inset-0 w-full h-full object-cover opacity-30">
 
@@ -18,29 +18,29 @@
 
         <!-- Main Content -->
         <div class="relative z-10 flex flex-col items-start justify-center text-white px-4 sm:px-6 lg:px-8 py-8 sm:py-16 min-h-screen max-w-7xl mx-auto">
-            
+
             <!-- Header Section -->
             <div class="hero-layout flex items-center mb-6 sm:mb-8 animate-fade-in-up w-full">
-                
+
                 <!-- Logo Container -->
                 <div class="hero-logo-container relative flex-shrink-0">
-                    <img src="{{ asset('images/logo_skensa.png') }}" 
+                    <img src="{{ asset('images/logo_skensa.png') }}"
                          alt="Logo SMKN 1 Pasuruan"
                          class="hero-logo h-20 sm:h-32 lg:h-40 mr-0 sm:mr-6 lg:mr-8 drop-shadow-2xl transform hover:scale-105 transition-transform duration-300 mx-auto sm:mx-0">
                     <div class="absolute -inset-2 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full opacity-20 blur-xl"></div>
                 </div>
-                
+
                 <!-- Text Content -->
                 <div class="hero-text hero-content text-left sm:ml-4 lg:ml-10 flex-1">
                     <div class="flex items-center justify-center sm:justify-start mb-2">
                         <i data-feather="code" class="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 mr-2 sm:mr-3 text-purple-300"></i>
                         <h2 class="text-sm sm:text-lg lg:text-xl font-bold tracking-widest text-purple-200 uppercase">Jurusan</h2>
                     </div>
-                    
-                    <h1 class="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-gradient-to-r from-white via-purple-100 to-indigo-200 bg-clip-text text-transparent mb-2">
+
+                    <h1 class="text-5xl sm:text-6xl lg:text-6xl font-bold mb-3 text-purple-100">
                         Rekayasa Perangkat Lunak
                     </h1>
-                    
+
                     <div class="flex items-center justify-center sm:justify-start">
                         <i data-feather="map-pin" class="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-purple-300"></i>
                         <p class="text-base sm:text-lg lg:text-xl text-purple-100">SMK Negeri 1 Pasuruan</p>

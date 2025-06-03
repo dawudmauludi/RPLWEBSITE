@@ -27,7 +27,7 @@ use App\Models\guru_profile;
 use App\Models\nilai_ulangan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/berita', [BeritaController::class, 'all'])->name('berita.all');
@@ -106,7 +106,7 @@ Route::middleware(['auth'])->prefix('siswa')->name('siswa.')->group(function () 
 
 });
 
-Route::middleware(['auth','role:guru|admin'])->group(function () {
+Route::middleware(['auth','role:guru'])->group(function () {
         Route::resource('ulangans', UlanganController::class);
         Route::patch('ulangans/{ulangan}/toggle-active', [UlanganController::class, 'toggleActive'])->name('ulangans.toggle-active');
         Route::post('/ulangan/{ulangan}/nilai', [NilaiUlanganController::class, 'store'])->name('nilai.store');
@@ -115,6 +115,7 @@ Route::middleware(['auth','role:guru|admin'])->group(function () {
         Route::get('/nilai/ulangan/{ulanganId}', [NilaiUlanganController::class, 'show'])->name('nilai.show');
         Route::post('/nilai/update-massal', [NilaiUlanganController::class, 'bulkUpdate'])->name('nilai.bulkUpdate');
         Route::get('/nilai/export-excel/{ulanganId}', [NilaiExportController::class, 'export'])->name('nilai.export');
+        Route::post('/nilai/import/{ulangan_id}', [NilaiUlanganController::class, 'importNilai'])->name('nilai.import');
 
 });
 
