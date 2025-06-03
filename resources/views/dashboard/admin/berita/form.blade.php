@@ -140,7 +140,7 @@
                                     class="w-full max-w-full min-w-0 px-4 py-3 resize-none overflow-auto border-0 focus:outline-none focus:ring-0"
                                     style="max-height: 400px; min-height: 200px;">
                         </trix-editor>
-                    </div>
+                        </div>
                     </div>
 
                     <!-- Excerpt -->

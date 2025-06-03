@@ -89,7 +89,7 @@
                 <span>Kategori Berita</span>
             </a>
 
-            <a href="/admin/berita"
+            <a href="{{ route('admin.berita.index') }}"
                class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('admin/berita*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
                 <i data-feather="paperclip" class="w-5 h-5 {{ request()->is('admin/berita*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
                 <span>Berita & Artikel</span>
@@ -107,10 +107,15 @@
                 <span>Kategori Karya</span>
             </a>
 
-                        <a href="{{ route('admin.users.indexAddPoint') }}"
+            <a href="{{ route('admin.users.indexAddPoint') }}"
                class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->routeIs('admin.users.indexAddPoint') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
                 <i data-feather="plus-circle" class="w-5 h-5 {{ request()->routeIs('admin.users.indexAddPoint') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
                 <span>Tambah Poin Siswa</span>
+            </a>
+            <a href="{{ route('admin.future.index') }}"
+               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->routeIs('admin.users.indexAddPoint') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
+                <i data-feather="plus-circle" class="w-5 h-5 {{ request()->routeIs('admin.users.indexAddPoint') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
+                <span>Future</span>
             </a>
         @endrole
 
@@ -119,7 +124,6 @@
                class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('guru/karya*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
                 <i data-feather="award" class="w-5 h-5 {{ request()->is('guru/karya*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
                 <span>Karya Siswa</span>
-
             </a>
 
             <a href="{{ route('ulangans.index') }}"

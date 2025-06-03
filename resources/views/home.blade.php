@@ -76,68 +76,26 @@
         <div class="text-center mb-16">
             <div class="flex items-center justify-center mb-4">
                 <i data-aos="fade-right" data-aos-duration="1600" data-feather="target" class="w-8 h-8 text-purple-600 mr-3"></i>
-                <h2 class="text-4xl font-bold text-gray-800" data-aos="fade-down" data-aos-duration="1600">Visi, Misi & Tujuan</h2>
+                <h2 class="text-4xl font-bold text-gray-800" data-aos="fade-down" data-aos-duration="1600">Future Sekolah</h2>
             </div>
             <div data-aos="fade-left" data-aos-duration="1600" class="w-24 h-1 bg-gradient-to-r from-purple-600 to-indigo-600 mx-auto rounded-full"></div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Vision -->
-            <div class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-purple-500" data-aos="fade-up" data-aos-duration="1600">
+            @foreach ($futures as $future )
+                <div class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-purple-500" data-aos="fade-up" data-aos-duration="1600">
                 <div class="flex flex-col items-center text-center">
                     <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <i data-feather="eye" class="w-10 h-10 text-white"></i>
+                        <i data-feather="{{ $future->icon }}" class="w-10 h-10 text-white"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-purple-700 mb-4 uppercase tracking-wide">Visi</h3>
+                    <h3 class="text-2xl font-bold text-purple-700 mb-4 uppercase tracking-wide">{{ $future->name }}</h3>
                     <p class="text-gray-700 leading-relaxed">
-                        Menjadi jurusan yang unggul dalam bidang pengembangan perangkat lunak, berdaya saing global, dan berlandaskan etika profesional.
+                        {!! $future->description !!}
                     </p>
                 </div>
             </div>
+            @endforeach
 
-            <!-- Mission -->
-            <div data-aos="fade-up" data-aos-duration="1600" class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-indigo-500">
-                <div class="flex flex-col items-center text-center">
-                    <div class="w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <i data-feather="compass" class="w-10 h-10 text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-indigo-700 mb-4 uppercase tracking-wide">Misi</h3>
-                    <ul class="text-gray-700 space-y-3 text-left">
-                        <li class="flex items-start">
-                            <i data-feather="check-circle" class="w-5 h-5 text-purple-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                            <span>Membekali siswa dengan keterampilan pemrograman dan TI</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i data-feather="check-circle" class="w-5 h-5 text-purple-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                            <span>Menumbuhkan sikap profesional dan inovatif</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i data-feather="check-circle" class="w-5 h-5 text-purple-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                            <span>Menjalin kerja sama dengan dunia industri</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i data-feather="check-circle" class="w-5 h-5 text-purple-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                            <span>Mendorong siswa menciptakan karya berbasis teknologi</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Goals -->
-            <div data-aos="fade-up" data-aos-duration="1600" class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-violet-500">
-                <div class="flex flex-col items-center text-center">
-                    <div class="w-20 h-20 bg-gradient-to-br from-violet-500 to-purple-600 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <i data-feather="award" class="w-10 h-10 text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-violet-700 mb-4 uppercase tracking-wide">Tujuan</h3>
-                    <div class="relative">
-                        <i data-feather="quote" class="w-8 h-8 text-purple-300 absolute -top-2 -left-2"></i>
-                        <p class="text-gray-700 leading-relaxed italic pl-4">
-                            Menyiapkan peserta didik agar mampu bekerja mandiri dan/atau mengisi lowongan pekerjaan yang ada di dunia usaha sebagai tenaga kerja tingkat menengah dalam bidang rekayasa perangkat lunak.
-                        </p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
