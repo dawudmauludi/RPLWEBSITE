@@ -30,7 +30,7 @@ class KaryaSiswaController extends Controller
 
         $karyas = $query->paginate(10)->withQueryString();
 
-        return view('dashboard.guru.karya.index', compact('karyas'));
+        return view('dashboard.admin.karya.index', compact('karyas'));
     }
 
     public function all()
@@ -43,7 +43,7 @@ class KaryaSiswaController extends Controller
             $search = $validated['search'] ?? null;
             $kelas = $validated['kelas'] ?? null;
 
-        $query = karya_siswa::query()->with(['category', 'dokumentasi', 'tools', 'fiturKarya', 'user.siswaProfile.kelas']);
+        $query = karya_siswa::query()->with(['category', 'dokumentasi', 'tools', 'fiturKarya', 'user.siswaProfile.kelas'])->where('is_publised', true);
 
         if ($search = request('search')) {
             $query->where(function ($q) use ($search) {
@@ -138,7 +138,7 @@ class KaryaSiswaController extends Controller
 }
 
 
-     return redirect()->route('guru.karya.index')->with('success', 'Karya created successfully.');
+     return redirect()->route('admin.karya.index')->with('success', 'Karya created successfully.');
     }
 
     /**
@@ -156,11 +156,11 @@ class KaryaSiswaController extends Controller
      */
     public function edit(karya_siswa $karya)
     {
-         if (!Auth::user()->hasRole('guru')) {
+         if (!Auth::user()->hasRole('admin')) {
             abort(403);
         }
           $categories = category_karya::all();
-            return view('dashboard.guru.karya.edit', compact('karya', 'categories'));
+            return view('dashboard.admin.karya.edit', compact('karya', 'categories'));
     }
 
     /**
@@ -168,7 +168,7 @@ class KaryaSiswaController extends Controller
      */
     public function update(Request $request, karya_siswa $karya)
     {
-         if (!Auth::user()->hasRole('guru')) {
+         if (!Auth::user()->hasRole('admin')) {
             abort(403);
         }
           $request->validate([
@@ -238,7 +238,7 @@ class KaryaSiswaController extends Controller
         }
     }
 }
-        return redirect()->route('guru.karya.index')->with('success', 'Karya berhasil di update');
+        return redirect()->route('admin.karya.index')->with('success', 'Karya berhasil di update');
     }
 
     /**
@@ -246,7 +246,7 @@ class KaryaSiswaController extends Controller
      */
     public function destroy(karya_siswa $karya)
     {
-         if (!Auth::user()->hasRole('guru')) {
+         if (!Auth::user()->hasRole('admin')) {
             abort(403);
         }
 
@@ -265,6 +265,28 @@ class KaryaSiswaController extends Controller
         $karya->fiturKarya()->delete();
 
         $karya->delete();
-        return redirect()->route('guru.karya.index')->with('success', 'Karya deleted successfully.');
+        return redirect()->route('admin.karya.index')->with('success', 'Karya deleted successfully.');
+    }
+
+
+    public function isPublish(Request $request, karya_siswa $karya){
+        if(!Auth::user()->hasRole('admin')){
+            abort(403);
+        }
+        $karya->update([
+            'is_publised' => true,
+        ]);
+
+        return redirect()->back()->with('success', 'Karya berhasil di publish');
+    }
+public function unPublish(Request $request, karya_siswa $karya){
+        if(!Auth::user()->hasRole('admin')){
+            abort(403);
+        }
+        $karya->update([
+            'is_publised' => false,
+        ]);
+
+        return redirect()->back()->with('success', 'Karya berhasil di unPublish');
     }
 }

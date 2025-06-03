@@ -113,14 +113,6 @@
                             <th class="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">
                                 <div class="flex items-center">
                                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
-                                    </svg>
-                                    Status Publish
-                                    </div>
-                            </th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">
-                                <div class="flex items-center">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                     </svg>
@@ -167,29 +159,98 @@
                                         </span>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
-                                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
-                                            </svg>
-                                            @if($karya->is_publised)
-                                            <p>Sudah di Publish</p>
-                                            @else
-                                            <p>Belum di Publish</p>
-                                            @endif
-                                        </span>
-                                    </div>
-                                </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                     <div class="flex items-center space-x-3">
-                                        <a href="{{ route('guru.karya.siswa.show', $karya->id) }}"
+                                        <a href="{{ route('admin.karya.edit', $karya) }}"
                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition-all duration-200 transform hover:scale-105">
                                             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                                             </svg>
-                                            Show
-                                        </a>   
+                                            Edit
+                                        </a>
+
+                                        <form action="{{ route('admin.karya.destroy', $karya->id) }}" method="POST" class="inline" onsubmit="return confirmDelete(event)">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-200 transform hover:scale-105">
+                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                </svg>
+                                                Hapus
+                                            </button>
+                                        </form>
+
+                                        <script>
+                                            function confirmDelete(event) {
+                                                event.preventDefault();
+                                                Swal.fire({
+                                                    title: 'Konfirmasi',
+                                                    text: 'Yakin ingin menghapus karya ini?',
+                                                    icon: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: '#3085d6',
+                                                    cancelButtonColor: '#d33',
+                                                    confirmButtonText: 'Ya, hapus!'
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        event.target.submit();
+                                                    }
+                                                });
+                                                return false;
+                                            }
+                                        </script>   
+                                        @if($karya->is_publised == 1)
+                                        <form action="{{ route('admin.karya.unPublised', $karya->id) }}" method="POST" class="inline" onsubmit="return confirmUnpublish(event)">
+                                    @else
+                                        <form action="{{ route('admin.karya.isPublised', $karya->id) }}" method="POST" class="inline" onsubmit="return confirmPublish(event)">
+                                    @endif
+                                        @csrf
+                                        <button type="submit" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-200 transform hover:scale-105">
+                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                            </svg>
+                                            {{ $karya->is_publised ? 'Unpublish Karya' : 'Publish Karya' }}
+                                        </button>
+                                    </form>
+
+                                    <script>
+                                        function confirmPublish(event) {
+                                            event.preventDefault();
+                                            Swal.fire({
+                                                title: 'Konfirmasi',
+                                                text: 'Yakin ingin mempublish karya ini?',
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#3085d6',
+                                                cancelButtonColor: '#d33',
+                                                confirmButtonText: 'Ya, Publish!'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    event.target.submit();
+                                                }
+                                            });
+                                            return false;
+                                        }
+
+                                        function confirmUnpublish(event) {
+                                            event.preventDefault();
+                                            Swal.fire({
+                                                title: 'Konfirmasi',
+                                                text: 'Yakin ingin mengunpublish karya ini?',
+                                                icon: 'warning',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#3085d6',
+                                                cancelButtonColor: '#d33',
+                                                confirmButtonText: 'Ya, Unpublish!'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    event.target.submit();
+                                                }
+                                            });
+                                            return false;
+                                        }
+                                    </script>
                                     </div>
                                 </td>
                             </tr>
@@ -202,6 +263,13 @@
                                         </svg>
                                         <h3 class="text-lg font-medium text-gray-900 mb-2">Tidak ada karya</h3>
                                         <p class="text-gray-500 mb-4">Belum ada karya yang ditambahkan. Mulai tambahkan karya pertama Anda!</p>
+                                        <a href="{{ route('admin.karya.create') }}"
+                                           class="inline-flex items-center bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-200">
+                                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                            </svg>
+                                            Tambah karya
+                                        </a>
                                     </div>
                                 </td>
                             </tr>

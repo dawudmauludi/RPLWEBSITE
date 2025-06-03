@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class karya_siswa extends Model
 {
     protected $fillable = [
-        'user_id', 'category_karya_id', 'judul', 'deskripsi', 'link', 'gambar_karya'
+        'user_id', 'category_karya_id', 'judul', 'deskripsi', 'link', 'gambar_karya','is_publised'
     ];
 
     public function dokumentasi()

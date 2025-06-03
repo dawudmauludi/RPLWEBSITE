@@ -53,10 +53,13 @@ class SiswaController extends Controller
         'agama' => 'required|in:Islam,Kristen,Katolik,Hindu,Budha,Konghucu',
         'kelas_id' => 'required|exists:kelas,id',
         'foto' => 'required|image|max:2048',
+         'latitude' => 'required',
+        'longitude' => 'required',
     ]);
 
     // Upload foto ke folder storage/app/public/foto_siswa
     $path = $request->file('foto')->store('foto_siswa', 'public');
+
 
     // Simpan data ke database
     siswa_profile::create([
@@ -64,7 +67,7 @@ class SiswaController extends Controller
         'nama' => $validated['nama'],
         'nisn' => $validated['nisn'],
         'jenkel' => $validated['jenkel'],
-        'telepon' => $validated['telepon'],
+    'telepon' => $validated['telepon'],
         'alamat' => $validated['alamat'],
         'no_absen' => $validated['no_absen'],
         'tempat_lahir' => $validated['tempat_lahir'],
@@ -72,6 +75,8 @@ class SiswaController extends Controller
         'agama' => $validated['agama'],
         'kelas_id' => $validated['kelas_id'],
         'foto' => $path,
+        'latitude' => $validated['latitude'],
+        'longitude' => $validated['longitude'],
     ]);
 
     return redirect(url('/'))->with('success', 'Profil siswa berhasil disimpan.');

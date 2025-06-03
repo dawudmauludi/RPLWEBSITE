@@ -4,6 +4,7 @@ use App\Http\Controllers\addPoinController;
 use App\Http\Controllers\adminApproveController;
 use App\Http\Controllers\authController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\CekKaryaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuruProfileController;
 use App\Http\Controllers\HomeController;
@@ -69,7 +70,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('kelas', KelasController::class)->parameters([
         'kelas' => 'kelas'
     ]);
-
+    Route::resource('karya', KaryaSiswaController::class)->except(['show'])->parameters(['karya' => 'karya']);
+    Route::resource('kategoriKarya', kategoriKaryaController::class);
+    Route::post('/karya/isPublised/{karya}', [KaryaSiswaController::class,'isPublish'])->name('karya.isPublised');
+    Route::post('/karya/unPublised/{karya}', [KaryaSiswaController::class,'unPublish'])->name('karya.unPublised');
     Route::resource('user', UsersController::class);
     Route::get('/approved',[adminApproveController::class,'index'])->name('approved');
     Route::post('/user/{id}/approve', [adminApproveController::class, 'approve'])->name('user.approve');
@@ -77,21 +81,18 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('berita', BeritaController::class)->except(['index', 'show'])->parameters(['berita' => 'berita']);;
     Route::get('berita', [BeritaController::class, 'index'])->name('berita.index');
     Route::resource('kategoriBerita', kategoriBeritaController::class);
+    Route::post('/users/{user}/add-point', [addPoinController::class, 'addPoin'])->name('users.addPoint');
+    Route::delete('/users/{user}/delete-point', [addPoinController::class, 'decrement'])->name('users.deletePoint');
+    Route::get('/users/addPoint',[addPoinController::class,'indexAddPoint'])->name('users.indexAddPoint');
 });
 
 
 
 
 Route::middleware(['auth', 'role:guru'])->prefix('guru')->name('guru.')->group(function () {
-    Route::get('/approved',[UserAproveController::class,'index'])->name('approved');
-    Route::post('/approved/user/{id}/approve', [UserAproveController::class, 'approve'])->name('user.approve');
-    Route::post('/approved/user/{id}/reject', [UserAproveController::class, 'reject'])->name('user.reject');
-    Route::resource('kategoriKarya', kategoriKaryaController::class);
-    Route::resource('karya', KaryaSiswaController::class)->except(['show'])->parameters(['karya' => 'karya']);
-    Route::post('/users/{user}/add-point', [addPoinController::class, 'addPoin'])->name('users.addPoint');
-    Route::delete('/users/{user}/delete-point', [addPoinController::class, 'decrement'])->name('users.deletePoint');
-    Route::get('/users',[addPoinController::class,'index'])->name('users.index');
     Route::resource('/profileGuru', profileGuruController::class);
+    Route::get('karya/siswa/{karya}', [CekKaryaController::class,'show'])->name('karya.siswa.show');
+    Route::get('karya/index', [CekKaryaController::class,'index'])->name('karya.siswa.index');
 });
 
 

@@ -8,7 +8,7 @@ class siswa_profile extends Model
 {
     protected $fillable = [
         'user_id', 'kelas_id', 'nama', 'nisn', 'jenkel', 'telepon', 'alamat',
-        'tempat_lahir', 'tanggal_lahir', 'agama', 'foto','no_absen'
+        'tempat_lahir', 'tanggal_lahir', 'agama', 'foto','no_absen','latitude', 'longitude'
     ];
 
      public function user()

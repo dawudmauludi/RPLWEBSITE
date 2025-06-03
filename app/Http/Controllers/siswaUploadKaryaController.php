@@ -89,6 +89,7 @@ class siswaUploadKaryaController extends Controller
         'deskripsi' => $request->deskripsi,
         'link' => $request->link,
         'gambar_karya' => $gambarKaryaPath,
+        'is_publised' => false,
     ]);
 
     // Simpan dokumentasi (jika ada)
