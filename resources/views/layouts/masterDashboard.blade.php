@@ -8,14 +8,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<<<<<<< Updated upstream
-     <link rel="icon" type="image/png" href="{{ asset('images/logo_skensa.png') }}">
-=======
     <link rel="icon" type="image/png" href="{{ asset('images/logo_skensa.png') }}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
->>>>>>> Stashed changes
-
     <link rel="stylesheet" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
