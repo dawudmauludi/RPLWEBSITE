@@ -1,0 +1,12 @@
+@extends('layouts.masterDashboard')
+
+@section('title', 'Add language')
+
+@section('content')
+<div class="container mx-auto p-4">
+    <form action="{{ route('admin.language.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+        @csrf
+        @include('dashboard.admin.language.form')
+    </form>
+</div>
+@endsection
