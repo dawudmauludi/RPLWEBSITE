@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jurusan;
+use App\Models\Language;
 use App\Models\Lesson;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,7 @@ class DetailJurusanController extends Controller
     {
         $jurusans = Jurusan::all();
         $lessons = Lesson::all();
-        return view('detail_jurusan', compact('jurusans', 'lessons'));
+        $languages = Language::all();
+        return view('detail_jurusan', compact('jurusans', 'lessons', 'languages'));
     }
 }

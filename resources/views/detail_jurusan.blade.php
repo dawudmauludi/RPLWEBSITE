@@ -227,100 +227,22 @@
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
-                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
-                        <div class="text-center">
-                            <i data-feather="database" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
-                            <p class="font-semibold">MySQL</p>
-                        </div>
-                    </div>
-
-                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
-                        <div class="text-center">
-                            <i data-feather="coffee" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
-                            <p class="font-semibold">Java</p>
-                        </div>
-                    </div>
-
-                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
-                        <div class="text-center">
-                            <i data-feather="code" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
-                            <p class="font-semibold">PHP</p>
-                        </div>
-                    </div>
-
-                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
-                        <div class="text-center">
-                            <i data-feather="zap" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
-                            <p class="font-semibold">Laravel</p>
-                        </div>
-                    </div>
-
-                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
-                        <div class="text-center">
-                            <i data-feather="smartphone" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
-                            <p class="font-semibold">Flutter</p>
-                        </div>
-                    </div>
-
-                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
-                        <div class="text-center">
-                            <i data-feather="triangle" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
-                            <p class="font-semibold">JavaScript</p>
-                        </div>
-                    </div>
-
-                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
-                        <div class="text-center">
-                            <i data-feather="file-text" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
-                            <p class="font-semibold">HTML</p>
-                        </div>
-                    </div>
-
-                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
-                        <div class="text-center">
-                            <i data-feather="layout" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
-                            <p class="font-semibold">CSS</p>
-                        </div>
-                    </div>
-
-                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
-                        <div class="text-center">
-                            <i data-feather="terminal" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
-                            <p class="font-semibold">Python</p>
-                        </div>
-                    </div>
-
-                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
-                        <div class="text-center">
-                            <i data-feather="figma" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
-                            <p class="font-semibold">Figma</p>
-                        </div>
-                    </div>
-
-                    <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
-                        <div class="text-center">
-                            <i data-feather="git-branch" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
-                            <p class="font-semibold">Git</p>
-                        </div>
-                    </div>
+                    @foreach ($languages as $language)
+                        <a href="{{ route('language.show', $language->slug) }}" data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
+                            <div class="text-center">
+                                <i data-feather="{{ $language->icon }}" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
+                                <p class="font-semibold">{{$language->name}}</p>
+                            </div>
+                        </a>
+                    @endforeach
                 </div>
 
                 <!-- Animated Tech Icons -->
                 <div class="overflow-hidden mb-8 mt-12">
                     <div class="animate-marquee-img whitespace-nowrap flex items-center" style="gap: 3rem;">
-                        @for ($i = 0; $i < 3; $i++)
-                            <img src="{{ asset('images/icons/mysql.png') }}" alt="MySQL" class="h-16 inline-block mx-6 opacity-80 hover:opacity-100 transition-opacity">
-                            <img src="{{ asset('images/icons/java.png') }}" alt="JAVA" class="h-16 inline-block mx-6 opacity-80 hover:opacity-100 transition-opacity">
-                            <img src="{{ asset('images/icons/php.png') }}" alt="PHP" class="h-16 inline-block mx-6 opacity-80 hover:opacity-100 transition-opacity">
-                            <img src="{{ asset('images/icons/laravel.png') }}" alt="Laravel" class="h-16 inline-block mx-6 opacity-80 hover:opacity-100 transition-opacity">
-                            <img src="{{ asset('images/icons/flutter.png') }}" alt="Flutter" class="h-16 inline-block mx-6 opacity-80 hover:opacity-100 transition-opacity">
-                            <img src="{{ asset('images/icons/js.jpg') }}" alt="JavaScript" class="h-16 inline-block mx-6 opacity-80 hover:opacity-100 transition-opacity">
-                            <img src="{{ asset('images/icons/html.png') }}" alt="HTML" class="h-16 inline-block mx-6 opacity-80 hover:opacity-100 transition-opacity">
-                            <img src="{{ asset('images/icons/css.png') }}" alt="CSS" class="h-16 inline-block mx-6 opacity-80 hover:opacity-100 transition-opacity">
-                            <img src="{{ asset('images/icons/python.png') }}" alt="Python" class="h-16 inline-block mx-6 opacity-80 hover:opacity-100 transition-opacity">
-                            <img src="{{ asset('images/icons/figma.png') }}" alt="FIGMA" class="h-16 inline-block mx-6 opacity-80 hover:opacity-100 transition-opacity">
-                            <img src="{{ asset('images/icons/git.png') }}" alt="Git" class="h-16 inline-block mx-6 opacity-80 hover:opacity-100 transition-opacity">
-                        @endfor
+                        @foreach ($languages as $language)
+                            <img src="{{ asset('storage/' . $language->image) }}" alt="{{ $language->name }}" class="h-16 inline-block mx-6 opacity-80 hover:opacity-100 transition-opacity">
+                        @endforeach
                     </div>
                 </div>
             </div>
