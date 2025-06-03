@@ -35,11 +35,8 @@ class SiswaProfileController extends Controller
      */
     public function create()
     {
-<<<<<<< Updated upstream
         if (!Auth::user()->hasRole('siswa') && !Auth::user()->hasRole('admin')) {
-=======
-         if (!Auth::user()->hasRole('admin')) {
->>>>>>> Stashed changes
+
             abort(403);
         }
 
@@ -53,11 +50,8 @@ class SiswaProfileController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< Updated upstream
         if (!Auth::user()->hasRole('siswa') && !Auth::user()->hasRole('admin')) {
-=======
-         if (!Auth::user()->hasRole('admin')) {
->>>>>>> Stashed changes
+
             abort(403);
         }
 
@@ -101,12 +95,7 @@ class SiswaProfileController extends Controller
      */
     public function edit(siswa_profile $siswa)
     {
-
-<<<<<<< Updated upstream
         if (!Auth::user()->hasRole('siswa') && !Auth::user()->hasRole('admin')) {
-=======
-         if (!Auth::user()->hasRole('admin')) {
->>>>>>> Stashed changes
             abort(403);
         }
 
@@ -122,13 +111,9 @@ class SiswaProfileController extends Controller
      */
     public function update(Request $request, siswa_profile $siswa)
     {
-<<<<<<< Updated upstream
+
         if (!Auth::user()->hasRole('siswa') && !Auth::user()->hasRole('admin')) {
-=======
-         if (!Auth::user()->hasRole('admin')) {
->>>>>>> Stashed changes
-            abort(403);
-        }
+
 
         $request->validate([
             'user_id' => 'required|exists:users,id|unique:siswa_profiles,user_id,' . $siswa->id,
@@ -157,6 +142,7 @@ class SiswaProfileController extends Controller
         $siswa->update($data);
 
         return redirect()->route('admin.siswa.index')->with('success', 'Data siswa berhasil diupdate.');
+        }
     }
 
     /**
@@ -164,11 +150,7 @@ class SiswaProfileController extends Controller
      */
     public function destroy(siswa_profile $siswa)
     {
-<<<<<<< Updated upstream
         if (!Auth::user()->hasRole('guru') && !Auth::user()->hasRole('admin')) {
-=======
-         if (!Auth::user()->hasRole('admin')) {
->>>>>>> Stashed changes
             abort(403);
         }
 
@@ -178,4 +160,5 @@ class SiswaProfileController extends Controller
         $siswa->delete();
         return redirect()->route('admin.siswa.index')->with('success', 'Data siswa dan foto berhasil dihapus.');
     }
+
 }
