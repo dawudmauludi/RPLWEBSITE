@@ -117,6 +117,11 @@
                 <i data-feather="plus-circle" class="w-5 h-5 {{ request()->routeIs('admin.users.indexAddPoint') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
                 <span>Future</span>
             </a>
+            <a href="{{ route('admin.jurusan.index') }}"
+               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->routeIs('admin.users.indexAddPoint') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
+                <i data-feather="plus-circle" class="w-5 h-5 {{ request()->routeIs('admin.users.indexAddPoint') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
+                <span>Jurusan</span>
+            </a>
         @endrole
 
         @role('guru')

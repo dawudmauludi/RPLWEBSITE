@@ -12,7 +12,8 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        //
+        $jurusans = Jurusan::all();
+        return view('dashboard.admin.jurusan.index', compact('jurusans'));
     }
 
     /**
@@ -20,7 +21,7 @@ class JurusanController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.admin.jurusan.create');
     }
 
     /**
@@ -28,7 +29,19 @@ class JurusanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'isi' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $data = $request->all();
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('jurusan', 'public');
+        }
+        Jurusan::create($data);
+
+        return redirect()->route('admin.jurusan.index')->with('success', 'Jurusan created successfully.');
     }
 
     /**
