@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('jurusans', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('other_name');
+            $table->string('slogan');
             $table->longText('isi');
             $table->text('image');
             $table->timestamps();

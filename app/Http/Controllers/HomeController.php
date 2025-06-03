@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\berita;
 use App\Models\category_berita;
 use App\Models\Future;
+use App\Models\Jurusan;
 use App\Models\karya_siswa;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,7 @@ class HomeController extends Controller
         $categories = category_berita::all();
         $karyas = karya_siswa::with(['category', 'dokumentasi', 'tools', 'fiturKarya'])->where('is_publised', true)->latest()->paginate(6);
         $futures = Future::all();
-        return view('home', compact('beritas', 'categories', 'sort', 'karyas', 'futures'));
+        $jurusans = Jurusan::all();
+        return view('home', compact('beritas', 'categories', 'sort', 'karyas', 'futures', 'jurusans'));
     }
 }

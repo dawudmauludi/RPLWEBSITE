@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jurusan extends Model
 {
-    protected $fillable = ['name', 'isi', 'image'];
+    protected $fillable = ['name', 'other_name','slogan', 'isi', 'image'];
 }

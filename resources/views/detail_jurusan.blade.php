@@ -5,24 +5,26 @@
     <section class="bg-gradient-to-br from-purple-50  to-indigo-100 py-16 pt-24">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto text-center">
+                @foreach ($jurusans as $jurusan)
                 <div class="inline-flex items-center bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm mb-6">
                     <i data-aos="fade-right" data-aos-duration="1600" data-feather="code" class="w-5 h-5 text-purple-600 mr-2"></i>
-                    <span data-aos="fade-right" data-aos-duration="1600" class="text-purple-700 font-medium">Jurusan Teknologi</span>
+                    <span data-aos="fade-right" data-aos-duration="1600" class="text-purple-700 font-medium">{{$jurusan->other_name}}</span>
                 </div>
-                <h1 data-aos="fade-up" data-aos-duration="1600" class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                    Rekayasa Perangkat Lunak
+                    <h1 data-aos="fade-up" data-aos-duration="1600" class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    {{ $jurusan->name ?? 'Tidak ditemukan Jurusan' }}
                 </h1>
                 <p data-aos="fade-up" data-aos-duration="1600" class="text-xl text-gray-600 mb-8 leading-relaxed">
-                    Membangun masa depan digital dengan keterampilan pengembangan perangkat lunak yang komprehensif
+                    {{ $jurusan->slogan ?? 'Slogan tidak tersedia.' }}
                 </p>
                 <div data-aos="zoom-in" data-aos-duration="1600" class="relative mx-auto max-w-2xl">
                     <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-indigo-400 rounded-2xl blur-2xl opacity-20"></div>
                     <img
-                        src="{{ asset('images/coding3.jpg') }}"
-                        alt="Mahasiswa RPL"
+                        src="{{ asset('storage/' . $jurusan->image) }}"
+                        alt="{{ $jurusan->name }}"
                         class="relative rounded-2xl shadow-2xl w-full h-64 object-cover"
                     >
                 </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -37,24 +39,14 @@
                     </div>
                     <h2 data-aos="fade-right" data-aos-duration="1600" class="text-3xl font-bold text-gray-900">Tentang Jurusan RPL</h2>
                 </div>
-                
+
                 <div class="prose prose-lg max-w-none">
                     <div data-aos="fade-up" data-aos-duration="1600" class="bg-gradient-to-r from-purple-50 to-indigo-50 p-8 rounded-2xl border border-purple-100 mb-8">
-                        <p class="text-gray-700 leading-relaxed mb-6">
-                            Rekayasa Perangkat Lunak (RPL) adalah salah satu jurusan dalam rumpun Teknologi Informasi dan Komunikasi (TIK) yang fokus pada pengembangan, perancangan, analisis, implementasi, pengujian, dan pemeliharaan perangkat lunak. Jurusan ini tidak hanya membekali peserta didik dengan keterampilan teknis seperti pemrograman dan database, tetapi juga memperkenalkan mereka pada prinsip-prinsip rekayasa, manajemen proyek, serta metodologi pengembangan perangkat lunak modern seperti Agile, Scrum, dan DevOps.
-                        </p>
-                        <p class="text-gray-700 leading-relaxed mb-6">
-                            Dalam RPL, siswa akan belajar untuk membuat solusi digital dalam bentuk aplikasi desktop, web, mobile, hingga sistem informasi berbasis cloud. Materi yang diajarkan mencakup berbagai bahasa pemrograman (seperti Java, Python, PHP, JavaScript, dan Kotlin), desain UI/UX, struktur data dan algoritma, hingga keamanan siber dan pengujian perangkat lunak (software testing).
-                        </p>
-                        <p class="text-gray-700 leading-relaxed mb-6">
-                            Selain aspek teknis, RPL juga menekankan pada kemampuan analitis, pemecahan masalah, kolaborasi tim, dan komunikasi profesional. Hal ini penting karena pengembangan perangkat lunak sering kali dilakukan secara tim dan membutuhkan pemahaman akan kebutuhan pengguna serta kemampuan untuk menuangkannya ke dalam bentuk solusi digital yang efektif.
-                        </p>
-                        <p class="text-gray-700 leading-relaxed mb-6">
-                            Jurusan ini juga mendorong siswa untuk mengikuti perkembangan teknologi terbaru seperti kecerdasan buatan (AI), machine learning, internet of things (IoT), dan pengembangan berbasis platform modern. Dengan pendekatan ini, lulusan RPL diharapkan tidak hanya siap memasuki dunia kerja sebagai programmer, software engineer, system analyst, QA tester, UI/UX designer, atau devops engineer, tetapi juga mampu berwirausaha di bidang teknologi digital secara mandiri.
-                        </p>
-                        <p class="text-gray-700 leading-relaxed">
-                            RPL menjadi pilihan tepat bagi siswa yang memiliki minat dalam dunia teknologi, logika, inovasi, dan penciptaan solusi berbasis perangkat lunak. Lulusan jurusan ini sangat dibutuhkan di era digital saat ini karena hampir semua sektor industri memerlukan dukungan sistem informasi dan aplikasi untuk mendukung operasional dan inovasi bisnis mereka.
-                        </p>
+                        @foreach ($jurusans as $jurusan)
+                            <p class="text-gray-700 leading-relaxed mb-2">
+                                {!! $jurusan->isi ?? '' !!}
+                            </p>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -326,7 +318,7 @@
             <div class="absolute bottom-10 right-10 w-40 h-40 bg-purple-300 rounded-full blur-3xl"></div>
             <div class="absolute top-1/2 left-1/3 w-24 h-24 bg-indigo-300 rounded-full blur-2xl"></div>
         </div>
-        
+
         <div class="container mx-auto px-6 relative">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-12">
@@ -347,70 +339,70 @@
                             <p class="font-semibold">MySQL</p>
                         </div>
                     </div>
-                    
+
                     <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="coffee" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
                             <p class="font-semibold">Java</p>
                         </div>
                     </div>
-                    
+
                     <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="code" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
                             <p class="font-semibold">PHP</p>
                         </div>
                     </div>
-                    
+
                     <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="zap" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
                             <p class="font-semibold">Laravel</p>
                         </div>
                     </div>
-                    
+
                     <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="smartphone" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
                             <p class="font-semibold">Flutter</p>
                         </div>
                     </div>
-                    
+
                     <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="triangle" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
                             <p class="font-semibold">JavaScript</p>
                         </div>
                     </div>
-                    
+
                     <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="file-text" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
                             <p class="font-semibold">HTML</p>
                         </div>
                     </div>
-                    
+
                     <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="layout" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
                             <p class="font-semibold">CSS</p>
                         </div>
                     </div>
-                    
+
                     <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="terminal" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
                             <p class="font-semibold">Python</p>
                         </div>
                     </div>
-                    
+
                     <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="figma" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
                             <p class="font-semibold">Figma</p>
                         </div>
                     </div>
-                    
+
                     <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300">
                         <div class="text-center">
                             <i data-feather="git-branch" class="w-8 h-8 mx-auto mb-2 text-purple-300"></i>
@@ -538,7 +530,7 @@
                         </div>
                         <h3 class="text-2xl font-bold text-gray-900">Kelebihan Jurusan RPL</h3>
                     </div>
-                    
+
                     <div class="grid md:grid-cols-2 gap-8">
                         <div class="space-y-6">
                             <div class="flex items-start">
@@ -550,7 +542,7 @@
                                     <p class="text-gray-600">Menyediakan keterampilan yang sangat dibutuhkan di dunia kerja modern dan era digital</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-start">
                                 <div class="bg-green-100 p-2 rounded-full mr-4 mt-1">
                                     <i data-feather="check" class="w-5 h-5 text-green-600"></i>
@@ -561,7 +553,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="space-y-6">
                             <div class="flex items-start">
                                 <div class="bg-green-100 p-2 rounded-full mr-4 mt-1">
@@ -572,7 +564,7 @@
                                     <p class="text-gray-600">Berpotensi untuk bekerja secara freelance atau membuka startup teknologi sendiri</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-start">
                                 <div class="bg-green-100 p-2 rounded-full mr-4 mt-1">
                                     <i data-feather="check" class="w-5 h-5 text-green-600"></i>
@@ -601,12 +593,12 @@
             animation: marquee-img 25s linear infinite;
             align-items: center;
         }
-        
+
         /* Hover effects */
         .group:hover .group-hover\:scale-110 {
             transform: scale(1.1);
         }
-        
+
         /* Smooth transitions */
         * {
             transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);

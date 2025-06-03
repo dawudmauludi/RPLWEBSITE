@@ -34,6 +34,22 @@
                             title: 'Berhasil!',
                             text: '{{ session('success') }}',
                             confirmButtonColor: '#7c3aed'
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    });
+                </script>
+        @endif
+         @if(session('error'))
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal!',
+                            text: '{{ session('error') }}',
+                            confirmButtonColor: '#e3342f',
+                            showConfirmButton: false,
+                            timer: 2000
                         });
                     });
                 </script>
