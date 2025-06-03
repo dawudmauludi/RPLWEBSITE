@@ -34,21 +34,21 @@
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto">
                 <div class="flex items-center mb-8">
+                    @foreach ($jurusans as $jurusan)
                     <div class="bg-purple-100 p-3 rounded-full mr-4">
                         <i data-aos="fade-right" data-aos-duration="1600" data-feather="info" class="w-6 h-6 text-purple-600"></i>
                     </div>
-                    <h2 data-aos="fade-right" data-aos-duration="1600" class="text-3xl font-bold text-gray-900">Tentang Jurusan RPL</h2>
+                    <h2 data-aos="fade-right" data-aos-duration="1600" class="text-3xl font-bold text-gray-900">Tentang Jurusan {{ $jurusan->name }}</h2>
                 </div>
 
                 <div class="prose prose-lg max-w-none">
                     <div data-aos="fade-up" data-aos-duration="1600" class="bg-gradient-to-r from-purple-50 to-indigo-50 p-8 rounded-2xl border border-purple-100 mb-8">
-                        @foreach ($jurusans as $jurusan)
                             <p class="text-gray-700 leading-relaxed mb-2">
                                 {!! $jurusan->isi ?? '' !!}
                             </p>
-                        @endforeach
+                        </div>
                     </div>
-                </div>
+                    @endforeach
             </div>
         </div>
     </section>
@@ -189,122 +189,16 @@
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-purple-50 to-indigo-50 p-6 rounded-xl border border-purple-100 hover:border-purple-200 hover:shadow-lg transition-all duration-300">
-                        <div class="flex items-center">
-                            <div class="bg-purple-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
-                                <i data-feather="code" class="w-5 h-5 text-white"></i>
+                    @foreach ($lessons as $lesson)
+                        <a href="{{  route('lesson.show', $lesson->slug) }}" data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-100 hover:border-blue-200 hover:shadow-lg transition-all duration-300">
+                            <div class="flex items-center">
+                                <div class="bg-blue-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
+                                    <i data-feather="{{ $lesson->icon }}" class="w-5 h-5 text-white"></i>
+                                </div>
+                                <span class="font-semibold text-gray-800">{{$lesson->name}}</span>
                             </div>
-                            <span class="font-semibold text-gray-800">Dasar-Dasar Pemrograman</span>
-                        </div>
-                    </div>
-
-                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-100 hover:border-blue-200 hover:shadow-lg transition-all duration-300">
-                        <div class="flex items-center">
-                            <div class="bg-blue-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
-                                <i data-feather="layers" class="w-5 h-5 text-white"></i>
-                            </div>
-                            <span class="font-semibold text-gray-800">Pemrograman Berorientasi Objek</span>
-                        </div>
-                    </div>
-
-                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl border border-green-100 hover:border-green-200 hover:shadow-lg transition-all duration-300">
-                        <div class="flex items-center">
-                            <div class="bg-green-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
-                                <i data-feather="globe" class="w-5 h-5 text-white"></i>
-                            </div>
-                            <span class="font-semibold text-gray-800">Pemrograman Web & Mobile</span>
-                        </div>
-                    </div>
-
-                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-orange-50 to-red-50 p-6 rounded-xl border border-orange-100 hover:border-orange-200 hover:shadow-lg transition-all duration-300">
-                        <div class="flex items-center">
-                            <div class="bg-orange-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
-                                <i data-feather="database" class="w-5 h-5 text-white"></i>
-                            </div>
-                            <span class="font-semibold text-gray-800">Basis Data</span>
-                        </div>
-                    </div>
-
-                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-pink-50 to-rose-50 p-6 rounded-xl border border-pink-100 hover:border-pink-200 hover:shadow-lg transition-all duration-300">
-                        <div class="flex items-center">
-                            <div class="bg-pink-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
-                                <i data-feather="figma" class="w-5 h-5 text-white"></i>
-                            </div>
-                            <span class="font-semibold text-gray-800">Desain UI/UX</span>
-                        </div>
-                    </div>
-
-                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-indigo-50 to-purple-50 p-6 rounded-xl border border-indigo-100 hover:border-indigo-200 hover:shadow-lg transition-all duration-300">
-                        <div class="flex items-center">
-                            <div class="bg-indigo-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
-                                <i data-feather="server" class="w-5 h-5 text-white"></i>
-                            </div>
-                            <span class="font-semibold text-gray-800">Pemrograman Web Dinamis</span>
-                        </div>
-                    </div>
-
-                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-teal-50 to-cyan-50 p-6 rounded-xl border border-teal-100 hover:border-teal-200 hover:shadow-lg transition-all duration-300">
-                        <div class="flex items-center">
-                            <div class="bg-teal-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
-                                <i data-feather="activity" class="w-5 h-5 text-white"></i>
-                            </div>
-                            <span class="font-semibold text-gray-800">Analisis & Perancangan Sistem</span>
-                        </div>
-                    </div>
-
-                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-violet-50 to-purple-50 p-6 rounded-xl border border-violet-100 hover:border-violet-200 hover:shadow-lg transition-all duration-300">
-                        <div class="flex items-center">
-                            <div class="bg-violet-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
-                                <i data-feather="settings" class="w-5 h-5 text-white"></i>
-                            </div>
-                            <span class="font-semibold text-gray-800">Rekayasa Perangkat Lunak</span>
-                        </div>
-                    </div>
-
-                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-emerald-50 to-green-50 p-6 rounded-xl border border-emerald-100 hover:border-emerald-200 hover:shadow-lg transition-all duration-300">
-                        <div class="flex items-center">
-                            <div class="bg-emerald-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
-                                <i data-feather="check-circle" class="w-5 h-5 text-white"></i>
-                            </div>
-                            <span class="font-semibold text-gray-800">Software Testing & Debugging</span>
-                        </div>
-                    </div>
-
-                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-amber-50 to-yellow-50 p-6 rounded-xl border border-amber-100 hover:border-amber-200 hover:shadow-lg transition-all duration-300">
-                        <div class="flex items-center">
-                            <div class="bg-amber-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
-                                <i data-feather="briefcase" class="w-5 h-5 text-white"></i>
-                            </div>
-                            <span class="font-semibold text-gray-800">Manajemen Proyek Software</span>
-                        </div>
-                    </div>
-
-                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-rose-50 to-pink-50 p-6 rounded-xl border border-rose-100 hover:border-rose-200 hover:shadow-lg transition-all duration-300">
-                        <div class="flex items-center">
-                            <div class="bg-rose-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
-                                <i data-feather="award" class="w-5 h-5 text-white"></i>
-                            </div>
-                            <span class="font-semibold text-gray-800">Produk Kreatif & Kewirausahaan</span>
-                        </div>
-                    </div>
-
-                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-slate-50 to-gray-50 p-6 rounded-xl border border-slate-100 hover:border-slate-200 hover:shadow-lg transition-all duration-300">
-                        <div class="flex items-center">
-                            <div class="bg-slate-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
-                                <i data-feather="monitor" class="w-5 h-5 text-white"></i>
-                            </div>
-                            <span class="font-semibold text-gray-800">Pemrograman Desktop</span>
-                        </div>
-                    </div>
-
-                    <div data-aos="fade-up" data-aos-duration="1600" class="group bg-gradient-to-br from-red-50 to-orange-50 p-6 rounded-xl border border-red-100 hover:border-red-200 hover:shadow-lg transition-all duration-300">
-                        <div class="flex items-center">
-                            <div class="bg-red-500 p-2 rounded-lg mr-3 group-hover:scale-110 transition-transform duration-300">
-                                <i data-feather="shield" class="w-5 h-5 text-white"></i>
-                            </div>
-                            <span class="font-semibold text-gray-800">Keamanan Aplikasi</span>
-                        </div>
-                    </div>
+                        </a>
+                    @endforeach
                 </div>
             </div>
         </div>

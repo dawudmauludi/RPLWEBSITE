@@ -16,6 +16,7 @@ use App\Http\Controllers\kategoriBeritaController;
 use App\Http\Controllers\kategoriKaryaController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KontakController;
+use App\Http\Controllers\LessonController;
 use App\Http\Controllers\NilaiExportController;
 use App\Http\Controllers\NilaiUlanganController;
 use App\Http\Controllers\profileGuruController;
@@ -39,6 +40,7 @@ Route::get('/berita', [BeritaController::class, 'all'])->name('berita.all');
 Route::get('/karya', [KaryaSiswaController::class, 'all'])->name('karya.all');
 Route::get('/karya/{karya}', [KaryaSiswaController::class, 'show'])->name('karya.show');
 Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.show');
+Route::get('/tentang-jurusan/{slug}', [LessonController::class, 'show'])->name('lesson.show');
 
 
 Route::get('/kontak', function (){
@@ -85,6 +87,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/users/addPoint',[addPoinController::class,'indexAddPoint'])->name('users.indexAddPoint');
     Route::resource('future', FutureController::class);
     Route::resource('jurusan', JurusanController::class);
+    Route::resource('lesson', LessonController::class)->except(['show'])->parameters(['lesson' => 'lesson']);
 });
 
 

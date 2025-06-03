@@ -85,7 +85,7 @@ class JurusanController extends Controller
             if ($jurusan->image && Storage::disk('public')->exists($jurusan->image)) {
                 Storage::disk('public')->delete($jurusan->image);
             }
-            $data['imag'] = $request->file('image')->store('jurusan', 'public');
+            $data['image'] = $request->file('image')->store('jurusan', 'public');
         }
 
         $jurusan->update($data);
@@ -98,6 +98,11 @@ class JurusanController extends Controller
      */
     public function destroy(Jurusan $jurusan)
     {
-        //
+        if ($jurusan->image && Storage::disk('public')->exists($jurusan->image)) {
+            Storage::disk('public')->delete($jurusan->image);
+        }
+        $jurusan->delete();
+
+        return redirect()->route('admin.jurusan.index')->with('success', 'Jurusan deleted successfully.');
     }
 }
