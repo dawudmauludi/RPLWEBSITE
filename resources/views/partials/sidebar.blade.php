@@ -70,15 +70,10 @@
                 <span>Kelas</span>
             </a>
 
-<<<<<<< Updated upstream
-            <a href="{{ route('admin.user.index') }}"
-               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('admin/user*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
-                <i data-feather="user" class="w-5 h-5 {{ request()->is('admin/user*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
-=======
+
             <a href="{{ route('admin.user.index') }}"
                class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->routeIs('admin.user.index') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
                 <i data-feather="user" class="w-5 h-5 {{ request()->routeIs('admin.user.index') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
->>>>>>> Stashed changes
                 <span>User</span>
             </a>
 
@@ -100,25 +95,6 @@
                 <span>Berita & Artikel</span>
             </a>
 
-<<<<<<< Updated upstream
-        @role('guru')
-            <a href="{{ route('guru.karya.index') }}"
-               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('guru/karya*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
-                <i data-feather="award" class="w-5 h-5 {{ request()->is('guru/karya*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
-                <span>Karya Siswa</span>
-            </a>
-
-            <a href="{{ route('guru.kategoriKarya.index') }}"
-               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('guru/kategoriKarya*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
-                <i data-feather="folder" class="w-5 h-5 {{ request()->is('guru/kategoriKarya*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
-                <span>Kategori Karya</span>
-            </a>
-
-            <a href="{{ route('guru.approved') }}"
-               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('guru/approved*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
-                <i data-feather="user-plus" class="w-5 h-5 {{ request()->is('guru/approved*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
-                <span>Approve Siswa</span>
-=======
             <a href="{{ route('admin.karya.index') }}"
                class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('admin/karya*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
                 <i data-feather="award" class="w-5 h-5 {{ request()->is('admin/karya*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
@@ -143,7 +119,7 @@
                class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('guru/karya*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
                 <i data-feather="award" class="w-5 h-5 {{ request()->is('guru/karya*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
                 <span>Karya Siswa</span>
->>>>>>> Stashed changes
+
             </a>
 
             <a href="{{ route('ulangans.index') }}"
@@ -151,16 +127,6 @@
                 <i data-feather="file-text" class="w-5 h-5 {{ request()->is('ulangans*') || request()->is('nilai*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
                 <span>Ujian/Ulangan</span>
             </a>
-
-<<<<<<< Updated upstream
-            <a href="{{ route('guru.users.index') }}"
-               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('guru/users*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
-                <i data-feather="plus-circle" class="w-5 h-5 {{ request()->is('guru/users*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
-                <span>Tambah Poin Siswa</span>
-            </a>
-=======
-
->>>>>>> Stashed changes
         @endrole
 
         @role('siswa')
