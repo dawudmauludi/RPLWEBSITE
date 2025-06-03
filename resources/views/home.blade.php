@@ -172,35 +172,25 @@
                 <h3 data-aos="fade-up" data-aos-duration="1600" class="text-2xl text-purple-600 mb-8">Rekayasa Perangkat Lunak</h3>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                    @php
-                    $subjects = [
-                        ['name' => 'Dasar-Dasar Pemrograman', 'icon' => 'code'],
-                        ['name' => 'Pemrograman Berorientasi Objek (PBO)', 'icon' => 'layers'],
-                        ['name' => 'Pemrograman Web dan Perangkat Bergerak (PWB)', 'icon' => 'smartphone'],
-                        ['name' => 'Basis Data', 'icon' => 'database'],
-                        ['name' => 'Desain UI/UX', 'icon' => 'layout'],
-                        ['name' => 'Pemrograman Web Dinamis', 'icon' => 'globe'],
-                        ['name' => 'Analisis dan Perancangan Sistem', 'icon' => 'settings'],
-                        ['name' => 'Rekayasa Perangkat Lunak', 'icon' => 'cpu'],
-                        ['name' => 'Software Testing & Debugging', 'icon' => 'terminal'],
-                        ['name' => 'Manajemen Proyek Perangkat Lunak', 'icon' => 'briefcase'],
-                        ['name' => 'Produk Kreatif dan Kewirausahaan (PKK)', 'icon' => 'coffee'],
-                        ['name' => 'Pemrograman Desktop', 'icon' => 'monitor'],
-                        ['name' => 'Keamanan Aplikasi', 'icon' => 'shield']
-                    ];
-                    @endphp
-
-                    @foreach($subjects as $subject)
-                    <div data-aos="fade-right" data-aos-duration="1600" class="group flex items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-purple-100 hover:border-purple-300">
-                        <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
-                            <i data-feather="{{ $subject['icon'] }}" class="w-5 h-5 text-white"></i>
-                        </div>
-                        <span class="text-gray-700 group-hover:text-purple-700 font-medium transition-colors duration-300">{{ $subject['name'] }}</span>
-                    </div>
+                   @foreach($lessons as $lesson)
+                        <a href="{{ route('lesson.show', $lesson->slug) }}"
+                        class="block"
+                        data-aos="fade-right"
+                        data-aos-duration="1600">
+                            <div class="group flex items-center p-4 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-purple-100 hover:border-purple-300">
+                                <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                    <i data-feather="{{ $lesson->icon }}" class="w-5 h-5 text-white"></i>
+                                </div>
+                                <span class="text-gray-700 group-hover:text-purple-700 font-medium transition-colors duration-300">
+                                    {{ $lesson->name }}
+                                </span>
+                            </div>
+                        </a>
                     @endforeach
+
                 </div>
 
-                <a href="/detail-jurusan"
+                <a href="{{ route('detail.jurusan') }}"
                    class="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
                     <i data-feather="external-link" class="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300"></i>
                     Selengkapnya
