@@ -43,7 +43,7 @@
                     <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-400/20 to-pink-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
                 </a>
 
-                <a href="/detail-jurusan" class="group relative px-4 py-2.5 rounded-xl hover:bg-white/10 backdrop-blur-sm text-white transition-all duration-300 flex items-center {{ request()->is('detail-jurusan') ? 'bg-white/20 shadow-lg' : '' }}">
+                <a href="{{ route('detail.jurusan') }}" class="group relative px-4 py-2.5 rounded-xl hover:bg-white/10 backdrop-blur-sm text-white transition-all duration-300 flex items-center {{ request()->is('detail-jurusan') ? 'bg-white/20 shadow-lg' : '' }}">
                     <div class="w-5 h-5 mr-2 transition-all duration-300 group-hover:scale-110">
                         <i data-feather="info" class="w-full h-full"></i>
                     </div>
@@ -155,7 +155,7 @@
                         <div class="w-5 h-5 mr-2 transition-all duration-300 group-hover:scale-110">
                             <i data-feather="user" class="w-full h-full"></i>
                         </div>
-                        <span>Login & Register</span>
+                        <span>Login</span>
                     </a>
                 @endauth
             </div>
@@ -181,7 +181,7 @@
                         <span class="font-medium">Beranda</span>
                     </a>
 
-                    <a href="/detail-jurusan" class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 transition-all duration-300 {{ request()->is('detail-jurusan') ? 'bg-white/20' : '' }}">
+                    <a href="{{ route('detail.jurusan') }}" class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 transition-all duration-300 {{ request()->is('detail-jurusan') ? 'bg-white/20' : '' }}">
                         <div class="w-5 h-5 mr-3 transition-all duration-300 group-hover:scale-110">
                             <i data-feather="info" class="w-full h-full"></i>
                         </div>

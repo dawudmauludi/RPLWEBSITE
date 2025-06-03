@@ -109,14 +109,15 @@
                     <i data-feather="cpu" class="w-8 h-8 text-purple-300 mr-3"></i>
                     <h2 data-aos="fade-up" data-aos-duration="1600" class="text-4xl font-bold">Jurusan</h2>
                 </div>
-                <h3 data-aos="fade-down" data-aos-duration="1600" class="text-2xl text-purple-200 mb-6">Rekayasa Perangkat Lunak</h3>
+                @foreach ($jurusans as $jurusan)
+                    <h3 data-aos="fade-down" data-aos-duration="1600" class="text-2xl text-purple-200 mb-6">{{$jurusan->name}}</h3>
 
                 <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
                     <p class="text-purple-100 leading-relaxed mb-6">
-                        Rekayasa Perangkat Lunak atau RPL adalah salah satu jurusan dalam bidang teknologi Informasi dan Komunikasi (TIK) yang berfokus pada pengembangan software. Jurusan ini mempelajari seluruh proses dalam pembuatan aplikasi, mulai dari perencanaan, analisis kebutuhan, perancangan sistem, penulisan kode (pemrograman), pengujian, hingga pemeliharaan software.
+                        {!! Str::limit($jurusan->isi, 500, ' ...') !!}
                     </p>
 
-                    <div class="flex flex-wrap gap-3 mb-6">
+                    <div class="flex flex-wrap gap-3 mb-6 mt-4">
                         <span class="px-3 py-1 bg-purple-600/50 rounded-full text-sm flex items-center">
                             <i data-feather="code" class="w-4 h-4 mr-2"></i>Programming
                         </span>
@@ -137,6 +138,7 @@
                         Selengkapnya
                     </a>
                 </div>
+                @endforeach
             </div>
 
             <div class="lg:w-1/2">

@@ -6,6 +6,7 @@ use App\Http\Controllers\authController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\CekKaryaController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DetailJurusanController;
 use App\Http\Controllers\FutureController;
 use App\Http\Controllers\GuruProfileController;
 use App\Http\Controllers\HomeController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SiswaProfileController;
 use App\Http\Controllers\UlanganController;
 use App\Http\Controllers\siswaUploadKaryaController;
+use App\Http\Controllers\TentangJurusanController;
 use App\Http\Controllers\UserAproveController;
 use App\Http\Controllers\UsersController;
 use App\Models\guru_profile;
@@ -32,17 +34,12 @@ use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/tentang-jurusan', [DetailJurusanController::class, 'index'])->name('detail.jurusan');
 Route::get('/berita', [BeritaController::class, 'all'])->name('berita.all');
 Route::get('/karya', [KaryaSiswaController::class, 'all'])->name('karya.all');
 Route::get('/karya/{karya}', [KaryaSiswaController::class, 'show'])->name('karya.show');
 Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.show');
 
-
-
-
-Route::get('/detail-jurusan', function () {
-    return view('detail_jurusan');
-});
 
 Route::get('/kontak', function (){
     return view('kontak');

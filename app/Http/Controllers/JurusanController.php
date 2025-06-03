@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jurusan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class JurusanController extends Controller
 {
@@ -21,6 +22,10 @@ class JurusanController extends Controller
      */
     public function create()
     {
+        $jumlahData = Jurusan::all()->count();
+        if ($jumlahData >= 1) {
+            return redirect()->route('admin.jurusan.index')->with('error', 'Data Jurusan sudah ada, tidak bisa menambahkan lagi');
+        }
         return view('dashboard.admin.jurusan.create');
     }
 
@@ -31,8 +36,10 @@ class JurusanController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'other_name' => 'required|string',
+            'slogan' => 'required|string',
             'isi' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|max:2048',
         ]);
 
         $data = $request->all();
@@ -57,7 +64,7 @@ class JurusanController extends Controller
      */
     public function edit(Jurusan $jurusan)
     {
-        //
+        return view('dashboard.admin.jurusan.edit', compact('jurusan'));
     }
 
     /**
@@ -65,7 +72,25 @@ class JurusanController extends Controller
      */
     public function update(Request $request, Jurusan $jurusan)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'other_name' => 'required|string',
+            'slogan' => 'required|string',
+            'isi' => 'required|string',
+            'image' => 'nullable|image|max:2048',
+        ]);
+
+        $data = $request->all();
+        if ($request->hasFile('image')) {
+            if ($jurusan->image && Storage::disk('public')->exists($jurusan->image)) {
+                Storage::disk('public')->delete($jurusan->image);
+            }
+            $data['imag'] = $request->file('image')->store('jurusan', 'public');
+        }
+
+        $jurusan->update($data);
+
+        return redirect()->route('admin.jurusan.index')->with('success', 'Jurusan updated successfully.');
     }
 
     /**
