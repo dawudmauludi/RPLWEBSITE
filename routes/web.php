@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FutureController;
 use App\Http\Controllers\GuruProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KaryaSiswaController;
 use App\Http\Controllers\kategoriBeritaController;
 use App\Http\Controllers\kategoriKaryaController;
@@ -86,6 +87,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::delete('/users/{user}/delete-point', [addPoinController::class, 'decrement'])->name('users.deletePoint');
     Route::get('/users/addPoint',[addPoinController::class,'indexAddPoint'])->name('users.indexAddPoint');
     Route::resource('future', FutureController::class);
+    Route::resource('jurusan', JurusanController::class);
 });
 
 
