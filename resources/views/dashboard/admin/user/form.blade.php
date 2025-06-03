@@ -51,7 +51,7 @@
             <div>
                 <label class="flex items-center text-sm font-semibold text-gray-700 mb-2">
                     <i data-feather="user" class="w-4 h-4 mr-2 text-purple-600"></i>
-                    Nama
+                    Username
                     <span class="text-red-500 ml-1">*</span>
                 </label>
                 <div class="relative">
@@ -62,7 +62,7 @@
                            name="name"
                            value="{{ old('name', $user->name ?? '') }}"
                            required
-                           placeholder="Masukkan nama lengkap"
+                           placeholder="Masukkan Username"
                            class="block w-full pl-10 pr-3 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200 @error('nama') border-red-500 @enderror">
                 </div>
                 @error('name')
@@ -83,7 +83,7 @@
                     <input type="text"
                            name="email"
                            value="{{ old('email', $user->email ?? '') }}"
-                           placeholder="Masukkan NIP"
+                           placeholder="Masukkan email"
                            required
                            class="block w-full pl-10 pr-3 py-3 border  rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200 @error('nip') border-red-500 @enderror">
                 </div>

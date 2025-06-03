@@ -29,11 +29,11 @@ class NilaiUlanganExport implements FromCollection, WithHeadings
 
         return $sorted->map(function ($nilai) {
             return [
-                'No Absen' => $nilai->user->siswaprofile->no_absen ?? '-',
-                'Nama Siswa' => $nilai->user->nama,
-                'Kelas' => $nilai->user->kelas->nama ?? '-',
-                'Nilai' => $nilai->nilai,
-                'Status' => $nilai->nilai >= 75 ? 'Lulus' : 'Tidak Lulus',
+                'no_absen' => $nilai->user->siswaprofile->no_absen ?? '-',
+                'nama' => $nilai->user->siswaProfile->nama,
+                'kelas' => $nilai->user->kelas->nama ?? '-',
+                'nilai' => $nilai->nilai,
+                'status' => $nilai->nilai >= 75 ? 'Lulus' : 'Tidak Lulus',
             ];
         })->values();
     }
@@ -41,11 +41,11 @@ class NilaiUlanganExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
-            'No Absen',
-            'Nama Siswa',
-            'Kelas',
-            'Nilai',
-            'Status',
+            'no_absen',
+            'nama',
+            'kelas',
+            'nilai',
+            'status',
         ];
     }
 }

@@ -44,23 +44,23 @@
         <div class="text-center mb-16 px-6">
             <div class="inline-flex items-center gap-2 bg-purple-100 backdrop-blur-sm border border-purple-200 rounded-full px-4 py-2 mb-6">
                 <i data-feather="mail" class="w-4 h-4 text-purple-600"></i>
-                <span class="text-sm text-purple-700 font-medium">Get In Touch</span>
+                <span class="text-sm text-purple-700 font-medium">Hubungi Kami</span>
             </div>
-            
+
             <h1 class="text-5xl md:text-6xl font-black text-gray-800 mb-6 leading-tight">
-                Contact <span class="bg-gradient-to-r from-purple-600 via-purple-700 to-indigo-600 bg-clip-text text-transparent">Me</span>
+                Kontak <span class="bg-gradient-to-r from-purple-600 via-purple-700 to-indigo-600 bg-clip-text text-transparent">Kami</span>
             </h1>
-            
+
             <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Let's make the website you want come true by contacting us below. 
-                <span class="font-semibold text-purple-700">I'm here to help bring your vision to life.</span>
+                Mari tanyakaan seputar rekayasa perangkat lunak dengan menghubungi kami di bawah ini.
+                <span class="font-semibold text-purple-700">Saya di sini untuk membantu menjawab pertanyaan anda.</span>
             </p>
         </div>
 
         <!-- Main Content -->
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid lg:grid-cols-3 gap-8">
-                
+
                 <!-- Contact Form -->
                 <div class="lg:col-span-2">
                     <div class="bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8 lg:p-12 hover:shadow-3xl transition-all duration-500">
@@ -69,8 +69,8 @@
                                 <i data-feather="edit-3" class="w-6 h-6 text-purple-600"></i>
                             </div>
                             <div>
-                                <h2 class="text-2xl font-bold text-gray-800">Send Me a Message</h2>
-                                <p class="text-gray-600">I'll get back to you as soon as possible</p>
+                                <h2 class="text-2xl font-bold text-gray-800">Kirimi Saya Pesan</h2>
+                                <p class="text-gray-600">Saya akan menghubungi Anda kembali sesegera mungkin</p>
                             </div>
                         </div>
 
@@ -80,22 +80,22 @@
                                 <div class="group">
                                     <label class="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
                                         <i data-feather="user" class="w-4 h-4 text-purple-600"></i>
-                                        Full Name
+                                        Nama Lengkap
                                     </label>
-                                    <input type="text" 
+                                    <input type="text"
                                             name="full_name"
-                                           placeholder="Enter your full name" 
+                                           placeholder="isi nama lengkap Anda"
                                            class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-500 hover:border-purple-300">
                                 </div>
-                                
+
                                 <div class="group">
                                     <label class="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
                                         <i data-feather="mail" class="w-4 h-4 text-purple-600"></i>
-                                        Email Address
+                                        Alamat Email
                                     </label>
                                     <input type="email"
-                                           name="email" 
-                                           placeholder="your.email@example.com" 
+                                           name="email"
+                                           placeholder="email@gmail.com"
                                            class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-500 hover:border-purple-300">
                                 </div>
                             </div>
@@ -104,22 +104,22 @@
                                 <div class="group">
                                     <label class="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
                                         <i data-feather="phone" class="w-4 h-4 text-purple-600"></i>
-                                        Phone Number
+                                        Nomor Telepon
                                     </label>
                                     <input type="tel"
-                                           name="phone_number"  
-                                           placeholder="+62 812-3456-7890" 
+                                           name="phone_number"
+                                           placeholder="+62 812-3456-7890"
                                            class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-500 hover:border-purple-300">
                                 </div>
-                                
+
                                 <div class="group">
                                     <label class="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
                                         <i data-feather="tag" class="w-4 h-4 text-purple-600"></i>
-                                        Subject
+                                        Subjek
                                     </label>
-                                    <input type="text" 
+                                    <input type="text"
                                            name="subject"
-                                           placeholder="What's this about?" 
+                                           placeholder="Tentang apa ini?"
                                            class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-500 hover:border-purple-300">
                                 </div>
                             </div>
@@ -127,20 +127,20 @@
                             <div class="group">
                                 <label class="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
                                     <i data-feather="message-circle" class="w-4 h-4 text-purple-600"></i>
-                                    Your Message
+                                    Pesan Anda
                                 </label>
-                                <textarea placeholder="Tell me about your project or how I can help you..." 
-                                          rows="6" 
+                                <textarea placeholder="Tell me about your project or how I can help you..."
+                                          rows="6"
                                           name="message"
                                           class="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-500 hover:border-purple-300 resize-none"></textarea>
                             </div>
 
                              <div class="g-recaptcha my-4" data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}" required></div>
 
-                            <button type="submit" 
+                            <button type="submit"
                                     class="group flex items-center justify-center gap-3 w-full md:w-auto bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
                                 <i data-feather="send" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
-                                Send Message
+                                Kirim Pesan
                             </button>
                         </form>
                     </div>
@@ -155,20 +155,20 @@
                             <div class="absolute -top-10 -right-10 w-40 h-40 bg-white rounded-full"></div>
                             <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-white rounded-full"></div>
                         </div>
-                        
+
                         <div class="relative z-10">
                             <div class="flex items-center gap-3 mb-6">
                                 <div class="p-3 bg-white/20 rounded-xl backdrop-blur-sm">
                                     <i data-feather="heart" class="w-6 h-6"></i>
                                 </div>
                                 <div>
-                                    <h3 class="text-xl font-bold">Let's Connect</h3>
-                                    <p class="text-purple-100">I'd love to hear from you</p>
+                                    <h3 class="text-xl font-bold">Mari Terhubung</h3>
+                                    <p class="text-purple-100">Saya ingin sekali mendengar kabar dari Anda</p>
                                 </div>
                             </div>
 
                             <p class="text-purple-100 mb-8 leading-relaxed">
-                                Ready to start your next project? Whether you need a stunning website, mobile app, or just want to chat about technology, I'm here to help make your ideas come to life.
+                                Siap untuk memulai proyek Anda berikutnya? Baik Anda memerlukan situs web yang memukau, aplikasi seluler, atau sekadar ingin mengobrol tentang teknologi, saya siap membantu mewujudkan ide-ide Anda.
                             </p>
 
                             <div class="space-y-6">
@@ -177,7 +177,7 @@
                                         <i data-feather="phone" class="w-5 h-5"></i>
                                     </div>
                                     <div>
-                                        <p class="text-sm text-purple-200 font-medium">Phone</p>
+                                        <p class="text-sm text-purple-200 font-medium">Nomer Telepon</p>
                                         <p class="font-semibold">+62 88228513539</p>
                                     </div>
                                 </div>
@@ -205,7 +205,7 @@
                         </div>
                     </div>
 
-                
+
 
                     <!-- Response Time Card -->
                     <div class="bg-gradient-to-br from-purple-600 to-indigo-700 text-white rounded-3xl shadow-2xl p-6 relative overflow-hidden">
@@ -213,13 +213,13 @@
                             <div class="absolute -top-4 -right-4 w-20 h-20 bg-white rounded-full"></div>
                             <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-white rounded-full"></div>
                         </div>
-                        
+
                         <div class="relative z-10 text-center">
                             <div class="inline-flex items-center justify-center w-12 h-12 bg-white/20 rounded-xl mb-4">
                                 <i data-feather="clock" class="w-6 h-6"></i>
                             </div>
-                            <h4 class="font-bold text-lg mb-2">Quick Response</h4>
-                            <p class="text-sm opacity-90">I typically respond within 24 hours</p>
+                            <h4 class="font-bold text-lg mb-2">Respon Cepat</h4>
+                            <p class="text-sm opacity-90">Saya biasanya merespons dalam waktu 24 jam</p>
                         </div>
                     </div>
                 </div>
@@ -242,12 +242,12 @@
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.querySelector('form');
         const inputs = form.querySelectorAll('input, textarea');
-        
+
         inputs.forEach(input => {
             input.addEventListener('focus', function() {
                 this.parentElement.classList.add('focused');
             });
-            
+
             input.addEventListener('blur', function() {
                 this.parentElement.classList.remove('focused');
             });
