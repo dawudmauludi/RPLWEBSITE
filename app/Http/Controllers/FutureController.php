@@ -12,7 +12,16 @@ class FutureController extends Controller
      */
     public function index()
     {
-        //
+        $query = Future::query();
+
+        if ($search = request('search')) {
+            $query->where('name', 'like', '%' . $search . '%')
+                  ->orWhere('description', 'like', '%' . $search . '%');
+        }
+
+        $futures = $query->paginate(10)->withQueryString();
+
+        return view('dashboard.admin.future.index', compact('futures'));
     }
 
     /**
@@ -20,7 +29,7 @@ class FutureController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.admin.future.create');
     }
 
     /**
@@ -28,7 +37,19 @@ class FutureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'icon' => 'required|string',
+        ]);
+
+        Future::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'icon' => $request->icon,
+        ]);
+
+        return redirect()->route('admin.future.index')->with('success', 'Future created successfully.');
     }
 
     /**
@@ -44,7 +65,7 @@ class FutureController extends Controller
      */
     public function edit(Future $future)
     {
-        //
+        return view('dashboard.admin.future.edit', compact('future'));
     }
 
     /**
@@ -52,7 +73,19 @@ class FutureController extends Controller
      */
     public function update(Request $request, Future $future)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'icon' => 'required|string',
+        ]);
+
+        $future->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'icon' => $request->icon,
+        ]);
+
+        return redirect()->route('admin.future.index')->with('success', 'Future updated successfully.');
     }
 
     /**
@@ -60,6 +93,7 @@ class FutureController extends Controller
      */
     public function destroy(Future $future)
     {
-        //
+        $future->delete();
+        return redirect()->route('admin.future.index')->with('success', 'Future deleted successfully.');
     }
 }

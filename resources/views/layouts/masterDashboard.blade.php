@@ -55,6 +55,7 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
     @yield('scripts')
 </body>
 </html>
