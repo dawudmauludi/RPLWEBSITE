@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Buat role jika belum ada
-        $roles = ['admin', 'guru', 'siswa'];
+        $roles = ['admin', 'guru', 'siswa','alumni'];
         foreach ($roles as $name) {
             Role::firstOrCreate(['name' => $name]);
         }
@@ -27,6 +27,7 @@ class UserSeeder extends Seeder
             ['name' => 'Irnanto', 'email' => 'guru@gmail.com','password' => 'guruRpl_1', 'role' => 'guru'],
             ['name' => 'Rodhi', 'email' => 'siswa@gmail.com','password' => 'siswaRpl_1', 'role' => 'siswa'],
             ['name' => 'Firmansyah', 'email' => 'siswa1@gmail.com','password' => 'siswaRpl_1', 'role' => 'siswa'],
+            ['name' => 'dawud', 'email' => 'alumni1@gmail.com','password' => 'alumniRpl_1', 'role' => 'alumni'],
         ];
 
         foreach ($users as $data) {

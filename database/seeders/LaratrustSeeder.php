@@ -31,10 +31,14 @@ class LaratrustSeeder extends Seeder
         foreach ($config as $key => $modules) {
 
             // Create a new role
-            $role = \App\Models\Role::firstOrCreate([
+          $role = \App\Models\Role::firstOrCreate([
                 'name' => $key,
+            ]);
+
+            // Update display_name dan description jika belum sesuai
+            $role->update([
                 'display_name' => ucwords(str_replace('_', ' ', $key)),
-                'description' => ucwords(str_replace('_', ' ', $key))
+                'description' => ucwords(str_replace('_', ' ', $key)),
             ]);
             $permissions = [];
 
