@@ -118,18 +118,11 @@
                     </p>
 
                     <div class="flex flex-wrap gap-3 mb-6 mt-4">
+                        @foreach ($lessons->take(4) as $lesson)
                         <span class="px-3 py-1 bg-purple-600/50 rounded-full text-sm flex items-center">
-                            <i data-feather="code" class="w-4 h-4 mr-2"></i>Programming
+                            <i data-feather="{{ $lesson->icon }}" class="w-4 h-4 mr-2"></i>{{ $lesson->name }}
                         </span>
-                        <span class="px-3 py-1 bg-indigo-600/50 rounded-full text-sm flex items-center">
-                            <i data-feather="database" class="w-4 h-4 mr-2"></i>Database
-                        </span>
-                        <span class="px-3 py-1 bg-violet-600/50 rounded-full text-sm flex items-center">
-                            <i data-feather="smartphone" class="w-4 h-4 mr-2"></i>Mobile Dev
-                        </span>
-                        <span class="px-3 py-1 bg-purple-600/50 rounded-full text-sm flex items-center">
-                            <i data-feather="globe" class="w-4 h-4 mr-2"></i>Web Dev
-                        </span>
+                        @endforeach
                     </div>
 
                     <a href="/tentang-jurusan"
@@ -172,7 +165,7 @@
                 <h3 data-aos="fade-up" data-aos-duration="1600" class="text-2xl text-purple-600 mb-8">Rekayasa Perangkat Lunak</h3>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                   @foreach($lessons as $lesson)
+                   @foreach($lessons->take(8) as $lesson)
                         <a href="{{ route('lesson.show', $lesson->slug) }}"
                         class="block"
                         data-aos="fade-right"
@@ -213,7 +206,7 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            @foreach ($karyas as $karya)
+            @foreach ($karyas->take(6) as $karya)
                 <div data-aos="zoom-in" data-aos-duration="1600" class="group bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-purple-200">
                     <!-- Header -->
                     <div class="relative">
