@@ -50,7 +50,7 @@
 
             <!-- Action Buttons -->
             <div class="hero-buttons flex flex-col sm:flex-row gap-3 sm:gap-4 animate-fade-in-up delay-300 w-full sm:w-auto">
-                <a href="/detail-jurusan"
+                <a href="/tentang-jurusan"
                    class="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl">
                     <div class="flex items-center justify-center">
                         <i data-feather="globe" class="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:rotate-12 transition-transform duration-300"></i>
@@ -132,7 +132,7 @@
                         </span>
                     </div>
 
-                    <a href="/detail-jurusan"
+                    <a href="/tentang-jurusan"
                        class="group inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
                         <i data-feather="arrow-right" class="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform duration-300"></i>
                         Selengkapnya

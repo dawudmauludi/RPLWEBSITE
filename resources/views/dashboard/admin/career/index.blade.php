@@ -1,6 +1,6 @@
 @extends('layouts.masterDashboard')
 
-@section('title', 'Dashboard Kategori Berita')
+@section('title', 'Dashboard Career')
 
 @section('content')
 <div class="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-100 p-6">
@@ -13,12 +13,12 @@
                         <i data-feather="users" class="w-8 h-8 text-purple-600"></i>
                     </div>
                     <div>
-                        <h1 class="text-3xl font-bold text-gray-800">Daftar Kategori Berita</h1>
-                        <p class="text-gray-600 mt-1">Kelola data Kategori Berita dengan sistem</p>
+                        <h1 class="text-3xl font-bold text-gray-800">Data career</h1>
+                        <p class="text-gray-600 mt-1">Kelola data career dengan sistem</p>
                     </div>
                 </div>
                 <div class="flex flex-col sm:flex-row sm:items-center gap-3 w-full md:w-auto">
-                    <form method="GET" action="{{ route('admin.kategoriBerita.index') }}" id="searchForm" autocomplete="off" class="w-full sm:w-auto">
+                    <form method="GET" action="{{ route('admin.career.index') }}" id="searchForm" autocomplete="off" class="w-full sm:w-auto">
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <i data-feather="search" class="w-5 h-5 text-gray-400"></i>
@@ -27,14 +27,14 @@
                                 name="search"
                                 id="searchInput"
                                 value="{{ request('search') }}"
-                                placeholder="Cari berdasarkan nama"
+                                placeholder="Cari berdasarkan name..."
                                 class="block w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200 text-gray-900 placeholder-gray-500">
                         </div>
                     </form>
-                    <a href="{{ route('admin.kategoriBerita.create') }}"
+                    <a href="{{ route('admin.career.create') }}"
                         class="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                         <i data-feather="plus" class="w-5 h-5"></i>
-                        <span>Tambah Kategori Berita</span>
+                        <span>Tambah career</span>
                     </a>
                 </div>
             </div>
@@ -47,11 +47,26 @@
                             title: 'Berhasil!',
                             text: '{{ session('success') }}',
                             confirmButtonColor: '#7c3aed'
+                            showConfirmButton: false,
+                            timer: 2000
                         });
                     });
                 </script>
         @endif
-        <!-- Table Section -->
+         @if(session('error'))
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal!',
+                            text: '{{ session('error') }}',
+                            confirmButtonColor: '#e3342f',
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    });
+                </script>
+        @endif
         <div class="bg-white rounded-xl shadow-lg overflow-hidden">
             <div id="guruTable">
                 <div class="overflow-x-auto">
@@ -67,7 +82,7 @@
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">
                                     <div class="flex items-center space-x-2">
                                         <i data-feather="hash" class="w-4 h-4"></i>
-                                        <span>Slug</span>
+                                        <span>Image</span>
                                     </div>
                                 </th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">
@@ -79,73 +94,35 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach($kategoris as $kategori)
+                            @foreach($careers as $career)
                             <tr class="hover:bg-purple-50 transition-colors duration-150">
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-600 font-mono">{{ $kategori->nama }}</div>
-                                </td>                    
+                                    <div class="text-sm text-gray-600 font-mono">{{ $career->name }}</div>
+                                </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-600 font-mono">{{ $kategori->slug }}</div>
-                                </td>                    
+                                    <div class="flex items-center space-x-2">
+                                        <img src="{{ $career->image ? url('storage/' . $career->image) : asset('images/no-image.png') }}"
+                                             alt="{{ $career->name }}"
+                                             class="w-12 h-12 rounded-full object-cover">
+                                    </div>
+                                </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                     <div class="flex items-center space-x-2">
-                                        <a href="{{ route('admin.kategoriBerita.edit', $kategori->id) }}"
+                                        <a href="{{ route('admin.career.edit', $career->id) }}"
                                            class="inline-flex items-center px-3 py-1.5 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-lg transition-colors duration-150"
                                            title="Edit Data">
                                             <i data-feather="edit-2" class="w-4 h-4"></i>
                                         </a>
-                                        <form action="{{ route('admin.kategoriBerita.destroy', $kategori->id) }}" method="POST" class="inline delete-user-form">
+                                        <form action="{{ route('admin.career.destroy', $career->id) }}" method="POST" class="inline delete-user-form">
                                             @csrf @method('DELETE')
                                             <button type="button"
                                                     class="inline-flex items-center px-3 py-1.5 bg-red-100 hover:bg-red-200 text-red-700 rounded-lg transition-colors duration-150 delete-user-btn"
-                                                    data-nama="{{ $kategori->nama }}"
+                                                    data-nama="{{ $career->name }}"
                                                     title="Hapus Data">
                                                 <i data-feather="trash-2" class="w-4 h-4"></i>
                                             </button>
                                         </form>
-                                        <script>
-                                        document.addEventListener('DOMContentLoaded', function() {
-                                            document.querySelectorAll('.delete-user-btn').forEach(function(btn) {
-                                                btn.addEventListener('click', function(e) {
-                                                    e.preventDefault();
-                                                    const form = btn.closest('form');
-                                                    const nama = btn.getAttribute('data-nama');
-                                                    if (typeof Swal !== 'undefined') {
-                                                        Swal.fire({
-                                                            title: 'Yakin hapus?',
-                                                            text: `Apakah Anda yakin ingin menghapus data kategori karya ${nama}?`,
-                                                            icon: 'warning',
-                                                            showCancelButton: true,
-                                                            confirmButtonColor: '#e3342f',
-                                                            cancelButtonColor: '#6c757d',
-                                                            confirmButtonText: 'Ya, hapus!',
-                                                            cancelButtonText: 'Batal'
-                                                        }).then((result) => {
-                                                            if (result.isConfirmed) {
-                                                                form.submit();
-                                                            }
-                                                        });
-                                                    } else {
-                                                        if (confirm(`Apakah Anda yakin ingin menghapus data kategori karya ${nama}?`)) {
-                                                            form.submit();
-                                                        }
-                                                    }
-                                                });
-                                            });
 
-                                            @if(session('success'))
-                                                if (typeof Swal !== 'undefined') {
-                                                    Swal.fire({
-                                                        icon: 'success',
-                                                        title: 'Berhasil!',
-                                                        text: '{{ session('success') }}',
-                                                        timer: 2000,
-                                                        showConfirmButton: false
-                                                    });
-                                                }
-                                            @endif
-                                        });
-                                        </script>
                                     </div>
                                 </td>
                             </tr>
@@ -153,18 +130,18 @@
                         </tbody>
                     </table>
 
-                    @if($kategoris->isEmpty())
+                    @if($careers->isEmpty())
                     <div class="text-center py-12">
                         <div class="flex flex-col items-center">
                             <div class="bg-purple-100 p-6 rounded-full mb-4">
                                 <i data-feather="users" class="w-12 h-12 text-purple-600"></i>
                             </div>
-                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Tidak ada data kategori karya</h3>
-                            <p class="text-gray-600 mb-4">Belum ada kategori karya yang terdaftar dalam sistem</p>
-                            <a href="{{ route('admin.kategoriBerita.create') }}"
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Tidak ada data career</h3>
+                            <p class="text-gray-600 mb-4">Belum ada career yang terdaftar dalam sistem</p>
+                            <a href="{{ route('admin.career.create') }}"
                                class="inline-flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200">
                                 <i data-feather="plus" class="w-4 h-4"></i>
-                                <span>Tambah Kategori Berita Pertama</span>
+                                <span>Tambah career Pertama</span>
                             </a>
                         </div>
                     </div>
@@ -198,7 +175,7 @@ document.getElementById('searchInput').addEventListener('input', function() {
             </div>
         `;
 
-        fetch(`{{ route('admin.kategoriBerita.index') }}?search=${encodeURIComponent(searchValue)}`, {
+        fetch(`{{ route('admin.lesson.index') }}?search=${encodeURIComponent(searchValue)}`, {
             headers: {
                 'X-Requested-With': 'XMLHttpRequest'
             }
@@ -226,5 +203,43 @@ document.getElementById('searchInput').addEventListener('input', function() {
 });
 </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const deleteButtons = document.querySelectorAll('.delete-user-btn');
 
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const form = button.closest('form');
+            const nama = button.getAttribute('data-nama');
+
+            Swal.fire({
+                title: 'Yakin hapus?',
+                text: `Apakah Anda yakin ingin menghapus data kategori karya ${nama}?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#e3342f',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then(result => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    });
+
+    if (session('success')) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ session('success') }}',
+            timer: 2000,
+            showConfirmButton: false
+        });
+    }
+});
+</script>
 @endsection
