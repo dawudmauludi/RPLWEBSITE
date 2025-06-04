@@ -180,7 +180,26 @@ class DashboardController extends Controller
                 'beritaHariIni' => $beritaHariIni,
                 'karyaPerBulan' => $karyaPerBulan,
             ]);
-        } else {
+        }elseif ($user->hasRole('alumni')){
+
+              $job = $user->jobsheet()->latest()->take(3)->get();
+
+            $beritaHariIni = Berita::whereDate('created_at', Carbon::today('Asia/Jakarta'))->get();
+
+            $karyaPerBulan = collect(range(1, 12))->map(function ($bulan) use ($user) {
+                return [
+                    'bulan' => Carbon::create()->month($bulan)->format('M'),
+                    'jumlah' => $user->karyaSiswa()->whereMonth('created_at', $bulan)->count(),
+                ];
+            });
+
+            return view('dashboard.alumni.index', [
+                'job' => $job,
+                'beritaHariIni' => $beritaHariIni,
+                'karyaPerBulan' => $karyaPerBulan,
+            ]);
+
+        }else {
             abort(403, 'Unauthorized');
         }
     }

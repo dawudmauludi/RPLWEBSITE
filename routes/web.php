@@ -140,6 +140,11 @@ Route::middleware(['auth','role:siswa'])->group(function () {
 });
 
 
+Route::middleware('auth')->prefix('alumni')->name('alumni.')->group(function () {
+    
+});
+
+
 
 
 

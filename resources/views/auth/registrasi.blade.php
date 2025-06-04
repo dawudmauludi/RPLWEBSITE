@@ -154,6 +154,20 @@
                         </div>
                         <p id="errorText" class="mt-1 text-sm text-red-600 hidden">Password harus memenuhi semua syarat!</p>
                     </div>
+
+                     <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i data-feather="user-check" class="w-5 h-5 text-gray-400"></i>
+                    </div>
+                    <select name="role"
+                            required
+                            class="block w-full pl-10 pr-3 py-3 border  rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200 bg-white @error('role') border-red-500 @enderror">
+                        <option value="">-- Pilih Role --</option>
+                          @foreach(\App\Models\Role::whereIn('name', ['alumni','siswa'])->get() as $role)
+                            <option value="{{ $role->name }}">{{ ucfirst($role->name) }}</option>
+                     @endforeach
+                    </select>
+                </div>
                     
                     <!-- Submit Button -->
                     <button 

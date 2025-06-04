@@ -10,7 +10,7 @@ class adminApproveController extends Controller
      public function index(){
         $users = User::where('status', 'pending')
     ->whereHas('roles', function ($query) {
-        $query->whereIn('name', ['siswa', 'guru']);
+        $query->whereIn('name', ['siswa', 'guru','alumni']);
     })
     ->get();
         return view('dashboard.admin.approve.index', compact('users'));

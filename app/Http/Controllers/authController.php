@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\VerificationCodeMail;
+use App\Models\alumni_profile;
 use App\Models\guru_profile;
 use App\Models\Role;
 use App\Models\siswa_profile;
@@ -60,7 +61,7 @@ class authController extends Controller
 
 
 
-        $role = Role::where('name', 'alumni')->first();
+        $role = Role::where('name', $request->role)->first();
         if ($role) {
             $user->roles()->attach($role->id);
         }
@@ -140,6 +141,10 @@ class authController extends Controller
                 return redirect('/siswa/profile')->with('info', 'Silakan lengkapi profil Anda terlebih dahulu.');
             }
 
+            $alumniData = alumni_profile::where('user_id', $user->id)->first();
+            if(!$alumniData && !$request->is('alumni/profile')) {
+                return redirect('/alumni/profile')->with('error', 'Silakan lengkapi profil Anda terlebih dahulu.');
+            }
             return redirect()->intended('dashboard');
         }
 

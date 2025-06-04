@@ -81,6 +81,7 @@
                         $isSiswa = $user->hasRole('siswa');
                         $hasProfile = \App\Models\siswa_profile::where('user_id', $user->id)->exists();
                         $studentProfile = $user->siswaProfile;
+                        $alumniProfile = $user->alumniProfile;
                         $guruProfile = $user->guruProfile;
                     @endphp
                     <div class="relative ml-4" x-data="{ open: false }">
@@ -121,15 +122,19 @@
                                         <i data-feather="user" class="w-4 h-4 mr-3 text-purple-600 group-hover:scale-110 transition-transform duration-200"></i>
                                         <span class="text-sm font-medium">Profile</span>
                                     </a>
-                                @elseif ($isSiswa && $hasProfile)
+                                @elseif ($user->hasRole('alumni'))
                                     <a href="/dashboard" class="flex items-center px-4 py-3 hover:bg-purple-50 transition-colors duration-200 group">
                                         <i data-feather="layout" class="w-4 h-4 mr-3 text-purple-600 group-hover:scale-110 transition-transform duration-200"></i>
                                         <span class="text-sm font-medium">Dashboard</span>
                                     </a>
-                                    @if ($studentProfile)
+                                    @if ($alumniProfile)
                                         <a href="{{ route('siswa.profileSiswa.show', $studentProfile->id) }}" class="flex items-center px-4 py-3 hover:bg-purple-50 transition-colors duration-200 group">
                                             <i data-feather="user" class="w-4 h-4 mr-3 text-purple-600 group-hover:scale-110 transition-transform duration-200"></i>
                                             <span class="text-sm font-medium">Profile</span>
+                                        </a>
+                                        <a href="{{ route('siswa.profileSiswa.show', $studentProfile->id) }}" class="flex items-center px-4 py-3 hover:bg-purple-50 transition-colors duration-200 group">
+                                            <i data-feather="user" class="w-4 h-4 mr-3 text-purple-600 group-hover:scale-110 transition-transform duration-200"></i>
+                                            <span class="text-sm font-medium">Lowongan Pekerjaan</span>
                                         </a>
                                     @endif
                                 @endif

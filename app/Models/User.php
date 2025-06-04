@@ -55,6 +55,10 @@ class User extends Authenticatable implements LaratrustUser
     {
         return $this->hasOne(guru_profile::class, 'user_id');
     }
+    public function alumniProfile()
+    {
+        return $this->hasOne(alumni_profile::class, 'user_id');
+    }
 
     public function siswaProfile()
     {
@@ -76,6 +80,14 @@ class User extends Authenticatable implements LaratrustUser
         return $this->hasMany(nilai_ulangan::class);
     }
 
+    public function ulasan()
+    {
+        return $this->hasMany(ulasan_alumni::class);
+    }
 
+    public function jobsheet()
+    {
+        return $this->hasMany(Jobs::class);
+    }
 
 }
