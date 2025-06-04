@@ -69,107 +69,39 @@
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div data-aos="fade-right" data-aos-duration="1600" class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-200">
-                        <div class="bg-gradient-to-br from-purple-500 to-indigo-500 p-4 rounded-xl mb-6 w-fit">
-                            <i data-feather="clipboard" class="w-8 h-8 text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Perencanaan Sistem</h3>
-                        <ul class="space-y-3">
-                            <li class="flex items-start">
-                                <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span class="text-gray-700">Identifikasi kebutuhan pengguna dan tujuan pembuatan software</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span class="text-gray-700">Penyusunan jadwal pengembangan, anggaran, dan sumber daya</span>
-                            </li>
-                        </ul>
-                    </div>
+                    @foreach ($developments as $development)
 
-                    <div data-aos="fade-right" data-aos-duration="1600" class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-200">
-                        <div class="bg-gradient-to-br from-blue-500 to-cyan-500 p-4 rounded-xl mb-6 w-fit">
-                            <i data-feather="search" class="w-8 h-8 text-white"></i>
+                    @php
+                    // Daftar warna gradient yang mungkin
+                    $colorGradients = [
+                        'from-purple-500 to-indigo-500',
+                        'from-blue-500 to-cyan-400',
+                        'from-green-500 to-emerald-400',
+                        'from-amber-500 to-yellow-400',
+                        'from-rose-500 to-pink-500',
+                        'from-violet-500 to-fuchsia-500'
+                    ];
+                    
+                    // Pilih warna random berdasarkan index atau ID
+                    $randomColor = $colorGradients[$loop->index % count($colorGradients)];
+                    // atau untuk lebih random: $randomColor = $colorGradients[array_rand($colorGradients)];
+                @endphp
+                    <a href="{{ route('development.show', $development->slug) }}" data-aos="fade-right" data-aos-duration="1600" class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-200">
+                        <div class="bg-gradient-to-br {{ $randomColor }} p-4 rounded-xl mb-6 w-fit">
+                            <i data-feather="{{ $development->icon }}" class="w-8 h-8 text-white"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Analisis Kebutuhan</h3>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">{{ $development->name }}</h3>
                         <ul class="space-y-3">
+                            @foreach($development->listDevelopment as $list)
                             <li class="flex items-start">
                                 <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span class="text-gray-700">Menentukan fitur dan fungsi yang harus dimiliki aplikasi</span>
+                                <span class="text-gray-700">{{ $list->name }}</span>
                             </li>
-                            <li class="flex items-start">
-                                <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span class="text-gray-700">Melakukan survei atau wawancara pengguna untuk mengumpulkan kebutuhan</span>
-                            </li>
+                            @endforeach
+                          
                         </ul>
-                    </div>
-
-                    <div data-aos="fade-right" data-aos-duration="1600" class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-200">
-                        <div class="bg-gradient-to-br from-green-500 to-emerald-500 p-4 rounded-xl mb-6 w-fit">
-                            <i data-feather="layout" class="w-8 h-8 text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Perancangan Sistem</h3>
-                        <ul class="space-y-3">
-                            <li class="flex items-start">
-                                <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span class="text-gray-700">Mendesain struktur sistem secara umum dan rinci (flowchart, DFD, UML)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span class="text-gray-700">Mendesain tampilan antarmuka pengguna (UI/UX design)</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div data-aos="fade-right" data-aos-duration="1600" class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-200">
-                        <div class="bg-gradient-to-br from-orange-500 to-red-500 p-4 rounded-xl mb-6 w-fit">
-                            <i data-feather="code" class="w-8 h-8 text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Pemrograman (Coding)</h3>
-                        <ul class="space-y-3">
-                            <li class="flex items-start">
-                                <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span class="text-gray-700">Menulis kode program sesuai desain dan kebutuhan</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span class="text-gray-700">Menggunakan berbagai bahasa pemrograman seperti Java, Python, PHP, JavaScript</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div data-aos="fade-right" data-aos-duration="1600" class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-200">
-                        <div class="bg-gradient-to-br from-pink-500 to-rose-500 p-4 rounded-xl mb-6 w-fit">
-                            <i data-feather="activity" class="w-8 h-8 text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Pengujian Software</h3>
-                        <ul class="space-y-3">
-                            <li class="flex items-start">
-                                <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span class="text-gray-700">Melakukan pengujian fungsionalitas (unit testing, integration testing)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span class="text-gray-700">Mendeteksi dan memperbaiki bug atau kesalahan dalam program</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div data-aos="fade-right" data-aos-duration="1600" class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-200">
-                        <div class="bg-gradient-to-br from-indigo-500 to-purple-500 p-4 rounded-xl mb-6 w-fit">
-                            <i data-feather="server" class="w-8 h-8 text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Implementasi & Pemeliharaan</h3>
-                        <ul class="space-y-3">
-                            <li class="flex items-start">
-                                <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span class="text-gray-700">Menginstal dan menjalankan software pada lingkungan pengguna</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span class="text-gray-700">Melakukan update, perbaikan, dan penyesuaian jika dibutuhkan</span>
-                            </li>
-                        </ul>
-                    </div>
+                    </a>
+                    @endforeach
                 </div>
             </div>
         </div>

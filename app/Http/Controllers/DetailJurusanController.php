@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Development;
 use App\Models\Jurusan;
 use App\Models\Language;
 use App\Models\Lesson;
@@ -14,6 +15,7 @@ class DetailJurusanController extends Controller
         $jurusans = Jurusan::all();
         $lessons = Lesson::all();
         $languages = Language::all();
-        return view('detail_jurusan', compact('jurusans', 'lessons', 'languages'));
+        $developments = Development::with(['listDevelopment'])->get();
+        return view('detail_jurusan', compact('jurusans', 'lessons', 'developments','languages'));
     }
 }

@@ -46,11 +46,11 @@
                         <label for="nama" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
                         <input 
                             type="text" 
-                            name="nama" 
-                            id="nama"
+                            name="name" 
+                            id="name"
                             class="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200"
                             placeholder="Masukkan username"
-                            value="{{ old('nama') }}"
+                            value="{{ old('name') }}"
                             required
                         >
                     </div>
