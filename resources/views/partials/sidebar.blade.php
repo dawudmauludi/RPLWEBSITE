@@ -142,6 +142,16 @@
                 <i data-feather="plus-circle" class="w-5 h-5 {{ request()->is('admin/career*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
                 <span>Career</span>
             </a>
+            <a href="{{ route('admin.career.index') }}"
+               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('admin/career*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
+                <i data-feather="plus-circle" class="w-5 h-5 {{ request()->is('admin/career*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
+                <span>Jobs</span>
+            </a>
+            <a href="{{ route('admin.career.index') }}"
+               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('admin/career*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
+                <i data-feather="plus-circle" class="w-5 h-5 {{ request()->is('admin/career*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
+                <span>Kaprodi</span>
+            </a>
         @endrole
 
         @role('guru')
@@ -155,6 +165,14 @@
                class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('ulangans*') || request()->is('nilai*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
                 <i data-feather="file-text" class="w-5 h-5 {{ request()->is('ulangans*') || request()->is('nilai*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
                 <span>Ujian/Ulangan</span>
+            </a>
+        @endrole
+
+        @role('alumni')
+           <a href="#"
+               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('guru/karya*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
+                <i data-feather="award" class="w-5 h-5 {{ request()->is('guru/karya*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
+                <span>Jobs</span>
             </a>
         @endrole
 
