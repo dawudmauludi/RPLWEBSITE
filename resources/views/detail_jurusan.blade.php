@@ -70,9 +70,7 @@
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @foreach ($developments as $development)
-
                     @php
-                    // Daftar warna gradient yang mungkin
                     $colorGradients = [
                         'from-purple-500 to-indigo-500',
                         'from-blue-500 to-cyan-400',
@@ -81,24 +79,20 @@
                         'from-rose-500 to-pink-500',
                         'from-violet-500 to-fuchsia-500'
                     ];
-                    
-                    // Pilih warna random berdasarkan index atau ID
                     $randomColor = $colorGradients[$loop->index % count($colorGradients)];
-                    // atau untuk lebih random: $randomColor = $colorGradients[array_rand($colorGradients)];
                 @endphp
                     <a href="{{ route('development.show', $development->slug) }}" data-aos="fade-right" data-aos-duration="1600" class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 hover:border-purple-200">
                         <div class="bg-gradient-to-br {{ $randomColor }} p-4 rounded-xl mb-6 w-fit">
                             <i data-feather="{{ $development->icon }}" class="w-8 h-8 text-white"></i>
                         </div>
                         <h3 class="text-xl font-bold text-gray-900 mb-4">{{ $development->name }}</h3>
-                        <ul class="space-y-3">
-                            @foreach($development->listDevelopment as $list)
-                            <li class="flex items-start">
-                                <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
-                                <span class="text-gray-700">{{ $list->name }}</span>
-                            </li>
+                       <ul class="space-y-3">
+                            @foreach($development->listDevelopment->take(3) as $list)
+                                <li class="flex items-start">
+                                    <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"></i>
+                                    <span class="text-gray-700">{{ Str::limit($list->name, 30, ' ...') }}</span>
+                                </li>
                             @endforeach
-                          
                         </ul>
                     </a>
                     @endforeach
@@ -208,7 +202,7 @@
                         'from-rose-500 to-pink-500',
                         'from-violet-500 to-fuchsia-500'
                     ];
-                    
+
                     // Pilih warna random berdasarkan index atau ID
                     $randomColor = $colorGradients[$loop->index % count($colorGradients)];
                     // atau untuk lebih random: $randomColor = $colorGradients[array_rand($colorGradients)];
@@ -218,10 +212,10 @@
                             <i data-feather="{{ $career->icon }}" class="w-8 h-8 text-white"></i>
                         </div>
                         <h3 class="text-xl font-bold text-gray-900 mb-3">{{ $career->name }}</h3>
-                        <p class="text-gray-600"> {!! $career->description !!}</p>
+                        <p class="text-gray-600">{!! Str::limit($career->description, 50, '... ') !!}</p>
                     </a>
                     @endforeach
-                   
+
                 </div>
 
                 <!-- Kelebihan Jurusan RPL -->

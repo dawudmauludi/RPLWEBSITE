@@ -68,7 +68,7 @@ class DevelopmentController extends Controller
        $development= Development::create($data);
 
 
-          if ($request->listDevelopment) {
+        if ($request->listDevelopment) {
     foreach ($request->listDevelopment as $list) {
         if (!empty($list['name'])) {
             ListDevelopment::create([
@@ -97,7 +97,7 @@ class DevelopmentController extends Controller
     public function edit(Development $development)
     {
         return view('dashboard.admin.development.edit', compact('development'));
-        
+
     }
 
     /**
@@ -132,16 +132,18 @@ class DevelopmentController extends Controller
        $development->update($data);
 
 
-          if ($request->listDevelopment) {
-    foreach ($request->listDevelopment as $list) {
-        if (!empty($list['name'])) {
-            ListDevelopment::create([
-                'development_id' => $development->id,
-                'name' => $list['name'],
-            ]);
+        $development->listDevelopment()->delete();
+
+        if ($request->listDevelopment) {
+            foreach ($request->listDevelopment as $list) {
+                if (!empty($list['name'])) {
+                    ListDevelopment::create([
+                        'development_id' => $development->id,
+                        'name' => $list['name'],
+                    ]);
+                }
+            }
         }
-    }
-          }
 
         return redirect()->route('admin.development.index')->with('success','Development Berhasil Di buat');
     }

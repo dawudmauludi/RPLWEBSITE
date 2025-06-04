@@ -88,7 +88,7 @@
                                     class="w-full px-4 py-3 border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white appearance-none">
                                 <option value="">Pilih kategori Karya...</option>
                                 @foreach ($categories as $category)
-                                 <option value="{{ $category->id }}" 
+                                 <option value="{{ $category->id }}"
                                        {{ old('category_karya_id') == $category->id ? 'selected' : '' }}>
                                      {{ $category->nama }}
                                 </option>
@@ -277,21 +277,22 @@
                 <div class="grid gap-6">
     <!-- Fitur-Fitur -->
     <div>
-        <label class="block font-medium text-sm text-gray-700 mb-1">Fitur-Fitur</label>
-        <div id="fitur-container" class="space-y-2">
-            <!-- Contoh baris fitur -->
-            <div class="flex items-center gap-2">
-                <input type="text" name="x[0][penjelasan]" class="flex-grow p-2 border border-gray-300 rounded-md" placeholder="Contoh: Login, Dashboard, dll">
-                <button type="button" onclick="removeFitur(this)" class="text-red-500 hover:text-red-700 px-2 py-1 rounded">
-                    ✕
-                </button>
-            </div>
-        </div>
-        
-        <button type="button" onclick="addFitur()" class="mt-3 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 text-sm">
-            + Tambah Fitur
-        </button>
+    <label class="block font-medium text-sm text-gray-700 mb-1">Fitur-Fitur</label>
+    <div id="fitur-container" class="space-y-2">
+        @if(isset($fiturs) && count($fiturs) > 0)
+            @foreach($fiturs as $index => $fitur)
+                <div class="flex items-center gap-2">
+                    <input type="text" name="fiturs[{{ $index }}][penjelasan]" value="{{ old("fiturs.$index.penjelasan", $fitur->penjelasan) }}" class="flex-grow p-2 border border-gray-300 rounded-md" placeholder="Contoh: Register, Lihat Data, dll">
+                    <button type="button" onclick="removeFitur(this)" class="text-red-500 hover:text-red-700 px-2 py-1 rounded">✕</button>
+                </div>
+            @endforeach
+        @endif
     </div>
+
+    <button type="button" onclick="addFitur()" class="mt-3 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 text-sm">
+        + Tambah Fitur
+    </button>
+</div>
             </div>
 
             </div>
@@ -483,25 +484,25 @@
     updateToolsUI();
   }
 
-  let fiturIndex = 1; // dimulai dari 1 karena index 0 sudah ada
+  let fiturIndex = {{ isset($fiturs) ? count($fiturs) : 0 }};
 
-function addFitur() {
-    const container = document.getElementById('fitur-container');
-    const wrapper = document.createElement('div');
-    wrapper.classList.add('flex', 'items-center', 'gap-2');
+    function addFitur() {
+        const container = document.getElementById('fitur-container');
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('flex', 'items-center', 'gap-2');
 
-    wrapper.innerHTML = `
-        <input type="text" name="fiturs[${fiturIndex}][penjelasan]" class="flex-grow p-2 border border-gray-300 rounded-md" placeholder="Contoh: Register, Lihat Data, dll">
-        <button type="button" onclick="removeFitur(this)" class="text-red-500 hover:text-red-700 px-2 py-1 rounded">✕</button>
-    `;
-    
-    container.appendChild(wrapper);
-    fiturIndex++;
-}
+        wrapper.innerHTML = `
+            <input type="text" name="fiturs[${fiturIndex}][penjelasan]" class="flex-grow p-2 border border-gray-300 rounded-md" placeholder="Contoh: Register, Lihat Data, dll">
+            <button type="button" onclick="removeFitur(this)" class="text-red-500 hover:text-red-700 px-2 py-1 rounded">✕</button>
+        `;
 
-function removeFitur(button) {
-    button.parentElement.remove();
-}
+        container.appendChild(wrapper);
+        fiturIndex++;
+    }
+
+    function removeFitur(button) {
+        button.parentElement.remove();
+    }
 
     </script>
 </div>

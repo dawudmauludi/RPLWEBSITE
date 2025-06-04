@@ -8,19 +8,19 @@
     <div class="absolute inset-0 opacity-5">
         <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25px 25px, #8B5CF6 2px, transparent 0), radial-gradient(circle at 75px 75px, #A855F7 2px, transparent 0); background-size: 100px 100px;"></div>
     </div>
-    
+
     <!-- Purple gradient overlay -->
     <div class="absolute top-0 left-0 right-0 h-96 bg-gradient-to-br from-purple-50/80 via-transparent to-purple-100/60"></div>
-    
+
     <div class="relative container mx-auto px-6 py-16 pt-24">
         <div class="max-w-6xl mx-auto">
             <!-- Breadcrumb -->
             <nav data-aos="fade-right" data-aos-duration="800" class="flex items-center space-x-2 text-sm mb-8">
-                <a href="#" class="text-purple-600 hover:text-purple-700 transition-colors">
+                <a href="/" class="text-purple-600 hover:text-purple-700 transition-colors">
                     <i data-feather="home" class="w-4 h-4"></i>
                 </a>
                 <i data-feather="chevron-right" class="w-4 h-4 text-gray-400"></i>
-                <a href="#" class="text-purple-600 hover:text-purple-700 transition-colors">Lessons</a>
+                <a href="javascript:history.back()" class="text-purple-600 hover:text-purple-700 transition-colors">Lessons</a>
                 <i data-feather="chevron-right" class="w-4 h-4 text-gray-400"></i>
                 <span class="text-gray-600">{{ $lesson->name }}</span>
             </nav>
@@ -49,18 +49,10 @@
 
                     <!-- Feature Tags -->
                     <div data-aos="fade-right" data-aos-duration="1600" class="flex flex-wrap gap-3">
-                        <span class="inline-flex items-center px-3 py-1 bg-purple-100 text-purple-700 text-sm font-medium rounded-full">
-                            <i data-feather="book-open" class="w-3 h-3 mr-1"></i>
-                            Materi Pembelajaran
-                        </span>
-                        <span class="inline-flex items-center px-3 py-1 bg-purple-100 text-purple-700 text-sm font-medium rounded-full">
+                        <a href="#content-section" class="inline-flex items-center px-3 py-1 bg-purple-100 text-purple-700 text-sm font-medium rounded-full hover:bg-purple-200 transition-colors duration-200">
                             <i data-feather="file-text" class="w-3 h-3 mr-1"></i>
                             Penjelasan Detail
-                        </span>
-                        <span class="inline-flex items-center px-3 py-1 bg-purple-100 text-purple-700 text-sm font-medium rounded-full">
-                            <i data-feather="layers" class="w-3 h-3 mr-1"></i>
-                            Konsep Mendalam
-                        </span>
+                        </a>
                     </div>
                 </div>
 
@@ -69,7 +61,7 @@
                     <!-- Decorative elements -->
                     <div class="absolute -top-6 -left-6 w-24 h-24 bg-purple-200 rounded-full opacity-20 animate-pulse"></div>
                     <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-purple-300 rounded-full opacity-10 animate-pulse" style="animation-delay: 1s;"></div>
-                    
+
                     <!-- Main image container -->
                     <div class="relative bg-white rounded-3xl p-3 shadow-2xl">
                         <div class="relative overflow-hidden rounded-2xl">
@@ -80,7 +72,7 @@
                             >
                             <!-- Gradient overlay -->
                             <div class="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent"></div>
-                            
+
                             <!-- Info overlay -->
                             <div class="absolute bottom-4 left-4 right-4">
                                 <div class="bg-white/90 backdrop-blur-sm p-3 rounded-lg shadow-lg">
@@ -99,10 +91,10 @@
 </section>
 
 <!-- Content Section -->
-<section class="bg-white py-20">
+<section class="bg-white py-20" id="content-section">
     <div class="container mx-auto px-6">
         <div class="max-w-6xl mx-auto">
-            
+
             <!-- Section Header -->
             <div class="text-center mb-16">
                 <div data-aos="fade-up" data-aos-duration="800" class="inline-flex items-center bg-purple-50 border border-purple-100 px-6 py-3 rounded-full mb-6">
@@ -118,7 +110,7 @@
             </div>
 
             <!-- Content Grid -->
-                
+
                 <!-- Main Content -->
                 <div class="lg:col-span-2">
                     <!-- Description Card -->
@@ -129,7 +121,7 @@
                             </div>
                             <h3 class="text-xl font-bold text-gray-900">Deskripsi Pembelajaran</h3>
                         </div>
-                        
+
                         <div class="prose prose-lg max-w-full">
                             <div class="text-gray-700 leading-relaxed">
                                 {!! $lesson->description ?? '<p class="text-gray-500 italic">Deskripsi tidak tersedia untuk lesson ini.</p>' !!}
@@ -138,8 +130,8 @@
                     </div>
                 </div>
 
-            
-            
+
+
 
             <!-- Action Section -->
             <div data-aos="fade-up" data-aos-duration="1600" class="mt-16 text-center">
@@ -147,12 +139,12 @@
                     <!-- Background decoration -->
                     <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white/10 rounded-full"></div>
                     <div class="absolute bottom-0 left-0 -mb-4 -ml-4 w-32 h-32 bg-white/5 rounded-full"></div>
-                    
+
                     <div class="relative">
                         <h3 class="text-2xl font-bold mb-2">Siap untuk Belajar?</h3>
                         <p class="text-purple-100 mb-6">Pelajari materi ini dengan penjelasan yang detail dan mudah dipahami</p>
                         <div class="flex flex-wrap justify-center gap-4">
-                            <a href="javascript:history.back()" 
+                            <a href="javascript:history.back()"
                                class="inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 rounded-xl font-medium transition-all duration-300">
                                 <i data-feather="arrow-left" class="w-5 h-5 mr-2"></i>
                                 Kembali ke Daftar

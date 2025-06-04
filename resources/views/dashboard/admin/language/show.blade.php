@@ -19,14 +19,14 @@
             </div>
         </div>
     </div>
-    
+
     <div class="relative container mx-auto px-6 py-20 pt-32">
         <div class="max-w-6xl mx-auto">
             <!-- Breadcrumb -->
             <nav data-aos="fade-right" data-aos-duration="600" class="flex items-center space-x-2 text-sm mb-8">
-                <a href="#" class="text-gray-500 hover:text-purple-600 transition-colors">Home</a>
+                <a href="/" class="text-gray-500 hover:text-purple-600 transition-colors">Home</a>
                 <i data-feather="chevron-right" class="w-4 h-4 text-gray-400"></i>
-                <a href="#" class="text-gray-500 hover:text-purple-600 transition-colors">Programming Languages</a>
+                <a href="javascript:history.back()" class="text-gray-500 hover:text-purple-600 transition-colors">Programming Languages</a>
                 <i data-feather="chevron-right" class="w-4 h-4 text-gray-400"></i>
                 <span class="text-purple-600 font-medium">{{ $language->name }}</span>
             </nav>
@@ -48,57 +48,10 @@
                             {{ $language->name ?? 'Tidak ditemukan language' }}
                         </h1>
                         <p data-aos="fade-up" data-aos-duration="1000" class="text-xl text-gray-600 leading-relaxed">
-                            Pelajari bahasa pemrograman yang powerful dan versatile untuk mengembangkan aplikasi modern
+                            Pelajari secara mendalam tentang {{ $language->name ?? 'bahasa pemrograman' }} yang tidak hanya powerful dan versatile, tetapi juga sangat relevan untuk pengembangan berbagai aplikasi modern yang kompleks dan inovatif
                         </p>
                     </div>
 
-                    <!-- Language Stats -->
-                    <div data-aos="fade-up" data-aos-duration="1200" class="grid grid-cols-2 gap-4">
-                        <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm">
-                            <div class="flex items-center mb-3">
-                                <div class="flex items-center justify-center w-10 h-10 bg-purple-100 rounded-xl mr-3">
-                                    <i data-feather="zap" class="w-5 h-5 text-purple-600"></i>
-                                </div>
-                                <div>
-                                    <div class="text-sm text-gray-600">Performance</div>
-                                    <div class="font-semibold text-gray-900">High</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white p-6 rounded-2xl border border-indigo-100 shadow-sm">
-                            <div class="flex items-center mb-3">
-                                <div class="flex items-center justify-center w-10 h-10 bg-indigo-100 rounded-xl mr-3">
-                                    <i data-feather="users" class="w-5 h-5 text-indigo-600"></i>
-                                </div>
-                                <div>
-                                    <div class="text-sm text-gray-600">Community</div>
-                                    <div class="font-semibold text-gray-900">Large</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white p-6 rounded-2xl border border-green-100 shadow-sm">
-                            <div class="flex items-center mb-3">
-                                <div class="flex items-center justify-center w-10 h-10 bg-green-100 rounded-xl mr-3">
-                                    <i data-feather="trending-up" class="w-5 h-5 text-green-600"></i>
-                                </div>
-                                <div>
-                                    <div class="text-sm text-gray-600">Popularity</div>
-                                    <div class="font-semibold text-gray-900">Rising</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white p-6 rounded-2xl border border-orange-100 shadow-sm">
-                            <div class="flex items-center mb-3">
-                                <div class="flex items-center justify-center w-10 h-10 bg-orange-100 rounded-xl mr-3">
-                                    <i data-feather="book" class="w-5 h-5 text-orange-600"></i>
-                                </div>
-                                <div>
-                                    <div class="text-sm text-gray-600">Learning</div>
-                                    <div class="font-semibold text-gray-900">Easy</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Image Side with Code Theme -->
@@ -117,7 +70,7 @@
                                     <span class="text-gray-400 text-sm font-mono">{{ $language->name }}.code</span>
                                 </div>
                             </div>
-                            
+
                             <!-- Language Logo/Image -->
                             <div class="bg-gradient-to-br from-purple-100 to-indigo-100 p-8 rounded-2xl relative overflow-hidden">
                                 <!-- Decorative Code Lines -->
@@ -126,13 +79,13 @@
                                     <div class="ml-4">&lt;body&gt;</div>
                                     <div class="ml-8">&lt;code/&gt;</div>
                                 </div>
-                                
+
                                 <img
                                     src="{{ asset('storage/' . $language->image) }}"
                                     alt="{{ $language->name }}"
                                     class="w-full h-64 object-contain relative z-10 filter drop-shadow-2xl"
                                 >
-                                
+
                                 <!-- Floating Code Symbols -->
                                 <div class="absolute bottom-4 right-4 text-indigo-300 opacity-20 font-mono text-xs">
                                     <div class="text-right">&lt;/body&gt;</div>
@@ -140,7 +93,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Floating Elements -->
                         <div class="absolute -top-6 -right-6 bg-white/90 backdrop-blur-sm p-4 rounded-full shadow-xl">
                             <i data-feather="terminal" class="w-6 h-6 text-purple-600"></i>
@@ -196,7 +149,7 @@
 
             <!-- Action Buttons -->
             <div data-aos="fade-up" data-aos-duration="1000" class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="javascript:history.back()" 
+                <a href="javascript:history.back()"
                    class="inline-flex items-center px-8 py-4 bg-white text-purple-600 border-2 border-purple-600 rounded-2xl font-semibold hover:bg-purple-600 hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl group">
                     <i data-feather="arrow-left" class="w-5 h-5 mr-2 group-hover:transform group-hover:-translate-x-1 transition-transform"></i>
                     Kembali

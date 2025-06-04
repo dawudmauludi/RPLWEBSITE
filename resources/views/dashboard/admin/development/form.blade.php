@@ -186,15 +186,16 @@
     <div>
         <label class="block font-medium text-sm text-gray-700 mb-1">List Development</label>
         <div id="fitur-container" class="space-y-2">
-            <!-- Contoh baris fitur -->
-            <div class="flex items-center gap-2">
-                <input type="text" name="x[0][name]" class="flex-grow p-2 border border-gray-300 rounded-md" placeholder="Contoh: Login, Dashboard, dll">
-                <button type="button" onclick="removeFitur(this)" class="text-red-500 hover:text-red-700 px-2 py-1 rounded">
-                    ✕
-                </button>
-            </div>
+            @if(isset($development) && $development->listDevelopment)
+                @foreach($development->listDevelopment as $index => $fitur)
+                    <div class="flex items-center gap-2">
+                        <input type="text" name="listDevelopment[{{ $index }}][name]" value="{{ old('listDevelopment.' . $index . '.name', $fitur->name) }}" class="flex-grow p-2 border border-gray-300 rounded-md" placeholder="Contoh: Register, Lihat Data, dll">
+                        <button type="button" onclick="removeFitur(this)" class="text-red-500 hover:text-red-700 px-2 py-1 rounded">✕</button>
+                    </div>
+                @endforeach
+            @endif
         </div>
-        
+
         <button type="button" onclick="addFitur()" class="mt-3 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 text-sm">
             + Tambah List
         </button>
@@ -282,7 +283,7 @@
         });
 
 
-    let fiturIndex = 1; // dimulai dari 1 karena index 0 sudah ada
+    let fiturIndex = 0;
 
     function addFitur() {
         const container = document.getElementById('fitur-container');
@@ -293,7 +294,7 @@
             <input type="text" name="listDevelopment[${fiturIndex}][name]" class="flex-grow p-2 border border-gray-300 rounded-md" placeholder="Contoh: Register, Lihat Data, dll">
             <button type="button" onclick="removeFitur(this)" class="text-red-500 hover:text-red-700 px-2 py-1 rounded">✕</button>
         `;
-        
+
         container.appendChild(wrapper);
         fiturIndex++;
     }
