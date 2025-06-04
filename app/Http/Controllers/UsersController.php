@@ -17,7 +17,7 @@ class UsersController extends Controller
 
         if ($search = request('search')) {
             $query->where(function ($q) use ($search) {
-            $q->where('nama', 'like', "%{$search}%")
+            $q->where('name', 'like', "%{$search}%")
               ->orWhere('email', 'like', "%{$search}%");
             });
         }
@@ -48,7 +48,7 @@ class UsersController extends Controller
     ]);
 
     $user = User::create([
-        'name' => $request->nama,
+        'name' => $request->name,
         'email' => $request->email,
         'password' => Hash::make($request->password),
     ]);

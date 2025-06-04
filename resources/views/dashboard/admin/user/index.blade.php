@@ -96,7 +96,7 @@
 
                                    <td class="px-6 py-4">
                                         @foreach($user->roles as $role)
-                                            <span class="inline-block bg-purple-100 text-purple-700 text-xs px-2 py-1 rounded-full">{{ $role->display_name }}</span>
+                                            <span class="inline-block bg-purple-100 text-purple-700 text-xs px-2 py-1 rounded-full">{{ $role->name }}</span>
                                         @endforeach
                                     </td>
 
