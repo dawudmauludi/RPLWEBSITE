@@ -34,7 +34,7 @@
             </div>
 
             <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center space-x-2">
+            <div class="hidden md:flex items-center flex gap-x-2">
                 <a href="/" class="group relative px-4 py-2.5 rounded-xl hover:bg-white/10 backdrop-blur-sm text-white transition-all duration-300 flex items-center {{ request()->is('/') ? 'bg-white/20 shadow-lg' : '' }}">
                     <div class="w-5 h-5 mr-2 transition-all duration-300 group-hover:scale-110">
                         <i data-feather="home" class="w-full h-full"></i>
@@ -67,8 +67,7 @@
                     <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-green-400/20 to-emerald-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
                 </a>
 
-
-                <a href="/kontak" class="group relative px-4 py-2.5 rounded-xl hover:bg-white/10 backdrop-blur-sm text-white transition-all duration-300 flex items-center">
+                <a href="/kontak" class="group relative px-4 py-2.5 rounded-xl hover:bg-white/10 backdrop-blur-sm text-white transition-all duration-300 flex items-center {{ request()->is('kontak') ? 'bg-white/20 shadow-lg' : '' }}">
                     <div class="w-5 h-5 mr-2 transition-all duration-300 group-hover:scale-110">
                         <i data-feather="message-circle" class="w-full h-full"></i>
                     </div>
@@ -83,7 +82,6 @@
                         $hasProfile = \App\Models\siswa_profile::where('user_id', $user->id)->exists();
                         $studentProfile = $user->siswaProfile;
                         $guruProfile = $user->guruProfile;
-
                     @endphp
                     <div class="relative ml-4" x-data="{ open: false }">
                         <button @click="open = !open" class="group relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-white/30 hover:ring-white/60 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-300/50">
@@ -118,13 +116,12 @@
                                         <i data-feather="layout" class="w-4 h-4 mr-3 text-purple-600 group-hover:scale-110 transition-transform duration-200"></i>
                                         <span class="text-sm font-medium">Dashboard</span>
                                     </a>
-                                <a href="{{ $guruProfile ? route('guru.profileGuru.show', $guruProfile->id) : route('guru.profileGuru.create') }}"
-                                class="flex items-center px-4 py-3 hover:bg-purple-50 transition-colors duration-200 group">
-                                    <i data-feather="user" class="w-4 h-4 mr-3 text-purple-600 group-hover:scale-110 transition-transform duration-200"></i>
-                                    <span class="text-sm font-medium">Profile</span>
-                                </a>
+                                    <a href="{{ $guruProfile ? route('guru.profileGuru.show', $guruProfile->id) : route('guru.profileGuru.create') }}"
+                                    class="flex items-center px-4 py-3 hover:bg-purple-50 transition-colors duration-200 group">
+                                        <i data-feather="user" class="w-4 h-4 mr-3 text-purple-600 group-hover:scale-110 transition-transform duration-200"></i>
+                                        <span class="text-sm font-medium">Profile</span>
+                                    </a>
                                 @elseif ($isSiswa && $hasProfile)
-
                                     <a href="/dashboard" class="flex items-center px-4 py-3 hover:bg-purple-50 transition-colors duration-200 group">
                                         <i data-feather="layout" class="w-4 h-4 mr-3 text-purple-600 group-hover:scale-110 transition-transform duration-200"></i>
                                         <span class="text-sm font-medium">Dashboard</span>
@@ -135,7 +132,6 @@
                                             <span class="text-sm font-medium">Profile</span>
                                         </a>
                                     @endif
-
                                 @endif
 
                                 <div class="border-t border-gray-200/50 mt-2">
@@ -202,7 +198,7 @@
                         <span class="font-medium">Berita & Artikel</span>
                     </a>
 
-                    <a href="/kontak" class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 transition-all duration-300">
+                    <a href="/kontak" class="group flex items-center px-4 py-3 rounded-xl hover:bg-white/10 transition-all duration-300 {{ request()->is('kontak') ? 'bg-white/20' : '' }}">
                         <div class="w-5 h-5 mr-3 transition-all duration-300 group-hover:scale-110">
                             <i data-feather="message-circle" class="w-full h-full"></i>
                         </div>
@@ -217,9 +213,9 @@
                             <button @click="open = !open" class="group flex items-center justify-between w-full px-4 py-3 rounded-xl hover:bg-white/10 transition-all duration-300">
                                 <div class="flex items-center">
                                     <div class="w-5 h-5 mr-3 transition-all duration-300 group-hover:scale-110">
-                                        <i data-feather="layout" class="w-full h-full"></i>
+                                        <i data-feather="user" class="w-full h-full"></i>
                                     </div>
-                                    <span class="font-medium">Dashboard</span>
+                                    <span class="font-medium">{{ $user->name }}</span>
                                 </div>
                                 <svg :class="{'rotate-180': open}" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -288,18 +284,18 @@
                                         </a>
                                     @endrole
                                 </nav>
+
+                                <div class="border-t border-purple-200/50 mt-2">
+                                    <form method="POST" action="{{ route('logout') }}" class="p-3">
+                                        @csrf
+                                        <button type="submit" class="group flex items-center w-full px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200">
+                                            <i data-feather="log-out" class="w-4 h-4 mr-2 group-hover:scale-110 transition-transform duration-200"></i>
+                                            <span class="text-sm font-medium">Logout</span>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-
-                        <form method="POST" action="{{ route('logout') }}" class="mt-3">
-                            @csrf
-                            <button type="submit" class="group flex items-center w-full px-4 py-3 text-white bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg">
-                                <div class="w-5 h-5 mr-3 transition-all duration-300 group-hover:scale-110">
-                                    <i data-feather="log-out" class="w-full h-full"></i>
-                                </div>
-                                <span>Logout</span>
-                            </button>
-                        </form>
                     @else
                         <a href="/login" class="group flex items-center px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg mt-3">
                             <div class="w-5 h-5 mr-3 transition-all duration-300 group-hover:scale-110">

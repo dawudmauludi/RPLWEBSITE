@@ -29,7 +29,7 @@ class authController extends Controller
 
     public function registrasi(Request $request){
          $validator = Validator::make($request->all(), [
-            'nama' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => [
                 'required',
@@ -51,7 +51,7 @@ class authController extends Controller
     }
 
       $user = User::create([
-        'nama' => $request->nama,
+        'name' => $request->name,
         'email' => $request->email,
         'password' => Hash::make($request->password),
         'status' => 'pending'

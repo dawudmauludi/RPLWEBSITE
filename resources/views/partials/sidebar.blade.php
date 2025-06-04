@@ -132,6 +132,16 @@
                 <i data-feather="plus-circle" class="w-5 h-5 {{ request()->is('admin/language*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
                 <span>Language</span>
             </a>
+            <a href="{{ route('admin.development.index') }}"
+               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('admin/development*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
+                <i data-feather="plus-circle" class="w-5 h-5 {{ request()->is('admin/development*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
+                <span>Development</span>
+            </a>
+            <a href="{{ route('admin.career.index') }}"
+               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('admin/career*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
+                <i data-feather="plus-circle" class="w-5 h-5 {{ request()->is('admin/career*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
+                <span>Career</span>
+            </a>
         @endrole
 
         @role('guru')

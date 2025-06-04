@@ -4,9 +4,11 @@ use App\Http\Controllers\addPoinController;
 use App\Http\Controllers\adminApproveController;
 use App\Http\Controllers\authController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\CareerController;
 use App\Http\Controllers\CekKaryaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailJurusanController;
+use App\Http\Controllers\DevelopmentController;
 use App\Http\Controllers\FutureController;
 use App\Http\Controllers\GuruProfileController;
 use App\Http\Controllers\HomeController;
@@ -43,6 +45,8 @@ Route::get('/karya/{karya}', [KaryaSiswaController::class, 'show'])->name('karya
 Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.show');
 Route::get('/tentang-jurusan/lesson/{slug}', [LessonController::class, 'show'])->name('lesson.show');
 Route::get('/tentang-jurusan/language/{slug}', [LanguageController::class, 'show'])->name('language.show');
+Route::get('/tentang-jurusan/development/{slug}', [DevelopmentController::class, 'show'])->name('development.show');
+Route::get('/tentang-jurusan/career/{slug}', [CareerController::class, 'show'])->name('career.show');
 
 
 Route::get('/kontak', function (){
@@ -89,8 +93,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/users/addPoint',[addPoinController::class,'indexAddPoint'])->name('users.indexAddPoint');
     Route::resource('future', FutureController::class);
     Route::resource('jurusan', JurusanController::class);
+    Route::resource('career', CareerController::class)->except(['show'])->parameters(['career' => 'career']);
     Route::resource('lesson', LessonController::class)->except(['show'])->parameters(['lesson' => 'lesson']);
     Route::resource('language', LanguageController::class)->except(['show'])->parameters(['language' => 'language']);
+    Route::resource('development', DevelopmentController::class)->except(['show'])->parameters(['development' => 'development']);
 });
 
 
