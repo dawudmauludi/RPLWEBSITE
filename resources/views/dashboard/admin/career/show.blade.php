@@ -10,14 +10,14 @@
         <div class="absolute top-0 right-0 w-72 h-72 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-700"></div>
         <div class="absolute bottom-0 left-1/2 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000"></div>
     </div>
-    
+
     <div class="relative container mx-auto px-6 py-20 pt-32">
         <div class="max-w-5xl mx-auto">
             <!-- Breadcrumb -->
             <nav data-aos="fade-right" data-aos-duration="800" class="flex items-center space-x-2 text-sm mb-8">
-                <a href="#" class="text-gray-500 hover:text-purple-600 transition-colors">Home</a>
+                <a href="/" class="text-gray-500 hover:text-purple-600 transition-colors">Home</a>
                 <i data-feather="chevron-right" class="w-4 h-4 text-gray-400"></i>
-                <a href="#" class="text-gray-500 hover:text-purple-600 transition-colors">Career</a>
+                <a href="javascript:history.back()" class="text-gray-500 hover:text-purple-600 transition-colors">Career</a>
                 <i data-feather="chevron-right" class="w-4 h-4 text-gray-400"></i>
                 <span class="text-purple-600 font-medium">{{ $career->name }}</span>
             </nav>
@@ -50,30 +50,10 @@
                         </div>
                     </div>
 
-                    <!-- Quick Stats -->
-                    <div data-aos="fade-up" data-aos-duration="1200" class="grid grid-cols-3 gap-4">
-                        <div class="bg-purple-50 p-4 rounded-xl border border-purple-100">
-                            <div class="flex items-center justify-center w-10 h-10 bg-purple-100 rounded-lg mb-2">
-                                <i data-feather="users" class="w-5 h-5 text-purple-600"></i>
-                            </div>
-                            <div class="text-sm text-gray-600">Career Path</div>
-                            <div class="font-semibold text-gray-900">Professional</div>
-                        </div>
-                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100">
-                            <div class="flex items-center justify-center w-10 h-10 bg-indigo-100 rounded-lg mb-2">
-                                <i data-feather="clock" class="w-5 h-5 text-indigo-600"></i>
-                            </div>
-                            <div class="text-sm text-gray-600">Duration</div>
-                            <div class="font-semibold text-gray-900">Long-term</div>
-                        </div>
-                        <div class="bg-green-50 p-4 rounded-xl border border-green-100">
-                            <div class="flex items-center justify-center w-10 h-10 bg-green-100 rounded-lg mb-2">
-                                <i data-feather="bar-chart" class="w-5 h-5 text-green-600"></i>
-                            </div>
-                            <div class="text-sm text-gray-600">Growth</div>
-                            <div class="font-semibold text-gray-900">High</div>
-                        </div>
-                    </div>
+                    <p class="bg-purple-50 p-4 rounded-xl border border-purple-100" data-aos="fade-up" data-aos-duration="1200">
+                        "Dengan {{ $career->name }}, kamu dapat menciptakan masa depan yang lebih cerah dan meningkatkan kualitas hidupmu sendiri dan orang lain. Jadi, jangan tunggu lagi, mulai berkarier dengan {{ $career->name }} sekarang!"
+                    </p>
+
                 </div>
 
                 <!-- Image Side -->
@@ -82,7 +62,7 @@
                         <!-- Decorative Elements -->
                         <div class="absolute -top-4 -left-4 w-24 h-24 bg-purple-200 rounded-full opacity-20"></div>
                         <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-indigo-200 rounded-full opacity-20"></div>
-                        
+
                         <!-- Main Image Container -->
                         <div class="relative bg-gradient-to-br from-purple-100 to-indigo-100 p-8 rounded-3xl">
                             <img
@@ -140,38 +120,17 @@
                     </div>
                 </div>
 
-                <!-- Additional Info Cards -->
-                <div class="grid md:grid-cols-2 gap-6 mt-12">
-                    <div class="bg-purple-50 p-6 rounded-2xl border border-purple-100">
-                        <div class="flex items-center mb-4">
-                            <div class="flex items-center justify-center w-10 h-10 bg-purple-100 rounded-lg mr-3">
-                                <i data-feather="target" class="w-5 h-5 text-purple-600"></i>
-                            </div>
-                            <h4 class="font-semibold text-gray-900">Skills Required</h4>
-                        </div>
-                        <p class="text-gray-600 text-sm">Keterampilan yang dibutuhkan untuk berkarir di bidang ini</p>
-                    </div>
-                    
-                    <div class="bg-indigo-50 p-6 rounded-2xl border border-indigo-100">
-                        <div class="flex items-center mb-4">
-                            <div class="flex items-center justify-center w-10 h-10 bg-indigo-100 rounded-lg mr-3">
-                                <i data-feather="trending-up" class="w-5 h-5 text-indigo-600"></i>
-                            </div>
-                            <h4 class="font-semibold text-gray-900">Career Growth</h4>
-                        </div>
-                        <p class="text-gray-600 text-sm">Peluang pengembangan karir dan jenjang yang tersedia</p>
-                    </div>
-                </div>
+
             </div>
 
             <!-- Action Buttons -->
             <div data-aos="fade-up" data-aos-duration="1000" class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="javascript:history.back()" 
+                <a href="javascript:history.back()"
                    class="inline-flex items-center px-8 py-4 bg-white text-purple-600 border-2 border-purple-600 rounded-2xl font-semibold hover:bg-purple-600 hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl group">
                     <i data-feather="arrow-left" class="w-5 h-5 mr-2 group-hover:transform group-hover:-translate-x-1 transition-transform"></i>
                     Kembali
-                </a> 
-               
+                </a>
+
             </div>
         </div>
     </div>
