@@ -100,7 +100,91 @@
     </div>
 </div>
 
-<!-- About Section -->
+<div class="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden mt-10 mb-10">
+    <div class="bg-gradient-to-br from-purple-900 via-purple-700 to-indigo-800 text-white px-8 py-10 relative overflow-hidden rounded-t-3xl">
+        <div class="absolute inset-0 bg-black bg-opacity-10"></div>
+        <div class="absolute top-6 right-6 opacity-10">
+            <i data-feather="award" class="w-20 h-20"></i>
+        </div>
+        <div class="relative z-10">
+            <div class="flex items-center gap-3 mb-2">
+                <i data-feather="users" class="w-6 h-6 text-purple-300"></i>
+                <span class="text-purple-200 text-sm font-semibold tracking-wide uppercase">Kaprodi</span>
+            </div>
+            <h2 class="text-3xl md:text-5xl font-bold leading-tight tracking-tight">
+                Sambutan Kepala Jurusan
+                <span class="block text-xl md:text-2xl font-medium text-purple-200 mt-2">
+                    Rekayasa Perangkat Lunak
+                </span>
+            </h2>
+        </div>
+    </div>
+
+    @foreach ($kaprodis as $kaprodi)
+    <div class="flex flex-col lg:flex-row gap-8 p-8 lg:p-12">
+        <div class="lg:w-2/3 space-y-6">
+            <div class="prose prose-gray max-w-none">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="bg-gradient-to-r from-purple-500 to-indigo-500 p-2 rounded-xl shadow-md">
+                        <i data-feather="message-circle" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800 m-0">Pesan dari Kepala Jurusan</h3>
+                </div>
+
+                <div class="text-gray-700 leading-relaxed text-justify bg-gradient-to-br from-purple-50 to-indigo-50 p-6 rounded-2xl shadow-inner">
+                    <div class="prose prose-lg max-w-none">
+                        {!! $kaprodi->description !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:w-1/3 flex justify-center lg:justify-end">
+            <div class="relative">
+                <div class="bg-gradient-to-br from-purple-100 via-purple-50 to-indigo-100 rounded-3xl p-6 shadow-xl transition-all duration-300 hover:scale-[1.02]">
+                    <div class="absolute -top-3 -right-3 bg-gradient-to-br from-purple-500 to-indigo-500 w-12 h-12 rounded-full opacity-20"></div>
+                    <div class="absolute -bottom-3 -left-3 bg-gradient-to-br from-indigo-500 to-purple-500 w-8 h-8 rounded-full opacity-20"></div>
+
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg relative">
+                        <div class="absolute top-3 right-3 bg-purple-500 rounded-full p-1.5 z-10 shadow-md">
+                            <i data-feather="star" class="w-4 h-4 text-white"></i>
+                        </div>
+                        <img src="{{ $kaprodi->image ? url('storage/' . $kaprodi->image) : asset('images/logo_skensa.png') }}"
+                             alt="{{ $kaprodi->name }}"
+                             class="w-full h-80 object-cover object-center transition-transform duration-300 hover:scale-105">
+                    </div>
+
+                    <div class="mt-6 space-y-4">
+                        <div class="bg-gradient-to-r from-purple-800 to-indigo-800 text-white px-5 py-4 rounded-xl text-center shadow-md">
+                            <div class="flex items-center justify-center gap-2 mb-1">
+                                <i data-feather="user" class="w-5 h-5"></i>
+                                <span class="font-bold text-lg">{{ $kaprodi->name }}</span>
+                            </div>
+                            <div class="text-purple-200 text-sm font-medium">Kepala Jurusan RPL</div>
+                        </div>
+
+                        <div class="bg-white rounded-xl p-4 shadow">
+                            <div class="flex items-center gap-2 mb-2">
+                                <i data-feather="zap" class="w-4 h-4 text-purple-600"></i>
+                                <span class="text-xs font-bold text-purple-600 uppercase tracking-wider">Motto</span>
+                            </div>
+                            <p class="text-sm text-gray-700 italic font-medium text-center">
+                                @if(isset($kaprodi->slogan) && $kaprodi->slogan)
+                                    "{{ $kaprodi->slogan }}"
+                                @else
+                                    "Inovasi, Kolaborasi, Transformasi Digital"
+                                @endif
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+</div>
+
+
 <div class="bg-gradient-to-r from-purple-900 via-indigo-900 to-purple-800 text-white py-20">
     <div class="container mx-auto px-4">
         <div class="flex flex-col lg:flex-row items-center gap-12">
@@ -109,7 +193,7 @@
                     <i data-feather="cpu" class="w-8 h-8 text-purple-300 mr-3"></i>
                     <h2 data-aos="fade-up" data-aos-duration="1600" class="text-4xl font-bold">Jurusan</h2>
                 </div>
-                @foreach ($jurusans as $jurusan)
+                @foreach ($jurusans->take(1) as $jurusan)
                     <h3 data-aos="fade-down" data-aos-duration="1600" class="text-2xl text-purple-200 mb-6">{{$jurusan->name}}</h3>
 
                 <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">

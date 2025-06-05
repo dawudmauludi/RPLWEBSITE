@@ -113,7 +113,7 @@
                                                     if (typeof Swal !== 'undefined') {
                                                         Swal.fire({
                                                             title: 'Yakin hapus?',
-                                                            text: `Apakah Anda yakin ingin menghapus data kategori karya ${nama}?`,
+                                                            text: `Apakah Anda yakin ingin menghapus data future ${nama}?`,
                                                             icon: 'warning',
                                                             showCancelButton: true,
                                                             confirmButtonColor: '#e3342f',

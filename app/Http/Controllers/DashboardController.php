@@ -182,7 +182,7 @@ class DashboardController extends Controller
             ]);
         }elseif ($user->hasRole('alumni')){
 
-              $job = $user->jobsheet()->latest()->take(3)->get();
+            $job = $user->jobsheet()->latest()->take(3)->get();
 
             $beritaHariIni = Berita::whereDate('created_at', Carbon::today('Asia/Jakarta'))->get();
 

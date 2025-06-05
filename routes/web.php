@@ -13,6 +13,7 @@ use App\Http\Controllers\FutureController;
 use App\Http\Controllers\GuruProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\KaryaSiswaController;
 use App\Http\Controllers\kategoriBeritaController;
 use App\Http\Controllers\kategoriKaryaController;
@@ -97,6 +98,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('lesson', LessonController::class)->except(['show'])->parameters(['lesson' => 'lesson']);
     Route::resource('language', LanguageController::class)->except(['show'])->parameters(['language' => 'language']);
     Route::resource('development', DevelopmentController::class)->except(['show'])->parameters(['development' => 'development']);
+    Route::resource('kaprodi', KaprodiController::class);
 });
 
 
@@ -141,7 +143,7 @@ Route::middleware(['auth','role:siswa'])->group(function () {
 
 
 Route::middleware('auth')->prefix('alumni')->name('alumni.')->group(function () {
-    
+
 });
 
 

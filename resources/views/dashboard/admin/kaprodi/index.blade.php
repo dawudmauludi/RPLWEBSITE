@@ -13,12 +13,12 @@
                         <i data-feather="users" class="w-8 h-8 text-purple-600"></i>
                     </div>
                     <div>
-                        <h1 class="text-3xl font-bold text-gray-800">Data language</h1>
-                        <p class="text-gray-600 mt-1">Kelola data language dengan sistem</p>
+                        <h1 class="text-3xl font-bold text-gray-800">Data kaprodi</h1>
+                        <p class="text-gray-600 mt-1">Kelola data kaprodi dengan sistem</p>
                     </div>
                 </div>
                 <div class="flex flex-col sm:flex-row sm:items-center gap-3 w-full md:w-auto">
-                    <form method="GET" action="{{ route('admin.language.index') }}" id="searchForm" autocomplete="off" class="w-full sm:w-auto">
+                    <form method="GET" action="{{ route('admin.kaprodi.index') }}" id="searchForm" autocomplete="off" class="w-full sm:w-auto">
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <i data-feather="search" class="w-5 h-5 text-gray-400"></i>
@@ -31,42 +31,43 @@
                                 class="block w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200 text-gray-900 placeholder-gray-500">
                         </div>
                     </form>
-                    <a href="{{ route('admin.language.create') }}"
+                    <a href="{{ route('admin.kaprodi.create') }}"
                         class="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                         <i data-feather="plus" class="w-5 h-5"></i>
-                        <span>Tambah language</span>
+                        <span>Tambah kaprodi</span>
                     </a>
                 </div>
             </div>
         </div>
-         @if(session('success'))
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Berhasil!',
-                            text: '{{ session('success') }}',
-                            confirmButtonColor: '#7c3aed'
-                            showConfirmButton: false,
-                            timer: 2000
-                        });
+        @if(session('success'))
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil!',
+                        text: @json(session('success')),
+                        confirmButtonColor: '#7c3aed',
+                        showConfirmButton: false,
+                        timer: 2000
                     });
-                </script>
-        @endif
-         @if(session('error'))
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Gagal!',
-                            text: '{{ session('error') }}',
-                            confirmButtonColor: '#e3342f',
-                            showConfirmButton: false,
-                            timer: 2000
-                        });
+                });
+            </script>
+            @endif
+
+            @if(session('error'))
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal!',
+                        text: @json(session('error')),
+                        confirmButtonColor: '#e3342f',
+                        showConfirmButton: false,
+                        timer: 2000
                     });
-                </script>
-        @endif
+                });
+            </script>
+            @endif
         <div class="bg-white rounded-xl shadow-lg overflow-hidden">
             <div id="guruTable">
                 <div class="overflow-x-auto">
@@ -94,30 +95,30 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach($languages as $language)
+                            @foreach($kaprodis as $kaprodi)
                             <tr class="hover:bg-purple-50 transition-colors duration-150">
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-600 font-mono">{{ $language->name }}</div>
+                                    <div class="text-sm text-gray-600 font-mono">{{ $kaprodi->name }}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center space-x-2">
-                                        <img src="{{ $language->image ? url('storage/' . $language->image) : asset('images/no-image.png') }}"
-                                             alt="{{ $language->name }}"
+                                        <img src="{{ $kaprodi->image ? url('storage/' . $kaprodi->image) : asset('images/no-image.png') }}"
+                                             alt="{{ $kaprodi->name }}"
                                              class="w-12 h-12 rounded-full object-cover">
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                     <div class="flex items-center space-x-2">
-                                        <a href="{{ route('admin.language.edit', $language->id) }}"
+                                        <a href="{{ route('admin.kaprodi.edit', $kaprodi->id) }}"
                                            class="inline-flex items-center px-3 py-1.5 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-lg transition-colors duration-150"
                                            title="Edit Data">
                                             <i data-feather="edit-2" class="w-4 h-4"></i>
                                         </a>
-                                        <form action="{{ route('admin.language.destroy', $language->id) }}" method="POST" class="inline delete-user-form">
+                                        <form action="{{ route('admin.kaprodi.destroy', $kaprodi->id) }}" method="POST" class="inline delete-user-form">
                                             @csrf @method('DELETE')
                                             <button type="button"
                                                     class="inline-flex items-center px-3 py-1.5 bg-red-100 hover:bg-red-200 text-red-700 rounded-lg transition-colors duration-150 delete-user-btn"
-                                                    data-nama="{{ $language->name }}"
+                                                    data-nama="{{ $kaprodi->name }}"
                                                     title="Hapus Data">
                                                 <i data-feather="trash-2" class="w-4 h-4"></i>
                                             </button>
@@ -130,18 +131,18 @@
                         </tbody>
                     </table>
 
-                    @if($languages->isEmpty())
+                    @if($kaprodis->isEmpty())
                     <div class="text-center py-12">
                         <div class="flex flex-col items-center">
                             <div class="bg-purple-100 p-6 rounded-full mb-4">
                                 <i data-feather="users" class="w-12 h-12 text-purple-600"></i>
                             </div>
-                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Tidak ada data language</h3>
-                            <p class="text-gray-600 mb-4">Belum ada language yang terdaftar dalam sistem</p>
-                            <a href="{{ route('admin.language.create') }}"
+                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Tidak ada data kaprodi</h3>
+                            <p class="text-gray-600 mb-4">Belum ada kaprodi yang terdaftar dalam sistem</p>
+                            <a href="{{ route('admin.kaprodi.create') }}"
                                class="inline-flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200">
                                 <i data-feather="plus" class="w-4 h-4"></i>
-                                <span>Tambah language Pertama</span>
+                                <span>Tambah kaprodi Pertama</span>
                             </a>
                         </div>
                     </div>
@@ -153,7 +154,6 @@
 </div>
 
 <script>
-// Initialize Feather Icons
 document.addEventListener('DOMContentLoaded', function() {
     if (typeof feather !== 'undefined') {
         feather.replace();
@@ -175,7 +175,7 @@ document.getElementById('searchInput').addEventListener('input', function() {
             </div>
         `;
 
-        fetch(`{{ route('admin.language.index') }}?search=${encodeURIComponent(searchValue)}`, {
+        fetch(`{{ route('admin.kaprodi.index') }}?search=${encodeURIComponent(searchValue)}`, {
             headers: {
                 'X-Requested-With': 'XMLHttpRequest'
             }
@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             Swal.fire({
                 title: 'Yakin hapus?',
-                text: `Apakah Anda yakin ingin menghapus data bahasa pemoggraman ${nama}?`,
+                text: `Apakah Anda yakin ingin menghapus data kaprodi ${nama}?`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#e3342f',
