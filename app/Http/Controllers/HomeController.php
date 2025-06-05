@@ -9,6 +9,7 @@ use App\Models\Jurusan;
 use App\Models\Kaprodi;
 use App\Models\karya_siswa;
 use App\Models\Lesson;
+use App\Models\ulasan_alumni;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,11 @@ class HomeController extends Controller
         $jurusans = Jurusan::all();
         $lessons = Lesson::all();
         $kaprodis = Kaprodi::all();
-        return view('home', compact('beritas', 'categories', 'sort', 'karyas', 'futures', 'jurusans', 'lessons', 'kaprodis'));
+        $ulasans = ulasan_alumni::with(['user', 'like'])->latest()->get();
+
+        return view('home', compact(
+            'beritas', 'categories', 'sort', 'karyas',
+            'futures', 'jurusans', 'lessons', 'kaprodis', 'ulasans'
+        ));
     }
 }

@@ -30,6 +30,7 @@ use App\Http\Controllers\SiswaProfileController;
 use App\Http\Controllers\UlanganController;
 use App\Http\Controllers\siswaUploadKaryaController;
 use App\Http\Controllers\TentangJurusanController;
+use App\Http\Controllers\UlasanAlumniController;
 use App\Http\Controllers\UserAproveController;
 use App\Http\Controllers\UsersController;
 use App\Models\guru_profile;
@@ -143,7 +144,9 @@ Route::middleware(['auth','role:siswa'])->group(function () {
 
 
 Route::middleware('auth')->prefix('alumni')->name('alumni.')->group(function () {
-
+    Route::post('/ulasan', [UlasanAlumniController::class, 'store']);
+    Route::delete('/ulasan/{id}', [UlasanAlumniController::class, 'destroy']);
+    Route::post('/ulasan/{id}/like', [UlasanAlumniController::class, 'toggleLike']);
 });
 
 
