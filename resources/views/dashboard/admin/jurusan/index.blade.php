@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             Swal.fire({
                 title: 'Yakin hapus?',
-                text: `Apakah Anda yakin ingin menghapus data kategori karya ${nama}?`,
+                text: `Apakah Anda yakin ingin menghapus data jurusan ${nama}?`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#e3342f',
