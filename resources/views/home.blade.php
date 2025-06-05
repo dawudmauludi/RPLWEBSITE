@@ -455,6 +455,322 @@
     </div>
 </div>
 
+<div class="max-w-7xl mx-auto px-4 py-12">
+    <div class="text-center mb-12">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-4">
+            <i data-feather="users" class="text-white text-2xl"></i>
+        </div>
+        <h1 class="text-4xl font-bold text-gray-900 mb-2">Alumni Reviews</h1>
+        <p class="text-gray-600 text-lg">Bagikan pengalaman dan inspirasi untuk generasi mendatang</p>
+    </div>
+
+    @role('alumni')
+    <div class="bg-gradient-to-br from-white to-blue-50 shadow-xl rounded-2xl p-8 mb-12 border border-blue-100 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full -translate-y-16 translate-x-16"></div>
+        <div class="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-purple-400/10 to-pink-400/10 rounded-full translate-y-12 -translate-x-12"></div>
+
+        <div class="relative z-10">
+            <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mr-4">
+                    <i data-feather="edit-3" class="text-white text-lg"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900">Tulis Ulasan Anda</h2>
+                    <p class="text-gray-600">Ceritakan pengalaman berharga Anda kepada adik-adik junior</p>
+                </div>
+            </div>
+
+            <form action="{{ url('alumni/ulasan') }}" method="POST" class="space-y-6">
+                @csrf
+                <div class="relative">
+                    <textarea name="ulasan" rows="4" maxlength="250"
+                        class="w-full p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none bg-white/80 backdrop-blur-sm"
+                        placeholder="Bagikan pengalaman, tips, atau pesan inspiratif Anda untuk adik-adik kelas (Maksimal 250 karakter)"
+                        required></textarea>
+                    <p class="text-gray-600 text-sm mt-2">*Maksimal 250 karakter</p>
+                    <div class="absolute bottom-3 right-3 text-gray-400">
+                        <i data-feather="quote-right" class="w-6 h-6"></i>
+                    </div>
+                </div>
+
+                <div class="flex justify-end">
+                    <button type="submit"
+                        class="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center space-x-2">
+                        <i data-feather="send" class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"></i>
+                        <span class="font-semibold">Kirim Ulasan</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    @endrole
+
+    <div class="mb-8">
+        <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center space-x-4">
+                <div class="w-10 h-10 bg-gradient-to-r from-amber-400 to-orange-500 rounded-lg flex items-center justify-center">
+                    <i data-feather="message-square" class="w-6 h-6 text-white"></i>
+                </div>
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900">Ulasan Alumni</h3>
+                    <p class="text-gray-600">{{ $ulasans->count() }} ulasan dari para alumni</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if($ulasans->count())
+    <div class="ulasan-carousel space-x-6 overflow-hidden pb-4">
+        @foreach($ulasans as $index => $ulasan)
+        <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl p-6 w-[350px] flex-shrink-0 border border-gray-100 transition-all duration-300 hover:transform hover:scale-105 relative group"
+             data-ulasan-id="{{ $ulasan->id }}"
+             style="animation: fadeInUp 0.6s ease-out {{ $index * 0.1 }}s both;">
+
+            <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-400/5 to-purple-400/5 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-500"></div>
+            <div class="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-amber-400/5 to-orange-400/5 rounded-full translate-y-8 -translate-x-8 group-hover:scale-150 transition-transform duration-500"></div>
+
+            <div class="absolute top-6 right-6 text-gray-200 group-hover:text-blue-200 transition-colors duration-300">
+                <i data-feather="quote-right" class="w-6 h-6"></i>
+            </div>
+
+            <div class="relative z-10">
+                <div class="flex items-center mb-4">
+                    <div class="relative">
+                        <div class="bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full h-12 w-12 flex items-center justify-center text-lg shadow-lg">
+                            {{ strtoupper(substr($ulasan->user->name, 0, 1)) }}
+                        </div>
+                        <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white"></div>
+                    </div>
+                    <div class="ml-4">
+                        <p class="font-semibold text-gray-900 text-lg">{{ $ulasan->user->name }}</p>
+                        <div class="flex items-center space-x-2 text-sm text-gray-500">
+                            <i data-feather="clock" class="w-4 h-4 text-xs"></i>
+                            <span>{{ $ulasan->created_at->diffForHumans() }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <p class="text-gray-700 leading-relaxed">{{ $ulasan->ulasan }}</p>
+                </div>
+
+                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <button onclick="toggleLike({{ $ulasan->id }})"
+                        class="group flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-red-50 transition-all duration-200"
+                        data-ulasan-id="{{ $ulasan->id }}">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="like-icon h-5 w-5 fill-current text-gray-400 group-hover:text-red-500 transition-colors duration-200"
+                            viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
+                                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09
+                                     C13.09 3.81 14.76 3 16.5 3
+                                     19.58 3 22 5.42 22 8.5
+                                     c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        <span class="like-count text-sm font-medium text-gray-700 group-hover:text-red-500 transition-colors duration-200">
+                            {{ $ulasan->like->count() }}
+                        </span>
+                    </button>
+
+                    <div class="flex items-center space-x-2">
+
+                        @if(auth()->check() && (auth()->user()->id == $ulasan->user_id || auth()->user()->hasRole('admin')))
+                        <form action="{{ url('alumni/ulasan/'.$ulasan->id) }}" method="POST" class="inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button"
+                                class="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all duration-200"
+                                onclick="return Swal.fire({
+                                    title: 'Hapus Ulasan',
+                                    text: 'Anda yakin ingin menghapus ulasan ini?',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#ef4444',
+                                    cancelButtonColor: '#6b7280',
+                                    confirmButtonText: 'Ya, hapus!',
+                                    cancelButtonText: 'Batal',
+                                    customClass: {
+                                        popup: 'rounded-xl',
+                                        confirmButton: 'rounded-lg',
+                                        cancelButton: 'rounded-lg'
+                                    }
+                                }).then((result) => {
+                                    if (result.isConfirmed) this.form.submit();
+                                })"
+                                title="Hapus ulasan">
+                                <i data-feather="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </form>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+
+    <div class="flex justify-center mt-8 space-x-4">
+        <button id="prevBtn" class="w-12 h-12 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-blue-500 hover:text-blue-500 transition-all duration-300 shadow-md hover:shadow-lg">
+            <i data-feather="chevron-left"></i>
+        </button>
+        <button id="nextBtn" class="w-12 h-12 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-blue-500 hover:text-blue-500 transition-all duration-300 shadow-md hover:shadow-lg">
+            <i data-feather="chevron-right"></i>
+        </button>
+    </div>
+
+    @else
+    <div class="text-center py-16">
+        <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i data-feather="message-square" class="text-gray-400 w-8 h-8"></i>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">Belum Ada Ulasan</h3>
+        <p class="text-gray-600 mb-8">Jadilah yang pertama untuk berbagi pengalaman Anda!</p>
+        @role('alumni')
+        <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+            <i data-feather="edit-2" class="mr-2"></i>
+            Tulis Ulasan Pertama
+        </button>
+        @endrole
+    </div>
+    @endif
+</div>
+
+<style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .line-clamp-4 {
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .ulasan-carousel {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .ulasan-carousel::-webkit-scrollbar {
+        display: none;
+    }
+
+    .ulasan-carousel > div {
+        flex: 0 0 auto;
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const carousel = document.querySelector('.ulasan-carousel');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    if (carousel && prevBtn && nextBtn) {
+        const cardWidth = 350 + 24;
+
+        prevBtn.addEventListener('click', () => {
+            carousel.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            carousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
+        });
+
+        const updateButtons = () => {
+            const scrollLeft = carousel.scrollLeft;
+            const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+
+            prevBtn.style.opacity = scrollLeft <= 0 ? '0.5' : '1';
+            nextBtn.style.opacity = scrollLeft >= maxScroll ? '0.5' : '1';
+        };
+
+        carousel.addEventListener('scroll', updateButtons);
+        updateButtons();
+    }
+
+    document.querySelectorAll('[data-ulasan-id]').forEach(card => {
+        const id = card.getAttribute('data-ulasan-id');
+        const icon = card.querySelector('.like-icon');
+
+        if (localStorage.getItem(`liked_${id}`)) {
+            icon.classList.remove('text-gray-400');
+            icon.classList.add('text-red-500');
+        }
+    });
+
+    if (typeof feather !== 'undefined') {
+        feather.replace();
+    }
+});
+
+function toggleLike(ulasanId) {
+    fetch(`/alumni/ulasan/${ulasanId}/like`, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'Accept': 'application/json'
+        }
+    })
+    .then(res => {
+        if (!res.ok) {
+            Swal.fire({
+                icon: 'info',
+                title: 'Login Diperlukan',
+                text: 'Silakan login untuk menyukai ulasan.',
+                confirmButtonText: 'OK',
+                customClass: {
+                    popup: 'rounded-xl',
+                    confirmButton: 'rounded-lg'
+                }
+            });
+            throw new Error('Not authenticated');
+        }
+        return res.json();
+    })
+    .then(data => {
+        const card = document.querySelector(`[data-ulasan-id="${ulasanId}"]`);
+        const icon = card.querySelector('.like-icon');
+        const count = card.querySelector('.like-count');
+        let current = parseInt(count.textContent);
+
+        if (data.liked) {
+            icon.classList.remove('text-gray-400');
+            icon.classList.add('text-red-500');
+            localStorage.setItem(`liked_${ulasanId}`, true);
+            count.textContent = current + 1;
+
+            icon.style.transform = 'scale(1.3)';
+            setTimeout(() => {
+                icon.style.transform = 'scale(1)';
+            }, 200);
+        } else {
+            icon.classList.remove('text-red-500');
+            icon.classList.add('text-gray-400');
+            localStorage.removeItem(`liked_${ulasanId}`);
+            count.textContent = current - 1;
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+</script>
+
+
+</script>
+
 @endsection
 
 @section('scripts')
