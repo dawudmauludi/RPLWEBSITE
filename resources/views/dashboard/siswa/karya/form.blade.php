@@ -57,7 +57,7 @@
                         <input type="text"
                                name="judul"
                                placeholder="Masukkan judul berita yang menarik..."
-                               value="{{ old('judul', $berita->judul ?? '') }}"
+                               value="{{ old('judul', $karya->judul ?? '') }}"
                                class="w-full px-4 py-3 border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white">
                     </div>
                     <div class="space-y-2">
@@ -87,11 +87,10 @@
                             <select name="category_karya_id"
                                     class="w-full px-4 py-3 border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white appearance-none">
                                 <option value="">Pilih kategori Karya...</option>
-                                @foreach ($categories as $category)
-                                 <option value="{{ $category->id }}"
-                                       {{ old('category_karya_id') == $category->id ? 'selected' : '' }}>
-                                     {{ $category->nama }}
-                                </option>
+                                  @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" {{ old('category_karya_id', $karya->category_karya_id ?? '') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->nama }}
+                                    </option>
                                 @endforeach
                             </select>
                             <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -127,7 +126,7 @@
                         <textarea name="deskripsi"
                                   placeholder="Tulis Deskripsi Karya lengkap di sini..."
                                   rows="8"
-                                  class="w-full px-4 py-3 border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white resize-vertical">{{ old('isi', $berita->isi ?? '') }}</textarea>
+                                  class="w-full px-4 py-3 border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white resize-vertical">{{ old('isi', $karya->deskripsi ?? '') }}</textarea>
                     </div>
 
                 </div>
@@ -269,7 +268,7 @@
 
   <div id="tools-container" class="flex flex-wrap gap-2 mt-2"></div>
 
-  <input type="hidden" name="tools" id="tools-hidden-input">
+  <input type="hidden" name="tools" id="tools-hidden-input" value="{{ isset($karya) && $karya->tools ? $karya->tools->pluck('nama') : '[]' }}">
 </div>
 
                 </div>
@@ -279,20 +278,20 @@
     <div>
     <label class="block font-medium text-sm text-gray-700 mb-1">Fitur-Fitur</label>
     <div id="fitur-container" class="space-y-2">
-        @if(isset($fiturs) && count($fiturs) > 0)
-            @foreach($fiturs as $index => $fitur)
-                <div class="flex items-center gap-2">
-                    <input type="text" name="fiturs[{{ $index }}][penjelasan]" value="{{ old("fiturs.$index.penjelasan", $fitur->penjelasan) }}" class="flex-grow p-2 border border-gray-300 rounded-md" placeholder="Contoh: Register, Lihat Data, dll">
-                    <button type="button" onclick="removeFitur(this)" class="text-red-500 hover:text-red-700 px-2 py-1 rounded">✕</button>
-                </div>
-            @endforeach
-        @endif
+        @if(isset($karya))
+        @foreach($karya->fiturKarya as $index => $fitur)
+            <div class="flex items-center gap-2">
+                <input type="text" name="fiturs[{{ $index }}][penjelasan]" value="{{ old("fiturs.$index.penjelasan", $fitur->penjelasan) }}" class="flex-grow p-2 border border-gray-300 rounded-md" placeholder="Contoh: Register, Lihat Data, dll">
+                <button type="button" onclick="removeFitur(this)" class="text-red-500 hover:text-red-700 px-2 py-1 rounded">✕</button>
+            </div>
+        @endforeach
+    @endif
     </div>
 
-    <button type="button" onclick="addFitur()" class="mt-3 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 text-sm">
-        + Tambah Fitur
-    </button>
-</div>
+        <button type="button" onclick="addFitur()" class="mt-3 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 text-sm">
+            + Tambah Fitur
+        </button>
+    </div>
             </div>
 
             </div>
@@ -446,45 +445,67 @@
             }
         });
 
-       const toolInput = document.getElementById('tool-input');
-  const addToolBtn = document.getElementById('add-tool-btn');
-  const toolsContainer = document.getElementById('tools-container');
-  const toolsHiddenInput = document.getElementById('tools-hidden-input');
+      const toolInput = document.getElementById('tool-input');
+    const addToolBtn = document.getElementById('add-tool-btn');
+    const toolsContainer = document.getElementById('tools-container');
+    const toolsHiddenInput = document.getElementById('tools-hidden-input');
 
-  let tools = [];
+    // Deklarasi array tools
+    let tools = [];
 
-  addToolBtn.addEventListener('click', () => {
-    const value = toolInput.value.trim();
-    if (value && !tools.includes(value)) {
-      tools.push(value);
-      updateToolsUI();
-      toolInput.value = '';
+    // Fungsi untuk menambahkan tool
+    function addTool(value) {
+        if (value && !tools.includes(value)) {
+            tools.push(value);
+            updateToolsUI();
+        }
     }
-  });
 
-  function updateToolsUI() {
-    toolsContainer.innerHTML = '';
-    tools.forEach((tool, index) => {
-      const badge = document.createElement('div');
-      badge.className = 'flex items-center space-x-1 bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded-md';
+    // Fungsi untuk update tampilan
+    function updateToolsUI() {
+        toolsContainer.innerHTML = '';
+        tools.forEach((tool, index) => {
+            const badge = document.createElement('div');
+            badge.className = 'flex items-center space-x-1 bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded-md';
 
-      badge.innerHTML = `
-        <span>${tool}</span>
-        <button type="button" class="text-red-500 font-bold" onclick="removeTool(${index})">&times;</button>
-      `;
-      toolsContainer.appendChild(badge);
+            badge.innerHTML = `
+                <span>${tool}</span>
+                <button type="button" class="text-red-500 font-bold" onclick="removeTool(${index})">&times;</button>
+            `;
+            toolsContainer.appendChild(badge);
+        });
+
+        // Update hidden input (bisa pakai JSON atau join dengan koma)
+        toolsHiddenInput.value = JSON.stringify(tools);
+        // atau: toolsHiddenInput.value = tools.join(',');
+    }
+
+    // Fungsi global untuk remove tool
+    window.removeTool = function(index) {
+        tools.splice(index, 1);
+        updateToolsUI();
+    }
+
+    // Event listener untuk tombol add
+    addToolBtn.addEventListener('click', function() {
+        const value = toolInput.value.trim();
+        addTool(value);
+        toolInput.value = '';
     });
 
-    // Simpan ke input hidden sebagai JSON
-    toolsHiddenInput.value = JSON.stringify(tools);
-  }
+    // Load existing skills
+    if (toolsHiddenInput.value) {
+        try {
+            // Coba parse sebagai JSON
+            tools = JSON.parse(toolsHiddenInput.value);
+        } catch (e) {
+            // Jika bukan JSON, anggap sebagai string dipisah koma
+            tools = toolsHiddenInput.value.split(',').map(s => s.trim()).filter(s => s);
+        }
+        updateToolsUI();
+    }
 
-  function removeTool(index) {
-    tools.splice(index, 1);
-    updateToolsUI();
-  }
-
-  let fiturIndex = {{ isset($fiturs) ? count($fiturs) : 0 }};
+    let fiturIndex =  {{ isset($karya) && $karya->fiturKarya ? count($karya->fiturKarya) : 0 }};
 
     function addFitur() {
         const container = document.getElementById('fitur-container');

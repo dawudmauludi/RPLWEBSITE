@@ -311,8 +311,8 @@
                     <h2 class="text-lg font-semibold text-gray-800">Skill</h2>
                 </div>
 
-                <!-- Existing Skills -->        
-               
+                <!-- Existing Skills -->
+
                   <div class="grid gap-6">
                     <!-- Isi -->
                  <div>
@@ -335,7 +335,7 @@
 
                     <div id="tools-container" class="flex flex-wrap gap-2 mt-2"></div>
 
-                    <input type="hidden" name="skills" id="tools-hidden-input" value="HTML,CSS,JavaScript">
+                    <input type="hidden" name="skills" id="tools-hidden-input"   value="{{ isset($job) && $job->skill ? $job->skill->pluck('name') : '[]' }}">
                     </div>
 
                 </div>
@@ -467,10 +467,10 @@
     const addToolBtn = document.getElementById('add-tool-btn');
     const toolsContainer = document.getElementById('tools-container');
     const toolsHiddenInput = document.getElementById('tools-hidden-input');
-    
+
     // Deklarasi array tools
     let tools = [];
-    
+
     // Fungsi untuk menambahkan tool
     function addTool(value) {
         if (value && !tools.includes(value)) {
@@ -478,39 +478,39 @@
             updateToolsUI();
         }
     }
-    
+
     // Fungsi untuk update tampilan
     function updateToolsUI() {
         toolsContainer.innerHTML = '';
         tools.forEach((skill, index) => {
             const badge = document.createElement('div');
             badge.className = 'flex items-center space-x-1 bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded-md';
-            
+
             badge.innerHTML = `
                 <span>${skill}</span>
                 <button type="button" class="text-red-500 font-bold" onclick="removeTool(${index})">&times;</button>
             `;
             toolsContainer.appendChild(badge);
         });
-        
+
         // Update hidden input (bisa pakai JSON atau join dengan koma)
         toolsHiddenInput.value = JSON.stringify(tools);
         // atau: toolsHiddenInput.value = tools.join(',');
     }
-    
+
     // Fungsi global untuk remove tool
     window.removeTool = function(index) {
         tools.splice(index, 1);
         updateToolsUI();
     }
-    
+
     // Event listener untuk tombol add
     addToolBtn.addEventListener('click', function() {
         const value = toolInput.value.trim();
         addTool(value);
         toolInput.value = '';
     });
-    
+
     // Load existing skills
     if (toolsHiddenInput.value) {
         try {

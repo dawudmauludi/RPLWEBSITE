@@ -47,7 +47,7 @@ class JobsController extends Controller
         // Preserve query parameters in pagination
         $jobs->appends($request->query());
 
-       
+
 
 
         return view('dashboard.admin.Jobsheet.index', compact('jobs'));
@@ -76,7 +76,7 @@ class JobsController extends Controller
             'gaji' => 'required|string',
             'link_pendaftaran' =>'required|string',
             'waktu_pekerjaan' => 'required|string',
-            'skills.*' => 'nullable|string|max:255',
+            'skills' => 'nullable|string|max:255',
         ]);
 
          $data = $request->all();
@@ -136,7 +136,8 @@ class JobsController extends Controller
             abort(403);
         }
 
-            return view('dashboard.admin.Jobsheet.edit', compact('job'));
+         $job->load('skill');
+        return view('dashboard.admin.Jobsheet.edit', compact('job'));
     }
 
     /**
@@ -194,19 +195,19 @@ if ($request->hasFile('image')) {
 $skills = [];
 if (!empty($request->skills)) {
     $decoded = json_decode($request->skills, true);
-    
+
     if (json_last_error() === JSON_ERROR_NONE) {
         $skills = $decoded;
     } else {
         // Fallback untuk format lama (harusnya tidak terjadi jika JS sudah diperbaiki)
         $skills = array_filter(array_map('trim', explode(',', $request->skills)));
     }
-    
+
     // Pastikan jobs->id tersedia
     if (!$job->id) {
         throw new \Exception("Job ID tidak valid");
     }
-    
+
     foreach ($skills as $skill) {
         Skill::create([
             'jobsheet_id' => $job->id,
@@ -214,7 +215,7 @@ if (!empty($request->skills)) {
         ]);
     }
 }
-   
+
         return redirect()->route('admin.jobs.index')->with('success', 'Jobs berhasil di update');
     }
 

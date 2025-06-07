@@ -283,7 +283,7 @@
         });
 
 
-    let fiturIndex = 0;
+    let fiturIndex =  {{ isset($development) && $development->listDevelopment ? count($development->listDevelopment) : 0 }};
 
     function addFitur() {
         const container = document.getElementById('fitur-container');
