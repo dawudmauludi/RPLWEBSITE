@@ -142,10 +142,10 @@
                 <i data-feather="plus-circle" class="w-5 h-5 {{ request()->is('admin/career*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
                 <span>Peluang Karier</span>
             </a>
-            <a href="{{ route('admin.career.index') }}"
-               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('admin/career*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
-                <i data-feather="plus-circle" class="w-5 h-5 {{ request()->is('admin/career*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
-                <span>Jobsheet</span>
+            <a href="{{ route('admin.jobs.index') }}"
+               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('admin/jobs*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
+                <i data-feather="plus-circle" class="w-5 h-5 {{ request()->is('admin/jobs*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
+                <span>Jobs</span>
             </a>
             <a href="{{ route('admin.kaprodi.index') }}"
                class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('admin/kaprodi*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">

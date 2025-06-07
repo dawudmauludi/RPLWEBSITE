@@ -9,6 +9,6 @@ class Skill extends Model
     protected $fillable = ['jobsheet_id', 'name'];
 
     public function jobsheet(){
-        return $this->belongsTo(Jobs::class);
+        return $this->belongsTo(Jobs::class, 'jobsheet_id');
     }
 }

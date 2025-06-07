@@ -63,7 +63,7 @@
                         </div>
                         <div class="ml-4">
                             <p class="text-sm font-medium text-gray-600">Menunggu Persetujuan</p>
-                            <p class="text-2xl font-bold text-gray-900">{{ $users->where('is_approved', false)->count() }}</p>
+                            <p class="text-2xl font-bold text-gray-900">{{ $users->where('status', 'pending')->count() }}</p>
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                         </div>
                         <div class="ml-4">
                             <p class="text-sm font-medium text-gray-600">Sudah Disetujui</p>
-                            <p class="text-2xl font-bold text-gray-900">{{ $users->where('is_approved', true)->count() }}</p>
+                            <p class="text-2xl font-bold text-gray-900">{{ $users->where('status', 'approved')->count() }}</p>
                         </div>
                     </div>
                 </div>
@@ -115,6 +115,14 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                         </svg>
                                         <span>Status</span>
+                                    </div>
+                                </th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <div class="flex items-center space-x-2">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                        <span>Role</span>
                                     </div>
                                 </th>
                                 <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -165,6 +173,18 @@
                                         </span>
                                     @endif
                                 </td>
+
+                                 <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="ml-4">
+                                              @foreach($user->roles as $role)
+                                            <span class="inline-block text-purple-700 text-l px-2 py-1 rounded-full">{{ $role->name }}</span>
+                                        @endforeach
+                                           
+                                        </div>
+                                    </div>
+                                </td>
+
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                     @if(!$user->is_approved)
                                         <div class="flex items-center space-x-3">

@@ -17,6 +17,6 @@ class Jobs extends Model
     }
 
     public function skill(){
-        return $this->hasMany(Skill::class);
+        return $this->hasMany(Skill::class, 'jobsheet_id');
     }
 }

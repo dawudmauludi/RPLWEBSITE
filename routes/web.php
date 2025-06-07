@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\addPoinController;
 use App\Http\Controllers\adminApproveController;
+use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\authController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\CareerController;
@@ -12,6 +13,8 @@ use App\Http\Controllers\DevelopmentController;
 use App\Http\Controllers\FutureController;
 use App\Http\Controllers\GuruProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\jobsAlumniController;
+use App\Http\Controllers\JobsController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KaprodiController;
 use App\Http\Controllers\KaryaSiswaController;
@@ -23,6 +26,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\NilaiExportController;
 use App\Http\Controllers\NilaiUlanganController;
+use App\Http\Controllers\profileAlumniController;
 use App\Http\Controllers\profileGuruController;
 use App\Http\Controllers\profileSiswaController;
 use App\Http\Controllers\SiswaController;
@@ -100,6 +104,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('language', LanguageController::class)->except(['show'])->parameters(['language' => 'language']);
     Route::resource('development', DevelopmentController::class)->except(['show'])->parameters(['development' => 'development']);
     Route::resource('kaprodi', KaprodiController::class);
+    Route::resource('jobs', JobsController::class);
 });
 
 
@@ -147,6 +152,11 @@ Route::middleware('auth')->prefix('alumni')->name('alumni.')->group(function () 
     Route::post('/ulasan', [UlasanAlumniController::class, 'store']);
     Route::delete('/ulasan/{id}', [UlasanAlumniController::class, 'destroy']);
     Route::post('/ulasan/{id}/like', [UlasanAlumniController::class, 'toggleLike']);
+    Route::get('/profile',[AlumniController::class, 'create'])->name('profile');
+    Route::post('/profile/store',[AlumniController::class, 'store'])->name('alumni_profile.store');
+    Route::resource('/profileAlumni',profileAlumniController::class);
+    Route::get('/all/jobs',[jobsAlumniController::class,'index'])->name('jobs.index');
+    Route::get('/all/jobs/{slug}',[jobsAlumniController::class,'show'])->name('jobs.show');
 });
 
 

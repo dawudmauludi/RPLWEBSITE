@@ -146,6 +146,17 @@ class authController extends Controller
                 return redirect('/alumni/profile')->with('error', 'Silakan lengkapi profil Anda terlebih dahulu.');
             }
             return redirect()->intended('dashboard');
+        }elseif ($user->hasRole('alumni')) {
+            if ($user->status === 'pending') {
+                Auth::logout();
+                return redirect()->route('login')->with('error', 'Akun Anda belum di-approve oleh admin.');
+            }
+
+            $alumniData = alumni_profile::where('user_id', $user->id)->first();
+            if(!$alumniData && !$request->is('alumni/profile')) {
+                return redirect('/alumni/profile')->with('error', 'Silakan lengkapi profil Anda terlebih dahulu.');
+            }
+            return redirect()->intended('dashboard');
         }
 
         // Fallback untuk role tidak diketahui

@@ -69,7 +69,7 @@ class KaryaSiswaController extends Controller
      */
     public function create()
     {
-
+        
     }
 
     /**
