@@ -1,4 +1,4 @@
-@extends('layouts.master')
+x@extends('layouts.master')
 @section('title', 'Karya Siswa')
 @section('content')
 <!-- Feather Icons -->

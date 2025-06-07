@@ -122,17 +122,32 @@
                                         <i data-feather="user" class="w-4 h-4 mr-3 text-purple-600 group-hover:scale-110 transition-transform duration-200"></i>
                                         <span class="text-sm font-medium">Profile</span>
                                     </a>
-                                @elseif ($user->hasRole('alumni'))
+                                @elseif ($user->hasRole('siswa'))
+                                @if ($studentProfile)
                                     <a href="/dashboard" class="flex items-center px-4 py-3 hover:bg-purple-50 transition-colors duration-200 group">
                                         <i data-feather="layout" class="w-4 h-4 mr-3 text-purple-600 group-hover:scale-110 transition-transform duration-200"></i>
                                         <span class="text-sm font-medium">Dashboard</span>
                                     </a>
-                                    @if ($alumniProfile)
                                         <a href="{{ route('siswa.profileSiswa.show', $studentProfile->id) }}" class="flex items-center px-4 py-3 hover:bg-purple-50 transition-colors duration-200 group">
                                             <i data-feather="user" class="w-4 h-4 mr-3 text-purple-600 group-hover:scale-110 transition-transform duration-200"></i>
                                             <span class="text-sm font-medium">Profile</span>
                                         </a>
                                         <a href="{{ route('siswa.profileSiswa.show', $studentProfile->id) }}" class="flex items-center px-4 py-3 hover:bg-purple-50 transition-colors duration-200 group">
+                                            <i data-feather="user" class="w-4 h-4 mr-3 text-purple-600 group-hover:scale-110 transition-transform duration-200"></i>
+                                            <span class="text-sm font-medium">Lowongan Pekerjaan</span>
+                                        </a>
+                                    @endif
+                                @elseif ($user->hasRole('alumni'))
+                                @if ($alumniProfile)
+                                    <a href="/dashboard" class="flex items-center px-4 py-3 hover:bg-purple-50 transition-colors duration-200 group">
+                                        <i data-feather="layout" class="w-4 h-4 mr-3 text-purple-600 group-hover:scale-110 transition-transform duration-200"></i>
+                                        <span class="text-sm font-medium">Dashboard</span>
+                                    </a>
+                                        <a href="{{ route('alumni.profileAlumni.show', $alumniProfile->id) }}" class="flex items-center px-4 py-3 hover:bg-purple-50 transition-colors duration-200 group">
+                                            <i data-feather="user" class="w-4 h-4 mr-3 text-purple-600 group-hover:scale-110 transition-transform duration-200"></i>
+                                            <span class="text-sm font-medium">Profile</span>
+                                        </a>
+                                        <a href="{{ route('alumni.jobs.index') }}" class="flex items-center px-4 py-3 hover:bg-purple-50 transition-colors duration-200 group">
                                             <i data-feather="user" class="w-4 h-4 mr-3 text-purple-600 group-hover:scale-110 transition-transform duration-200"></i>
                                             <span class="text-sm font-medium">Lowongan Pekerjaan</span>
                                         </a>
