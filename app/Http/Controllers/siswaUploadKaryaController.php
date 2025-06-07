@@ -19,7 +19,7 @@ class siswaUploadKaryaController extends Controller
      */
     public function index()
     {
-          $query = karya_siswa::where('user_id', auth()->id()); 
+          $query = karya_siswa::where('user_id', auth()->id());
 
             if ($search = request('search')) {
                 $query->where(function ($q) use ($search) {
@@ -66,8 +66,8 @@ class siswaUploadKaryaController extends Controller
             return redirect()->route('siswa.karya.index')->with('error', 'Kamu tidak memiliki cukup poin untuk membuat karya.');
         }
 
-                   $request->validate([
-        'category_karya_id' => 'required|exists:category_karyas,id',    
+        $request->validate([
+        'category_karya_id' => 'required|exists:category_karyas,id',
         'judul' => 'required|string',
         'deskripsi' => 'required|string',
         'link' => 'required',
@@ -151,6 +151,9 @@ if ($user->hasRole('siswa')) {
          if (!Auth::user()->hasRole('siswa')) {
             abort(403);
         }
+         $karya->load('tools');
+         $karya->load('fiturKarya');
+
           $categories = category_karya::all();
             return view('dashboard.siswa.karya.edit', compact('karya', 'categories'));
     }
@@ -162,11 +165,11 @@ if ($user->hasRole('siswa')) {
       public function update(Request $request, karya_siswa $karya)
     {
           $request->validate([
-        'category_karya_id' => 'required|exists:category_karyas,id',    
+        'category_karya_id' => 'required|exists:category_karyas,id',
         'judul' => 'required|string',
         'deskripsi' => 'required|string',
         'link' => 'required',
-        'gambar_karya' => 'required|image',
+        'gambar_karya' => 'nullable|image',
         'gambar_dokumentasi.*' => 'image|nullable',
          'tools.*' => 'nullable|string|max:255',
         'fiturs' => 'nullable|array',
@@ -174,10 +177,10 @@ if ($user->hasRole('siswa')) {
     ]);
 
     // Simpan gambar karya utama
-    
+
     if($request->hasFile('gambar_karya')){
         Storage::disk('public')->delete($karya->gambar_karya);
-        
+
         $gambarKaryaPath = $request->file('gambar_karya')->store('karya', 'public');
         $karya->gambar_karya = $gambarKaryaPath;
     }
@@ -228,6 +231,7 @@ if ($user->hasRole('siswa')) {
         }
     }
 }
+    return redirect()->route('siswa.karya.index')->with('success', 'Karya updated successfully.');
     }
 
     /**
@@ -235,6 +239,6 @@ if ($user->hasRole('siswa')) {
      */
     public function destroy(string $id)
     {
-        
+
     }
 }
