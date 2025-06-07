@@ -148,10 +148,10 @@
                 <i data-feather="plus" class="w-5 h-5 mr-3"></i>
                 <span class="font-medium">Tambah Pengguna</span>
             </button>
-            <button class="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center">
+            <a href="{{ route('admin.berita.index') }}" class="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center">
                 <i data-feather="edit-3" class="w-5 h-5 mr-3"></i>
                 <span class="font-medium">Kelola Berita</span>
-            </button>
+            </a>
             <button class="bg-gradient-to-r from-violet-500 to-violet-600 text-white p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center">
                 <i data-feather="settings" class="w-5 h-5 mr-3"></i>
                 <span class="font-medium">Pengaturan</span>

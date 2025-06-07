@@ -50,8 +50,8 @@
 
             <!-- Action Buttons -->
             <div class="hero-buttons flex flex-col sm:flex-row gap-3 sm:gap-4 animate-fade-in-up delay-300 w-full sm:w-auto">
-                <a href="/tentang-jurusan"
-                   class="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl">
+                <a href="{{ route('detail.jurusan') }}"
+                   class="group relative px-6 sm:px-8 py-3 sm:py-4 bg-primary hover:bg-primary-dark text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl">
                     <div class="flex items-center justify-center">
                         <i data-feather="globe" class="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:rotate-12 transition-transform duration-300"></i>
                         <span class="text-sm sm:text-base">Jelajahi Jurusan</span>
@@ -343,7 +343,6 @@
     </div>
 </section>
 
-<!-- News Section -->
 <div class="bg-gradient-to-br from-gray-50 to-purple-50 py-20" id="berita">
     <div class="container mx-auto px-4">
         <div class="flex items-center justify-between mb-8">
