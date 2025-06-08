@@ -2,75 +2,100 @@
 @section('title', 'RPL')
 @section('content')
 
-<!-- Hero Section -->
- <div class="relative w-full min-h-screen bg-black overflow-hidden">
-        <!-- Background Image -->
-        <img src="{{ asset('images/brawijaya.jpg') }}"
-             alt="Background SMKN 1 Pasuruan"
-             class="absolute inset-0 w-full h-full object-cover opacity-30">
+@php
+    $berandaImages = $master_images->where('type', 'beranda');
+    $jurusanImages = $master_images->where('type', 'jurusan');
+    $mapelImages = $master_images->where('type', 'mapel');
+@endphp
 
-        <!-- Animated Background Elements -->
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute -top-4 -left-4 w-48 h-48 sm:w-72 sm:h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
-            <div class="absolute top-1/2 -right-8 w-64 h-64 sm:w-96 sm:h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-            <div class="absolute bottom-0 left-1/3 w-56 h-56 sm:w-80 sm:h-80 bg-violet-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+<div x-data="{
+        activeSlide: 0,
+        total: {{ $berandaImages->count() }},
+        next() { this.activeSlide = (this.activeSlide + 1) % this.total; },
+        prev() { this.activeSlide = (this.activeSlide - 1 + this.total) % this.total; }
+    }"
+    x-init="setInterval(() => next(), 5000)"
+    class="relative w-full min-h-screen bg-black overflow-hidden">
+
+    @foreach ($berandaImages->values() as $index => $img)
+        <div :class="activeSlide === {{ $index }} ? 'opacity-30 z-0' : 'opacity-0 z-0'"
+             class="absolute inset-0 transition-opacity duration-1000 ease-in-out pointer-events-none">
+            <img src="{{ asset('storage/' . $img->image) }}"
+                 alt="Gambar Latar Belakang"
+                 class="w-full h-full object-cover">
+        </div>
+    @endforeach
+
+    <div class="absolute inset-0 overflow-hidden z-10">
+        <div class="absolute -top-4 -left-4 w-48 h-48 sm:w-72 sm:h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute top-1/2 -right-8 w-64 h-64 sm:w-96 sm:h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div class="absolute bottom-0 left-1/3 w-56 h-56 sm:w-80 sm:h-80 bg-violet-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+    </div>
+
+    <div class="relative z-20 flex flex-col items-start justify-center text-white px-4 sm:px-6 lg:px-8 py-8 sm:py-16 min-h-screen max-w-7xl mx-auto ml-12">
+        <div class="flex items-center mb-6 sm:mb-8 w-full animate-fade-in-up">
+            <div class="relative flex-shrink-0">
+                <img src="{{ asset('images/logo_skensa.png') }}"
+                     alt="Logo SMKN 1 Pasuruan"
+                     class="h-20 sm:h-32 lg:h-40 mr-0 sm:mr-6 lg:mr-8 drop-shadow-2xl transform hover:scale-105 transition-transform duration-300 mx-auto sm:mx-0">
+                <div class="absolute -inset-2 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full opacity-20 blur-xl"></div>
+            </div>
+
+            <div class="text-left sm:ml-4 lg:ml-10 flex-1">
+                <div class="flex items-center justify-center sm:justify-start mb-2">
+                    <i data-feather="code" class="w-5 h-5 mr-2 text-purple-300"></i>
+                    <h2 class="text-lg font-bold tracking-widest text-purple-200 uppercase">Jurusan</h2>
+                </div>
+                <h1 class="text-5xl sm:text-6xl font-bold text-purple-100 mb-3">Rekayasa Perangkat Lunak</h1>
+                <div class="flex items-center justify-center sm:justify-start">
+                    <i data-feather="map-pin" class="w-5 h-5 mr-2 text-purple-300"></i>
+                    <p class="text-lg text-purple-100">SMK Negeri 1 Pasuruan</p>
+                </div>
+            </div>
         </div>
 
-        <!-- Main Content -->
-        <div class="relative z-10 flex flex-col items-start justify-center text-white px-4 sm:px-6 lg:px-8 py-8 sm:py-16 min-h-screen max-w-7xl mx-auto">
-
-            <!-- Header Section -->
-            <div class="hero-layout flex items-center mb-6 sm:mb-8 animate-fade-in-up w-full">
-
-                <!-- Logo Container -->
-                <div class="hero-logo-container relative flex-shrink-0">
-                    <img src="{{ asset('images/logo_skensa.png') }}"
-                         alt="Logo SMKN 1 Pasuruan"
-                         class="hero-logo h-20 sm:h-32 lg:h-40 mr-0 sm:mr-6 lg:mr-8 drop-shadow-2xl transform hover:scale-105 transition-transform duration-300 mx-auto sm:mx-0">
-                    <div class="absolute -inset-2 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full opacity-20 blur-xl"></div>
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-fade-in-up delay-300">
+            <a href="{{ route('detail.jurusan') }}"
+               class="group relative px-6 py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl">
+                <div class="flex items-center justify-center">
+                    <i data-feather="globe" class="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300"></i>
+                    <span>Jelajahi Jurusan</span>
                 </div>
-
-                <!-- Text Content -->
-                <div class="hero-text hero-content text-left sm:ml-4 lg:ml-10 flex-1">
-                    <div class="flex items-center justify-center sm:justify-start mb-2">
-                        <i data-feather="code" class="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 mr-2 sm:mr-3 text-purple-300"></i>
-                        <h2 class="text-sm sm:text-lg lg:text-xl font-bold tracking-widest text-purple-200 uppercase">Jurusan</h2>
-                    </div>
-
-                    <h1 class="text-5xl sm:text-6xl lg:text-6xl font-bold mb-3 text-purple-100">
-                        Rekayasa Perangkat Lunak
-                    </h1>
-
-                    <div class="flex items-center justify-center sm:justify-start">
-                        <i data-feather="map-pin" class="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-purple-300"></i>
-                        <p class="text-base sm:text-lg lg:text-xl text-purple-100">SMK Negeri 1 Pasuruan</p>
-                    </div>
+            </a>
+            <a href="#visi-misi"
+               class="group px-6 py-3 border-2 border-purple-400 hover:bg-primary-dark text-purple-100 hover:text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105">
+                <div class="flex items-center justify-center">
+                    <i data-feather="arrow-down" class="w-5 h-5 mr-2 group-hover:translate-y-1 transition-transform duration-300"></i>
+                    <span>Pelajari Lebih Lanjut</span>
                 </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="hero-buttons flex flex-col sm:flex-row gap-3 sm:gap-4 animate-fade-in-up delay-300 w-full sm:w-auto">
-                <a href="{{ route('detail.jurusan') }}"
-                   class="group relative px-6 sm:px-8 py-3 sm:py-4 bg-primary hover:bg-primary-dark text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl">
-                    <div class="flex items-center justify-center">
-                        <i data-feather="globe" class="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:rotate-12 transition-transform duration-300"></i>
-                        <span class="text-sm sm:text-base">Jelajahi Jurusan</span>
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 rounded-lg transition-opacity duration-300"></div>
-                </a>
-
-                <a href="#visi-misi"
-                   class="group px-6 sm:px-8 py-3 sm:py-4 border-2 border-purple-400 hover:bg-purple-600 text-purple-100 hover:text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105">
-                    <div class="flex items-center justify-center">
-                        <i data-feather="arrow-down" class="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:translate-y-1 transition-transform duration-300"></i>
-                        <span class="text-sm sm:text-base">Pelajari Lebih Lanjut</span>
-                    </div>
-                </a>
-            </div>
+            </a>
         </div>
     </div>
 
-<!-- Vision, Mission, Goals Section -->
+    <button @click="prev"
+            class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 p-2 rounded-full shadow z-30">
+        <svg class="h-6 w-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+    <button @click="next"
+            class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 p-2 rounded-full shadow z-30">
+        <svg class="h-6 w-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </button>
+
+    <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-30">
+        @foreach ($berandaImages as $index => $img)
+            <div @click="activeSlide = {{ $index }}"
+                 :class="activeSlide === {{ $index }} ? 'bg-white' : 'bg-gray-500'"
+                 class="w-3 h-3 rounded-full cursor-pointer transition-colors duration-300"></div>
+        @endforeach
+    </div>
+</div>
+
+
+
 <div id="visi-misi" class="bg-gradient-to-br from-gray-50 to-purple-50 py-20">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16">
@@ -184,64 +209,107 @@
     @endforeach
 </div>
 
-
 <div class="bg-gradient-to-r from-purple-900 via-indigo-900 to-purple-800 text-white py-20">
-    <div class="container mx-auto px-4">
-        <div class="flex flex-col lg:flex-row items-center gap-12">
-            <div class="lg:w-1/2 space-y-6">
-                <div class="flex items-center mb-4">
-                    <i data-feather="cpu" class="w-8 h-8 text-purple-300 mr-3"></i>
-                    <h2 data-aos="fade-up" data-aos-duration="1600" class="text-4xl font-bold">Jurusan</h2>
-                </div>
-                @foreach ($jurusans->take(1) as $jurusan)
-                    <h3 data-aos="fade-down" data-aos-duration="1600" class="text-2xl text-purple-200 mb-6">{{$jurusan->name}}</h3>
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col lg:flex-row items-center gap-12">
 
-                <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
-                    <p class="text-purple-100 leading-relaxed mb-6">
-                        {!! Str::limit($jurusan->isi, 500, ' ...') !!}
-                    </p>
-
-                    <div class="flex flex-wrap gap-3 mb-6 mt-4">
-                        @foreach ($lessons->take(4) as $lesson)
-                        <span class="px-3 py-1 bg-purple-600/50 rounded-full text-sm flex items-center">
-                            <i data-feather="{{ $lesson->icon }}" class="w-4 h-4 mr-2"></i>{{ $lesson->name }}
-                        </span>
-                        @endforeach
-                    </div>
-
-                    <a href="/tentang-jurusan"
-                       class="group inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
-                        <i data-feather="arrow-right" class="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform duration-300"></i>
-                        Selengkapnya
-                    </a>
-                </div>
-                @endforeach
-            </div>
-
-            <div class="lg:w-1/2">
-                <div data-aos="zoom-in" data-aos-duration="1600" class="relative group">
-                    <div class="absolute -inset-4 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl opacity-30 blur-xl group-hover:opacity-50 transition-opacity duration-300"></div>
-                    <img src="{{ asset('images/coding1.jpg') }}" alt="Programming Illustration"
-                         class="relative rounded-2xl shadow-2xl w-full max-w-md mx-auto transform group-hover:scale-105 transition-transform duration-300">
-                </div>
-            </div>
+      <div class="jurusan lg:w-[50%] space-y-6 ml-16">
+        <div class="flex items-center mb-4">
+          <i data-feather="cpu" class="w-8 h-8 text-purple-300 mr-3"></i>
+          <h2 data-aos="fade-up" data-aos-duration="1600" class="text-5xl font-bold">Jurusan</h2>
         </div>
+
+        @foreach ($jurusans->take(1) as $jurusan)
+          <h3 data-aos="fade-down" data-aos-duration="1600" class="text-3xl text-purple-200 mb-6">
+            {{ $jurusan->name }}
+          </h3>
+
+          <div data-aos="zoom-in" data-aos-duration="1600" class="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/30">
+            <p class="text-purple-100 leading-relaxed mb-6 text-lg">
+              {!! Str::limit($jurusan->isi, 500, ' ...') !!}
+            </p>
+
+            <div class="flex flex-wrap gap-3 mb-6 mt-4">
+              @foreach ($lessons->take(4) as $lesson)
+                <span class="px-3 py-1 bg-purple-600/50 rounded-full text-lg flex items-center">
+                  <i data-feather="{{ $lesson->icon }}" class="w-4 h-4 mr-2"></i>{{ $lesson->name }}
+                </span>
+              @endforeach
+            </div>
+
+            <a href="/tentang-jurusan"
+              class="group inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+              <i data-feather="arrow-right" class="w-5 h-5 mr-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+              Selengkapnya
+            </a>
+          </div>
+        @endforeach
+      </div>
+
+    <div
+        x-data="{
+          activeSlide: 0,
+          total: {{ $jurusanImages->count() }},
+          next() { this.activeSlide = (this.activeSlide + 1) % this.total; },
+          prev() { this.activeSlide = (this.activeSlide - 1 + this.total) % this.total; }
+        }"
+        x-init="setInterval(() => next(), 5000)"
+        class="relative lg:w-[50%] w-full h-[500px] overflow-hidden mb-4"
+      >
+
+        @foreach ($jurusanImages->values() as $index => $img)
+          <div
+            :class="activeSlide === {{ $index }} ? 'opacity-100 z-10' : 'opacity-0 z-0'"
+            class="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+          >
+            <div class="relative group w-3/4 max-w-md mx-auto h-full flex items-center justify-center mt-16">
+              <img
+                src="{{ asset('storage/' . $img->image) }}"
+                alt="Gambar Latar Belakang"
+                class="relative rounded-2xl shadow-2xl w-full object-cover transform group-hover:scale-105 transition-transform duration-300 cursor-pointer"
+              >
+            </div>
+          </div>
+        @endforeach
+      </div>
+
     </div>
+  </div>
 </div>
 
-<!-- Subject Section -->
+
+
 <div class="bg-gradient-to-br from-gray-50 to-purple-50 py-20">
     <div class="container mx-auto px-4">
-        <div class="flex flex-col lg:flex-row items-center gap-12">
-            <div class="lg:w-1/2">
-                <div data-aos="zoom-out" data-aos-duration="1600" class="relative group">
-                    <div class="absolute -inset-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-300"></div>
-                    <img src="{{ asset('images/coding2.jpg') }}" alt="Coding"
-                         class="relative rounded-2xl shadow-xl w-full max-w-sm mx-auto transform group-hover:scale-105 transition-transform duration-300">
-                </div>
-            </div>
+    <div class="flex flex-col lg:flex-row items-center gap-12">
+        <div
+        x-data="{
+          activeSlide: 0,
+          total: {{ $mapelImages->count() }},
+          next() { this.activeSlide = (this.activeSlide + 1) % this.total; },
+          prev() { this.activeSlide = (this.activeSlide - 1 + this.total) % this.total; }
+        }"
+        x-init="setInterval(() => next(), 5000)"
+        class="relative lg:w-[50%] w-full h-[500px] overflow-hidden mb-4"
+      >
 
-            <div class="lg:w-1/2">
+        @foreach ($mapelImages->values() as $index => $img)
+          <div
+            :class="activeSlide === {{ $index }} ? 'opacity-100 z-10' : 'opacity-0 z-0'"
+            class="absolute inset-0 transition-opacity duration-1000 ease-in-out pointer-events-none"
+          >
+            <div class="relative group w-3/4 max-w-md mx-auto h-full flex items-center justify-center mt-16">
+              <img
+                src="{{ asset('storage/' . $img->image) }}"
+                alt="Gambar Latar Belakang"
+                class="relative rounded-2xl shadow-2xl w-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+              >
+            </div>
+          </div>
+        @endforeach
+      </div>
+
+      <div class="jurusan lg:w-[50%] space-y-6 ml-16">
                 <div class="flex items-center mb-6">
                     <i data-feather="book-open" class="w-8 h-8 text-purple-600 mr-3"></i>
                     <h2 data-aos="fade-up" data-aos-duration="1600" class="text-4xl font-bold text-gray-800">Mata Pelajaran Produktif</h2>
@@ -272,9 +340,11 @@
                     <i data-feather="external-link" class="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300"></i>
                     Selengkapnya
                 </a>
-            </div>
-        </div>
+
+      </div>
+
     </div>
+  </div>
 </div>
 
 <!-- Student Works Section -->
@@ -519,7 +589,8 @@
     </div>
 
     @if($ulasans->count())
-    <div class="ulasan-carousel space-x-6 overflow-hidden pb-4">
+    <div class="relative overflow-hidden">
+        <div class="ulasan-carousel flex space-x-6 pb-4 overflow-x-auto" >
         @foreach($ulasans as $index => $ulasan)
         <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl p-6 w-[350px] flex-shrink-0 border border-gray-100 transition-all duration-300 hover:transform hover:scale-105 relative group"
              data-ulasan-id="{{ $ulasan->id }}"
@@ -607,6 +678,8 @@
         </div>
         @endforeach
     </div>
+</div>
+
 
     <div class="flex justify-center mt-8 space-x-4">
         <button id="prevBtn" class="w-12 h-12 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center hover:border-blue-500 hover:text-blue-500 transition-all duration-300 shadow-md hover:shadow-lg">
