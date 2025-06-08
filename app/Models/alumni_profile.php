@@ -8,7 +8,7 @@ class alumni_profile extends Model
 {
     protected $fillable = [
         'user_id', 'nama', 'nisn','tahun_lulus', 'jenkel', 'telepon', 'alamat',
-        'tempat_lahir', 'tanggal_lahir', 'agama', 'foto','latitude', 'longitude'
+        'tempat_lahir', 'tanggal_lahir', 'agama', 'foto', 'latitude', 'longitude'
     ];
 
     public function user(){

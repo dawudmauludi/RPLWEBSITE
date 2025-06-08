@@ -24,6 +24,7 @@ use App\Http\Controllers\KelasController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\MasterImageController;
 use App\Http\Controllers\NilaiExportController;
 use App\Http\Controllers\NilaiUlanganController;
 use App\Http\Controllers\profileAlumniController;
@@ -105,6 +106,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('development', DevelopmentController::class)->except(['show'])->parameters(['development' => 'development']);
     Route::resource('kaprodi', KaprodiController::class);
     Route::resource('jobs', JobsController::class);
+    Route::resource('master_image', MasterImageController::class);
 });
 
 
