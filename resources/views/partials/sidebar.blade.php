@@ -16,6 +16,8 @@
                 $foto = asset('storage/' . $user->siswaprofile->foto);
             } elseif (isset($user->guruProfile) && $user->guruprofile->foto) {
                 $foto = asset('storage/' . $user->guruprofile->foto);
+            }elseif (isset($user->alumniProfile) && $user->alumniprofile->foto) {
+                $foto = asset('storage/' . $user->alumniprofile->foto);
             }
         @endphp
 
@@ -63,7 +65,11 @@
                 <i data-feather="user-check" class="w-5 h-5 {{ request()->is('admin/siswa*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
                 <span>Siswa</span>
             </a>
-
+            <a href="{{ route('admin.alumni.index') }}"
+               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('admin/alumni*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
+                <i data-feather="users" class="w-5 h-5 {{ request()->is('admin/alumni*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
+                <span>Alumni</span>
+            </a>
             <a href="{{ route('admin.kelas.index') }}"
                class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('admin/kelas*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
                 <i data-feather="layers" class="w-5 h-5 {{ request()->is('admin/kelas*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
@@ -153,10 +159,11 @@
                 <span>Kaprodi</span>
             </a>
             <a href="{{ route('admin.master_image.index') }}"
-               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('admin/jobs*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
-                <i data-feather="plus-circle" class="w-5 h-5 {{ request()->is('admin/jobs*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
+               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('admin/master_image*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
+                <i data-feather="plus-circle" class="w-5 h-5 {{ request()->is('admin/master_image*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
                 <span>Master Foto</span>
             </a>
+
         @endrole
 
         @role('guru')

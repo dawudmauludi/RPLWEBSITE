@@ -3,6 +3,7 @@
 use App\Http\Controllers\addPoinController;
 use App\Http\Controllers\adminApproveController;
 use App\Http\Controllers\AlumniController;
+use App\Http\Controllers\AlumniProfileController;
 use App\Http\Controllers\authController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\CareerController;
@@ -107,6 +108,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('kaprodi', KaprodiController::class);
     Route::resource('jobs', JobsController::class);
     Route::resource('master_image', MasterImageController::class);
+    Route::resource('alumni', AlumniProfileController::class)->parameters(['alumni' => 'alumni']);;
 });
 
 

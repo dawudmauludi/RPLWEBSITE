@@ -36,7 +36,7 @@
                     </div>
                 </div>
 
-               
+
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
                     <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
@@ -75,7 +75,7 @@
                         </div>
                     </div>
 
-                   
+
                 </div>
             </div>
         </div>
