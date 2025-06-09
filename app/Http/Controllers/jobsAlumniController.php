@@ -12,8 +12,8 @@ class jobsAlumniController extends Controller
          if (!Auth::user()->hasRole('alumni')) {
             abort(403);
         }
-        $query = Jobs::with('skill');
-    
+        $query = Jobs::with('skill')->where('status', 'aktif')->whereDate('tanggal_berakhir', '>=', now())->get();
+
     // Search functionality
     if ($request->filled('search')) {
         $query->where(function($q) use ($request) {
@@ -21,31 +21,29 @@ class jobsAlumniController extends Controller
               ->orWhere('nama_perusahaan', 'like', '%' . $request->search . '%');
         });
     }
-    
+
     // Filter by location
     if ($request->filled('lokasi')) {
         $query->where('lokasi', $request->lokasi);
     }
-    
+
     // Filter by job type
     if ($request->filled('tipe_pekerjaan')) {
         $query->where('tipe_pekerjaan', $request->tipe_pekerjaan);
     }
-    
-    $jobs = $query->latest()->paginate(12);
-    
+
+    $jobs = $query;
+
     // Statistics
-    $totalJobs = Jobs::count();
-    $activeJobs = Jobs::where('created_at', '>=', now()->subDays(30))->count();
-    $companiesCount = Jobs::distinct('nama_perusahaan')->count();
+
     $similarJobs = Jobs::where('nama_pekerjaan', 'like', '%'. $request->search. '%')->get();
-    
+
     // Filter options
     $locations = Jobs::distinct()->pluck('lokasi')->filter();
     $jobTypes = Jobs::distinct()->pluck('tipe_pekerjaan')->filter();
-    
+
     return view('Jobalumni.all', compact(
-        'jobs', 'totalJobs', 'activeJobs', 'companiesCount', 
+        'jobs',
         'locations', 'jobTypes','similarJobs'
     ));
     }

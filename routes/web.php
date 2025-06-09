@@ -82,9 +82,7 @@ Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard')
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('guru', GuruProfileController::class);
     Route::resource('siswa', SiswaProfileController::class);
-    Route::resource('kelas', KelasController::class)->parameters([
-        'kelas' => 'kelas'
-    ]);
+    Route::resource('kelas', KelasController::class)->parameters(['kelas' => 'kelas']);
     Route::resource('karya', KaryaSiswaController::class)->except(['show'])->parameters(['karya' => 'karya']);
     Route::resource('kategoriKarya', kategoriKaryaController::class);
     Route::post('/karya/isPublised/{karya}', [KaryaSiswaController::class,'isPublish'])->name('karya.isPublised');
@@ -123,7 +121,6 @@ Route::middleware(['auth', 'role:guru'])->prefix('guru')->name('guru.')->group(f
 
 
 Route::middleware(['auth'])->prefix('siswa')->name('siswa.')->group(function () {
-
     Route::get('/profile', [SiswaController::class, 'create'])->name('profile');
     Route::post('/profile/store', [SiswaController::class, 'store'])->name('siswa_profile.store');
     Route::resource('karya', siswaUploadKaryaController::class);
@@ -132,15 +129,15 @@ Route::middleware(['auth'])->prefix('siswa')->name('siswa.')->group(function () 
 });
 
 Route::middleware(['auth','role:guru'])->group(function () {
-        Route::resource('ulangans', UlanganController::class);
-        Route::patch('ulangans/{ulangan}/toggle-active', [UlanganController::class, 'toggleActive'])->name('ulangans.toggle-active');
-        Route::post('/ulangan/{ulangan}/nilai', [NilaiUlanganController::class, 'store'])->name('nilai.store');
-        Route::put('/nilai/{id}', [NilaiUlanganController::class, 'update'])->name('nilai.update');
-        Route::get('/ulangans/{ulanganId}/nilai/edit', [NilaiUlanganController::class, 'edit'])->name('nilai.edit');
-        Route::get('/nilai/ulangan/{ulanganId}', [NilaiUlanganController::class, 'show'])->name('nilai.show');
-        Route::post('/nilai/update-massal', [NilaiUlanganController::class, 'bulkUpdate'])->name('nilai.bulkUpdate');
-        Route::get('/nilai/export-excel/{ulanganId}', [NilaiExportController::class, 'export'])->name('nilai.export');
-        Route::post('/nilai/import/{ulangan_id}', [NilaiUlanganController::class, 'importNilai'])->name('nilai.import');
+    Route::resource('ulangans', UlanganController::class);
+    Route::patch('ulangans/{ulangan}/toggle-active', [UlanganController::class, 'toggleActive'])->name('ulangans.toggle-active');
+    Route::post('/ulangan/{ulangan}/nilai', [NilaiUlanganController::class, 'store'])->name('nilai.store');
+    Route::put('/nilai/{id}', [NilaiUlanganController::class, 'update'])->name('nilai.update');
+    Route::get('/ulangans/{ulanganId}/nilai/edit', [NilaiUlanganController::class, 'edit'])->name('nilai.edit');
+    Route::get('/nilai/ulangan/{ulanganId}', [NilaiUlanganController::class, 'show'])->name('nilai.show');
+    Route::post('/nilai/update-massal', [NilaiUlanganController::class, 'bulkUpdate'])->name('nilai.bulkUpdate');
+    Route::get('/nilai/export-excel/{ulanganId}', [NilaiExportController::class, 'export'])->name('nilai.export');
+    Route::post('/nilai/import/{ulangan_id}', [NilaiUlanganController::class, 'importNilai'])->name('nilai.import');
 
 });
 

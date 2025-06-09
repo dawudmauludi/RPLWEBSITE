@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\alumni_profile;
 use App\Models\berita;
 use App\Models\category_karya;
 use App\Models\guru_profile;
+use App\Models\Jobs;
 use App\Models\karya_siswa;
 use App\Models\siswa_profile;
 use App\Models\ulangan;
@@ -182,21 +184,18 @@ class DashboardController extends Controller
             ]);
         }elseif ($user->hasRole('alumni')){
 
-            $job = $user->jobsheet()->latest()->take(3)->get();
+
+
+            $job = Jobs::all();
 
             $beritaHariIni = Berita::whereDate('created_at', Carbon::today('Asia/Jakarta'))->get();
 
-            $karyaPerBulan = collect(range(1, 12))->map(function ($bulan) use ($user) {
-                return [
-                    'bulan' => Carbon::create()->month($bulan)->format('M'),
-                    'jumlah' => $user->karyaSiswa()->whereMonth('created_at', $bulan)->count(),
-                ];
-            });
+            $alumniAll = alumni_profile::all();
 
             return view('dashboard.alumni.index', [
                 'job' => $job,
                 'beritaHariIni' => $beritaHariIni,
-                'karyaPerBulan' => $karyaPerBulan,
+                'alumniAll'  => $alumniAll,
             ]);
 
         }else {

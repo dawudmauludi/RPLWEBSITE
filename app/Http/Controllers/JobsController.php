@@ -77,6 +77,8 @@ class JobsController extends Controller
             'link_pendaftaran' =>'required|string',
             'waktu_pekerjaan' => 'required|string',
             'skills' => 'nullable|string|max:255',
+            'tanggal_berakhir' => 'nullable|date',
+            'status' => 'required|in:aktif,nonaktif,expired'
         ]);
 
          $data = $request->all();
@@ -91,6 +93,11 @@ class JobsController extends Controller
 
         $gambarJobs =$request->file('image')->store('gambar Jobs', 'public');
 
+         $link = $request->link_pendaftaran;
+    if (!Str::startsWith($link, ['http://', 'https://'])) {
+        $link = 'https://' . $link;
+    }
+
         $createJobs = Jobs::create([
             'user_id' => auth()->user()->id,
             'nama_pekerjaan' => $validate['nama_pekerjaan'],
@@ -100,10 +107,12 @@ class JobsController extends Controller
             'tempat_kerja' => $validate['tempat_kerja'],
             'deskripsi_pekerjaan' => $validate['deskripsi_pekerjaan'],
             'gaji' => $validate['gaji'],
-            'link_pendaftaran' => $validate['link_pendaftaran'],
+            'link_pendaftaran' => $link,
             'waktu_pekerjaan' => $validate['waktu_pekerjaan'],
             'image' => $gambarJobs,
-            'slug' => $slug
+            'slug' => $slug,
+            'tanggal_berakhir' => $validate['tanggal_berakhir'],
+            'status' => 'aktif',
         ]);
 
          $skills = json_decode($request->skills, true);
@@ -122,9 +131,10 @@ class JobsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Jobs $jobs)
+    public function show(Jobs $job)
     {
-        //
+         $job = Jobs::with(['skill'])->findOrFail($job->id);
+        return view('dashboard.admin.Jobsheet.show', compact('job'));
     }
 
     /**
@@ -149,7 +159,7 @@ class JobsController extends Controller
             abort(403);
         }
           $request->validate([
-        'nama_pekerjaan' => 'required|string',
+            'nama_pekerjaan' => 'required|string',
             'nama_perusahaan' => 'required|string',
             'lokasi' => 'required|string',
             'tipe_pekerjaan' => 'required|string',
@@ -159,9 +169,15 @@ class JobsController extends Controller
             'link_pendaftaran' =>'required|string',
             'waktu_pekerjaan' => 'required|string',
             'skills.*' => 'nullable|string|max:255',
+            'tanggal_berakhir' => 'nullable|date',
+            'status' => 'required|in:aktif,nonaktif,expired'
     ]);
 
      $data = $request->except(['skills', 'image']);
+
+     if (!empty($data['tanggal_berakhir']) && \Carbon\Carbon::parse($data['tanggal_berakhir'])->lt(now())) {
+        $data['status'] = 'expired';
+    }
 
      if ($job->nama_pekerjaan != $request->nama_pekerjaan) {
     $slug = Str::slug($data['nama_pekerjaan']);
@@ -173,8 +189,15 @@ class JobsController extends Controller
     $data['slug'] = $slug;
 }
 
+$link = $request->link_pendaftaran;
+if (!Str::startsWith($link, ['http://', 'https://'])) {
+    $link = 'https://' . $link;
+}
 
-    // Simpan gambar karya utama
+$data['link_pendaftaran'] = $link;
+
+
+    // Simpan gambar job utama
 if ($request->hasFile('image')) {
         // Delete old image if exists
         if ($job->image) {
@@ -183,7 +206,7 @@ if ($request->hasFile('image')) {
         $data['image'] = $request->file('image')->store('gambar Jobs', 'public');
     }
 
-    // Simpan data karya
+    // Simpan data job
        $job->update($data);
 
 
@@ -222,8 +245,18 @@ if (!empty($request->skills)) {
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Jobs $jobs)
+    public function destroy(Jobs $job)
     {
-        //
+         if (!Auth::user()->hasRole('admin')) {
+            abort(403);
+        }
+
+        if($job->image){
+            Storage::disk('public')->delete($job->image);
+        }
+
+        $job->skill()->delete();
+        $job->delete();
+        return redirect()->route('admin.jobs.index')->with('success', 'job deleted successfully.');
     }
 }
