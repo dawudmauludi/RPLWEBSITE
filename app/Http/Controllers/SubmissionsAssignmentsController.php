@@ -75,7 +75,11 @@ class SubmissionsAssignmentsController extends Controller
 
         $assignment->load('kelas', 'photos');
 
-        $submission = $assignment->submissions()->where('user_id', $user->id)->with('photos')->first();
+       $submission = $assignment->submissions()
+    ->where('user_id', $user->id)
+    ->with('photos')
+    ->orderBy('created_at', 'desc') // yang terbaru di atas
+    ->get();
 
         return view('dashboard.siswa.submissions.show', compact('assignment', 'submission'));
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Assignments;
 use App\Models\kelas;
+use App\Models\SubmissionsAssignments;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -78,9 +79,21 @@ class AssignmentsController extends Controller
      */
     public function show(Assignments $assignment)
     {
-        $assignment->load('kelas');
-        $submissions = $assignment->submissions;
-        return view('dashboard.guru.assignments.show', compact('assignment', 'submissions'));
+     $assignment->load('kelas');
+
+$query = SubmissionsAssignments::where('assignment_id', $assignment->id)
+    ->with(['user', 'photos']);
+
+if ($search = request('search')) {
+    $query->whereHas('user', function ($q) use ($search) {
+        $q->where('name', 'like', '%' . substr($search, 0, 100) . '%');
+    });
+}
+
+// Simpan hasil query pencarian ke variabel `$submissions`
+$submissions = $query->orderBy('created_at', 'desc')->paginate(9)->withQueryString();
+
+return view('dashboard.guru.assignments.show', compact('assignment', 'submissions'));
     }
 
     /**

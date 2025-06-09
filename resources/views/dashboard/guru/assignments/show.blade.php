@@ -42,6 +42,19 @@
 
     <h2 class="text-xl font-semibold mb-4">Daftar Pengumpul Tugas</h2>
 
+    <form method="GET" action="{{ route('assignments.show', $assignment->id) }}">
+    <input
+        type="text"
+        name="search"
+        placeholder="Cari nama..."
+        value="{{ request('search') }}"
+        class="border px-3 py-2 rounded-md"
+    >
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">
+        Cari
+    </button>
+</form>
+
     @if ($submissions->count())
         <div class="bg-white shadow rounded p-4 overflow-x-auto">
             <table class="min-w-full text-left">
