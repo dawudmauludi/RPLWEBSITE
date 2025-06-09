@@ -4,135 +4,88 @@
 
 @section('content')
 <div class="container mx-auto p-4">
-    <h1 class="text-2xl font-semibold mb-4">Detail Tugas</h1>
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">Detail Tugas</h1>
 
-    <div class="bg-white shadow rounded p-4 mb-6">
-        <h2 class="text-xl font-bold">{{ $assignment->title }}</h2>
-        <p class="text-gray-700 mt-2"><strong>Instruksi:</strong></p>
-        <p class="text-gray-700 mb-2">{!! $assignment->instructions !!}</p>
-        <p class="text-gray-700"><strong>Batas Waktu:</strong> {{ \Carbon\Carbon::parse($assignment->due_date)->format('d M Y H:i') }}</p>
-        <p class="text-gray-700"><strong>Kelas:</strong> {{ $assignment->kelas->nama ?? '-' }}</p>
-        @if ($assignment->link)
-            <p class="text-blue-600 mt-2"><strong>Link:</strong> <a href="{{ $assignment->link }}" target="_blank">{{ $assignment->link }}</a></p>
-        @endif
+    <div class="bg-white rounded-xl shadow-md p-6 space-y-4">
+        <h2 class="text-2xl font-semibold text-blue-700">{{ $assignment->title }}</h2>
+        <div class="text-gray-700">
+            <p><strong>Instruksi:</strong></p>
+            <div class="prose max-w-full">{!! $assignment->instructions !!}</div>
+        </div>
 
-        @if ($assignment->file)
-            <p class="mt-2">
-                <strong>File Tugas:</strong>
-                <a href="{{ asset('storage/' . $assignment->file) }}" class="text-blue-500 underline" target="_blank">Download</a>
-            </p>
-        @endif
+        <div class="text-gray-700 space-y-1">
+            <p><strong>Batas Waktu:</strong> {{ \Carbon\Carbon::parse($assignment->due_date)->format('d M Y H:i') }}</p>
+            <p><strong>Kelas:</strong> {{ $assignment->kelas->nama ?? '-' }}</p>
+
+            @if ($assignment->link)
+                <p><strong>Link:</strong> <a href="{{ $assignment->link }}" class="text-blue-600 underline" target="_blank">{{ $assignment->link }}</a></p>
+            @endif
+
+            @if ($assignment->file)
+                <p><strong>File Tugas:</strong>
+                    <a href="{{ asset('storage/' . $assignment->file) }}" class="text-blue-500 underline" target="_blank">Download</a>
+                </p>
+            @endif
+        </div>
 
         @if ($assignment->photos && $assignment->photos->count())
             <div class="mt-4 grid grid-cols-2 md:grid-cols-3 gap-4">
                 @foreach ($assignment->photos as $photo)
-                    <img src="{{ asset('storage/' . $photo->photo_path) }}" class="w-full h-auto rounded shadow" alt="Foto Tugas">
+                    <img
+                        src="{{ asset('storage/' . $photo->photo_path) }}"
+                        class="w-full h-48 object-cover rounded-lg shadow hover:scale-105 transform transition duration-200 cursor-pointer"
+                        alt="Foto Tugas"
+                        onclick="openModal('{{ asset('storage/' . $photo->photo_path) }}')"
+                    >
                 @endforeach
             </div>
         @endif
     </div>
 
-    <div class="mt-4">
-        <a href="{{ route('assignments.index') }}" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg flex items-center space-x-2 transition-colors">
+    <div class="mt-6">
+        <a href="{{ route('assignments.index') }}" class="inline-flex items-center gap-2 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition-colors">
             <i data-feather="arrow-left" class="w-4 h-4"></i>
             <span>Kembali ke Daftar Tugas</span>
         </a>
     </div>
 
+    <div class="mt-10">
+        <h2 class="text-xl font-semibold text-gray-800 mb-3">Daftar Pengumpul Tugas</h2>
 
-    <h2 class="text-xl font-semibold mb-4">Daftar Pengumpul Tugas</h2>
-
-    <form method="GET" action="{{ route('assignments.show', $assignment->id) }}">
-    <input
-        type="text"
-        name="search"
-        placeholder="Cari nama..."
-        value="{{ request('search') }}"
-        class="border px-3 py-2 rounded-md"
-    >
-    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">
-        Cari
-    </button>
-</form>
-
-    @if ($submissions->count())
-        <div class="bg-white shadow rounded p-4 overflow-x-auto">
-            <table class="min-w-full text-left">
-                <thead>
-                    <tr>
-                        <th class="px-4 py-2 border-b">Nama Siswa</th>
-                        <th class="px-4 py-2 border-b">Link Tugas</th>
-                        <th class="px-4 py-2 border-b">File</th>
-                        <th class="px-4 py-2 border-b">Foto</th>
-                        <th class="px-4 py-2 border-b">Waktu Submit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($submissions as $submission)
-                        <tr>
-                            <td class="px-4 py-2 border-b">{{ $submission->user->name }}</td>
-                            <td class="px-4 py-2 border-b">
-                                <a href="{{ $submission->link }}" target="_blank" class="text-blue-500 underline">Lihat Link</a>
-                            </td>
-                            <td class="px-4 py-2 border-b">
-                                @if ($submission->file)
-                                    <a href="{{ asset('storage/' . $submission->file) }}" target="_blank" class="text-blue-500 underline">Download</a>
-                                @else
-                                    -
-                                @endif
-                            </td>
-                            <td class="px-4 py-2 border-b">
-                                @if ($submission->photos && $submission->photos->count())
-                                    <div class="flex flex-wrap gap-2">
-                                        @foreach ($submission->photos as $photo)
-                                            <img
-                                                src="{{ asset('storage/' . $photo->photo_path) }}"
-                                                alt="Photo"
-                                                class="w-16 h-16 rounded object-cover cursor-pointer"
-                                                onclick="openModal('{{ asset('storage/' . $photo->photo_path) }}')"
-                                            >
-                                        @endforeach
-                                    </div>
-                                @else
-                                    -
-                                @endif
-
-                                <!-- Modal -->
-                                <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-50">
-                                    <span class="absolute top-5 right-5 text-white cursor-pointer text-3xl font-bold" onclick="closeModal()">&times;</span>
-                                    <img id="modalImage" src="" alt="Large Photo" class="max-w-full max-h-full rounded">
-                                </div>
-
-                                <script>
-                                    function openModal(src) {
-                                        document.getElementById('modalImage').src = src;
-                                        document.getElementById('imageModal').classList.remove('hidden');
-                                    }
-                                    function closeModal() {
-                                        document.getElementById('imageModal').classList.add('hidden');
-                                        document.getElementById('modalImage').src = '';
-                                    }
-
-                                    // Optional: close modal if click outside image
-                                    document.getElementById('imageModal').addEventListener('click', function(e) {
-                                        if (e.target.id === 'imageModal') {
-                                            closeModal();
-                                        }
-                                    });
-                                </script>
-                            </td>
-
-                            <td class="px-4 py-2 border-b">
-                                {{ $submission->created_at->timezone('Asia/Jakarta')->format('d M Y H:i') }}
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        <div class="flex items-center gap-3 mb-4">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Cari nama siswa..."
+                class="w-full border border-gray-300 px-4 py-2 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            />
+            <div id="loader" class="hidden text-sm text-gray-500">Mencari...</div>
         </div>
-    @else
-        <p class="text-gray-600">Belum ada siswa yang mengumpulkan tugas.</p>
-    @endif
-</div>
-@endsection
 
+        <div id="submissionsTable">
+            @include('dashboard.guru.assignments.partials.submissions-table', ['submissions' => $submissions])
+        </div>
+    </div>
+</div>
+
+<script>
+    const input = document.getElementById('searchInput');
+    const submissionsTable = document.getElementById('submissionsTable');
+    const loader = document.getElementById('loader');
+    const assignmentId = {{ $assignment->id }};
+
+    let timeout = null;
+    input.addEventListener('input', function () {
+        clearTimeout(timeout);
+        loader.classList.remove('hidden');
+        timeout = setTimeout(() => {
+            fetch(`/assignments/${assignmentId}/submissions/search?search=${input.value}`)
+                .then(res => res.json())
+                .then(data => {
+                    submissionsTable.innerHTML = data.html;
+                    loader.classList.add('hidden');
+                });
+        }, 300);
+    });
+</script>
+@endsection

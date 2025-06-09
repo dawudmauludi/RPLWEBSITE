@@ -208,8 +208,8 @@
                 <span>Hasil Nilai Ulangan</span>
             </a>
             <a href="{{ route('submissions.index') }}"
-               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('submissions*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
-                <i data-feather="bar-chart-2" class="w-5 h-5 {{ request()->is('submissions*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
+               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('submissions*') || request()->is('assignments*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
+                <i data-feather="bar-chart-2" class="w-5 h-5 {{ request()->is('submissions*') || request()->is('assignments*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
                 <span>Tugas</span>
             </a>
         @endrole

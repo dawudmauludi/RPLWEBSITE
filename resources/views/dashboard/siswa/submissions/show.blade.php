@@ -27,15 +27,19 @@
         @if ($assignment->photos && $assignment->photos->count())
             <div class="mt-4 grid grid-cols-2 md:grid-cols-3 gap-4">
                 @foreach ($assignment->photos as $photo)
-                    <img src="{{ asset('storage/' . $photo->photo_path) }}" class="w-full h-auto rounded shadow" alt="Foto Tugas">
+                    <img src="{{ asset('storage/' . $photo->photo_path) }}" class="w-full h-auto rounded shadow cursor-pointer"  alt="Foto Tugas" onclick="openModal('{{ asset('storage/' . $photo->photo_path) }}')">
                 @endforeach
             </div>
         @endif
     </div>
 
     <h2 class="text-xl font-semibold mb-4">History Pengumpulan Tugas Kamu</h2>
-
-    @if ($submission)
+     @php
+                $now = \Carbon\Carbon::now();
+                $dueDate = \Carbon\Carbon::parse($assignment->due_date);
+                $isLate = $now->gt($dueDate);
+    @endphp
+    @if ($submission->isNotEmpty())
         <table class="min-w-full bg-white shadow rounded overflow-hidden">
             <thead>
                 <tr class="bg-gray-200 text-left">
@@ -88,7 +92,16 @@
         </table>
     @else
         <p class="text-gray-600">Kamu belum mengumpulkan tugas ini.</p>
-        <a href="{{ route('submissions.create', $assignment->id) }}" class="btn btn-primary mt-4">Kumpulkan Tugas</a>
+        @if ($isLate)
+                        <button class="w-full bg-gray-300 text-gray-600 font-semibold py-2 px-4 rounded-lg cursor-not-allowed" disabled>
+                            Waktu pengumpulan telah berakhir
+                        </button>
+                    @else
+                        <a href="{{ route('submissions.create', $assignment->id) }}"
+                           class="w-full inline-block text-center bg-primary hover:bg-primary-dark text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+                            ✔ Kumpulkan Tugas
+                        </a>
+                    @endif
     @endif
     <div class="mt-4">
         <a href="{{ route('submissions.index')}}" class="btn btn-secondary">Kembali</a>
