@@ -46,41 +46,44 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($submission as $sub)
                 <tr>
+
                     <td class="px-4 py-2 border align-top">
-                        @if ($submission->link)
-                            <a href="{{ $submission->link }}" target="_blank" class="text-blue-500 underline">{{ $submission->link }}</a>
+                        @if ($sub->link)
+                            <a href="{{ $sub->link }}" target="_blank" class="text-blue-500 underline">{{ $sub->link }}</a>
                         @else
                             -
                         @endif
                     </td>
                     <td class="px-4 py-2 border align-top">
-                        @if ($submission->file)
-                            <a href="{{ asset('storage/' . $submission->file) }}" target="_blank" class="text-blue-500 underline">Download</a>
+                        @if ($sub->file)
+                            <a href="{{ asset('storage/' . $sub->file) }}" target="_blank" class="text-blue-500 underline">Download</a>
                         @else
                             -
                         @endif
                     </td>
                     <td class="px-4 py-2 border">
-                        @if ($submission->photos && $submission->photos->count())
+                        @if ($sub->photos && $sub->photos->count())
                             <div class="flex flex-wrap gap-2">
-                                @foreach ($submission->photos as $photo)
+                                @foreach ($sub->photos as $photo)
                                     <img
                                         src="{{ asset('storage/' . $photo->photo_path) }}"
                                         alt="Photo"
                                         class="w-16 h-16 rounded object-cover cursor-pointer"
                                         onclick="openModal('{{ asset('storage/' . $photo->photo_path) }}')"
                                     >
-                                @endforeach
-                            </div>
-                        @else
-                            -
-                        @endif
-                    </td>
-                    <td class="px-4 py-2 border align-top">
-                        {{ $submission->created_at->timezone('Asia/Jakarta')->format('d M Y H:i') }}
-                    </td>
-                </tr>
+                                    @endforeach
+                                </div>
+                                @else
+                                -
+                                @endif
+                            </td>
+                            <td class="px-4 py-2 border align-top">
+                                {{ $sub->created_at->timezone('Asia/Jakarta')->format('d M Y H:i') }}
+                            </td>
+                        </tr>
+                        @endforeach
             </tbody>
         </table>
     @else
