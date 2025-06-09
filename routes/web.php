@@ -4,6 +4,7 @@ use App\Http\Controllers\addPoinController;
 use App\Http\Controllers\adminApproveController;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AlumniProfileController;
+use App\Http\Controllers\AssignmentsController;
 use App\Http\Controllers\authController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\CareerController;
@@ -35,12 +36,14 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SiswaProfileController;
 use App\Http\Controllers\UlanganController;
 use App\Http\Controllers\siswaUploadKaryaController;
+use App\Http\Controllers\SubmissionsAssignmentsController;
 use App\Http\Controllers\TentangJurusanController;
 use App\Http\Controllers\UlasanAlumniController;
 use App\Http\Controllers\UserAproveController;
 use App\Http\Controllers\UsersController;
 use App\Models\guru_profile;
 use App\Models\nilai_ulangan;
+use App\Models\SubmissionsAssignments;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
@@ -125,27 +128,32 @@ Route::middleware(['auth'])->prefix('siswa')->name('siswa.')->group(function () 
     Route::post('/profile/store', [SiswaController::class, 'store'])->name('siswa_profile.store');
     Route::resource('karya', siswaUploadKaryaController::class);
     Route::resource('/profileSiswa',profileSiswaController::class);
-
 });
 
 Route::middleware(['auth','role:guru'])->group(function () {
-    Route::resource('ulangans', UlanganController::class);
-    Route::patch('ulangans/{ulangan}/toggle-active', [UlanganController::class, 'toggleActive'])->name('ulangans.toggle-active');
-    Route::post('/ulangan/{ulangan}/nilai', [NilaiUlanganController::class, 'store'])->name('nilai.store');
-    Route::put('/nilai/{id}', [NilaiUlanganController::class, 'update'])->name('nilai.update');
-    Route::get('/ulangans/{ulanganId}/nilai/edit', [NilaiUlanganController::class, 'edit'])->name('nilai.edit');
-    Route::get('/nilai/ulangan/{ulanganId}', [NilaiUlanganController::class, 'show'])->name('nilai.show');
-    Route::post('/nilai/update-massal', [NilaiUlanganController::class, 'bulkUpdate'])->name('nilai.bulkUpdate');
-    Route::get('/nilai/export-excel/{ulanganId}', [NilaiExportController::class, 'export'])->name('nilai.export');
-    Route::post('/nilai/import/{ulangan_id}', [NilaiUlanganController::class, 'importNilai'])->name('nilai.import');
-
+        Route::resource('ulangans', UlanganController::class);
+        Route::patch('ulangans/{ulangan}/toggle-active', [UlanganController::class, 'toggleActive'])->name('ulangans.toggle-active');
+        Route::post('/ulangan/{ulangan}/nilai', [NilaiUlanganController::class, 'store'])->name('nilai.store');
+        Route::put('/nilai/{id}', [NilaiUlanganController::class, 'update'])->name('nilai.update');
+        Route::get('/ulangans/{ulanganId}/nilai/edit', [NilaiUlanganController::class, 'edit'])->name('nilai.edit');
+        Route::get('/nilai/ulangan/{ulanganId}', [NilaiUlanganController::class, 'show'])->name('nilai.show');
+        Route::post('/nilai/update-massal', [NilaiUlanganController::class, 'bulkUpdate'])->name('nilai.bulkUpdate');
+        Route::get('/nilai/export-excel/{ulanganId}', [NilaiExportController::class, 'export'])->name('nilai.export');
+        Route::post('/nilai/import/{ulangan_id}', [NilaiUlanganController::class, 'importNilai'])->name('nilai.import');
+        Route::resource('assignments', AssignmentsController::class);
 });
+
 
 Route::middleware(['auth','role:siswa'])->group(function () {
     Route::get('my-ulangans', [UlanganController::class, 'myUlangans'])->name('ulangans.my-ulangans');
     Route::get('ulangans/{ulangan}/access', [UlanganController::class, 'access'])->name('ulangans.access');
     Route::get('/nilai', [NilaiUlanganController::class, 'index'])->name('nilai.index');
     Route::get('/nilai/{ulanganId}', [NilaiUlanganController::class, 'showNilai'])->name('nilai.showNilai');
+    Route::resource('submissions', SubmissionsAssignmentsController::class);
+    Route::get('/submissions/create/{assignment_id}', [SubmissionsAssignmentsController::class, 'create'])->name('submissions.create');
+    Route::post('/submissions/store/{assignment_id}', [SubmissionsAssignmentsController::class, 'store'])->name('submissions.store');
+    Route::get('/assignments/{assignment}/submission', [SubmissionsAssignmentsController::class, 'showSubmission'])->name('assignments.submission.show');
+
 });
 
 

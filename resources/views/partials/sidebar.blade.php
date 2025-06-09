@@ -178,10 +178,15 @@
                 <i data-feather="file-text" class="w-5 h-5 {{ request()->is('ulangans*') || request()->is('nilai*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
                 <span>Ujian/Ulangan</span>
             </a>
+            <a href="{{ route('assignments.index') }}"
+               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('assignments*') || request()->is('assignments*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
+                <i data-feather="file-text" class="w-5 h-5 {{ request()->is('assignments*') || request()->is('assignments*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
+                <span>Tugas</span>
+            </a>
         @endrole
 
         @role('alumni')
-           
+
         @endrole
 
         @role('siswa')
@@ -194,13 +199,18 @@
             <a href="{{ route('ulangans.my-ulangans') }}"
                class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('my-ulangans') || request()->is('ulangans*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
                 <i data-feather="edit" class="w-5 h-5 {{ request()->is('my-ulangans') || request()->is('ulangans*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
-                <span>Tugas/Ulangan</span>
+                <span>Ujian/Ulangan</span>
             </a>
 
             <a href="{{ route('nilai.index') }}"
                class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('nilai*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
                 <i data-feather="bar-chart-2" class="w-5 h-5 {{ request()->is('nilai*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
                 <span>Hasil Nilai Ulangan</span>
+            </a>
+            <a href="{{ route('submissions.index') }}"
+               class="flex items-center space-x-3 py-3 px-4 rounded-xl transition-all duration-200 hover:bg-white/10 backdrop-blur-sm group {{ request()->is('submissions*') ? 'bg-white text-purple-700 font-semibold shadow-lg' : 'text-white hover:text-white' }}">
+                <i data-feather="bar-chart-2" class="w-5 h-5 {{ request()->is('submissions*') ? 'text-purple-600' : 'text-purple-200 group-hover:text-white' }}"></i>
+                <span>Tugas</span>
             </a>
         @endrole
     </nav>
