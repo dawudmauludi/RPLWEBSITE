@@ -5,39 +5,39 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
     body { font-family: 'Inter', sans-serif; }
-    
+
     .detail-card {
         backdrop-filter: blur(10px);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    
+
     .gradient-bg {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
-    
+
     .skill-badge {
         animation: float 3s ease-in-out infinite;
     }
-    
+
     .skill-badge:nth-child(2) { animation-delay: 0.5s; }
     .skill-badge:nth-child(3) { animation-delay: 1s; }
     .skill-badge:nth-child(4) { animation-delay: 1.5s; }
-    
+
     @keyframes float {
         0%, 100% { transform: translateY(0px); }
         50% { transform: translateY(-3px); }
     }
-    
+
     .premium-badge {
         background: linear-gradient(45deg, #ffd700, #ffed4e);
         box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
     }
-    
+
     .hot-badge {
         background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
         animation: pulse 2s infinite;
     }
-    
+
     @keyframes pulse {
         0%, 100% { opacity: 1; }
         50% { opacity: 0.8; }
@@ -106,13 +106,13 @@
                             <div class="font-semibold text-gray-800">{{ $job->tempat_kerja }}</div>
                             <div class="text-sm text-gray-600">Lokasi Kerja</div>
                         </div>
-                        
+
                         <div class="text-center p-3 bg-green-50 rounded-xl">
                             <i data-feather="clock" class="w-8 h-8 mx-auto mb-2 text-green-600"></i>
                             <div class="font-semibold text-gray-800">{{ $job->waktu_pekerjaan }}</div>
                             <div class="text-sm text-gray-600">Waktu Kerja</div>
                         </div>
-                        
+
                         <div class="text-center p-3 bg-purple-50 rounded-xl">
                             <i data-feather="users" class="w-8 h-8 mx-auto mb-2 text-purple-600"></i>
                             <div class="font-semibold text-gray-800">{{ $job->tipe_pekerjaan }}</div>
@@ -128,12 +128,26 @@
                 </div>
 
                 <!-- Job Description -->
-                <div class="detail-card bg-white rounded-2xl shadow-lg border border-gray-100 p-8 mb-8">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Deskripsi Pekerjaan</h3>
-                    <div class="prose prose-lg max-w-none text-gray-700">
-                        {!! $job->deskripsi_pekerjaan !!}
-                    </div>
-                </div>
+              <div x-data="{ showFull: false }" class="detail-card bg-white rounded-2xl shadow-lg border border-gray-100 p-8 mb-8">
+    <h3 class="text-2xl font-bold text-gray-800 mb-6">Deskripsi Pekerjaan</h3>
+
+    <div
+        class="prose prose-lg max-w-none text-gray-700 transition-all duration-300 overflow-hidden"
+        :class="{ 'max-h-40': !showFull, 'max-h-full': showFull }"
+        x-ref="descContainer"
+    >
+        {!! $job->deskripsi_pekerjaan !!}
+    </div>
+
+    <div class="mt-4 text-right">
+        <button
+            @click="showFull = !showFull"
+            class="text-blue-600 hover:underline font-medium"
+            x-text="showFull ? 'Sembunyikan' : 'Tampilkan Semua'"
+        ></button>
+    </div>
+</div>
+
 
                  @if($job->skill && $job->skill->count() > 0)
                 <div class="detail-card bg-white rounded-2xl shadow-lg border border-gray-100 p-8 mb-8">
@@ -189,18 +203,18 @@
                 <!-- Company Info -->
                 <div class="detail-card bg-white rounded-2xl shadow-lg border border-gray-100 p-6 mb-8">
                     <h3 class="text-xl font-bold text-gray-800 mb-4">Tentang Perusahaan</h3>
-                    
+
                     <div class="space-y-4">
                         <div>
                             <div class="text-sm text-gray-600 mb-1">Nama Perusahaan</div>
                             <div class="font-semibold text-gray-800">{{ $job->nama_perusahaan }}</div>
                         </div>
-                        
+
                         <div>
                             <div class="text-sm text-gray-600 mb-1">Lokasi</div>
                             <div class="font-semibold text-gray-800">{{ $job->lokasi }}</div>
                         </div>
-                        
+
                         <div>
                             <div class="text-sm text-gray-600 mb-1">Waktu Kerja</div>
                             <div class="font-semibold text-gray-800">{{ $job->waktu_pekerjaan }}</div>
@@ -212,7 +226,7 @@
                 @if(isset($similarJobs) && $similarJobs->count() > 0)
                 <div class="detail-card bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
                     <h3 class="text-xl font-bold text-gray-800 mb-4">Lowongan Serupa</h3>
-                    
+
                     <div class="space-y-4">
                         @foreach($similarJobs->take(3) as $similarJob)
                         <a href="{{ route('alumni.jobs.show', $similarJob->slug) }}" class="block p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-all">
@@ -225,7 +239,7 @@
                         </a>
                         @endforeach
                     </div>
-                    
+
                     <a href="{{ route('alumni.jobs.index') }}" class="block text-center text-blue-600 hover:text-blue-800 font-medium mt-4">
                         Lihat Semua Lowongan
                     </a>
@@ -263,7 +277,7 @@
                 e.preventDefault();
                 const jobId = this.dataset.jobId;
                 const icon = this.querySelector('[data-feather="heart"]');
-                
+
                 // Toggle visual state
                 if (this.classList.contains('bookmarked')) {
                     this.classList.remove('bookmarked');
@@ -349,11 +363,11 @@
         notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform';
         notification.textContent = message;
         document.body.appendChild(notification);
-        
+
         setTimeout(() => {
             notification.style.transform = 'translateX(0)';
         }, 100);
-        
+
         setTimeout(() => {
             notification.style.transform = 'translateX(full)';
             setTimeout(() => {

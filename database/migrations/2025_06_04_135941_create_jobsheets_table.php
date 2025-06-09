@@ -24,15 +24,9 @@ return new class extends Migration
             $table->enum('tipe_pekerjaan', ['Magang', 'Paruh Waktu','Penuh Waktu','Harian', 'Kontrak', 'Freelance']);
             $table->string('waktu_pekerjaan');
             $table->longText('deskripsi_pekerjaan');
-            $table->longText('persyaratan')->nullable();
-            $table->longText('benefit')->nullable();
             $table->text('link_pendaftaran');
             $table->date('tanggal_berakhir')->nullable();
-            $table->string('pengalaman_minimal')->nullable();
-            $table->string('pendidikan_minimal')->nullable();
-            $table->decimal('gaji_min', 12, 2)->nullable();
-            $table->decimal('gaji_max', 12, 2)->nullable();
-            $table->enum('gaji_type', ['per_bulan', 'per_hari', 'per_jam', 'per_proyek'])->default('per_bulan');
+            $table->enum('status', ['aktif', 'nonaktif', 'expired'])->default('aktif');
             $table->timestamps();
         });
     }

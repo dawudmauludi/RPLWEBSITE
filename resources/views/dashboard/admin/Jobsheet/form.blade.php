@@ -170,6 +170,40 @@
                             </div>
                     </div>
 
+                    <div class="space-y-2">
+                        <label class="flex items-center text-sm font-medium text-gray-700">
+                            <svg class="w-4 h-4 mr-2 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                            </svg>
+                            Status Jobs
+                        </label>
+                       <div class="relative">
+                                <select name="status" id="status" required
+                                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200 bg-white">
+                                    <option value="">-- Status Jobs --</option>
+                                    @foreach(['aktif', 'nonaktif', 'expired'] as $status)
+                                        <option value="{{ $status }}" {{ old('status', $job->status ?? '') == $status ? 'selected' : '' }}>
+                                            {{ $status }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <i data-feather="book" class="absolute left-3 top-3.5 w-4 h-4 text-gray-400"></i>
+                            </div>
+                    </div>
+
+                     <div>
+                            <label for="tanggal_berakhir" class="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                                <i data-feather="calendar" class="w-4 h-4 text-purple-600"></i>
+                                Tanggal Berakhir
+                            </label>
+                            <div class="relative">
+                                <input type="date" name="tanggal_berakhir" id="tanggal_berakhir"
+                                       value="{{ old('tanggal_berakhir', $job->tanggal_berakhir ?? '') }}"
+                                       class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200">
+                                <i data-feather="calendar" class="absolute left-3 top-3.5 w-4 h-4 text-gray-400"></i>
+                            </div>
+                        </div>
+
                       <div class="space-y-2">
                         <label class="flex items-center text-sm font-medium text-gray-700">
                             <svg class="w-4 h-4 mr-2 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -179,7 +213,7 @@
                         </label>
                         <input type="text"
                                name="link_pendaftaran"
-                               placeholder="Contoh: URL_ADDRESS.com"
+                               placeholder="Contoh: youtube.com atau https://youtube.com""
                                value="{{ old('link_pendaftaran', $job->link_pendaftaran ?? '') }}"
                                class="w-full px-4 py-3 border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white">
                     </div>
@@ -192,7 +226,7 @@
                         </label>
                         <input type="text"
                                name="waktu_pekerjaan"
-                               placeholder="Contoh: URL_ADDRESS.com"
+                               placeholder="Contoh: Senin - Jumat"
                                value="{{ old('waktu_pekerjaan', $job->waktu_pekerjaan ?? '') }}"
                                class="w-full px-4 py-3 border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white">
                     </div>

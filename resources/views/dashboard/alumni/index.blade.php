@@ -6,7 +6,7 @@
         <div class="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-100 py-8">
             <div class="container mx-auto px-4">
                 <div class="mb-8">
-                    <h1 class="text-4xl font-bold text-gray-800 mb-2">Dashboard Siswa</h1>
+                    <h1 class="text-4xl font-bold text-gray-800 mb-2">Dashboard Alumni</h1>
                     <p class="text-gray-600">Selamat datang! Berikut adalah ringkasan aktivitas Anda</p>
                 </div>
 
@@ -29,8 +29,8 @@
                                 <i data-feather="bell" class="w-6 h-6 text-violet-600"></i>
                             </div>
                             <div class="ml-4">
-                                <h3 class="text-2xl font-bold text-gray-800">{{ $beritaHariIni->count() }}</h3>
-                                <p class="text-gray-600">Alumni Hari Ini</p>
+                                <h3 class="text-2xl font-bold text-gray-800">{{ $alumniAll->count() }}</h3>
+                                <p class="text-gray-600">Semua Alumni Yang terdaftar</p>
                             </div>
                         </div>
                     </div>
@@ -85,76 +85,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         window.addEventListener('load', function () {
-            const labels = @json($karyaPerBulan->pluck('bulan'));
-            const data = @json($karyaPerBulan->pluck('jumlah'));
 
-            console.log("Labels:", labels);
-            console.log("Data:", data);
-
-            const ctx = document.getElementById('karyaChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Jumlah Karya per Bulan',
-                        data: data,
-                        backgroundColor: 'rgba(147, 51, 234, 0.7)',
-                        borderColor: 'rgba(147, 51, 234, 1)',
-                        borderWidth: 2,
-                        borderRadius: 8,
-                        borderSkipped: false,
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            backgroundColor: 'rgba(55, 48, 163, 0.9)',
-                            titleColor: '#ffffff',
-                            bodyColor: '#ffffff',
-                            borderColor: 'rgba(147, 51, 234, 1)',
-                            borderWidth: 1,
-                            cornerRadius: 8,
-                        }
-                    },
-                    scales: {
-                        x: {
-                            grid: {
-                                display: false
-                            },
-                            ticks: {
-                                color: '#6b7280'
-                            }
-                        },
-                        y: {
-                            beginAtZero: true,
-                            grid: {
-                                color: 'rgba(229, 231, 235, 0.5)'
-                            },
-                            ticks: {
-                                stepSize: 1,
-                                color: '#6b7280'
-                            }
-                        }
-                    },
-                    interaction: {
-                        intersect: false,
-                        mode: 'index'
-                    },
-                    animation: {
-                        duration: 1000,
-                        easing: 'easeInOutQuart'
-                    }
-                }
-            });
-
-            feather.replace();
-        });
     </script>
   <script>
     function startCountdowns() {

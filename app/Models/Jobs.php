@@ -9,7 +9,7 @@ class Jobs extends Model
     protected $table = 'jobsheets';
 
     protected $fillable = [
-        'user_id', 'nama_pekerjaan', 'nama_perusahaan', 'lokasi', 'slug', 'gaji', 'image', 'tempat_kerja', 'tipe_pekerjaan', 'waktu_pekerjaan', 'deskripsi_pekerjaan', 'link_pendaftaran'
+        'user_id', 'nama_pekerjaan', 'nama_perusahaan', 'lokasi', 'slug', 'gaji', 'image', 'tempat_kerja', 'tipe_pekerjaan', 'waktu_pekerjaan', 'deskripsi_pekerjaan', 'link_pendaftaran', 'tanggal_berakhir', 'status'
     ];
 
     public function user(){
