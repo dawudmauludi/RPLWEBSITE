@@ -71,41 +71,36 @@ class authController extends Controller
 
   public function login(Request $request)
     {
-        // Validasi input
         $this->validateLogin($request);
 
-        // Implementasi rate limiting
         $maxAttempts = 5;
         $decayMinutes = 1;
 
         if (RateLimiter::tooManyAttempts($this->throttleKey($request), $maxAttempts)) {
             $seconds = RateLimiter::availableIn($this->throttleKey($request));
-            
+
              return back()
         ->withInput()
         ->withErrors(['email' => "Terlalu banyak percobaan. Silakan coba lagi dalam {$seconds} detik."])
         ->with('rate_limit', $seconds);
         }
 
-        // Coba melakukan autentikasi
         $credentials = $request->only('email', 'password');
         $remember = $request->filled('remember');
 
         if (!Auth::attempt($credentials, $remember)) {
             RateLimiter::hit($this->throttleKey($request), $decayMinutes * 60);
-            
+
             throw ValidationException::withMessages([
                 'email' => __('auth.failed'),
             ]);
         }
 
-        // Reset rate limiter setelah login berhasil
         RateLimiter::clear($this->throttleKey($request));
 
         $request->session()->regenerate();
         $user = Auth::user();
 
-        // Redirect berdasarkan role
         return $this->authenticated($request, $user);
     }
 
@@ -140,11 +135,7 @@ class authController extends Controller
             if (!$siswaData && !$request->is('siswa/profile')) {
                 return redirect('/siswa/profile')->with('info', 'Silakan lengkapi profil Anda terlebih dahulu.');
             }
-
-            $alumniData = alumni_profile::where('user_id', $user->id)->first();
-            if(!$alumniData && !$request->is('alumni/profile')) {
-                return redirect('/alumni/profile')->with('error', 'Silakan lengkapi profil Anda terlebih dahulu.');
-            }
+            
             return redirect()->intended('dashboard');
         }elseif ($user->hasRole('alumni')) {
             if ($user->status === 'pending') {
