@@ -23,225 +23,313 @@
 @endif
 
 <style>
- @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
         }
-        
-        .animate-slide-in {
-            animation: slideIn 0.3s ease-out;
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
-        
-        @keyframes pulse-glow {
-            0%, 100% {
-                box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
-            }
-            50% {
-                box-shadow: 0 0 0 8px rgba(139, 92, 246, 0);
-            }
-        }
-        
-        .animate-pulse-glow {
-            animation: pulse-glow 2s infinite;
-        }
-    </style>
+    }
 
-<main class="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-50 flex items-center justify-center p-4">
-    <div class="w-full max-w-md">
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-            <!-- Header Card -->
-            <div class="bg-gradient-to-r from-purple-600 to-indigo-700 p-6 text-center">
-                <h1 class="text-3xl font-bold text-white font-[Poppins]">Website RPL</h1>
-                <p class="text-purple-100 mt-1">Silakan masuk ke akun Anda</p>
-            </div>
-            
-            <!-- Form Login -->
-            <div class="p-8">
-                <form action="{{ route('login.post') }}" method="POST" class="space-y-5">
-                    @csrf
-                    
-                    <!-- Email Input -->
-                    <div>
-                  <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                  <div class="relative">
-                      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                          </svg>
-                      </div>
-                      <input 
-                          type="email" 
-                          name="email" 
-                          id="email"
-                          class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200 disabled:bg-gray-100 disabled:cursor-not-allowed"
-                          placeholder="email@contoh.com"
-                          required
-                          @if(session('rate_limit')) disabled @endif
-                          value="{{ old('email') }}"
-                          autocomplete="off"
-                      >
-                  </div>
-                  @error('email')
-                      <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                  @enderror
-              </div>
-                    
-                    <!-- Password Input -->
-                   <div>
-                  <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                  <div class="relative">
-                      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                          <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                          </svg>
-                      </div>
-                      <input 
-                          type="password" 
-                          name="password" 
-                          id="passwordInput"
-                          class="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200 disabled:bg-gray-100 disabled:cursor-not-allowed"
-                          placeholder="••••••••"
-                          required
-                          @if(session('rate_limit')) disabled @endif
-                          autocomplete="off"
-                      >
-                    <button 
-                  type="button" 
-                  onclick="togglePassword()" 
-                  class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700 focus:outline-none"
-                  @if(session('rate_limit')) disabled @endif
-              >
-                  <svg id="eyeClosed" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
-                  </svg>
-                  <svg id="eyeOpen" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                  </svg>
-              </button>
-                  </div>
-              </div>
+    @keyframes fadeInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
 
-                    
-                    <!-- Remember Me & Forgot Password -->
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <input 
-                                id="remember" 
-                                name="remember" 
-                                type="checkbox" 
-                                class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
-                            >
-                            <label for="remember" class="ml-2 block text-sm text-gray-700">
-                                Ingat saya
-                            </label>
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+    }
+
+    .animate-fade-up {
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    .animate-fade-left {
+        animation: fadeInLeft 0.6s ease-out;
+    }
+
+    .animate-pulse-gentle {
+        animation: pulse 3s infinite;
+    }
+
+    .glass-effect {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.1);
+    }
+</style>
+
+<main class="min-h-screen bg-gray-50 flex">
+    <!-- Left Column - Logo Section -->
+    <div class="hidden lg:flex lg:w-1/2 bg-primary relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                        <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" stroke-width="0.5"/>
+                    </pattern>
+                </defs>
+                <rect width="100" height="100" fill="url(#grid)" />
+            </svg>
+        </div>
+
+        <!-- Logo and Content -->
+        <div class="relative z-10 flex flex-col justify-center items-center w-full px-12 text-white">
+            <div class="animate-fade-left">
+                <!-- Logo Container -->
+                <div class="mb-8 animate-pulse-gentle">
+                    <div class="w-24 h-24 rounded-2xl flex mx-auto items-center justify-center shadow-2xl">
+                       <img src="{{ asset('images/LOGO_SMK_1.png') }}" alt="">
+                    </div>
+                </div>
+
+                <!-- Title -->
+                <h1 class="text-4xl font-bold mb-4 text-center">Website RPL</h1>
+                <p class="text-xl text-purple-100 text-center mb-8 leading-relaxed">
+                    Portal Pembelajaran Digital<br>
+                    Rekayasa Perangkat Lunak
+                </p>
+
+                <!-- Features -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
+                            <i data-feather="users" class="w-4 h-4"></i>
                         </div>
-                        <div class="text-sm">
-                            <a href="/password/request" class="font-medium text-purple-600 hover:text-purple-500">
-                                Lupa password?
+                        <span class="text-purple-100">Khusus Siswa RPL SMKN 1 Pasuruan</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
+                            <i data-feather="shield" class="w-4 h-4"></i>
+                        </div>
+                        <span class="text-purple-100">Akses Aman & Terpercaya</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
+                            <i data-feather="book-open" class="w-4 h-4"></i>
+                        </div>
+                        <span class="text-purple-100">Materi Pembelajaran Terkini</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative Elements -->
+        <div class="absolute top-10 right-10 w-20 h-20 bg-purple-500 rounded-full opacity-20"></div>
+        <div class="absolute bottom-10 left-10 w-16 h-16 bg-purple-400 rounded-full opacity-20"></div>
+        <div class="absolute top-1/2 right-20 w-4 h-4 bg-white rounded-full opacity-30"></div>
+    </div>
+
+    <!-- Right Column - Login Form -->
+    <div class="w-full lg:w-1/2 flex items-center justify-center p-8">
+        <div class="w-full max-w-md animate-fade-up">
+            <!-- Mobile Logo (visible on small screens) -->
+            <div class="lg:hidden text-center mb-8">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-xl mb-4">
+                       <img src="{{ asset('images/LOGO_SMK_1.png') }}" alt="">
+                </div>
+                <h1 class="text-2xl font-bold text-gray-900">Website RPL</h1>
+                <p class="text-gray-600 mt-1">Silakan masuk ke akun Anda</p>
+            </div>
+
+            <!-- Login Card -->
+            <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                <!-- Header -->
+                <div class="px-8 pt-8 pb-6">
+                    <div class="hidden lg:block text-center mb-6">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-2">Selamat Datang</h2>
+                        <p class="text-gray-600">Masuk ke akun Anda untuk melanjutkan</p>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="px-8 pb-8">
+                    <form action="{{ route('login.post') }}" method="POST" class="space-y-6">
+                        @csrf
+
+                        <!-- Email Input -->
+                        <div>
+                            <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
+                                <i data-feather="mail" class="w-4 h-4 inline mr-2"></i>
+                                Email Address
+                            </label>
+                            <div class="relative">
+                                <input
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    class="block w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200 disabled:bg-gray-100 disabled:cursor-not-allowed text-gray-900"
+                                    placeholder="nama@email.com"
+                                    required
+                                    @if(session('rate_limit')) disabled @endif
+                                    value="{{ old('email') }}"
+                                    autocomplete="off"
+                                >
+                            </div>
+                            @error('email')
+                                <p class="mt-2 text-sm text-red-600 flex items-center">
+                                    <i data-feather="alert-circle" class="w-4 h-4 mr-1"></i>
+                                    {{ $message }}
+                                </p>
+                            @enderror
+                        </div>
+
+                        <!-- Password Input -->
+                        <div>
+                            <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">
+                                <i data-feather="lock" class="w-4 h-4 inline mr-2"></i>
+                                Password
+                            </label>
+                            <div class="relative">
+                                <input
+                                    type="password"
+                                    name="password"
+                                    id="passwordInput"
+                                    class="block w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200 disabled:bg-gray-100 disabled:cursor-not-allowed text-gray-900"
+                                    placeholder="••••••••"
+                                    required
+                                    @if(session('rate_limit')) disabled @endif
+                                    autocomplete="off"
+                                >
+                                <button
+                                    type="button"
+                                    onclick="togglePassword()"
+                                    class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-500 hover:text-gray-700 focus:outline-none transition duration-200"
+                                    @if(session('rate_limit')) disabled @endif
+                                >
+                                    <i data-feather="eye-off" id="eyeClosed" class="w-5 h-5"></i>
+                                    <i data-feather="eye" id="eyeOpen" class="w-5 h-5 hidden"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Remember Me & Forgot Password -->
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <input
+                                    id="remember"
+                                    name="remember"
+                                    type="checkbox"
+                                    class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                                >
+                                <label for="remember" class="ml-3 block text-sm text-gray-700">
+                                    Ingat saya
+                                </label>
+                            </div>
+                            <div class="text-sm">
+                                <a href="/password/request" class="font-medium text-purple-600 hover:text-purple-700 transition duration-200 flex items-center">
+                                    <i data-feather="help-circle" class="w-4 h-4 mr-1"></i>
+                                    Lupa password?
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button
+                            type="submit"
+                            id="submitButton"
+                            class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-semibold text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-200 disabled:bg-purple-400 disabled:cursor-not-allowed"
+                            @if(session('rate_limit')) disabled @endif
+                        >
+                            <span id="buttonText" class="flex items-center">
+                                <i data-feather="log-in" class="w-4 h-4 mr-2"></i>
+                                Masuk ke Akun
+                                @if(session('rate_limit')) (<span id="countdown">{{ session('rate_limit') }}</span>s) @endif
+                            </span>
+                            <span id="loadingSpinner" class="hidden">
+                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </span>
+                        </button>
+                    </form>
+
+                    <!-- Register Link -->
+                    <div class="mt-8 text-center">
+                        <div class="relative">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-gray-300"></div>
+                            </div>
+                            <div class="relative flex justify-center text-sm">
+                                <span class="px-2 bg-white text-gray-500">atau</span>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-sm text-gray-600">
+                            Belum punya akun?
+                            <a href="/registrasi" class="font-semibold text-purple-600 hover:text-purple-700 transition duration-200 ml-1 inline-flex items-center">
+                                <i data-feather="user-plus" class="w-4 h-4 mr-1"></i>
+                                Daftar sekarang
                             </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Card -->
+            <div class="mt-6">
+                <div class="bg-purple-50 border border-purple-200 rounded-xl p-4">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
+                                <i data-feather="info" class="w-4 h-4 text-white"></i>
+                            </div>
+                        </div>
+                        <div class="ml-3 flex-1">
+                            <h3 class="text-sm font-semibold text-purple-800 mb-1">Akses Terbatas</h3>
+                            <p class="text-xs text-purple-700 leading-relaxed">
+                                Portal ini khusus untuk siswa & alumni SMKN 1 Pasuruan jurusan Rekayasa Perangkat Lunak
+                            </p>
                         </div>
                     </div>
-                    
-                    <!-- Submit Button -->
-                 <button 
-                      type="submit" 
-                      id="submitButton"
-                      class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-200 disabled:bg-purple-400 disabled:cursor-not-allowed"
-                      @if(session('rate_limit')) disabled @endif
-                  >
-                      <span id="buttonText">
-                          Masuk
-                          @if(session('rate_limit')) (<span id="countdown">{{ session('rate_limit') }}</span>s) @endif
-                      </span>
-                      <span id="loadingSpinner" class="hidden ml-2">
-                          <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                          </svg>
-                      </span>
-                  </button>
-                </form>
-                
-                <!-- Register Link -->
-                <div class="mt-6 text-center">
-                    <p class="text-sm text-gray-600">
-                        Belum punya akun?
-                        <a href="/registrasi" class="font-medium text-purple-600 hover:text-purple-500 ml-1">
-                            Daftar sekarang
-                        </a>
-                    </p>
-                </div>
-            </div>
-
-        </div>
-        <div class="mb-6 mt-6">
-    <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-6 animate-slide-in hover:shadow-xl transition-shadow duration-300">
-        <div class="flex items-start">
-            <div class="flex-shrink-0">
-                <div class="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-lg p-3">
-                    <i data-feather="lock" class="w-6 h-6 text-white"></i>
-                </div>
-            </div>
-            <div class="ml-4 flex-1">
-                <div class="flex items-center mb-2">
-                    <h3 class="text-lg font-bold text-gray-800">Akses Terbatas</h3>
-                    <span class="ml-2 bg-purple-100 text-purple-800 text-xs font-medium px-2 py-1 rounded-full">
-                        RPL Only
-                    </span>
-                </div>
-                <p class="text-gray-600 leading-relaxed">
-                    Login hanya dilakukan oleh siswa SMKN 1 Pasuruan jurusan Rekayasa Perangkat Lunak
-                </p>
-                <div class="flex items-center mt-3 text-sm text-gray-500">
-                    <i data-feather="map-pin" class="w-4 h-4 mr-1"></i>
-                    <span>SMKN 1 Pasuruan</span>
-                    <span class="mx-2">•</span>
-                    <i data-feather="code-2" class="w-4 h-4 mr-1"></i>
-                    <span>RPL</span>
                 </div>
             </div>
         </div>
-    </div>
-</div>
     </div>
 </main>
-
-
-
 
 @if(session('rate_limit'))
 <script>console.log("Rate limit active: {{ session('rate_limit') }} seconds");</script>
 <script>
-    // Hitung mundur otomatis
+    // Countdown timer
     let seconds = {{ session('rate_limit') }};
     const countdownElement = document.getElementById('countdown');
     const submitButton = document.getElementById('submitButton');
-    
+
     const countdownInterval = setInterval(() => {
         seconds--;
         countdownElement.textContent = seconds;
-        
+
         if (seconds <= 0) {
             clearInterval(countdownInterval);
-            // Enable semua elemen yang perlu di-enable
             document.querySelectorAll('[disabled]').forEach(el => {
                 el.disabled = false;
             });
-            document.getElementById('buttonText').textContent = 'Masuk';
-            submitButton.classList.remove('disabled:bg-purple-400');
+            document.getElementById('buttonText').innerHTML = '<i data-feather="log-in" class="w-4 h-4 mr-2"></i>Masuk ke Akun';
+            feather.replace(); // Re-initialize feather icons
         }
     }, 1000);
 </script>
 @endif
 
 <script>
+    // Initialize Feather Icons
+    feather.replace();
+
     // Form submission spinner
     document.querySelector('form').addEventListener('submit', function() {
         document.getElementById('buttonText').classList.add('hidden');
@@ -253,7 +341,7 @@
         const input = document.getElementById('passwordInput');
         const eyeOpen = document.getElementById('eyeOpen');
         const eyeClosed = document.getElementById('eyeClosed');
-        
+
         if (input.type === 'password') {
             input.type = 'text';
             eyeOpen.classList.remove('hidden');

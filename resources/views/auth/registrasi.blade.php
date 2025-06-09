@@ -1,198 +1,251 @@
 @extends('layouts.app')
 @section('title','Registrasi')
 @section('content')
-<main class="bg-gradient-to-br from-purple-50 to-indigo-50 min-h-screen flex flex-col justify-center items-center p-4">
-    <div class="w-full max-w-md">
-        <!-- Error Messages -->
-        @if($errors->any())
-        <div class="mb-6 p-4 rounded-lg bg-red-50 border-l-4 border-red-500">
-            <div class="flex items-center">
-                <div class="flex-shrink-0">
-                    <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-                    </svg>
+<main class="min-h-screen bg-gray-50 flex">
+    <!-- Left Side - Logo and Branding -->
+    <div class="hidden lg:flex lg:w-1/2 bg-purple-600 relative overflow-hidden">
+        <div class="absolute inset-0 bg-primary"></div>
+        <div class="relative mx-auto z-10 flex flex-col justify-center items-center text-white p-12">
+            <!-- Logo Container -->
+            <div class="mb-8">
+                <div class="w-32 h-32 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+                       <img src="{{ asset('images/LOGO_SMK_1.png') }}" alt="">
                 </div>
-                <div class="ml-3">
-                    <h3 class="text-sm font-medium text-red-800">
-                        Terdapat {{ $errors->count() }} kesalahan yang harus diperbaiki
-                    </h3>
-                    <div class="mt-2 text-sm text-red-700">
-                        <ul class="list-disc pl-5 space-y-1">
+            </div>
+
+            <!-- Brand Text -->
+            <div class="text-center max-w-md">
+                <h1 class="text-4xl font-bold mb-4 font-[Poppins]">Website RPL</h1>
+                <p class="text-xl text-purple-100 mb-8">Platform Pembelajaran & Kolaborasi</p>
+                <div class="space-y-4 text-purple-100">
+                    <div class="flex items-center justify-center space-x-3">
+                        <i data-feather="users" class="w-5 h-5"></i>
+                        <span>Terhubung dengan komunitas RPL</span>
+                    </div>
+                    <div class="flex items-center justify-center space-x-3">
+                        <i data-feather="book-open" class="w-5 h-5"></i>
+                        <span>Akses materi pembelajaran terkini</span>
+                    </div>
+                    <div class="flex items-center justify-center space-x-3">
+                        <i data-feather="award" class="w-5 h-5"></i>
+                        <span>Kembangkan skill programming</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decorative Elements -->
+            <div class="absolute top-10 left-10 w-20 h-20 border border-white/20 rounded-full"></div>
+            <div class="absolute bottom-10 right-10 w-16 h-16 border border-white/20 rounded-full"></div>
+            <div class="absolute top-1/3 right-20 w-12 h-12 border border-white/20 rounded-full"></div>
+        </div>
+    </div>
+
+    <!-- Right Side - Registration Form -->
+    <div class="w-full lg:w-1/2 flex flex-col justify-center px-6 py-12 lg:px-12">
+        <div class="max-w-md mx-auto w-full">
+            <!-- Mobile Logo -->
+            <div class="lg:hidden text-center mb-8">
+                <div class="w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4">
+                       <img src="{{ asset('images/LOGO_SMK_1.png') }}" alt="">
+                </div>
+                <h1 class="text-2xl font-bold text-gray-900 font-[Poppins]">Website RPL</h1>
+            </div>
+
+            <!-- Header -->
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">Buat Akun Baru</h2>
+                <p class="text-gray-600">Bergabunglah dengan komunitas RPL sekarang</p>
+            </div>
+
+            <!-- Error Messages -->
+            @if($errors->any())
+            <div class="mb-6 p-4 rounded-lg bg-red-50 border border-red-200">
+                <div class="flex items-start">
+                    <i data-feather="alert-circle" class="w-5 h-5 text-red-500 mt-0.5 mr-3 flex-shrink-0"></i>
+                    <div>
+                        <h3 class="text-sm font-medium text-red-800 mb-2">
+                            Terdapat {{ $errors->count() }} kesalahan yang harus diperbaiki
+                        </h3>
+                        <ul class="text-sm text-red-700 space-y-1">
                             @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
+                                <li class="flex items-start">
+                                    <span class="w-1.5 h-1.5 bg-red-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
+                                    {{ $error }}
+                                </li>
                             @endforeach
                         </ul>
                     </div>
                 </div>
             </div>
-        </div>
-        @endif
+            @endif
 
-        <!-- Registration Card -->
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-            <!-- Header -->
-            <div class="bg-gradient-to-r from-purple-600 to-indigo-700 p-6 text-center">
-                <h1 class="text-3xl font-bold text-white font-[Poppins]">Website RPL</h1>
-                <p class="text-purple-100 mt-1">Buat akun baru Anda</p>
-            </div>
-            
-            <!-- Form -->
-            <div class="p-8">
-                <form action="{{ route('registrasi.post') }}" method="POST" class="space-y-5">
-                    @csrf
-                    
-                    <!-- Username Input -->
-                    <div>
-                        <label for="nama" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
-                        <input 
-                            type="text" 
-                            name="name" 
+            <!-- Registration Form -->
+            <form action="{{ route('registrasi.post') }}" method="POST" class="space-y-6">
+                @csrf
+
+                <!-- Username Input -->
+                <div>
+                    <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Username</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-feather="user" class="w-5 h-5 text-gray-400"></i>
+                        </div>
+                        <input
+                            type="text"
+                            name="name"
                             id="name"
-                            class="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200"
+                            class="block w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200 @error('name') border-red-500 @enderror"
                             placeholder="Masukkan username"
                             value="{{ old('name') }}"
                             required
                         >
                     </div>
-                    
-                    <!-- Email Input -->
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                        <input 
-                            type="email" 
-                            name="email" 
+                </div>
+
+                <!-- Email Input -->
+                <div>
+                    <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-feather="mail" class="w-5 h-5 text-gray-400"></i>
+                        </div>
+                        <input
+                            type="email"
+                            name="email"
                             id="email"
-                            class="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200"
+                            class="block w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200 @error('email') border-red-500 @enderror"
                             placeholder="email@contoh.com"
                             value="{{ old('email') }}"
                             required
                         >
                     </div>
-                    
-                    <!-- Password Input -->
-                    <div>
-                        <label for="passwordInput" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                        <div class="relative">
-                            <input
-                                type="password"
-                                name="password"
-                                id="passwordInput"
-                                placeholder="Buat password"
-                                class="block w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200"
-                                oninput="checkPasswordRules()"
-                                required
-                            />
-                            <button
-                                type="button"
-                                onclick="togglePassword()"
-                                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
-                            >
-                                <svg id="eyeOpen" class="h-5 w-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                </svg>
-                                <svg id="eyeClosed" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.88l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
-                                </svg>
-                            </button>
+                </div>
+
+                <!-- Password Input -->
+                <div>
+                    <label for="passwordInput" class="block text-sm font-semibold text-gray-700 mb-2">Password</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-feather="lock" class="w-5 h-5 text-gray-400"></i>
                         </div>
-                        
-                        <!-- Password Requirements -->
-                        <div class="mt-2 text-sm space-y-1">
-                            <div class="flex items-center">
-                                <svg id="check-length" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span class="text-gray-600">Minimal 8 karakter</span>
-                            </div>
-                            <div class="flex items-center">
-                                <svg id="check-uppercase" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span class="text-gray-600">Minimal 1 huruf besar</span>
-                            </div>
-                            <div class="flex items-center">
-                                <svg id="check-number" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span class="text-gray-600">Minimal 1 angka</span>
-                            </div>
-                            <div class="flex items-center">
-                                <svg id="check-special" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                <span class="text-gray-600">Minimal 1 karakter khusus</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Confirm Password Input -->
-                    <div>
-                        <label for="passwordInput2" class="block text-sm font-medium text-gray-700 mb-1">Konfirmasi Password</label>
-                        <div class="relative">
-                            <input
-                                type="password"
-                                name="password_confirmation"
-                                id="passwordInput2"
-                                placeholder="Ulangi password"
-                                class="block w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200"
-                                required
-                            />
-                            <button
-                                type="button"
-                                onclick="togglePassword1()"
-                                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
-                            >
-                                <svg id="eyeOpen2" class="h-5 w-5 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                </svg>
-                                <svg id="eyeClosed2" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.88l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
-                                </svg>
-                            </button>
-                        </div>
-                        <p id="errorText" class="mt-1 text-sm text-red-600 hidden">Password harus memenuhi semua syarat!</p>
+                        <input
+                            type="password"
+                            name="password"
+                            id="passwordInput"
+                            placeholder="Buat password"
+                            class="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200 @error('password') border-red-500 @enderror"
+                            oninput="checkPasswordRules()"
+                            required
+                        />
+                        <button
+                            type="button"
+                            onclick="togglePassword()"
+                            class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
+                        >
+                            <i data-feather="eye-off" id="eyeClosed" class="w-5 h-5"></i>
+                            <i data-feather="eye" id="eyeOpen" class="w-5 h-5 hidden"></i>
+                        </button>
                     </div>
 
-                     <div class="relative">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <i data-feather="user-check" class="w-5 h-5 text-gray-400"></i>
+                    <!-- Password Requirements -->
+                    <div class="mt-3 space-y-2">
+                        <div class="flex items-center text-sm">
+                            <i data-feather="check" id="check-length" class="w-4 h-4 mr-2 text-gray-400"></i>
+                            <span class="text-gray-600">Minimal 8 karakter</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i data-feather="check" id="check-uppercase" class="w-4 h-4 mr-2 text-gray-400"></i>
+                            <span class="text-gray-600">Minimal 1 huruf besar</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i data-feather="check" id="check-number" class="w-4 h-4 mr-2 text-gray-400"></i>
+                            <span class="text-gray-600">Minimal 1 angka</span>
+                        </div>
+                        <div class="flex items-center text-sm">
+                            <i data-feather="check" id="check-special" class="w-4 h-4 mr-2 text-gray-400"></i>
+                            <span class="text-gray-600">Minimal 1 karakter khusus</span>
+                        </div>
                     </div>
-                    <select name="role"
-                            required
-                            class="block w-full pl-10 pr-3 py-3 border  rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200 bg-white @error('role') border-red-500 @enderror">
-                        <option value="">-- Pilih Role --</option>
-                          @foreach(\App\Models\Role::whereIn('name', ['alumni','siswa'])->get() as $role)
-                            <option value="{{ $role->name }}">{{ ucfirst($role->name) }}</option>
-                     @endforeach
-                    </select>
                 </div>
-                    
-                    <!-- Submit Button -->
-                    <button 
-                        type="submit" 
-                        class="w-full py-3 px-4 rounded-lg shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-200"
-                    >
-                        Daftar Sekarang
-                    </button>
-                </form>
-                
-                <!-- Login Link -->
-                <div class="mt-6 text-center">
-                    <p class="text-sm text-gray-600">
-                        Sudah punya akun?
-                        <a href="/login" class="font-medium text-purple-600 hover:text-purple-500 ml-1">
-                            Login sekarang
-                        </a>
+
+                <!-- Confirm Password Input -->
+                <div>
+                    <label for="passwordInput2" class="block text-sm font-semibold text-gray-700 mb-2">Konfirmasi Password</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-feather="lock" class="w-5 h-5 text-gray-400"></i>
+                        </div>
+                        <input
+                            type="password"
+                            name="password_confirmation"
+                            id="passwordInput2"
+                            placeholder="Ulangi password"
+                            class="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200"
+                            required
+                        />
+                        <button
+                            type="button"
+                            onclick="togglePassword2()"
+                            class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
+                        >
+                            <i data-feather="eye-off" id="eyeClosed2" class="w-5 h-5"></i>
+                            <i data-feather="eye" id="eyeOpen2" class="w-5 h-5 hidden"></i>
+                        </button>
+                    </div>
+                    <p id="errorText" class="mt-2 text-sm text-red-600 hidden flex items-center">
+                        <i data-feather="alert-triangle" class="w-4 h-4 mr-1"></i>
+                        <span>Password harus memenuhi semua syarat!</span>
                     </p>
                 </div>
+
+                <!-- Role Selection -->
+                <div>
+                    <label for="role" class="block text-sm font-semibold text-gray-700 mb-2">Role</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i data-feather="user-check" class="w-5 h-5 text-gray-400"></i>
+                        </div>
+                        <select name="role"
+                                required
+                                class="block w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-200 bg-white @error('role') border-red-500 @enderror">
+                            <option value="">-- Pilih Role --</option>
+                            @foreach(\App\Models\Role::whereIn('name', ['alumni','siswa'])->get() as $role)
+                                <option value="{{ $role->name }}">{{ ucfirst($role->name) }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button
+                    type="submit"
+                    class="w-full py-3 px-4 rounded-lg text-sm font-semibold text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-200 flex items-center justify-center space-x-2"
+                >
+                    <i data-feather="user-plus" class="w-5 h-5"></i>
+                    <span>Daftar Sekarang</span>
+                </button>
+            </form>
+
+            <!-- Login Link -->
+            <div class="mt-8 text-center">
+                <p class="text-sm text-gray-600">
+                    Sudah punya akun?
+                    <a href="/login" class="font-semibold text-purple-600 hover:text-purple-700 ml-1 inline-flex items-center">
+                        Login sekarang
+                        <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                    </a>
+                </p>
             </div>
         </div>
     </div>
 </main>
 
+<!-- Feather Icons Script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
 <script>
+    // Initialize Feather Icons
+    feather.replace();
+
     // Toggle Password Visibility
     function togglePassword() {
         const input = document.getElementById("passwordInput");
@@ -210,7 +263,7 @@
         }
     }
 
-    function togglePassword1() {
+    function togglePassword2() {
         const input = document.getElementById("passwordInput2");
         const eyeOpen = document.getElementById("eyeOpen2");
         const eyeClosed = document.getElementById("eyeClosed2");
@@ -266,8 +319,9 @@
 
         if (!isValid) {
             event.preventDefault();
-            errorText.textContent = password !== confirmPassword 
-                ? "Password dan konfirmasi tidak cocok!" 
+            const errorSpan = errorText.querySelector('span');
+            errorSpan.textContent = password !== confirmPassword
+                ? "Password dan konfirmasi tidak cocok!"
                 : "Password harus memenuhi semua syarat!";
             errorText.classList.remove("hidden");
         }
