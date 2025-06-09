@@ -135,11 +135,7 @@ class authController extends Controller
             if (!$siswaData && !$request->is('siswa/profile')) {
                 return redirect('/siswa/profile')->with('info', 'Silakan lengkapi profil Anda terlebih dahulu.');
             }
-
-            $alumniData = alumni_profile::where('user_id', $user->id)->first();
-            if(!$alumniData && !$request->is('alumni/profile')) {
-                return redirect('/alumni/profile')->with('error', 'Silakan lengkapi profil Anda terlebih dahulu.');
-            }
+            
             return redirect()->intended('dashboard');
         }elseif ($user->hasRole('alumni')) {
             if ($user->status === 'pending') {
