@@ -8,10 +8,11 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         @foreach ($assignments as $assignment)
             @php
-                $now = \Carbon\Carbon::now();
-                $dueDate = \Carbon\Carbon::parse($assignment->due_date);
+                $now = \Carbon\Carbon::now('Asia/Jakarta');
+                $dueDate = \Carbon\Carbon::parse($assignment->due_date)->setTimezone('Asia/Jakarta')->endOfDay();
                 $isLate = $now->gt($dueDate);
             @endphp
+
 
             <div class="bg-white rounded-xl shadow-md p-5 flex flex-col justify-between h-full">
                 <div>

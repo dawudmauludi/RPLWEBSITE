@@ -14,7 +14,7 @@
         </div>
 
         <div class="text-gray-700 space-y-1">
-            <p><strong>Batas Waktu:</strong> {{ \Carbon\Carbon::parse($assignment->due_date)->format('d M Y H:i') }}</p>
+            <p><strong>Batas Waktu:</strong> {{ \Carbon\Carbon::parse($assignment->due_date)->setTimezone('Asia/Jakarta')->endOfDay()->format('d M Y H:i') }}</p>
             <p><strong>Kelas:</strong> {{ $assignment->kelas->nama ?? '-' }}</p>
 
             @if ($assignment->link)

@@ -10,7 +10,7 @@
         <h2 class="text-xl font-bold">{{ $assignment->title }}</h2>
         <p class="text-gray-700 mt-2"><strong>Instruksi:</strong> </p><br>
         <p class="text-gray-700 mb-1">{!! $assignment->instructions !!}</p>
-        <p class="text-gray-700"><strong>Batas Waktu:</strong> {{ \Carbon\Carbon::parse($assignment->due_date)->format('d M Y H:i') }}</p>
+        <p class="text-gray-700"><strong>Batas Waktu:</strong> {{ \Carbon\Carbon::parse($assignment->due_date)->setTimezone('Asia/Jakarta')->endOfDay()->format('d M Y H:i') }}</p>
         <p class="text-gray-700"><strong>Kelas:</strong> {{ $assignment->kelas->nama ?? '-' }}</p>
 
         @if ($assignment->link)
@@ -35,10 +35,10 @@
 
     <h2 class="text-xl font-semibold mb-4">History Pengumpulan Tugas Kamu</h2>
      @php
-                $now = \Carbon\Carbon::now();
-                $dueDate = \Carbon\Carbon::parse($assignment->due_date);
+                $now = \Carbon\Carbon::now('Asia/Jakarta');
+                $dueDate = \Carbon\Carbon::parse($assignment->due_date)->setTimezone('Asia/Jakarta')->endOfDay();
                 $isLate = $now->gt($dueDate);
-    @endphp
+            @endphp
     @if ($submission->isNotEmpty())
         <table class="min-w-full bg-white shadow rounded overflow-hidden">
             <thead>

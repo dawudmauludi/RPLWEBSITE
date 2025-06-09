@@ -34,7 +34,7 @@
                     <tr class="border-b hover:bg-gray-50">
                         <td class="py-2 px-4">{{ $ass->title }}</td>
                         <td class="py-2 px-4">{{ $ass->kelas->nama }}</td>
-                        <td class="py-2 px-4">{{ \Carbon\Carbon::parse($ass->due_date)->format('d M Y H:i') }}</td>
+                        <td class="py-2 px-4">{{ \Carbon\Carbon::parse($ass->due_date)->setTimezone('Asia/Jakarta')->endOfDay()->format('d M Y H:i') }}</td>
                         <td class="py-2 px-4 space-x-2">
                             <a href="{{ route('assignments.show', $ass) }}" class="text-blue-600 hover:underline">Lihat</a>
                             <a href="{{ route('assignments.edit', $ass->id) }}" class="text-yellow-600 hover:underline">Edit</a>
