@@ -81,20 +81,41 @@ class AssignmentsController extends Controller
     {
      $assignment->load('kelas');
 
-$query = SubmissionsAssignments::where('assignment_id', $assignment->id)
-    ->with(['user', 'photos']);
+        $query = SubmissionsAssignments::where('assignment_id', $assignment->id)
+            ->with(['user', 'photos']);
 
-if ($search = request('search')) {
-    $query->whereHas('user', function ($q) use ($search) {
-        $q->where('name', 'like', '%' . substr($search, 0, 100) . '%');
-    });
-}
+        if ($search = request('search')) {
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'like', '%' . substr($search, 0, 100) . '%');
+            });
+        }
 
-// Simpan hasil query pencarian ke variabel `$submissions`
-$submissions = $query->orderBy('created_at', 'desc')->paginate(9)->withQueryString();
+        // Simpan hasil query pencarian ke variabel `$submissions`
+        $submissions = $query->orderBy('created_at', 'desc')->paginate(9)->withQueryString();
 
-return view('dashboard.guru.assignments.show', compact('assignment', 'submissions'));
+        return view('dashboard.guru.assignments.show', compact('assignment', 'submissions'));
     }
+
+    public function searchSubmissions(Assignments $assignment)
+    {
+        $assignment->load('kelas');
+
+        $query = SubmissionsAssignments::where('assignment_id', $assignment->id)
+            ->with(['user', 'photos']);
+
+        if ($search = request('search')) {
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'like', '%' . substr($search, 0, 100) . '%');
+            });
+        }
+
+        $submissions = $query->orderBy('created_at', 'desc')->get();
+
+        return response()->json([
+            'html' => view('dashboard.guru.assignments.partials.submissions-table', compact('submissions'))->render()
+        ]);
+    }
+
 
     /**
      * Show the form for editing the specified resource.

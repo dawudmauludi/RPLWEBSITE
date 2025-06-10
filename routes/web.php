@@ -141,6 +141,8 @@ Route::middleware(['auth','role:guru'])->group(function () {
         Route::get('/nilai/export-excel/{ulanganId}', [NilaiExportController::class, 'export'])->name('nilai.export');
         Route::post('/nilai/import/{ulangan_id}', [NilaiUlanganController::class, 'importNilai'])->name('nilai.import');
         Route::resource('assignments', AssignmentsController::class);
+        Route::get('/assignments/{assignment}/submissions/search', [AssignmentsController::class, 'searchSubmissions'])->name('assignments.submissions.search');
+
 });
 
 
